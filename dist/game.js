@@ -1,17 +1,19 @@
-import * as THREE from './vendor/three.module.js?v=51f846109fd3';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=51f846109fd3';
-import { buildingAppearance } from './visual-data.js?v=51f846109fd3';
-import { BUILDING_PARTS } from './building-parts.js?v=51f846109fd3';
-import { CAMPUS_DETAILS } from './campus-details.js?v=51f846109fd3';
-import { VILLAGE_SPORTS } from './sports-data.js?v=51f846109fd3';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=51f846109fd3';
-import { NIDA_PARTS } from './nida-parts.js?v=51f846109fd3';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=51f846109fd3';
-import { tubeFaces } from './structure-data.js?v=51f846109fd3';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=51f846109fd3';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=51f846109fd3';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=51f846109fd3';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=51f846109fd3';
+import * as THREE from './vendor/three.module.js?v=3a12a1f14521';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=3a12a1f14521';
+import { buildingAppearance } from './visual-data.js?v=3a12a1f14521';
+import { BUILDING_PARTS } from './building-parts.js?v=3a12a1f14521';
+import { CAMPUS_DETAILS } from './campus-details.js?v=3a12a1f14521';
+import { VILLAGE_SPORTS } from './sports-data.js?v=3a12a1f14521';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=3a12a1f14521';
+import { NIDA_PARTS } from './nida-parts.js?v=3a12a1f14521';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=3a12a1f14521';
+import { tubeFaces } from './structure-data.js?v=3a12a1f14521';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=3a12a1f14521';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=3a12a1f14521';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=3a12a1f14521';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=3a12a1f14521';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=3a12a1f14521';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=3a12a1f14521';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -192,6 +194,17 @@ function clinkerTexture() {
     }
     for(let i=0;i<14000;i++){ctx.fillStyle=random()>.5?'#ffffff18':'#34332d15';ctx.fillRect(random()*512,random()*512,1,1);}
   });
+}
+
+function copperShingles(){
+  const texture=canvasTexture(512,512,ctx=>{
+    const random=rng(390);ctx.fillStyle='#c4a256';ctx.fillRect(0,0,512,512);
+    for(let row=-1;row<10;row++)for(let col=-1;col<10;col++){
+      const x=col*64+(row%2)*32,y=row*32,light=51+random()*15;
+      ctx.beginPath();ctx.moveTo(x,y-32);ctx.lineTo(x+32,y);ctx.lineTo(x,y+32);ctx.lineTo(x-32,y);ctx.closePath();
+      ctx.fillStyle=`hsl(${39+random()*7} ${42+random()*17}% ${light}%)`;ctx.fill();ctx.strokeStyle='#7e622c88';ctx.lineWidth=1;ctx.stroke();
+    }
+  });texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.anisotropy=8;return texture;
 }
 
 const surfaceCache = new Map();
@@ -377,7 +390,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       polygon(landscape,pts,green.raisedBy||.005,sport?'#739a70':'#9daf89');
       if(green.raisedBy)addCollider({points:pts,top:green.raisedBy,base:0,terrainOffset:green.raisedBy});
     }
-    for(const plaza of campus.plazas||[])polygon(plaza.surface==='stone'?paving:edges,validPoints(plaza),plaza.surface==='stone'?.22:.022,'#d6d1c6',plaza.holes||[]);
+    for(const plaza of campus.plazas||[])polygon(plaza.surface==='stone'?paving:edges,validPoints(plaza),plaza.surface==='stone'?.22:.022,plaza.color||'#d6d1c6',plaza.holes||[]);
     for (const path of paths) {
       const pts=validPoints(path); if(pts.length<2) continue;
       const road=/road|service|residential|street/i.test(path.kind || path.type || '');
@@ -1320,6 +1333,170 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     addCollider({points:frameRectangle(f,g.canopy.depth,g.canopy.length,g.west-g.canopy.depth/2,(g.canopy.start+g.canopy.end)/2),bottom:3.38,top:4.05,base:b.base});
   }
 
+  function clancyAuditorium(b,detail){
+    const g=clancyGeometry(b),f=g.frame,h=g.hood,concrete=new Batch(),outer=new Batch(),gold=new Batch(),glazing=new Batch(),floor=new Batch();
+    for(const batch of [concrete,outer,gold,glazing,floor])batch.base=b.base;
+    const p=(u,v,y)=>{const q=framePoint(f,u,v);return[q.x,y,q.z];};
+    const low=Math.min(0,buildingBase(b.points)-b.base),ring=polygonArea(b.points)<0?[...b.points].reverse():b.points;
+    // The opaque auditorium is inset from the glazed wraparound foyer.
+    const core=polygonArea(g.core)<0?[...g.core].reverse():g.core;
+    for(let i=0;i<core.length;i++)wallPanel(concrete,core[i],core[(i+1)%core.length],0,12.5,'#adb6aa');
+    polygon(concrete,g.core,12.5,'#9fa99e');
+    polygon(floor,b.points,.055,'#233d72');
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.2)continue;
+      const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,normalV=nx*f.v.x+nz*f.v.z,normalU=nx*f.u.x+nz*f.u.z;
+      wallPanel(concrete,a,c,low,.04,'#a4aea1');
+      // Long side faces are glazed; diagonal corners and the stage end retain
+      // the faceted concrete shell seen around the new foyer hoods.
+      if(normalV<-.9)continue;
+      if(Math.abs(normalU)>.9)continue;
+      const top=q=>normalV>.8?8.5:Math.max(2.6,8.8-(Math.abs(g.local(q).u)-12)*.5);
+      concrete.quad([a.x,0,a.z],[a.x,top(a),a.z],[c.x,top(c),c.z],[c.x,0,c.z],'#bdc3b5');
+      if(normalV>.8){wallPanel(detail,a,c,.2,2.6,'#696d59',.07,.46,.54);wallPanel(detail,a,c,7.9,8.4,'#a3ac9b',.08);}
+    }
+    // North civic hood: oxidised outer copper and a warm shingle-lined interior.
+    const rearLeft=p(h.centreU-h.width/2,h.backV,h.backHeight),rearRight=p(h.centreU+h.width/2,h.backV,h.backHeight);
+    const lipLeft=p(h.centreU-h.lipWidth/2,h.lipV,h.lipHeight),lipRight=p(h.centreU+h.lipWidth/2,h.lipV,h.lipHeight);
+    outer.quad(rearLeft,rearRight,lipRight,lipLeft,'#42463e');
+    const beneath=q=>[q[0],q[1]-.24,q[2]];
+    gold.quad(beneath(lipLeft),beneath(lipRight),beneath(rearRight),beneath(rearLeft),'#d8b469');
+    outer.quad(lipLeft,lipRight,beneath(lipRight),beneath(lipLeft),'#343e38');
+    for(const side of [-1,1]){
+      const base=p(h.centreU+side*h.width/2,h.glassV,0),backBase=p(h.centreU+side*h.width/2,h.backV,0),rear=side<0?rearLeft:rearRight,lip=side<0?lipLeft:lipRight;
+      gold.quad(base,lip,rear,backBase,'#d2aa55');
+      const shift=q=>[q[0]+f.u.x*side*.2,q[1],q[2]+f.u.z*side*.2];
+      outer.quad(shift(backBase),shift(rear),shift(lip),shift(base),'#4a4940');
+      outer.quad(base,shift(base),shift(lip),lip,'#3c443c');
+    }
+    const ga=framePoint(f,h.centreU-h.width/2,h.glassV),gc=framePoint(f,h.centreU+h.width/2,h.glassV);
+    wallPanel(glazing,ga,gc,.08,h.glassHeight,'#b9d0c6');
+    wallPanel(gold,ga,gc,h.glassHeight,g.roofHeight(h.glassV)-.24,'#d6b268');
+    for(let u=-h.width/2;u<=h.width/2+.01;u+=h.width/8){
+      const a=p(h.centreU+u,h.glassV-.035,.05),c=p(h.centreU+u,h.glassV-.035,h.glassHeight);
+      batchPipe(detail,a,c,.012,'#879b8f');
+    }
+    for(const u of [-8.6,-2.9,2.9,8.6]){
+      batchPipe(detail,p(h.centreU+u,h.glassV-.12,.95),p(h.centreU+u,h.glassV-.12,1.65),.022,'#c3d0c2');
+    }
+    const canopyV=h.glassV-1.2,canopyWidth=24.5;
+    const ca=framePoint(f,h.centreU,canopyV),angle=Math.atan2(-f.u.z,f.u.x);
+    detail.box(ca.x,3.65,ca.z,canopyWidth,.08,1.7,'#8c9d92',angle);
+    for(let u=-10;u<=10;u+=4){
+      const a=p(h.centreU+u,canopyV,3.7),c=p(h.centreU+u,canopyV,g.roofHeight(canopyV)-.3);
+      batchPipe(detail,a,c,.014,'#667f73');
+      const from=p(h.centreU+u,canopyV-.85,3.72),to=p(h.centreU+u,canopyV+.85,3.72);batchBeam(detail,from,to,.035,'#536e62');
+    }
+    // Smaller east and west glazed hoods wrap around the original hall.
+    for(const side of [-1,1]){
+      const u=side*21.5,lipU=side*24.4;
+      const a=framePoint(f,u,side>0?-10:12),c=framePoint(f,u,side>0?12:-10);
+      wallPanel(glazing,a,c,.08,5.1,'#a7c1b7');
+      for(let v=-10;v<=12;v+=2.2)batchPipe(detail,p(u,v,.1),p(u,v,5.1),.014,'#93a69a');
+      gold.quad(p(u,-10,5.2),p(u,12,5.2),p(lipU,12,7),p(lipU,-10,7),'#d0a64d');
+      outer.quad(p(u,12,5.43),p(u,-10,5.43),p(lipU,-10,7.23),p(lipU,12,7.23),'#454a40');
+      outer.quad(p(lipU,-10,7.23),p(lipU,12,7.23),p(lipU,12,7),p(lipU,-10,7),'#3b443a');
+    }
+    // A restrained foyer fitout is visible through the glazing. The tapestry
+    // and interior artworks are not replaced with invented reproductions.
+    for(const u of [-10.5,10.5]){const q=framePoint(f,u,-8);detail.box(q.x,1.2,q.z,3,2.4,2.6,'#244477',angle);}
+    for(let i=0;i<20;i++){
+      const u0=-7+i*.7,u1=u0+.7,v=u=>-8.7-.7*(1-(u/7)**2),a=framePoint(f,u0,v(u0)),c=framePoint(f,u1,v(u1));
+      wallPanel(concrete,a,c,.05,1.15,'#c5cabe');
+      const d=framePoint(f,u0,v(u0)+1),e=framePoint(f,u1,v(u1)+1);polygon(detail,[a,c,e,d],1.18,'#a7afa4');
+    }
+    const logo=canvasTexture(1024,384,(ctx,w,h)=>{ctx.clearRect(0,0,w,h);ctx.fillStyle='#e9ead5';ctx.textAlign='center';ctx.font='500 220px sans-serif';ctx.fillText('UNSW',w/2,240);ctx.font='500 63px sans-serif';ctx.fillText('S Y D N E Y',w/2,330);});
+    const wordmark=new THREE.Mesh(new THREE.PlaneGeometry(8,3),new THREE.MeshBasicMaterial({map:logo,transparent:true,opacity:.7,depthWrite:false})),q=framePoint(f,h.centreU,h.glassV-.08);
+    wordmark.position.set(q.x,b.base+7,q.z);wordmark.rotation.y=Math.atan2(-f.v.x,-f.v.z);world.add(wordmark);
+    const copper=copperShingles();
+    world.add(concrete.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('concrete'),bumpMap:surfaceTexture('concrete'),bumpScale:.045})),outer.mesh(style('#ffffff',{vertexColors:true,metalness:.55,roughness:.6,side:THREE.DoubleSide})),gold.mesh(style('#ffffff',{vertexColors:true,map:copper,bumpMap:copper,bumpScale:.018,metalness:.58,roughness:.36,emissive:'#a37225',emissiveIntensity:.19,side:THREE.DoubleSide})),glazing.mesh(style('#ffffff',{vertexColors:true,transparent:true,opacity:.28,roughness:.08,metalness:.2,side:THREE.DoubleSide,depthWrite:false})),floor.mesh(style('#ffffff',{vertexColors:true})));
+    addCollider({points:b.points,bottom:low,top:b.height,base:b.base});
+    for(const hood of buildings.filter(q=>q.modelledWith===b.id))addCollider({points:hood.points,bottom:hood.id==='osm-way-1178531028'?6.86:5.1,top:hood.id==='osm-way-1178531028'?14.5:7.23,base:b.base});
+  }
+
+  function chancelleryBuilding(b,brick,glass,detail,roofs){
+    const g=chancelleryGeometry(b),f=g.frame,w=g.west,ring=polygonArea(b.points)<0?[...b.points].reverse():b.points;
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.2)continue;
+      const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,normalV=nx*f.v.x+nz*f.v.z,normalU=nx*f.u.x+nz*f.u.z,mid=g.local({x:(a.x+c.x)/2,z:(a.z+c.z)/2});
+      const western=mid.u<4.14&&mid.v>w.minV-.1&&mid.v<w.maxV+.1;
+      wallPanel(brick,a,c,0,western?w.eave:14.8,'#796d58');
+      if(western&&Math.abs(normalV)>.8){
+        const bays=w.bays;
+        for(let j=0;j<bays;j++){
+          const u=w.minU+(j+.5)*g.pitch;
+          for(let floor=0;floor<4;floor++){
+            const lo=2.5+floor*2.9+.4,hi=lo+1.85,p0=framePoint(f,u-g.pitch*.35,mid.v),p1=framePoint(f,u+g.pitch*.35,mid.v);
+            const aa=normalV>0?p1:p0,cc=normalV>0?p0:p1;
+            wallPanel(glass,aa,cc,lo,hi,'#526c66',.08);
+            wallPanel(detail,aa,cc,hi,hi+.1,'#b4bfb0',.13);
+            if(normalV<0&&floor===3){wallPanel(detail,aa,cc,lo-.35,lo+.55,'#bfc8b5',.75);}
+          }
+        }
+        for(let j=0;j<=bays;j++){
+          const p=framePoint(f,w.minU+j*g.pitch,mid.v),column={x:p.x+nx*.16,z:p.z+nz*.16};
+          detail.box(column.x,7.2,column.z,.27,14.4,.42,'#c4ccba',Math.atan2(-f.u.z,f.u.x));
+        }
+      }else{
+        const entrance=normalU>.85&&mid.u>15&&mid.u<16&&Math.abs(mid.v)<26,bays=Math.max(1,Math.round(len/2.5));
+        for(let floor=0;floor<5;floor++)for(let bay=0;bay<bays;bay++){
+          const midT=(bay+.5)/bays,half=(entrance&&floor<3?.43:.28)/bays,lo=floor*3+.38,hi=lo+2.25;
+          wallPanel(glass,a,c,lo,hi,entrance&&floor<3?'#637c70':'#4b625c',.07,midT-half,midT+half);
+          wallPanel(detail,a,c,hi,hi+.055,'#b4beac',.16,midT-half,midT+half);
+          wallPanel(detail,a,c,(lo+hi)/2,(lo+hi)/2+.035,'#819586',.12,midT-half,midT+half);
+        }
+        for(let floor=1;floor<5;floor++)wallPanel(detail,a,c,floor*3-.12,floor*3+.04,'#575f50',.07);
+        if(western&&Math.abs(normalU)>.8)wallPanel(detail,a,c,13.1,13.45,'#3e564b',.08,.3,.7);
+      }
+      if(!western)wallPanel(detail,a,c,14.6,15,'#c5ccbb',.28);
+    }
+    for(const region of CHANCELLERY_ROOFS){
+      if(region.kind==='vaults')shapedRoof(roofs,region.points,g.roofHeight,'#c1c9b8');
+      else polygon(roofs,region.points,15,'#a4afa0',region.holes);
+    }
+    // Thin concrete arch edges make the repeated barrel vaults legible from
+    // Library Lawn and the northern courtyard.
+    for(const v of [w.minV,w.maxV])for(let bay=0;bay<w.bays;bay++)for(let i=0;i<12;i++){
+      const u=w.minU+(bay+i/12)*g.pitch,t=u+g.pitch/12,a=framePoint(f,u,v),c=framePoint(f,t,v),ya=g.roofHeight(a),yc=g.roofHeight(c);
+      const edge=[[a.x,w.eave-.12,a.z],[a.x,ya,a.z],[c.x,yc,c.z],[c.x,w.eave-.12,c.z]];
+      detail.quad(...(v===w.maxV?edge.reverse():edge),'#d4d9c8');
+    }
+    const entry=framePoint(f,17.2,0),angle=Math.atan2(-f.v.z,f.v.x);
+    detail.box(entry.x,8.15,entry.z,10,.2,3.6,'#d6dccb',angle);
+    for(const v of [-4.7,4.7]){
+      const p=framePoint(f,18.6,v),bottom=terrainHeight(p.x,p.z)-b.base;
+      detail.box(p.x,(bottom+8.1)/2,p.z,.16,8.1-bottom,.16,'#b8c7b4');addCollider({x:p.x,z:p.z,radius:.1,bottom,top:8.2,base:b.base});
+    }
+    const ea=framePoint(f,19, -4.5),ec=framePoint(f,19,4.5);
+    facadeLabel(b,ea,ec,'The Chancellery','',2.4,8.16,'#354b3f');
+    chancelleryGarden(b,g);
+    addCollider({points:b.points,top:b.height,base:b.base});
+  }
+
+  function chancelleryGarden(b,g){
+    const wood=new Batch(),fronds=new Batch();wood.base=fronds.base=0;
+    const mulch=new Batch();
+    for(const bed of g.beds)polygon(mulch,bed,.07,'#9b7959');
+    for(const [index,fern]of g.ferns.entries()){
+      const base=terrainHeight(fern.x,fern.z),top=base+fern.height;
+      batchPipe(wood,[fern.x,base,fern.z],[fern.x,top,fern.z],.12,'#7b7151');
+      for(let leaf=0;leaf<12;leaf++){
+        const angle=leaf/12*TAU+index*.7,dx=Math.cos(angle),dz=Math.sin(angle),px=-dz,pz=dx;
+        for(let i=0;i<9;i++){
+          const t=i/9,r=t*2.3,y=top+.55*Math.sin(t*Math.PI)-.45*t,x=fern.x+dx*r,z=fern.z+dz*r;
+          const width=.42*Math.sin((t+.1)*Math.PI);
+          for(const side of [-1,1])fronds.triangle([x,y,z],[x+dx*.18,y-.02,z+dz*.18],[x+dx*.35+px*width*side,y-.12,z+dz*.35+pz*width*side],leaf%2?'#638844':'#86a85d');
+        }
+      }
+      addCollider({x:fern.x,z:fern.z,radius:.17,top:fern.height,base});
+    }
+    for(const v of [-10,-5,5,10]){
+      const p=framePoint(g.frame,26,v),base=terrainHeight(p.x,p.z),ball=new THREE.Mesh(new THREE.SphereGeometry(.34,10,7),style('#a3a68d',{map:surfaceTexture('aggregate'),bumpMap:surfaceTexture('aggregate'),bumpScale:.025}));
+      ball.position.set(p.x,base+.29,p.z);ball.castShadow=true;world.add(ball);addCollider({x:p.x,z:p.z,radius:.34,top:.63,base});
+    }
+    world.add(mulch.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('aggregate')})),wood.mesh(style('#ffffff',{vertexColors:true})),fronds.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+  }
+
   function grandstand(b,concrete,detail,roofs){
     const pitch=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
     const f=orientedFrame(b.points,pitch.v),rows=6,rise=.37,depth=.85,front=f.width/2-1.1;
@@ -1482,7 +1659,11 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='webster-theatres'){
         const g=websterTheatresGeometry(b),p=framePoint(g.frame,g.west,0);b.base=terrainHeight(p.x,p.z);
       }
+      if(profile.facade==='clancy'){
+        const g=clancyGeometry(b),p=framePoint(g.frame,g.hood.centreU,g.hood.glassV);b.base=terrainHeight(p.x,p.z);
+      }
       for(const batch of allBatches)batch.base=b.base;
+      if(b.modelledWith)continue;
       if(b.id==='osm-way-1178531037'){scientiaCanopy(b,detail,glass);continue;}
       if(b.walkableUnder){
         const h=Math.max(3,b.height),ordered=polygonArea(pts)<0?[...pts].reverse():pts;
@@ -1502,6 +1683,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='webster'){websterBuilding(b,masonry,glass,detail,roofs);continue;}
       if(profile.facade==='chemical-complex'){chemicalComplex(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
+      if(profile.facade==='clancy'){clancyAuditorium(b,detail);continue;}
+      if(profile.facade==='chancellery'){chancelleryBuilding(b,brickwork,glass,detail,roofs);continue;}
       if(['village','postgraduate'].includes(profile.facade)){residentialComplex(b,profile,masonry,glass,detail,roofs);continue;}
       if(['shalom','international'].includes(profile.facade)){olderResidence(b,profile,clinkerwork,glass,detail,roofs);continue;}
       if(['warrane','new-college'].includes(profile.facade)){residence(b,profile,brickwork,glass,detail,roofs);continue;}

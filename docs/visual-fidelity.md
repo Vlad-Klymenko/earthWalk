@@ -6,9 +6,9 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 - Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. Base terrain sampling and foundations use metres in the same coordinate frame. Photo-led landscape additions use explicitly reconstructed dimensions.
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
-- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. The remaining 45 parent height tags are used unchanged; 49 footprints use estimates. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
+- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 44 parent height tags are used unchanged; 50 footprints use estimates. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 46 campus footprints have a specific source-linked appearance profile, within 89 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 48 campus footprints have a specific source-linked appearance profile, within 98 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -51,6 +51,12 @@ Public Google panorama hrqvG25FXbeVUiwgZjnVOQ at -33.9175718, 151.2290574 (July 
 
 Webster Theatres G15 retains its mapped perimeter and two-level tag with an estimated 6.4 m model height. The west entrance now has tall glazing, pale panels and curved light canopy sheets on dark steel supports. Its paving and canopy dimensions / positions are estimates; the northern end is shortened to clear the mapped Quadrangle perimeter. The entrance photographs show the neighbouring curved Quadrangle wall separately. A browser check walked 13 m into and along the covered route. Exact door placement, entrance treads and surrounding terrace levels still need better dimensioned evidence.
 
+Clancy Auditorium C24 now uses an inset concrete hall, a flared northern copper hood with a procedural diamond-shingle soffit, tall transparent glazing, suspended entrance canopy, smaller side hoods and simplified blue foyer fitout. The original 8 m map tag and two-level tag remain. The architect’s public scaled section and exterior photographs support a **14.5 m model estimate**, not a surveyed overall height. The architect describes 10 m glazing; an indexed TTW engineering account gives 8 m frontage and a 23 m portal, while its old live URL now redirects. These differing component figures are disclosed separately. Three real mapped roof outlines are retained and integrated with the hoods, removing duplicate generic roofs and invented posts. Their dimensions and canopy clearances remain reconstructed.
+
+Google Street View panorama 2eariXTnlgfVb6_HXbUA1Q at -33.9163674, 151.2349538 (February 2022) was visually inspected at 175° and 210°. Trees obscure portions of the post-refurbishment façade; the architect’s photographs provide the clearer detail. A browser walk reached the closed glass boundary after 25 m and remained blocked when continuing forward. This is an outdoor map; the foyer is visible but not entered.
+
+Chancellery C22 retains its detailed H-shaped footprint, 15 m OSM height and five-level tag. NBRS’s 2019 heritage report (printed pp. 16–17 / PDF pp. 22–23, photos May 2018) describes four wings, with five storeys including basement and sub-basement. The eastern entrance faces Michael Birt Gardens. The model now has brown brick, recessed glazing, a white canopy, reconstructed tree ferns, stone bollards and paving; the western Executive wing has repeated concrete piers, segmental barrel vaults and northern balcony parapets. Roof regions exactly partition the original footprint without overlap. Vault count, pitch, window divisions and landscape dimensions are estimates. The heritage report does not supply the 15 m height; the map tag remains its numeric source. Current official Library Lawn photography was also visually checked. The former proposed B22 replacement is not represented as an existing building.
+
 Structural surface correction: the previous square beam helper emitted inward-facing side surfaces. Shared outward-facing tube geometry now makes railings, brackets and canopy beams visible from outside. Geometry tests cover vertical, horizontal and angled runs, including end caps.
 
 ## Remaining fidelity work
@@ -62,7 +68,6 @@ Named buildings still without a source-linked profile:
 - Barker Street Carpark (N18)
 - Botany Street Carpark (H25)
 - Willis Annex - J18 (J18)
-- Sir John Clancy Auditorium - C24 (C24)
 - Civil Engineering - H20 (H20)
 - Patricia O'Shane Building K-E19 (E19)
 - Newton - J12 (J12)
@@ -80,7 +85,6 @@ Named buildings still without a source-linked profile:
 - University Regiment - H1 (H1)
 - J2 (J2)
 - J2 (J2)
-- David Gonski Chancellery (C22)
 - Rex Vowels Theatre (F17)
 - Samuels Building - F25 (F25)
 - Campus Village Cafe (osm-way-584816505)
@@ -96,6 +100,7 @@ Named buildings still without a source-linked profile:
 - node scripts/make-campus-details.mjs
 - node scripts/make-sports-data.mjs
 - node scripts/make-chemical-parts.mjs (reconstructed F10 split, preserving the mapped perimeter)
+- node scripts/make-chancellery-roofs.mjs (reconstructed roof split within the mapped Chancellery outline)
 - node scripts/make-residential-parts.mjs (polygon-clipping is a development dependency; output contains data only)
 - python3 scripts/fetch-elevation.py (uses retained TIFF when present; Pillow and NumPy required)
 - node scripts/build-reference-library.mjs

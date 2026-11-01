@@ -1,10 +1,11 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=51f846109fd3';
-import { applyReportedHeight } from './building-heights.js?v=51f846109fd3';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=51f846109fd3';
-import { VILLAGE_SPORTS } from './sports-data.js?v=51f846109fd3';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=51f846109fd3';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=51f846109fd3';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=51f846109fd3';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=3a12a1f14521';
+import { applyReportedHeight } from './building-heights.js?v=3a12a1f14521';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=3a12a1f14521';
+import { VILLAGE_SPORTS } from './sports-data.js?v=3a12a1f14521';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=3a12a1f14521';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=3a12a1f14521';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=3a12a1f14521';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=3a12a1f14521';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -17,8 +18,13 @@ const cafePlazas=[
 ].map(p=>({...p,surface:'stone',reconstructed:true,source:'https://samcrawfordarchitects.com.au/project/unsw-village-green-home-ground-cafe'}));
 const scienceForecourt=scienceTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='science-theatre'));
 const theatrePassage=websterTheatresGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45488789'));
+const clancyForecourt=clancyGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45230512'));
+const chancelleryForecourt=chancelleryGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='chancellery'));
 
 function enhanceBuilding(b){
+  if(CLANCY_HOODS.includes(b.id))return {...b,modelledWith:'osm-way-45230512',heightNote:'Mapped roof outline retained. Rendered with Clancy’s reconstructed copper hoods; the original generic 9.6 m estimate is not a measured roof height.'};
+  if(b.id==='osm-way-45230512')return {...b,mappedHeight:b.height,height:14.5,heightSource:'estimated',heightReference:{title:'Architect scaled section and exterior photographs',url:'https://www.lahznimmo.com/gate-9-unsw',linkLabel:'Model height · architect section'},heightNote:'Overall 14.5 m is a scaled-section model estimate; the original 8 m map tag remains. The architect describes 10 m glazing and the engineer describes 8 m frontage / a 23 m portal: these are differing component figures, not surveyed overall heights.'};
+  if(b.id==='chancellery')return {...b,heightNote:'The 15 m height is the retained OSM tag. The NBRS survey describes five storeys including basement and sub-basement; visible rows change with the slope. Façade divisions and vault dimensions are reconstructed.',heightReference:{title:'Retained OSM height tag',url:'https://www.openstreetmap.org/way/265881082',linkLabel:'Height · OSM tag'}};
   if(b.id==='osm-way-71500653')return {...b,mappedHeight:b.height,height:12,heightSource:'estimated',heightReference:{title:'Photograph-led model estimate',url:'https://www.tkda.com.au/projects/university-of-nsw-goldstein-hall/',linkLabel:'Model height · exterior reference'},heightNote:'The original 20 m map tag is retained as conflicting evidence; the 12 m model height is a photograph-led estimate, not a measured replacement.'};
   if(b.id==='osm-way-1178531037')return {...b,name:'John Niland Scientia · glass canopy',named:true,campusRef:'G19',height:13,heightSource:'estimated',aliases:['Scientia','Leighton Hall','G19']};
   if(b.id==='osm-way-1116164557')return {...b,name:'John Niland Scientia · north wing',campusRef:'G19',aliases:['Scientia','G19']};
@@ -31,6 +37,11 @@ function enhanceLandmark(p){
   // renderer measures it from north; explicit photo-view overrides below
   // already use the renderer convention.
   if(Number.isFinite(p.heading))p={...p,heading:Math.atan2(Math.sin(p.heading),-Math.cos(p.heading))};
+  if(p.id==='osm-way-45230512')return {...p,...clancyForecourt.arrival,heading:clancyForecourt.heading,pitch:.1,showSign:false,description:'C24 · Flared copper hood, golden soffit and tall glazed northern foyer. Overall height and hood geometry are reconstructed'};
+  if(p.id==='chancellery'){
+    const g=chancelleryGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));
+    return {...p,...g.arrival,heading:g.heading,pitch:.08,showSign:false,description:'C22 · Brick wings, recessed glazing and the eastern entrance facing Michael Birt Gardens'};
+  }
   if(p.id==='chemical-sciences')return {...p,x:51.434,z:-25.375,heading:-40*Math.PI/180,pitch:16*Math.PI/180,showSign:false,description:'F10 · Banded tower, lower finned glazing and glazed stair bay. Viewpoint follows the inspected public panorama; massing and mechanical details are reconstructed'};
   if(p.id==='osm-way-45488789')return {...p,...theatrePassage.arrival,heading:theatrePassage.heading,pitch:.06,showSign:false,description:'G15 · Glazed entrance and curved canopy panels beside the Quadrangle. Canopy and panel dimensions are reconstructed'};
   if(p.id==='science-theatre'){
@@ -75,9 +86,10 @@ export const CAMPUS={
   sportsAreas:VILLAGE_SPORTS,
   paths:[...MAPPED_CAMPUS.paths,{...VILLAGE_SPORTS.find(s=>s.kind==='track'),kind:'track',name:'Village Green running track',width:3.2,widthSource:'estimated from aerial reference'}],
   greens:MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),
-  plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'}],
+  plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'},{id:'clancy-north-forecourt',name:'Clancy northern forecourt',points:clancyForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.lahznimmo.com/gate-9-unsw'},{id:'chancellery-entry-paving',name:'Chancellery eastern forecourt',points:chancelleryForecourt.paving,holes:chancelleryForecourt.beds,surface:'stone',color:'#ad9d89',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135096'}],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
   landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),COLLEGE_COURTYARD_VIEW,
+    {id:'chancellery-vaults',name:'Chancellery Executive wing vaults',x:477,z:-116,heading:-.03,pitch:.12,code:'C22',kind:'courtyard',showSign:false,description:'Library Lawn view of the repeated concrete vaults; bay spacing is reconstructed'},
     {id:'chemical-mall-view',name:'June Griffith tower from the Mall',x:12,z:10,heading:.25,pitch:.22,showSign:false,code:'F10',kind:'courtyard',description:'Comparison view of the reconstructed low teaching wings and retained 45 m tower maximum'},
     {id:'webster-west-view',name:'Robert Webster west façade',x:107,z:-12,heading:1.08,pitch:.14,showSign:false,code:'G14',kind:'courtyard',description:'Photo comparison view of the white end fins and reflective University Mall elevation'},
     {id:'dalton-east-view',name:'Dalton east façade',x:117,z:-18,heading:-.83,pitch:.1,showSign:false,code:'F12',kind:'courtyard',description:'Photo comparison view of Dalton’s broader eastern window bands and Teaching Commons glazing'},
