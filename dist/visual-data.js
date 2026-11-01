@@ -1,6 +1,9 @@
 // Reference-led appearance. Colour and facade dimensions are reconstructions,
 // not survey measurements. Only explicit OSM height tags count as mapped heights.
 export const VISUAL_REFERENCES = [
+  {id:'reported-heights',name:'NSW planning assessment · Library and Mathews heights',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-9673%2120200623T070714.309+GMT',notes:'June 2020 B22 assessment, printed p. 22 / PDF p. 28: Library 57.74 m; Mathews 54 m. Reported overall heights supersede the conflicting 60 m OSM tags in this model; individual roof parts are not surveyed.'},
+  {id:'ainsworth',name:'Ainsworth · façade manufacturer gallery',url:'https://soladrilho.pt/en/portfolio_page/unsw/',photo:'https://soladrilho.pt/conteudo/uploads/2016/07/SITE4-1.jpg',notes:'Folded ceramic screens in champagne, salmon, ochre and Sevilla colours; grey horizontal ledges, a glazed lower storey and brick end walls. The manufacturer identifies Bates Smart as architect. Reconstructed dimensions remain estimates.'},
+  {id:'ainsworth-detail',name:'Ainsworth · ceramic screen detail',url:'https://soladrilho.pt/en/portfolio_page/unsw/',photo:'https://soladrilho.pt/conteudo/uploads/2016/07/SITE3-1.jpg',notes:'Horizontal ceramic courses on repeating projecting screen panels, with narrow dark gaps and metal ledges between floors.'},
   {id:'mall-streetview',name:'University Mall · Google Street View',url:'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=-33.91735,151.2272&heading=90',photo:'https://streetviewpixels-pa.clients6.google.com/v1/thumbnail?cb_client=maps_sv.tactile&w=900&h=600&pitch=0&panoid=cS5jh1B90bA6I0Sxn5VPsA&yaw=90',notes:'Large grey-pink stone paving, dark transverse strips, pale branching trunks, grass verges, horizontal Law glazing.'},
   {id:'mall-north',name:'University Mall · northern street-level view',url:'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=-33.91735,151.2272&heading=0',photo:'https://streetviewpixels-pa.clients6.google.com/v1/thumbnail?cb_client=maps_sv.tactile&w=900&h=600&pitch=0&panoid=cS5jh1B90bA6I0Sxn5VPsA&yaw=0',notes:'Plane-tree branching, stone paving joint scale, lawn edges and glass/concrete campus facades.'},
   {id:'law',name:'Law Building · UNSW archival exterior',url:'https://digitalcollections.library.unsw.edu.au/nodes/view/99649',photo:'https://digitalcollections.library.unsw.edu.au/assets/display/301332-max?u=cd7582607e0d9a91c83edefe65360e69',notes:'Faceted bronze/gold and charcoal cladding, tilted panels, continuous dark glazing.'},
@@ -36,6 +39,9 @@ export const VISUAL_REFERENCES = [
 ];
 
 const profiles={
+  'osm-way-616805099':{facade:'pleated',color:'#9c795d',trim:'#7d8581',glass:'#385456',floors:6,heightEstimate:24,source:'ainsworth'},
+  roundhouse:{source:'roundhouse'},
+  'osm-way-1178531037':{source:'scientia-forecourt'},
   law:{facade:'faceted',color:'#777064',trim:'#a48d56',floors:4,glass:'#34464b',spacing:3.2,source:'law'},
   library:{facade:'library',color:'#c0bcb0',trim:'#aaa89e',floors:14,glass:'#34454d',spacing:1.65,source:'library-north'},
   mathews:{facade:'bands',color:'#c4bda8',trim:'#a9a28d',floors:16,glass:'#425660',source:'mathews'},

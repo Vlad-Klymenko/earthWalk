@@ -363,6 +363,34 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     batch.quad(p(start,bottom),p(start,top),p(end,top),p(end,bottom),color,[[length*start/2,bottom/2],[length*start/2,top/2],[length*end/2,top/2],[length*end/2,bottom/2]]);
   }
 
+  function ceramicScreen(a,b,height,glass,detail,profile) {
+    // Photo-led Ainsworth reconstruction: five pleated screen rows above glazing.
+    // Panel pitch and storey heights are estimates, not measured facade drawings.
+    const dx=b.x-a.x,dz=b.z-a.z,len=Math.hypot(dx,dz),nx=dz/len,nz=-dx/len;
+    const p=(t,y,off)=>[a.x+dx*t+nx*off,y,a.z+dz*t+nz*off];
+    const ground=5.4,storey=(height-ground)/5,bays=Math.max(1,Math.round(len/1.45));
+    wallPanel(glass,a,b,.5,height-.3,profile.glass,.07,.01,.99);
+    wallPanel(detail,a,b,1.1,2.05,'#8b3931',.08,.02,.98);
+    for(let d=1.5;d<len;d+=2.9)wallPanel(detail,a,b,.5,ground,'#697e7d',.13,(d-.04)/len,(d+.04)/len);
+    const shades=['#d3aa7d','#bb825f','#b98a65','#d8ba8c','#bd956e','#ce9d74'];
+    for(let floor=0;floor<5;floor++){
+      const low=ground+floor*storey,high=ground+(floor+1)*storey-.16;
+      wallPanel(detail,a,b,low-.12,low+.02,'#a9aeaa',.52,.005,.995);
+      for(let bay=0;bay<bays;bay++){
+        const t0=(bay+.03)/bays,t1=(bay+.95)/bays,rows=Math.ceil((high-low)/.20);
+        for(let row=0;row<rows;row++){
+          const y=low+(high-low)*row/rows,top=low+(high-low)*(row+1)/rows-.015;
+          const shade=shades[(row+bay*3+floor)%shades.length];
+          detail.quad(p(t0,y,.18),p(t0,top,.18),p(t1,top,.45),p(t1,y,.45),shade);
+          const end=(bay+.98)/bays;
+          detail.quad(p(t1,y,.45),p(t1,top,.45),p(end,top,.18),p(end,y,.18),shade);
+        }
+        detail.quad(p(t1,low,.45),p(t1,high,.45),p(t1+.015/bays,high,.45),p(t1+.015/bays,low,.45),'#626e69');
+      }
+    }
+    wallPanel(detail,a,b,ground-.3,ground,'#5b6c6b',.7);
+  }
+
   function buildingWorld() {
     const masonry=new Batch(),brickwork=new Batch(),glass=new Batch(),detail=new Batch(),roofs=new Batch();
     const allBatches=[masonry,brickwork,glass,detail,roofs],random=rng(78);
@@ -370,7 +398,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       const pts=validPoints(b);if(pts.length<3)continue;
       b.points=pts;b.extent=extent(pts);b.height=Number(b.height)||12;b.base=buildingBase(pts);
       const profile=buildingAppearance(b);
-      if(b.heightSource!=='mapped'&&profile.heightEstimate)b.height=profile.heightEstimate;
+      if(b.heightSource==='estimated'&&profile.heightEstimate)b.height=profile.heightEstimate;
       for(const batch of allBatches)batch.base=b.base;
       if(b.id==='osm-way-1178531037'){scientiaCanopy(b,detail,glass);continue;}
       if(b.walkableUnder){
@@ -384,20 +412,21 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       const pieces=b.id==='library'?[{...b,height:5.6,podium:true},...BUILDING_PARTS.filter(p=>p.parent==='library').map(p=>({...b,...p}))]:[b];
       for(const piece of pieces){
         const ring=piece.points,holes=piece.holes||[],height=piece.height;
-        const floors=piece.podium?1:(piece.levels||profile.floors||Math.max(1,Math.round(height/3.7))),level=height/floors;
+        const floors=piece.podium?1:((piece.parent?piece.levels:profile.floors)||piece.levels||Math.max(1,Math.round(height/3.7))),level=height/floors;
         const ordered=polygonArea(ring)<0?[...ring].reverse():ring;
         polygon(roofs,ring,height,'#858c8b',holes);
-        const wallBatch=/brick|arcade/.test(profile.facade)?brickwork:masonry;
         for(const loop of [ordered,...holes.map(h=>polygonArea(h)>0?[...h].reverse():h)])for(let i=0;i<loop.length;i++){
           const a=loop[i],next=loop[(i+1)%loop.length],length=distance2(a,next);if(length<.2)continue;
           const nx=(next.z-a.z)/length,nz=-(next.x-a.x)/length,angle=Math.atan2(-(next.z-a.z),next.x-a.x);
           const along=(d,y=0,offset=0)=>({x:a.x+(next.x-a.x)*d/length+nx*offset,z:a.z+(next.z-a.z)*d/length+nz*offset,y});
-          wallPanel(wallBatch,a,next,0,height,profile.color);
+          const type=piece.podium?'bands':profile.facade==='pleated'&&length<=25?'brick':profile.facade;
+          const wallBatch=/brick|arcade/.test(type)?brickwork:masonry;
+          wallPanel(wallBatch,a,next,0,height,type==='pleated'?'#667571':profile.color);
           // A weathered stone/concrete plinth and roof coping anchor every mass.
           wallPanel(detail,a,next,0,.48,'#8e9286',.03);
           wallPanel(detail,a,next,height-.25,height+.45,profile.trim,.12);
           wallPanel(detail,a,next,height+.43,height+.54,'#aaa99e',.19);
-          const type=piece.podium?'bands':profile.facade;
+          if(type==='pleated'){ceramicScreen(a,next,height,glass,detail,profile);continue;}
           for(let f=0;f<floors;f++){
             const low=f*level+(f===0?.55:.72),high=Math.min(height-.45,(f+1)*level-.38);
             if(high<=low)continue;

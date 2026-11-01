@@ -5,8 +5,14 @@ export const BUILDING_PARTS = [
     "parent": "library",
     "osmId": 926419114,
     "levels": 14,
-    "height": 60,
-    "heightSource": "parent OSM maximum height",
+    "height": 57.74,
+    "heightSource": "NSW planning report maximum height",
+    "heightReference": {
+      "title": "UNSW B22 Redevelopment · NSW assessment report, June 2020",
+      "url": "https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-9673%2120200623T070714.309+GMT",
+      "printedPage": 22,
+      "pdfPage": 28
+    },
     "points": [
       {
         "x": 437.591,

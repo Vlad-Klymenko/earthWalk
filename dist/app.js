@@ -2,6 +2,7 @@ import { CAMPUS } from './campus-enhancements.js';
 import { createGame } from './game.js';
 import { terrainHeight, TERRAIN_SOURCE } from './terrain.js';
 import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js';
+import { heightDescription } from './building-heights.js';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;
@@ -70,9 +71,12 @@ function choose(place) {
   $('selected-name').textContent = place.name;
   const building=buildings.find(b=>b.id===place.id);
   const visual=building&&buildingAppearance(building);
-  const effectiveHeight=building?.heightSource==='mapped'?building.height:(visual?.heightEstimate||building?.height);
-  const height=building?` Building: ${effectiveHeight.toFixed(1)} m (${building.heightSource==='mapped'?'OSM height tag':'estimated'}).`:'';
+  const dimensions=heightDescription(building,visual);
+  const height=dimensions?` Building: ${dimensions.metres.toFixed(1)} m (${dimensions.label}).`:'';
   $('selected-description').textContent = (descriptions[place.id] || (place.description ? `${place.description}. Explore the exterior and nearby paths.` : 'A place on campus. Jump nearby, then explore on foot.')) + ` Ground: ${terrainHeight(place.x,place.z).toFixed(1)} m.`+height;
+  const sourceLink=$('selected-height-source');
+  sourceLink.hidden=!dimensions?.reference;
+  if(dimensions?.reference){sourceLink.href=dimensions.reference.url;sourceLink.textContent=`Height source · report p. ${dimensions.reference.printedPage} ↗`;}
   document.querySelectorAll('#building-list button').forEach(button => button.classList.toggle('selected', button.dataset.id === place.id));
   drawMap();
 }
