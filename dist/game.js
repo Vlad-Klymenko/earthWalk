@@ -923,6 +923,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       }
       const safe=safePoint({x,z});
       l.walkPoint={x:safe.x,z:safe.z};
+      if(l.showSign===false)continue;
       const near=nearestPath(safe.x,safe.z);
       let angle=near.a?Math.atan2(near.b.x-near.a.x,-(near.b.z-near.a.z)):0;
       const sign=new THREE.Group();

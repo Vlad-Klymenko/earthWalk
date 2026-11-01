@@ -16,7 +16,7 @@ export const COLLEGE_PAVING={
 // Public panorama location, projected into the same metre-based campus frame.
 const lat=-33.9162366,lon=151.23194,radians=Math.PI/180,radius=6371008.8;
 export const COLLEGE_COURTYARD_VIEW={
-  id:'kensington-colleges-courtyard',name:'Kensington Colleges courtyard',code:'TKC',kind:'courtyard',
+  id:'kensington-colleges-courtyard',name:'Kensington Colleges courtyard',code:'TKC',kind:'courtyard',showSign:false,
   x:(lon-MAPPED_CAMPUS.center.lon)*radians*radius*Math.cos(MAPPED_CAMPUS.center.lat*radians),
   z:(MAPPED_CAMPUS.center.lat-lat)*radians*radius,heading:Math.PI/2,
   description:'TKC · Brick college wings, balconies, planted edges and courtyard seating',
