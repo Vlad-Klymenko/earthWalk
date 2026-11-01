@@ -1,14 +1,14 @@
-import * as THREE from './vendor/three.module.js?v=65adf9f8eeaf';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=65adf9f8eeaf';
-import { buildingAppearance } from './visual-data.js?v=65adf9f8eeaf';
-import { BUILDING_PARTS } from './building-parts.js?v=65adf9f8eeaf';
-import { CAMPUS_DETAILS } from './campus-details.js?v=65adf9f8eeaf';
-import { VILLAGE_SPORTS } from './sports-data.js?v=65adf9f8eeaf';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=65adf9f8eeaf';
-import { NIDA_PARTS } from './nida-parts.js?v=65adf9f8eeaf';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=65adf9f8eeaf';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=65adf9f8eeaf';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=65adf9f8eeaf';
+import * as THREE from './vendor/three.module.js?v=131cf6d39f10';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=131cf6d39f10';
+import { buildingAppearance } from './visual-data.js?v=131cf6d39f10';
+import { BUILDING_PARTS } from './building-parts.js?v=131cf6d39f10';
+import { CAMPUS_DETAILS } from './campus-details.js?v=131cf6d39f10';
+import { VILLAGE_SPORTS } from './sports-data.js?v=131cf6d39f10';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=131cf6d39f10';
+import { NIDA_PARTS } from './nida-parts.js?v=131cf6d39f10';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=131cf6d39f10';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=131cf6d39f10';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=131cf6d39f10';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);

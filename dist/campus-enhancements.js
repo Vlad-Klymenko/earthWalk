@@ -1,9 +1,9 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=65adf9f8eeaf';
-import { applyReportedHeight } from './building-heights.js?v=65adf9f8eeaf';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=65adf9f8eeaf';
-import { VILLAGE_SPORTS } from './sports-data.js?v=65adf9f8eeaf';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=65adf9f8eeaf';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=65adf9f8eeaf';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=131cf6d39f10';
+import { applyReportedHeight } from './building-heights.js?v=131cf6d39f10';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=131cf6d39f10';
+import { VILLAGE_SPORTS } from './sports-data.js?v=131cf6d39f10';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=131cf6d39f10';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=131cf6d39f10';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);

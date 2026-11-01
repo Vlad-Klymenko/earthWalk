@@ -31,6 +31,10 @@ test('White House stair reaches a verandah around an inset solid body',()=>{
   const b=CAMPUS.buildings.find(b=>b.id==='osm-way-196250617'),g=heritageGeometry(b,'whitehouse'),s=whiteHouseStair(b);
   assert.ok(g.body.every(p=>inside(p,b.points)));
   assert.ok(area(b.points)-area(g.body)>40,'verandah has usable floor area');
+  for(let i=0;i<b.points.length;i++){
+    const a=b.points[i],c=b.points[(i+1)%b.points.length];
+    assert.ok(Math.abs(g.roofHeight({x:(a.x+c.x)/2,z:(a.z+c.z)/2})-6.6)<1e-6,'concave eaves meet the posts');
+  }
   assert.ok((s.high-s.low)/s.count<.2,'risers are walkable');
   assert.ok(Math.hypot(s.b.x-s.a.x,s.b.z-s.a.z)/s.count>.24,'treads accommodate walking');
   assert.ok(s.width>.68,'stair fits the player capsule');

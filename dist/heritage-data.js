@@ -1,4 +1,4 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=65adf9f8eeaf';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=131cf6d39f10';
 
 // Appearance dimensions reconstructed from linked public photographs. The
 // mapped outlines remain authoritative for location; these are not surveys.
@@ -10,7 +10,16 @@ export function heritageGeometry(b,type){
     const left=-frame.width/2,split=frame.width*.18,ridge=(left+split)/2;
     roofHeight=p=>{const {u}=local(p);return u>split?3.45-(u-split)/(frame.width/2-split)*.7:3.45+2.25*Math.max(0,1-Math.abs(u-ridge)/((split-left)/2));};
   }else if(type==='whitehouse'){
-    roofHeight=p=>{const {u,v}=local(p),d=Math.max(0,Math.min(frame.width/2-Math.abs(u),frame.length/2-Math.abs(v)));return 6.6+2.6*Math.min(1,d/(frame.width*.38));};
+    // Every mapped eave, including the concave veranda returns, meets the
+    // posts at the same height. Bounding-box distances lift return edges.
+    roofHeight=p=>{
+      const d=Math.min(...b.points.map((a,i)=>{
+        const c=b.points[(i+1)%b.points.length],dx=c.x-a.x,dz=c.z-a.z;
+        const t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz)));
+        return Math.hypot(p.x-a.x-t*dx,p.z-a.z-t*dz);
+      }));
+      return 6.6+Math.min(2.6,d*.7);
+    };
   }else roofHeight=p=>8.8+2.4*Math.max(0,1-Math.abs(local(p).u)/(frame.width/2));
   // The veranda outline is concave. Scaling that outline toward its bounding
   // centre can push an inner corner outside it, corrupting the deck hole.
