@@ -1,5 +1,7 @@
-import { CAMPUS } from './campus-data.js';
+import { CAMPUS } from './campus-enhancements.js';
 import { createGame } from './game.js';
+import { terrainHeight, TERRAIN_SOURCE } from './terrain.js';
+import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;
@@ -24,7 +26,7 @@ function notify(message, duration = 3500) {
 function update(next) {
   state = next;
   $('current-area').textContent = next.area || 'UNSW Kensington';
-  $('walked').textContent = next.distance < 1000 ? `${Math.floor(next.distance || 0)} m wandered` : `${(next.distance / 1000).toFixed(2)} km wandered`;
+  $('walked').textContent = (next.distance < 1000 ? `${Math.floor(next.distance || 0)} m wandered` : `${(next.distance / 1000).toFixed(2)} km wandered`) + ` · ${Number(next.elevation||0).toFixed(1)} m elevation`;
   $('crosshair').hidden = !started || next.paused || $('map-dialog').open || $('help-dialog').open;
   $('paused').hidden = !started || !next.paused || $('map-dialog').open || $('help-dialog').open;
   $('pause').setAttribute('aria-label', next.paused ? 'Resume' : 'Pause');
@@ -66,7 +68,11 @@ for (const id of ['map-dialog', 'help-dialog']) {
 function choose(place) {
   selected = place;
   $('selected-name').textContent = place.name;
-  $('selected-description').textContent = descriptions[place.id] || (place.description ? `${place.description}. Explore the exterior and nearby paths.` : 'A place on campus. Jump nearby, then explore on foot.');
+  const building=buildings.find(b=>b.id===place.id);
+  const visual=building&&buildingAppearance(building);
+  const effectiveHeight=building?.heightSource==='mapped'?building.height:(visual?.heightEstimate||building?.height);
+  const height=building?` Building: ${effectiveHeight.toFixed(1)} m (${building.heightSource==='mapped'?'OSM height tag':'estimated'}).`:'';
+  $('selected-description').textContent = (descriptions[place.id] || (place.description ? `${place.description}. Explore the exterior and nearby paths.` : 'A place on campus. Jump nearby, then explore on foot.')) + ` Ground: ${terrainHeight(place.x,place.z).toFixed(1)} m.`+height;
   document.querySelectorAll('#building-list button').forEach(button => button.classList.toggle('selected', button.dataset.id === place.id));
   drawMap();
 }
@@ -98,6 +104,25 @@ function pathShape(ctx, points, transform) {
   points.forEach((point, i) => { const p = transform(point); i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); });
 }
 
+let elevationMapCache;
+function drawElevationBase(ctx,width,height,project,scale){
+  const key=`${width},${height}`;
+  if(elevationMapCache?.key!==key){
+    const canvas=document.createElement('canvas');canvas.width=Math.ceil(width);canvas.height=Math.ceil(height);const c=canvas.getContext('2d'),b=CAMPUS.bounds,step=10;
+    for(let z=b.minZ;z<b.maxZ;z+=step)for(let x=b.minX;x<b.maxX;x+=step){
+      const h=terrainHeight(x,z),p=project({x,z});const light=87-(h-25)*.16;c.fillStyle=`hsl(${83-(h-25)*.35} 24% ${light}%)`;c.fillRect(p.x,p.y,step*scale+1,step*scale+1);
+    }
+    c.lineWidth=.65;c.strokeStyle='#87987238';
+    for(let level=25;level<70;level+=5)for(let z=b.minZ;z<b.maxZ;z+=step)for(let x=b.minX;x<b.maxX;x+=step){
+      const points=[{x,z},{x:x+step,z},{x:x+step,z:z+step},{x,z:z+step}],heights=points.map(p=>terrainHeight(p.x,p.z)),cuts=[];
+      for(let i=0;i<4;i++){const j=(i+1)%4;if((heights[i]<level)!==(heights[j]<level)){const t=(level-heights[i])/(heights[j]-heights[i]);cuts.push(project({x:points[i].x+(points[j].x-points[i].x)*t,z:points[i].z+(points[j].z-points[i].z)*t}));}}
+      if(cuts.length===2){c.beginPath();c.moveTo(cuts[0].x,cuts[0].y);c.lineTo(cuts[1].x,cuts[1].y);c.stroke();}
+    }
+    elevationMapCache={key,canvas};
+  }
+  ctx.drawImage(elevationMapCache.canvas,0,0);
+}
+
 function drawMap() {
   const canvas = $('large-map');
   const box = canvas.getBoundingClientRect();
@@ -112,6 +137,7 @@ function drawMap() {
   mapProjection = { scale, ox, oz };
   const project = point => ({ x: ox + point.x * scale, y: oz + point.z * scale });
   ctx.fillStyle = '#e9efdf'; ctx.fillRect(0, 0, width, height);
+  drawElevationBase(ctx,width,height,project,scale);
   for (const green of CAMPUS.greens || []) { pathShape(ctx, green.points, project); ctx.closePath(); ctx.fillStyle = '#b5cfa0'; ctx.fill(); }
   for (const plaza of CAMPUS.plazas || []) { pathShape(ctx, plaza.points, project); ctx.closePath(); ctx.fillStyle = '#e0d8bc'; ctx.fill(); }
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -206,7 +232,7 @@ try {
   game = createGame({ canvas: $('world'), minimap: $('minimap'), onUpdate: update, onError: message => notify(String(message), 7000) });
   game.loadCampus(CAMPUS); game.setPaused(true);
   $('loading').hidden = true;
-  $('campus-stats').textContent = `${buildings.filter(b=>b.campus).length} campus building footprints · ${CAMPUS.paths.length} mapped path sections · ${places.length} searchable destinations.`;
+  $('campus-stats').textContent = `${buildings.filter(b=>b.campus).length} campus building footprints · ${CAMPUS.paths.length} mapped path sections · ${places.length} searchable destinations · NSW 5 m measured terrain · ${VISUAL_REFERENCES.length} visual/data references.`;
   selected = places.find(p=>p.id==='university-mall') || places[0]; choose(selected);
   window.campusApp = { getState: () => game.getState(), getInfo: () => ({ buildings: buildings.length, destinations: places.length, bounds: CAMPUS.bounds }), teleport: id => game.teleport(id), setInput: (action,value) => game.setInput(action,value), start: () => start({lock:false}) };
 } catch (error) {

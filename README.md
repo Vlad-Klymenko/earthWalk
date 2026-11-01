@@ -1,6 +1,6 @@
 # Earthwalk — UNSW Kensington
 
-An unofficial, low-poly browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark.
+An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
 ## Run locally
 
@@ -33,11 +33,17 @@ Three.js **0.180.0** is served locally from `dist/vendor/`; the scene does not n
 - `dist/campus-data.js` contains the mapped campus layout: real building footprints, paths, landmark names, and source notes. Coordinates are projected into local metres.
 - `dist/game.js` builds the Three.js scene and handles first-person movement, collision and rendering.
 - `dist/app.js` connects the interface, building search, interactive map and teleport controls.
+- `dist/terrain.js` and `dist/elevation-data.js` provide the measured terrain and consistent height sampling for meshes, buildings and walking.
+- `dist/visual-data.js` records appearance profiles and 32 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/building-parts.js` retains five actual library part outlines. `dist/campus-details.js` retains 95 mapped furniture positions.
+- `dist/campus-enhancements.js` identifies the previously unnamed Scientia wing/canopy outlines without replacing their mapped footprints.
 - `server.mjs` serves `dist/` locally. There is no build step.
 
 ## Accuracy and credits
 
-The layout uses OpenStreetMap geometry, with landmark names checked against the [official UNSW Kensington campus map](https://www.unsw.edu.au/content/dam/pdfs/estate-management/general/2025-04-estate-management/2025-04-Kensington-Campus-Map_2.pdf). Heights, façades, terrain, vegetation and other details are approximate. This MVP covers campus exteriors; it does not reproduce interiors or guarantee current construction, access restrictions or landscaping. It is an independent project, unaffiliated with UNSW.
+The layout uses OpenStreetMap geometry, with landmark names checked against the [official UNSW Kensington campus map](https://www.unsw.edu.au/content/dam/pdfs/estate-management/general/2025-04-estate-management/2025-04-Kensington-Campus-Map_2.pdf). Terrain uses the [public NSW 5 m elevation service](https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_5M_Elevation/ImageServer), retained as a float GeoTIFF with provenance and unit tests. Ground elevation is separate from building height. Explicit OSM height tags are used where available; other building heights, façades, vegetation and stair dimensions remain approximations. This recreation covers campus exteriors; it does not reproduce interiors or guarantee current construction, access restrictions or landscaping. It is an independent project, unaffiliated with UNSW. See [the ongoing fidelity audit](docs/visual-fidelity.md) for remaining work.
+
+Elevation data: © State of New South Wales (Spatial Services, a business unit of the Department of Customer Service NSW), extracted 2 November 2026. For current information go to [spatial.nsw.gov.au](https://www.spatial.nsw.gov.au). The source raster was resampled and interpolated for this recreation; [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 Map data **© [OpenStreetMap contributors](https://www.openstreetmap.org/copyright)**, available under the [Open Database License 1.0](https://opendatacommons.org/licenses/odbl/1-0/). The OSM-derived layout data retains that license. See `CAMPUS.sources` and `CAMPUS.notes` in `dist/campus-data.js` for dataset provenance.
 
