@@ -8,7 +8,7 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 44 parent height tags are used unchanged; 47 footprints use estimates; the two biosciences footprints use derived planning roof elevations, and Wallace Wurth uses separate planning parapet, plant and flue elevations. There are four derived heights overall. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 60 campus footprints have a specific source-linked appearance profile, within 149 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 63 campus footprints have a specific source-linked appearance profile, within 158 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -97,6 +97,14 @@ Willis Annexe J18 retains its 12 m mapped height, three-level tag and seven-vert
 
 The publicly accessible 2012 Bates Smart report excerpt contains nine PDF pages. Printed pp. 10–11 / PDF pp. 7–8 were rendered and visually inspected for historic entrance and workshop context. Its table of contents lists later elevation sheets that are absent from this excerpt; no measured elevation was extracted from those missing sheets. Current gallery photos guide the glazed cover. Public source images are linked, not copied into scene textures.
 
+Newton J12 retains its 16 m mapped height, five-level tag and ten-vertex outline. The official UNSW exterior, StudentVIP west / east views and July 2015 panorama zkOAVkqV5WwVBPDAS1wYYA were visually inspected. Patterned brown brick, narrow pilasters, pale rectangular infill around paired windows, mixed blinds, dark downpipes and the turquoise west entrance replace generic office windows. Four visible window rows are modelled separately from the five-level tag. The reconstructed shallow stair, turquoise-sided ramp and landing are walkable; their precise rise and position are estimates, not a certified access route. The ramp uses a continuous height surface while existing stairs retain individual treads.
+
+Keith Burrows J14 retains the curved eleven-vertex map outline and 8 m / one-level tags. The official exterior and StudentVIP front photograph show a blank brick upper auditorium projecting over pale soffit, recessed glazing and lower brickwork. The reconstructed lower perimeter is inset 1.3 m on the curved front; the soffit level provides standing clearance above the retained terrain. Its mapped upper footprint remains intact. No generic office window grid is placed on the upper auditorium wall.
+
+Physics Theatre K14 retains its fourteen-vertex footprint and 8 m / one-level map tags. The inspected StudentVIP service-elevation photograph guides brick above a brown rendered base, a plain service door, narrow high windows, downpipes and pale roof enclosure. Exact façade assignment, enclosure dimensions and roof levels are reconstructed. The separate official UNSW photograph depicts the taller Old Main entrance approach; it is not misinterpreted as a multi-storey façade for this theatre volume. The historical university access description corroborates that the two theatres adjoin Old Main. Unseen Physics elevations and precise access stairs remain approximate.
+
+Browser verification covered the Newton stair ascent from 28.6 m to the 29.5 m landing, a ramp return to that landing, both theatre arrival views and movement along the Physics service lane. No browser warnings or errors were recorded. All 59 tests passed, including unchanged source footprints and heights, clear arrival positions and entrance geometry.
+
 ## Remaining fidelity work
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
@@ -105,9 +113,6 @@ Named buildings still without a source-linked profile:
 
 - Barker Street Carpark (N18)
 - Botany Street Carpark (H25)
-- Newton - J12 (J12)
-- Keith Burrows Theatre - J14 (J14)
-- Physics Theatre - K14 (K14)
 - Barker Street Apartments - N13 (N13)
 - SDN House at Pooh Corner (osm-way-45561523)
 - Swimming Pool - B4 (B4)
