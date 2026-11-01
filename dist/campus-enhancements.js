@@ -1,12 +1,13 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=d06fe8625606';
-import { applyReportedHeight } from './building-heights.js?v=d06fe8625606';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=d06fe8625606';
-import { VILLAGE_SPORTS } from './sports-data.js?v=d06fe8625606';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=d06fe8625606';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=d06fe8625606';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=d06fe8625606';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=d06fe8625606';
-import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=d06fe8625606';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=f037fe429583';
+import { applyReportedHeight } from './building-heights.js?v=f037fe429583';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=f037fe429583';
+import { VILLAGE_SPORTS } from './sports-data.js?v=f037fe429583';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=f037fe429583';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=f037fe429583';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=f037fe429583';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=f037fe429583';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=f037fe429583';
+import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=f037fe429583';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -25,6 +26,12 @@ const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.i
 const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(b.id==='wallace-wurth'){
+    const g=medicalGeometry(b);
+    return {...b,previousEstimate:b.height,previousVisualEstimate:24,height:WALLACE_HEIGHT_REPORT.flueRL-g.base,heightSource:'derived',heightQuantity:'Flue top above model base',heightReference:WALLACE_HEIGHT_REPORT,
+      heightNote:'Planning elevations distinguish the 87.01 m parapet, 90.55 m plant and 95.00 m exhaust flues. The displayed value subtracts the NSW DEM foundation from the flue RL, assuming compatible datums; it is not an as-built survey. Main wings remain lower. Missing map-level tags are retained; façade and internal splits are reconstructed.'};
+  }
+  if(b.id==='osm-way-45230537')return {...b,heightNote:'The 32 m height and eight-level OSM tag are retained. Concrete street faces, green courtyard screens and the raised occupied link follow photographs and architect elevations; their detailed dimensions are reconstructed. Later recladding retained the original appearance.'};
   if(['biological-north','biological-south'].includes(b.id)){
     const g=bioscienceGeometry(b);
     return {...b,previousEstimate:b.height,height:g.report.roofRL-g.base,heightSource:'derived',heightQuantity:'Plant roof above model base',heightReference:g.report,
@@ -46,6 +53,10 @@ function enhanceLandmark(p){
   // renderer measures it from north; explicit photo-view overrides below
   // already use the renderer convention.
   if(Number.isFinite(p.heading))p={...p,heading:Math.atan2(Math.sin(p.heading),-Math.cos(p.heading))};
+  if(['wallace-wurth','osm-way-45230537'].includes(p.id)){
+    const g=medicalGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));
+    return {...p,...g.arrival,heading:g.heading,pitch:g.wallace?.2:.28,showSign:false,description:g.wallace?'C27 · Pale folded precast, amber shutters, recessed upper office floor and raised teaching base. Separate planning levels guide the massing':'C25 · Pale laboratory shell, green glazed courtyard façade and occupied bridge on circular columns. The mapped overall height remains'};
+  }
   if(['biological-north','biological-south'].includes(p.id)){
     const g=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));
     return {...p,...g.arrival,heading:g.heading,pitch:.27,showSign:false,description:g.north?'D26 · Silver aluminium fins, patterned panels and stepped rooftop plant. Planning elevations and photo-led reconstruction':'E26 · Terracotta fins, projecting blue-glass box and glazed connecting atrium. Planning elevations and photo-led reconstruction'};
