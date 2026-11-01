@@ -640,7 +640,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       }
       if(i%4===0)wallPanel(detail,{x:circle(a,drum.radius+.3,0)[0],z:circle(a,drum.radius+.3,0)[2]},{x:circle(a,drum.radius+.3,0)[0]+.06,z:circle(a,drum.radius+.3,0)[2]+.06},2.9,drum.height,'#697973');
     }
-    const a=front[0],c=front[1],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,t=.9;
+    const a=front[0],c=front[1],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,t=.1;
     const x=a.x+(c.x-a.x)*t,z=a.z+(c.z-a.z)*t,angle=Math.atan2(-(c.z-a.z),c.x-a.x);
     detail.box(x+nx*.7,3.75,z+nz*.7,7.6,.24,2.4,'#c6cbbb',angle);
     const tex=canvasTexture(1024,128,(ctx,w,h)=>{ctx.fillStyle='#36413e';ctx.fillRect(0,0,w,h);ctx.fillStyle='#e7e9db';ctx.font='500 74px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('NIDA THEATRES',w/2,h/2);});

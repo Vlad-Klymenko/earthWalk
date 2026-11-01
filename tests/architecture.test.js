@@ -28,6 +28,9 @@ test('theatre roof opening fits the real footprint and triangulates without fill
     assert.ok(!inside(centre,g.opening),'roof triangle must not seal the theatre opening');
   }
   assert.equal(g.curtainWallHeight,11);
+  const [a,c]=g.front,view=CAMPUS.landmarks.find(p=>p.id===b.id);
+  const outward={x:c.z-a.z,z:-(c.x-a.x)};
+  assert.ok((view.x-(a.x+c.x)/2)*outward.x+(view.z-(a.z+c.z)/2)*outward.z>0,'entrance signage faces the external arrival viewpoint');
   assert.ok([...b.points,...g.opening].every(p=>g.roofHeight(p)<g.drum.height));
 });
 

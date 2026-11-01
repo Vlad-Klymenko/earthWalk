@@ -5,7 +5,7 @@ import { orientedFrame, framePoint } from './geometry.js';
 // remain unchanged. The 11 m curtain wall is stated by the original architect.
 export const NIDA_REFERENCE='https://www.hassellstudio.com/conversation/nida-21-years-in-the-limelight';
 export function theatreGeometry(building){
-  const front=[building.points[3],building.points[4]];
+  const front=[building.points[4],building.points[3]];
   const drum={x:-307,z:-182,radius:19.5,height:building.height};
   const opening=Array.from({length:64},(_,i)=>({x:drum.x+Math.cos(i/64*Math.PI*2)*(drum.radius+.45),z:drum.z+Math.sin(i/64*Math.PI*2)*(drum.radius+.45)}));
   const roofHeight=p=>10.05+Math.max(0,Math.min(1,(p.x+344)/86))*.95;
