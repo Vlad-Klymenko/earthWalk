@@ -2,6 +2,10 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
+## Deployment
+
+GitHub Pages is the primary public demo. The user requests publication after every meaningful change. The workflow in `.github/workflows/pages.yml` installs the locked dependencies, regenerates references / asset versions, checks JavaScript, runs the campus tests and deploys `dist/` whenever `main` is pushed. It also supports manual dispatch. Live demo: [vlad-klymenko.github.io/earthWalk](https://vlad-klymenko.github.io/earthWalk/). Source: [Vlad-Klymenko/earthWalk](https://github.com/Vlad-Klymenko/earthWalk).
+
 ## Run locally
 
 Requires Node.js and npm. From this directory:
@@ -36,9 +40,10 @@ Before publication, run `npm run prepare:site` to regenerate the reference index
 - `dist/game.js` builds the Three.js scene and handles first-person movement, collision and rendering.
 - `dist/app.js` connects the interface, building search, interactive map and teleport controls.
 - `dist/terrain.js` and `dist/elevation-data.js` provide the measured terrain and consistent height sampling for meshes, buildings and walking.
-- `dist/visual-data.js` records appearance profiles and 126 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/visual-data.js` records appearance profiles and 132 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
 - `dist/architecture-data.js` holds photo-led NIDA roof / theatre geometry and New College roof sections, with reconstructed dimensions distinguished from mapped heights.
 - `dist/modernism-data.js` holds the Science Theatre roof / canopy frame and shares its terrain clearance calculation with tests. Dalton and Robert Webster use photo-led façades; Webster captures a static local campus reflection at load and after lighting changes.
+- `dist/lecture-precinct-data.js` records Civil Engineering’s eight upper façade rows / rooftop plant and Patricia O’Shane’s exterior stair / gallery. Source heights and outlines remain; terrace dimensions are reconstructed.
 - `dist/eastern-faculty-data.js` records reconstructed Samuels glasshouse / screens and Goodsell canopy / courtyard foundation. The 28 m / seven-level and 15 m / six-level map tags remain. Goodsell’s height is placed above the entrance, with lower masonry extending down the DEM slope; that reference choice is disclosed as reconstruction.
 - `dist/medical-data.js` separates Wallace Wurth’s planning parapet, plant and flue levels, and Lowy’s retained 32 m mapped height. `dist/medical-parts.js` partitions their mapped outlines; the atrium enclosure, raised sections, columns and façade spacing are reconstructed from public plans and photographs. Regenerate partitions with `node scripts/make-medical-parts.mjs`.
 - `dist/heritage-data.js` records explicitly estimated heritage roofs, the White House exterior stair and reconstructed mature fig trees.

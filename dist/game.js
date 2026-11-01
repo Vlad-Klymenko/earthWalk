@@ -1,24 +1,25 @@
-import * as THREE from './vendor/three.module.js?v=68ba9bfc4c04';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=68ba9bfc4c04';
-import { buildingAppearance } from './visual-data.js?v=68ba9bfc4c04';
-import { BUILDING_PARTS } from './building-parts.js?v=68ba9bfc4c04';
-import { CAMPUS_DETAILS } from './campus-details.js?v=68ba9bfc4c04';
-import { VILLAGE_SPORTS } from './sports-data.js?v=68ba9bfc4c04';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=68ba9bfc4c04';
-import { NIDA_PARTS } from './nida-parts.js?v=68ba9bfc4c04';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=68ba9bfc4c04';
-import { tubeFaces } from './structure-data.js?v=68ba9bfc4c04';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=68ba9bfc4c04';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=68ba9bfc4c04';
-import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=68ba9bfc4c04';
-import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=68ba9bfc4c04';
-import { medicalGeometry } from './medical-data.js?v=68ba9bfc4c04';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=68ba9bfc4c04';
-import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=68ba9bfc4c04';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=68ba9bfc4c04';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=68ba9bfc4c04';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=68ba9bfc4c04';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=68ba9bfc4c04';
+import * as THREE from './vendor/three.module.js?v=a7223a2d8ef8';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=a7223a2d8ef8';
+import { buildingAppearance } from './visual-data.js?v=a7223a2d8ef8';
+import { BUILDING_PARTS } from './building-parts.js?v=a7223a2d8ef8';
+import { CAMPUS_DETAILS } from './campus-details.js?v=a7223a2d8ef8';
+import { VILLAGE_SPORTS } from './sports-data.js?v=a7223a2d8ef8';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=a7223a2d8ef8';
+import { NIDA_PARTS } from './nida-parts.js?v=a7223a2d8ef8';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=a7223a2d8ef8';
+import { tubeFaces } from './structure-data.js?v=a7223a2d8ef8';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=a7223a2d8ef8';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=a7223a2d8ef8';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=a7223a2d8ef8';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=a7223a2d8ef8';
+import { medicalGeometry } from './medical-data.js?v=a7223a2d8ef8';
+import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=a7223a2d8ef8';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=a7223a2d8ef8';
+import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=a7223a2d8ef8';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=a7223a2d8ef8';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=a7223a2d8ef8';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=a7223a2d8ef8';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=a7223a2d8ef8';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -1667,6 +1668,139 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     addCollider({points:b.points,holes:b.holes,base:0,terrainBottom:3.55,terrainOffset:3.8});
   }
 
+  function facadeCaption(b,a,c,text,width,y,color){
+    const len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len;
+    const texture=canvasTexture(2048,128,(ctx,w,h)=>{ctx.clearRect(0,0,w,h);ctx.fillStyle=color;ctx.textBaseline='middle';ctx.font='500 76px sans-serif';ctx.fillText(text,24,h/2,w-48);});
+    const sign=new THREE.Mesh(new THREE.PlaneGeometry(width,width/16),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}));
+    sign.position.set((a.x+c.x)/2+nx*.8,b.base+y,(a.z+c.z)/2+nz*.8);sign.rotation.y=Math.atan2(nx,nz);world.add(sign);
+  }
+
+  function civilBuilding(b,concrete,aggregate,glass,detail,roofs){
+    const g=civilGeometry(b),f=g.frame,outline=lectureFacadeRing(b.points),ring=polygonArea(outline)<0?[...outline].reverse():outline;
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,nv=nx*f.v.x+nz*f.v.z;
+      wallPanel(concrete,a,c,0,g.bodyRoof,'#a6aba7');
+      wallPanel(detail,a,c,0,g.upperBase,'#46545a',.04);
+      if(Math.abs(nv)>.7){
+        const bays=Math.max(1,Math.round(len/2.35));
+        for(let row=0;row<g.rows;row++){
+          const low=g.upperBase+row*g.pitch,high=low+g.pitch;
+          wallPanel(aggregate,a,c,low,low+g.pitch*.48,'#bdc1b8',.48);
+          for(let bay=0;bay<bays;bay++){
+            const left=(bay+.025)/bays,right=(bay+.975)/bays,blind=(bay*3+row*7)%11;
+            wallPanel(glass,a,c,low+g.pitch*.51,high-.1,'#627977',.06,left,right);
+            if(blind<4)wallPanel(detail,a,c,low+g.pitch*(blind===0?.52:.7),high-.1,'#d2d7ca',.08,left,right);
+            if(blind===7)wallPanel(detail,a,c,low+g.pitch*.51,high-.1,'#7c8378',.09,left,right);
+            wallPanel(detail,a,c,low+g.pitch*.74,low+g.pitch*.755,'#a4b0a4',.1,left,right);
+            wallPanel(detail,a,c,low+g.pitch*.48,high,'#9ca99e',.12,(bay+.97)/bays,(bay+1)/bays);
+          }
+        }
+        for(let d=2;d<len;d+=5.7){
+          const t=d/len,x=a.x+(c.x-a.x)*t+nx*.63,z=a.z+(c.z-a.z)*t+nz*.63;
+          batchPipe(detail,[x,g.upperBase-.2,z],[x,g.bodyRoof+.15,z],.045,'#4d5d56');
+          for(let y=g.upperBase+1;y<g.bodyRoof;y+=g.pitch)batchBeam(detail,[x,y,z],[x-nx*.6,y,z-nz*.6],.025,'#7f8d7f');
+        }
+        if(nv<-.7){
+          const centre=(g.entry.x-a.x)*(c.x-a.x)/(len*len)+(g.entry.z-a.z)*(c.z-a.z)/(len*len),start=Math.max(.01,centre-6/len),end=Math.min(.99,centre+6/len),ground=g.entryGround-b.base;
+          wallPanel(glass,a,c,ground+.05,ground+3.1,'#687f78',.12,start,end);
+          wallPanel(detail,a,c,ground+3.1,ground+4.05,'#495a60',.75,start-.015,end+.015);
+          for(let d=start*len;d<end*len;d+=1.45)wallPanel(detail,a,c,ground,ground+3.1,'#bdc8b5',.18,d/len,Math.min(end,(d+.07)/len));
+          const p=t=>({x:a.x+(c.x-a.x)*t,z:a.z+(c.z-a.z)*t});
+          facadeCaption(b,p(start),p(end),'Civil & Environmental Engineering · H20',10,ground+3.65,'#e0e6d6');
+        }
+      }else{
+        // Short tower ends are mostly solid, with a service strip and small bays.
+        for(let row=0;row<g.rows;row++){
+          const low=g.upperBase+row*g.pitch;
+          wallPanel(aggregate,a,c,low,low+g.pitch*.5,'#bdc1b8',.25);
+          wallPanel(glass,a,c,low+g.pitch*.55,low+g.pitch-.2,'#5b716f',.06,.36,.6);
+          wallPanel(detail,a,c,g.upperBase,g.bodyRoof,'#7e8e82',.09,.62,.66);
+        }
+      }
+      wallPanel(aggregate,a,c,g.bodyRoof-.25,g.bodyRoof,'#c4c9bc',.5);
+    }
+    polygon(roofs,b.points,g.bodyRoof,'#a5b0a1');
+    const p=g.plant,ringP=p.points;
+    polygon(roofs,ringP,p.top,'#abb5a7');
+    for(let i=0;i<ringP.length;i++)wallPanel(concrete,ringP[i],ringP[(i+1)%ringP.length],p.bottom,p.top,'#c2c7bc');
+    addCollider({points:b.points,holes:b.holes,top:g.bodyRoof,base:b.base});
+  }
+
+  function patriciaBuilding(b,concrete,brick,glass,detail,roofs){
+    const g=patriciaGeometry(b),f=g.frame,outline=lectureFacadeRing(b.points),ring=polygonArea(outline)<0?[...outline].reverse():outline,y=rl=>rl-b.base;
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,nu=nx*f.u.x+nz*f.u.z;
+      wallPanel(brick,a,c,0,b.height,'#8d7958');
+      wallPanel(detail,a,c,b.height-.2,b.height,'#a9b49f',.15);
+      if(Math.abs(nu)>.8&&len>12){
+        const ground=terrainHeight((a.x+c.x)/2,(a.z+c.z)/2)-b.base,baseTop=ground+3.4;
+        // Faceted pale foyer panels surround an inset glass entrance.
+        for(let d=0;d<len;d+=3.1){
+          const t=d/len,u=Math.min(1,(d+3.1)/len),p=(t,h,off)=>[a.x+(c.x-a.x)*t+nx*off,h,a.z+(c.z-a.z)*t+nz*off];
+          const entrance=nu>.8&&d>len*.3&&d<len*.68;
+          if(entrance){
+            wallPanel(glass,a,c,ground+.05,baseTop-.15,'#647e75',.055,t,u);
+            for(const edge of [t,(t+u)/2,u])wallPanel(detail,a,c,ground,baseTop-.1,'#aab9a5',.085,edge,Math.min(1,edge+.06/len));
+            wallPanel(detail,a,c,ground+1.05,ground+1.1,'#bfc9b3',.09,t,u);
+          }
+          else{
+            concrete.quad(p(t,0,.5),p(t,baseTop,0),p(u,baseTop,0),p(u,0,.5),'#bdbfae');
+            wallPanel(detail,a,c,ground+1.05,ground+1.08,'#929f91',.39,t,u);
+            wallPanel(glass,a,c,baseTop-1.15,baseTop-.35,'#8b9f8d',.12,t+.12/len,Math.max(t,Math.min(u,u-.12/len)));
+          }
+        }
+        if(nu>.8){
+          wallPanel(glass,a,c,baseTop+.6,b.height-1.8,'#7c9284',.05,.39,.57);
+          for(let t=.4;t<.58;t+=.04)wallPanel(detail,a,c,baseTop+.6,b.height-1.8,'#b8c3ac',.1,t,t+.002);
+          // Dark ribs carry the transparent canopy along the east foyer.
+          const canopy=new Batch();canopy.base=b.base;
+          const p=(t,h,off)=>[a.x+(c.x-a.x)*t+nx*off,h,a.z+(c.z-a.z)*t+nz*off];
+          canopy.quad(p(0,baseTop+.15,0),p(1,baseTop+.15,0),p(1,baseTop+.15,2),p(0,baseTop+.15,2),'#8baea6');
+          for(let d=.1;d<len;d+=1.35)batchBeam(detail,p(d/len,baseTop+.08,0),p(d/len,baseTop+.08,2.15),.07,'#344c45');
+          batchBeam(detail,p(0,baseTop+.05,2),p(1,baseTop+.05,2),.09,'#364d46');
+          world.add(canopy.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide,transparent:true,opacity:.55,roughness:.18})));
+          facadeCaption(b,a,c,'Patricia O’Shane · E19',6.5,ground+2.7,'#d1dac7');
+        }
+      }
+    }
+    polygon(roofs,b.points,b.height,'#a0ac98');
+    addCollider({points:b.points,holes:b.holes,top:b.height,base:b.base});
+    // The external north-east stair occupies the mapped recess. Its dimensions
+    // and terrace level are reconstructed from the publicly photographed stair.
+    const s=g.stair,dx=s.b.x-s.a.x,dz=s.b.z-s.a.z,len=Math.hypot(dx,dz),nx=-dz/len,nz=dx/len;
+    const p=(t,side,h)=>[s.a.x+dx*t+nx*s.width/2*side,y(h),s.a.z+dz*t+nz*s.width/2*side];
+    stairSegments.push({a:s.a,b:s.b,width:s.width,count:s.count,h0:s.lowRL,h1:s.highRL});
+    for(let i=0;i<s.count;i++){
+      const t=i/s.count,u=(i+1)/s.count,h=s.lowRL+(s.highRL-s.lowRL)*i/s.count,previous=h-(s.highRL-s.lowRL)/s.count;
+      detail.quad(p(t,1,h),p(u,1,h),p(u,-1,h),p(t,-1,h),'#b8bea7');
+      detail.quad(p(t,1,previous),p(t,1,h),p(t,-1,h),p(t,-1,previous),'#919e87');
+    }
+    for(const side of [-1,1]){
+      const low=s.lowRL,high=s.highRL;
+      detail.quad(p(0,side,low-.15),p(0,side,low+1.03),p(1,side,high+1.03),p(1,side,high-.15),'#c7c7a5');
+      detail.quad(p(1,side,high-.15),p(1,side,high+1.03),p(0,side,low+1.03),p(0,side,low-.15),'#c7c7a5');
+      batchBeam(detail,p(0,side,low+1.08),p(1,side,high+1.08),.035,'#6b7966');
+      for(let t=0;t<=1;t+=.1){const q=p(t,side,low+(high-low)*t+.4);addCollider({x:q[0],z:q[2],radius:.09,bottom:q[1]-.5,top:q[1]+.7,base:b.base});}
+    }
+    polygon(detail,g.landing,y(g.firstRL),'#b5bca4');
+    addCollider({points:g.landing,bottom:y(g.firstRL)-.16,top:y(g.firstRL),stepHeight:.27,base:b.base});
+    const soffit=new Batch();soffit.base=b.base;polygon(soffit,g.landing,y(g.firstRL)-.16,'#c3c8ad');world.add(soffit.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+    for(let i=0;i<g.landing.length;i++){
+      const a=g.landing[i],c=g.landing[(i+1)%g.landing.length],length=distance2(a,c);
+      if(i===2||i===3||i===4)continue;
+      batchBeam(detail,[a.x,y(g.firstRL)+1.05,a.z],[c.x,y(g.firstRL)+1.05,c.z],.035,'#475e50');
+      for(let d=.1;d<length;d+=.15){const t=d/length,x=a.x+(c.x-a.x)*t,z=a.z+(c.z-a.z)*t;batchBeam(detail,[x,y(g.firstRL)+.05,z],[x,y(g.firstRL)+1.05,z],.012,'#5e7560');if(Math.round(d/.15)%3===0)addCollider({x,z,radius:.025,bottom:y(g.firstRL),top:y(g.firstRL)+1.1,base:b.base});}
+    }
+    for(const q of g.columns){
+      const low=terrainHeight(q.x,q.z);batchPipe(detail,[q.x,y(low),q.z],[q.x,y(g.coverRL),q.z],q.radius,'#b44135');addCollider({x:q.x,z:q.z,radius:q.radius,top:y(g.coverRL),base:b.base});
+    }
+    const cover=new Batch();cover.base=b.base;polygon(cover,g.landing,y(g.coverRL),'#9bb6a6');
+    for(let i=0;i<g.landing.length;i++){const a=g.landing[i],c=g.landing[(i+1)%g.landing.length];batchBeam(detail,[a.x,y(g.coverRL),a.z],[c.x,y(g.coverRL),c.z],.065,'#3b5248');}
+    for(let u=0;u<16.6;u+=1.4){const a=framePoint(f,u,-23),c=framePoint(f,u,-20.5);batchBeam(detail,[a.x,y(g.coverRL),a.z],[c.x,y(g.coverRL),c.z],.045,'#3b5248');}
+    world.add(cover.mesh(style('#ffffff',{vertexColors:true,transparent:true,opacity:.55,side:THREE.DoubleSide,roughness:.18})));
+    addCollider({points:g.landing,bottom:y(g.coverRL)-.1,top:y(g.coverRL)+.1,base:b.base});
+  }
+
   function samuelsBuilding(b,concrete,brick,glass,detail,roofs){
     const g=samuelsGeometry(b),f=g.frame,ring=polygonArea(b.points)<0?[...b.points].reverse():b.points,screens=new Batch();screens.base=b.base;
     const claddingBase=7.2,rows=5,pitch=(g.bodyRoof-claddingBase)/rows;
@@ -2134,6 +2268,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='clancy'){clancyAuditorium(b,detail);continue;}
       if(profile.facade==='bioscience'){bioscienceBuilding(b,detail,roofs);continue;}
+      if(profile.facade==='civil'){civilBuilding(b,masonry,aggregatework,glass,detail,roofs);continue;}
+      if(profile.facade==='patricia'){patriciaBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='samuels'){samuelsBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='goodsell'){goodsellBuilding(b,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='wallace'){wallaceWurth(b,masonry,detail,roofs);continue;}
@@ -2420,11 +2556,11 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     }
     for(let i=0;i<100;i++) candidates.push({x:bounds.minX+8+random()*(bounds.maxX-bounds.minX-16),z:bounds.minZ+8+random()*(bounds.maxZ-bounds.minZ-16),big:false});
     for(const c of candidates) {
-      const fig=c.form==='heritage-fig',facultyGum=c.form==='samuels-gum';
+      const fig=c.form==='heritage-fig',fixedTree=['samuels-gum','civil-poplar'].includes(c.form);
       if(c.x<bounds.minX+3||c.x>bounds.maxX-3||c.z<bounds.minZ+3||c.z>bounds.maxZ-3)continue;
-      if(blocked(c.x,c.z,null,facultyGum?.55:fig?1:3))continue;
-      if(trees.some(t=>distance2(c,t)<(c.big?10:8)))continue;
-      const n=nearestPath(c.x,c.z);if(n.distance<(n.path?.width||3)/2+(facultyGum?.5:fig?.35:1.4))continue;
+      if(blocked(c.x,c.z,null,fixedTree?.55:fig?1:3))continue;
+      if(trees.some(t=>distance2(c,t)<(fixedTree?3:c.big?10:8)))continue;
+      const n=nearestPath(c.x,c.z);if(n.distance<(n.path?.width||3)/2+(fixedTree?.5:fig?.35:1.4))continue;
       // Keep the actual playing surface clear.
       if(greens.some(g=>/village|pitch|sport|field/i.test(`${g.kind} ${g.name} ${g.id}`)&&inPolygon(c.x,c.z,validPoints(g))))continue;
       trees.push({...c,scale:c.height?c.height/9.5:(c.big?1.1:.8)+random()*.25,rotation:random()*TAU});
@@ -2441,17 +2577,17 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       dummy.position.set((a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2);dummy.quaternion.setFromUnitVectors(UP,direction.clone().normalize());dummy.scale.set(radius,direction.length(),radius);dummy.updateMatrix();branches.setMatrixAt(branchIndex,dummy.matrix);branches.setColorAt(branchIndex++,new THREE.Color(color));
     };
     for(const t of trees){
-      const fig=t.form==='heritage-fig',s=t.scale*.86,base=terrainHeight(t.x,t.z),fork=base+(fig?2.7:4.4)*s,color=fig?'#887f69':'#ffffff';
+      const fig=t.form==='heritage-fig',poplar=t.form==='civil-poplar',s=t.scale*.86,base=terrainHeight(t.x,t.z),fork=base+(fig?2.7:poplar?3.8:4.4)*s,color=fig?'#887f69':poplar?'#a19c87':'#ffffff';
       branch({x:t.x,y:base,z:t.z},{x:t.x+.12*s,y:fork,z:t.z},(fig?.65:.34)*s,color);
       for(let j=0;j<4;j++){
-        const a=t.rotation+j/4*TAU,mid={x:t.x+Math.cos(a)*(fig?3.1:1.5)*s,y:fork+(fig?3.4:2.6)*s,z:t.z+Math.sin(a)*(fig?3.1:1.5)*s};
+        const a=t.rotation+j/4*TAU,mid={x:t.x+Math.cos(a)*(fig?3.1:poplar?.4:1.5)*s,y:fork+(fig?3.4:2.6)*s,z:t.z+Math.sin(a)*(fig?3.1:poplar?.4:1.5)*s};
         branch({x:t.x,y:fork-.5*s,z:t.z},mid,(fig?.32:.18)*s,color);
-        branch(mid,{x:t.x+Math.cos(a)*(fig?5.8:3)*s,y:base+(9.2+(j%2))*s,z:t.z+Math.sin(a)*(fig?5.8:3)*s},(fig?.18:.09)*s,color);
+        branch(mid,{x:t.x+Math.cos(a)*(fig?5.8:poplar?.8:3)*s,y:base+(9.2+(j%2))*s,z:t.z+Math.sin(a)*(fig?5.8:poplar?.8:3)*s},(fig?.18:.09)*s,color);
       }
       for(let j=0;j<(fig?160:64);j++){
-        const a=random()*TAU,r=Math.sqrt(random())*(fig?6:3.7)*s,cy=base+((fig?8.1:8.8)+Math.sin(j)*1.2)*s;
-        dummy.position.set(t.x+Math.cos(a)*r,cy+(random()-.5)*2.6*s,t.z+Math.sin(a)*r);
-        dummy.rotation.set(random()*Math.PI,random()*TAU,random()*Math.PI);const size=(.75+random()*.5)*s*(fig?1.45:1);dummy.scale.set(size,size,size);dummy.updateMatrix();leaves.setMatrixAt(leafIndex,dummy.matrix);leaves.setColorAt(leafIndex,new THREE.Color((fig?['#587148','#6a8052','#788956','#556d43']:['#8e9d7b','#b4bd9d','#a1b48b','#b9c29f'])[j%4]));leafIndex++;
+        const a=random()*TAU,r=Math.sqrt(random())*(fig?6:poplar?.7:3.7)*s,cy=base+(poplar?4.8+(j%6):((fig?8.1:8.8)+Math.sin(j)*1.2))*s;
+        dummy.position.set(t.x+Math.cos(a)*r,cy+(random()-.5)*(poplar?.6:2.6)*s,t.z+Math.sin(a)*r);
+        dummy.rotation.set(random()*Math.PI,random()*TAU,random()*Math.PI);const size=(.75+random()*.5)*s*(fig?1.45:poplar?.55:1);dummy.scale.set(size,size,size);dummy.updateMatrix();leaves.setMatrixAt(leafIndex,dummy.matrix);leaves.setColorAt(leafIndex,new THREE.Color((fig?['#587148','#6a8052','#788956','#556d43']:['#8e9d7b','#b4bd9d','#a1b48b','#b9c29f'])[j%4]));leafIndex++;
       }
     }
     world.add(branches,leaves);
