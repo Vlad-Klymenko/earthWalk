@@ -1,9 +1,10 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=131cf6d39f10';
-import { applyReportedHeight } from './building-heights.js?v=131cf6d39f10';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=131cf6d39f10';
-import { VILLAGE_SPORTS } from './sports-data.js?v=131cf6d39f10';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=131cf6d39f10';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=131cf6d39f10';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=acaf3f7bcacf';
+import { applyReportedHeight } from './building-heights.js?v=acaf3f7bcacf';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=acaf3f7bcacf';
+import { VILLAGE_SPORTS } from './sports-data.js?v=acaf3f7bcacf';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=acaf3f7bcacf';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=acaf3f7bcacf';
+import { scienceTheatreGeometry } from './modernism-data.js?v=acaf3f7bcacf';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -14,6 +15,7 @@ const cafePlazas=[
   {id:'home-ground-forecourt',name:'Home Ground forecourt',points:frameRectangle(cafeFrame,cafeFrame.width+6,cafeFrame.length+6)},
   {id:'home-ground-outdoor-seating',name:'Home Ground covered seating',points:frameRectangle(cafeShade,8,9)}
 ].map(p=>({...p,surface:'stone',reconstructed:true,source:'https://samcrawfordarchitects.com.au/project/unsw-village-green-home-ground-cafe'}));
+const scienceForecourt=scienceTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='science-theatre'));
 
 function enhanceBuilding(b){
   if(b.id==='osm-way-71500653')return {...b,mappedHeight:b.height,height:12,heightSource:'estimated',heightReference:{title:'Photograph-led model estimate',url:'https://www.tkda.com.au/projects/university-of-nsw-goldstein-hall/',linkLabel:'Model height · exterior reference'},heightNote:'The original 20 m map tag is retained as conflicting evidence; the 12 m model height is a photograph-led estimate, not a measured replacement.'};
@@ -28,6 +30,15 @@ function enhanceLandmark(p){
   // renderer measures it from north; explicit photo-view overrides below
   // already use the renderer convention.
   if(Number.isFinite(p.heading))p={...p,heading:Math.atan2(Math.sin(p.heading),-Math.cos(p.heading))};
+  if(p.id==='science-theatre'){
+    const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),g=scienceTheatreGeometry(b);
+    return {...p,...g.arrival,heading:g.heading,pitch:.08,showSign:false,description:'F13 · Panelled auditorium, tall glazed entrance and covered forecourt. The five-level map tag is retained; the façade follows exterior photographs'};
+  }
+  if(p.id==='dalton'){
+    const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),f=orientedFrame(b.points),view=framePoint(f,0,f.length/2+18);
+    return {...p,...view,heading:Math.atan2(-f.v.x,f.v.z),pitch:.15,showSign:false,description:'F12 · Blank aggregate end wall, two upper window bands and glazed Teaching Commons. Façade dimensions are reconstructed'};
+  }
+  if(p.id==='robert-webster')return {...p,showSign:false,description:'G14 · Reflective mall elevation, dense white end fins and brown ground floor. Glazing details and unseen elevations are reconstructed'};
   if(p.id==='osm-way-164552439'){
     const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),{frame}=heritageGeometry(b,'figtree'),view=framePoint(frame,0,frame.length/2+15);
     return {...p,...view,heading:Math.atan2(-frame.v.x,frame.v.z),showSign:false,description:'B14d · Corrugated theatre hut, gabled main roof and lower side annex'};
@@ -57,13 +68,15 @@ function enhanceLandmark(p){
 // official G19 campus map and Google's public Scientia place listing.
 export const CAMPUS={
   ...MAPPED_CAMPUS,
-  trees:[...HERITAGE_FIGS,...MAPPED_CAMPUS.trees],
+  trees:[...HERITAGE_FIGS,...scienceForecourt.trees,...MAPPED_CAMPUS.trees],
   sportsAreas:VILLAGE_SPORTS,
   paths:[...MAPPED_CAMPUS.paths,{...VILLAGE_SPORTS.find(s=>s.kind==='track'),kind:'track',name:'Village Green running track',width:3.2,widthSource:'estimated from aerial reference'}],
   greens:MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),
-  plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas],
+  plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'}],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
   landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),COLLEGE_COURTYARD_VIEW,
+    {id:'webster-west-view',name:'Robert Webster west façade',x:107,z:-12,heading:1.08,pitch:.14,showSign:false,code:'G14',kind:'courtyard',description:'Photo comparison view of the white end fins and reflective University Mall elevation'},
+    {id:'dalton-east-view',name:'Dalton east façade',x:117,z:-18,heading:-.83,pitch:.1,showSign:false,code:'F12',kind:'courtyard',description:'Photo comparison view of Dalton’s broader eastern window bands and Teaching Commons glazing'},
     (()=>{const b=MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-196250617'),s=whiteHouseStair(b);return {id:'whitehouse-verandah',name:'White House verandah stair',x:s.a.x-s.direction.x*1.4,z:s.a.z-s.direction.z*1.4,heading:Math.atan2(s.direction.x,-s.direction.z),showSign:false,code:'C15',kind:'courtyard',description:'Photo-led exterior stair to the upper verandah; dimensions are estimated'};})(),
     {id:'village-courtyard',name:'UNSW Village courtyard',x:35,z:-228.31,heading:1.7313,code:'B10',kind:'courtyard',showSign:false,description:'Mapped courtyard and east-west footway beneath reconstructed residential bridges'},
     {id:'international-courtyard',name:'International House courtyard',x:-125.5,z:-218.1,heading:.16,code:'C6',kind:'courtyard',showSign:false,description:'Mapped courtyard opening; pond, pergola and planting are photo-led estimates'},

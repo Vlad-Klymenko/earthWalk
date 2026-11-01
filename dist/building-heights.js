@@ -1,6 +1,6 @@
 // Publicly reported dimensions, separate from ground elevation and OSM tags.
 // The report gives overall heights, not a survey of every roof part.
-import { NIDA_PARTS } from './nida-parts.js?v=131cf6d39f10';
+import { NIDA_PARTS } from './nida-parts.js?v=acaf3f7bcacf';
 export const HEIGHT_REPORT = {
   title: 'UNSW B22 Redevelopment · NSW assessment report, June 2020',
   url: 'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-9673%2120200623T070714.309+GMT',

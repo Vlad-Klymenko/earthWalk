@@ -8,7 +8,7 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. The remaining 46 parent height tags are used unchanged; 49 footprints use estimates. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 41 campus footprints have a specific source-linked appearance profile, within 71 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 44 campus footprints have a specific source-linked appearance profile, within 79 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -39,6 +39,12 @@ Goldstein Dining Hall now uses a tall concrete frame, timber glazing and a lower
 
 Arrival headings were corrected from the map exporter’s south-based convention to the renderer’s north-based convention, so legacy map destinations face their buildings. The elevation HUD now reports the walker’s feet altitude, including raised decks, with terrain altitude retained separately.
 
+Modernist precinct: Science Theatre now retains its 15 m overall map height while using a reconstructed sloping auditorium roof, pale panel joints, tall entrance glazing, side clerestories and a post-and-beam covered forecourt. Its original five-level tag remains in the data; it is not interpreted as five office-window rows. A level foundation samples the front-centre DEM as well as outline vertices; a lower plinth and individually grounded canopy supports avoid gaps and low head clearance. The paving and two added trees have estimated extents, heights and positions. The original 30 mapped trees remain unchanged.
+
+Dalton retains its 15 m height, three-level tag and original detailed outline. The west side has narrow letterbox windows, while the east has two broad upper glazing bands. The southern end uses a procedural aggregate texture, current F12 / Dalton Building lettering and wraparound ground-floor glazing informed by NBRS’s Teaching Commons photographs. A hedge is reconstructed from the current exterior. July 2015 Google panorama 5AWedBzlsx7s4Zuwx6QdHw at -33.9176319, 151.2293187 was visually inspected; its café fitout is not treated as current. The mosaic artworks and interior fitout are not reproduced.
+
+Robert Webster retains its 16 m height and mapped outline. Its west end now has closely spaced pale fins over three upper rows and a brown ground floor; the mall elevation has a reflective curtain wall, fine mullions, small opening lights and an entrance portico. A single 512 px cube reflection captures the reconstructed campus after loading and lighting changes. It is an approximate static local reflection with parallax limitations, not a continuously updated mirror. Unseen elevations, exact panel divisions and portal dimensions remain reconstructed. Comparison destinations show Webster’s west corner and Dalton’s eastern elevation.
+
 ## Remaining fidelity work
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
@@ -47,13 +53,10 @@ Named buildings still without a source-linked profile:
 
 - Barker Street Carpark (N18)
 - Botany Street Carpark (H25)
-- Science Theatre (F13)
-- Dalton Building (F12)
 - Willis Annex - J18 (J18)
 - Sir John Clancy Auditorium - C24 (C24)
 - Civil Engineering - H20 (H20)
 - Patricia O'Shane Building K-E19 (E19)
-- Robert Webster (G14)
 - Webster Theatres - G15 (G15)
 - Newton - J12 (J12)
 - Keith Burrows Theatre - J14 (J14)
