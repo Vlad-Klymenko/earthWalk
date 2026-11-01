@@ -1,8 +1,8 @@
-import { CAMPUS } from './campus-enhancements.js?v=acaf3f7bcacf';
-import { createGame } from './game.js?v=acaf3f7bcacf';
-import { terrainHeight, TERRAIN_SOURCE } from './terrain.js?v=acaf3f7bcacf';
-import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=acaf3f7bcacf';
-import { heightDescription } from './building-heights.js?v=acaf3f7bcacf';
+import { CAMPUS } from './campus-enhancements.js?v=51f846109fd3';
+import { createGame } from './game.js?v=51f846109fd3';
+import { terrainHeight, TERRAIN_SOURCE } from './terrain.js?v=51f846109fd3';
+import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=51f846109fd3';
+import { heightDescription } from './building-heights.js?v=51f846109fd3';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;
@@ -72,7 +72,7 @@ function choose(place) {
   const building=buildings.find(b=>b.id===place.id);
   const visual=building&&buildingAppearance(building);
   const dimensions=heightDescription(building,visual);
-  const height=dimensions?` Building: ${dimensions.metres.toFixed(1)} m (${dimensions.label}).${building.heightNote?` ${building.heightNote}`:''}`:'';
+  const height=dimensions?` ${dimensions.quantity}: ${dimensions.metres.toFixed(1)} m (${dimensions.label}).${building.heightNote?` ${building.heightNote}`:''}`:'';
   $('selected-description').textContent = (descriptions[place.id] || (place.description ? `${place.description}. Explore the exterior and nearby paths.` : 'A place on campus. Jump nearby, then explore on foot.')) + ` Ground: ${terrainHeight(place.x,place.z).toFixed(1)} m.`+height;
   const sourceLink=$('selected-height-source');
   sourceLink.hidden=!dimensions?.reference;

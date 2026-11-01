@@ -1,15 +1,17 @@
-import * as THREE from './vendor/three.module.js?v=acaf3f7bcacf';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=acaf3f7bcacf';
-import { buildingAppearance } from './visual-data.js?v=acaf3f7bcacf';
-import { BUILDING_PARTS } from './building-parts.js?v=acaf3f7bcacf';
-import { CAMPUS_DETAILS } from './campus-details.js?v=acaf3f7bcacf';
-import { VILLAGE_SPORTS } from './sports-data.js?v=acaf3f7bcacf';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=acaf3f7bcacf';
-import { NIDA_PARTS } from './nida-parts.js?v=acaf3f7bcacf';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=acaf3f7bcacf';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=acaf3f7bcacf';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation } from './modernism-data.js?v=acaf3f7bcacf';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=acaf3f7bcacf';
+import * as THREE from './vendor/three.module.js?v=51f846109fd3';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=51f846109fd3';
+import { buildingAppearance } from './visual-data.js?v=51f846109fd3';
+import { BUILDING_PARTS } from './building-parts.js?v=51f846109fd3';
+import { CAMPUS_DETAILS } from './campus-details.js?v=51f846109fd3';
+import { VILLAGE_SPORTS } from './sports-data.js?v=51f846109fd3';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=51f846109fd3';
+import { NIDA_PARTS } from './nida-parts.js?v=51f846109fd3';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=51f846109fd3';
+import { tubeFaces } from './structure-data.js?v=51f846109fd3';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=51f846109fd3';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=51f846109fd3';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=51f846109fd3';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=51f846109fd3';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -128,10 +130,13 @@ function shapedRoof(batch,points,heightAt,color){
 }
 
 function batchBeam(batch,a,b,r,color){
-  const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),axis=end.clone().sub(start).normalize();
-  const side=new THREE.Vector3().crossVectors(axis,Math.abs(axis.y)>.9?new THREE.Vector3(1,0,0):UP).normalize(),other=new THREE.Vector3().crossVectors(axis,side).normalize();
-  const at=(p,t)=>p.clone().addScaledVector(side,Math.cos(t)*r).addScaledVector(other,Math.sin(t)*r).toArray();
-  for(let i=0;i<4;i++){const t=i/4*TAU,u=(i+1)/4*TAU;batch.quad(at(start,t),at(end,t),at(end,u),at(start,u),color);}
+  for(const face of tubeFaces(a,b,r,4,false))batch.quad(...face,color);
+}
+
+function batchPipe(batch,a,b,r,color){
+  for(const face of tubeFaces(a,b,r,8,true)){
+    if(face.length===3)batch.triangle(...face,color);else batch.quad(...face,color);
+  }
 }
 
 function ribbon(batch, points, width, y, color) {
@@ -1158,6 +1163,163 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     try{probe.update(renderer,scene);}finally{mesh.visible=true;}
   }
 
+  function chemicalComplex(b,masonry,brick,glass,detail,roofs){
+    const f=orientedFrame(b.points),classify=modernFacadeFrame(b).classify;
+    const parts=CHEMICAL_PARTS.filter(p=>p.parent===b.id);
+    for(const part of parts){
+      const ring=polygonArea(part.points)<0?[...part.points].reverse():part.points,tower=part.role==='tower',roof=tower?b.height-.12:part.roof;
+      for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length],e=classify(a,c);if(e.length<.15)continue;
+        if(tower){
+          wallPanel(brick,a,c,0,roof,'#9b6d50');
+          if(Math.abs(e.u)>.8){
+            wallPanel(masonry,a,c,7.3,roof,'#d2d1c1',.04);
+            const storey=(roof-7.3)/11;
+            for(let row=0;row<11;row++){
+              const lo=7.3+row*storey+.22,hi=lo+1.12;
+              wallPanel(glass,a,c,lo,hi,'#687f7d',.08,.015,.985);
+              for(let d=.6;d<e.length-.3;d+=1.05)wallPanel(detail,a,c,lo,hi,'#c5cbbd',.15,d/e.length,Math.min(.99,(d+.045)/e.length));
+              wallPanel(detail,a,c,hi,hi+.13,'#e1e0d1',.28,.01,.99);
+              wallPanel(detail,a,c,lo-.06,lo,'#a2afa5',.17,.01,.99);
+            }
+          }else{
+            for(let row=0;row<11;row++){
+              const y=8+row*3.1;
+              wallPanel(glass,a,c,y,y+.55,'#596f69',.065,.42,.57);
+              wallPanel(detail,a,c,y-.04,y,'#b0b7a5',.12,.41,.58);
+            }
+          }
+          wallPanel(detail,a,c,roof-.18,roof+.12,'#aeb6a8',.13);
+        }else{
+          const front=e.u<-.8,east=e.v>.8;
+          wallPanel(masonry,a,c,0,part.height,'#a0a9a3');
+          if(front){
+            wallPanel(glass,a,c,.15,3.8,'#899d86',.07);
+            wallPanel(glass,a,c,4.0,14.7,'#91a9ae',.07);
+            for(let d=.2;d<e.length;d+=1.1){
+              const p={x:a.x+(c.x-a.x)*d/e.length+e.nx*.3,z:a.z+(c.z-a.z)*d/e.length+e.nz*.3};
+              detail.box(p.x,9.4,p.z,.42,10.8,.07,'#d6ddd4',Math.atan2(-e.nz,e.nx));
+              wallPanel(detail,a,c,.1,3.85,'#354b44',.14,d/e.length,Math.min(1,(d+.065)/e.length));
+            }
+            for(const y of [1.2,2.4,3.8])wallPanel(detail,a,c,y,y+.075,'#344941',.15);
+            for(const y of [7.5,11.15])wallPanel(detail,a,c,y,y+.13,'#8f9c96',.22);
+            if(e.length>20){
+              const sub=t=>({x:a.x+(c.x-a.x)*t,z:a.z+(c.z-a.z)*t});
+              wallPanel(detail,a,c,.75,2.8,'#394942',.19,.78,.98);
+              facadeLabel(b,sub(.78),sub(.98),'June Griffith Building','F10',Math.min(5,e.length*.19),1.8,'#e7e9da');
+            }
+          }else if(east){
+            // Glazed stair bay visible beside the eastern front wing.
+            wallPanel(glass,a,c,1.1,part.height-.18,'#819fa9',.08);
+            for(let y=1.2;y<part.height;y+=1.6)wallPanel(detail,a,c,y,y+.08,'#c5d2c9',.16);
+            const bays=Math.max(1,Math.round(e.length/2));
+            for(let j=0;j<=bays;j++)wallPanel(detail,a,c,1,part.height,'#d0d9ce',.18,j/bays,Math.min(1,j/bays+.06/e.length));
+            for(const y of [4.5,8.5,12.5])wallPanel(detail,a,c,y,y+.28,'#849b9b',.11);
+          }else{
+            const bays=Math.max(1,Math.round(e.length/3.1));
+            for(let row=0;row<3;row++)for(let j=0;j<bays;j++){
+              const mid=(j+.45+(row%2)*.2)/bays,lo=3.8+row*3.4;
+              wallPanel(glass,a,c,lo,lo+1.9,'#526c68',.07,mid-.16/e.length,Math.min(.99,mid+.16/e.length));
+            }
+            for(let d=.1;d<e.length;d+=1.55)wallPanel(detail,a,c,3.3,part.height-.1,'#7f918b',.03,d/e.length,Math.min(1,(d+.014)/e.length));
+            wallPanel(glass,a,c,.2,3.2,'#748d83',.06,.03,.97);
+            for(let d=.2;d<e.length;d+=2.2)wallPanel(detail,a,c,.15,3.3,'#c1ccc0',.12,d/e.length,Math.min(1,(d+.075)/e.length));
+          }
+          wallPanel(detail,a,c,part.height-.18,part.height+.02,'#c2cec4',.18);
+        }
+      }
+      polygon(roofs,part.points,roof,tower?'#82918a':'#a0aba1',part.holes);
+      addCollider({points:part.points,holes:part.holes,top:roof,base:b.base});
+      if(tower){
+        const tf=orientedFrame(part.points);
+        for(const v of [-tf.length*.3,0,tf.length*.3]){
+          const p=framePoint(tf,0,v);detail.box(p.x,roof+.75,p.z,4.8,1.4,3.2,'#94a49b',Math.atan2(-tf.u.z,tf.u.x));
+        }
+        for(let i=0;i<6;i++){
+          const u=-tf.width/2+(i<2?2.4+i*1.2:5.3+(i-2)*.45);
+          const p=framePoint(tf,u,tf.length/2+.6),r=i<2?.48:.16,lo=7.2,hi=roof+2.4;
+          batchPipe(detail,[p.x,lo,p.z],[p.x,hi,p.z],r,i<2?'#83938e':'#d8dcd2');
+          for(let y=lo+2;y<hi;y+=2.4)batchPipe(detail,[p.x,y,p.z],[p.x,y+.08,p.z],r+.028,'#b4c0b5');
+          detail.box(p.x,hi+.08,p.z,r*2.1,.16,r*2.1,'#4c625b');
+        }
+      }else{
+        // The repeated white service banks occupy the lower northeast roof,
+        // distinct from the old tower's mixed rooftop plant and tall flues.
+        const at=(u,v,y)=>{const p=framePoint(f,u,v);return[p.x,y,p.z];};
+        for(let u=-3;u<19;u+=4.5)for(let v=27;v<39;v+=2.8){
+          const points=[at(u,v,roof+.12),at(u,v,roof+1.3),at(u+.35,v,roof+1.65),at(u+.9,v,roof+1.65),at(u+1.2,v,roof+1.35)];
+          if(points.some(p=>!inPolygon(p[0],p[2],part.points)))continue;
+          for(let k=0;k<points.length-1;k++)batchPipe(detail,points[k],points[k+1],.12,'#d2d8d0');
+        }
+      }
+    }
+    chemicalPlanting(b,f);
+  }
+
+  function chemicalPlanting(b,f){
+    const beds=new Batch(),plants=new Batch(),random=rng(211);plants.base=0;
+    // Photo-led succulent beds along the main glazed wing, outside its mapped
+    // perimeter. Dimensions and individual plant positions are estimates.
+    for(const [lo,hi]of [[-32,-12],[-7,14]]){
+      const points=frameRectangle(f,2.4,hi-lo,-f.width/2-2.7,(lo+hi)/2);
+      polygon(beds,points,.13,'#9c9d85');
+      for(let v=lo+.8;v<hi;v+=1.25){
+        const p=framePoint(f,-f.width/2-2.7+(random()-.5)*.6,v),base=terrainHeight(p.x,p.z)+.16;
+        const path=nearestPath(p.x,p.z);if(path.distance<(path.path?.width||3)/2+.3)continue;
+        for(let leaf=0;leaf<11;leaf++){
+          const a=leaf/11*TAU+random()*.25,dx=Math.cos(a),dz=Math.sin(a),px=-dz,pz=dx,len=.55+random()*.55,w=.1;
+          const left=[p.x+dx*len*.5+px*w,base+.35,p.z+dz*len*.5+pz*w],right=[p.x+dx*len*.5-px*w,base+.35,p.z+dz*len*.5-pz*w];
+          plants.quad([p.x,base,p.z],left,[p.x+dx*len,base+.6+random()*.2,p.z+dz*len],right,leaf%2?'#6d9281':'#8ca49a');
+        }
+      }
+    }
+    world.add(beds.mesh(style('#ffffff',{vertexColors:true})),plants.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+  }
+
+  function websterTheatres(b,masonry,aggregate,glass,detail,roofs){
+    const g=websterTheatresGeometry(b),f=g.frame,ring=polygonArea(b.points)<0?[...b.points].reverse():b.points,classify=modernFacadeFrame(b).classify;
+    const low=buildingBase(b.points)-b.base;
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],e=classify(a,c);if(e.length<.2)continue;
+      const west=e.u<-.8;
+      wallPanel(west?masonry:aggregate,a,c,low,b.height,west?'#c9d1c7':'#b1b5a8');
+      wallPanel(detail,a,c,b.height-.12,b.height+.03,'#cbd2c5',.12);
+      for(let y=1.5;y<b.height;y+=1.5)wallPanel(detail,a,c,y,y+.014,'#a9b8ac',.025);
+      if(Math.abs(e.u)>.8){
+        wallPanel(glass,a,c,4.55,5.05,'#415b53',.06,.04,.96);
+        for(let d=.7;d<e.length;d+=1.9)wallPanel(detail,a,c,4.5,5.1,'#dce2d4',.14,d/e.length,Math.min(1,(d+.18)/e.length));
+        if(west){
+          wallPanel(glass,a,c,.15,3.15,'#68867e',.07,.08,.92);
+          wallPanel(glass,a,c,3.75,5.95,'#92aaa3',.07,.32,.68);
+          wallPanel(detail,a,c,3.25,3.65,'#bfc8b6',.5,.3,.7);
+          for(let d=.6;d<e.length;d+=1.7)wallPanel(detail,a,c,.1,3.25,'#d4ddd1',.16,d/e.length,Math.min(1,(d+.065)/e.length));
+          wallPanel(detail,a,c,1.5,1.56,'#cbd6ca',.17,.08,.92);
+          const t=.5,door=[a.x+(c.x-a.x)*t+e.nx*.2,a.z+(c.z-a.z)*t+e.nz*.2];
+          detail.box(door[0],1.5,door[1],.045,.6,.045,'#b7c8ba');
+        }
+      }
+    }
+    polygon(roofs,b.points,b.height,'#aeb8ab');
+    const canopy=new Batch();canopy.base=b.base;
+    for(let v=g.canopy.start;v<g.canopy.end;v+=3.6){
+      for(let i=0;i<10;i++){
+        const t=i/10,u=(i+1)/10,point=(s,w)=>{const p=framePoint(f,g.canopy.west+s*g.canopy.depth,w);return[p.x,g.roofHeight(s),p.z];};
+        canopy.quad(point(t,v),point(u,v),point(u,Math.min(g.canopy.end,v+3.5)),point(t,Math.min(g.canopy.end,v+3.5)),'#d2d3be');
+        if(v===g.canopy.start||v+3.6>=g.canopy.end){const end=v===g.canopy.start?g.canopy.start:g.canopy.end;batchBeam(detail,point(t,end),point(u,end),.06,'#3e5551');}
+      }
+      const a=framePoint(f,g.canopy.west,v),c=framePoint(f,g.west,v);
+      batchBeam(detail,[a.x,g.roofHeight(0)-.08,a.z],[c.x,g.roofHeight(1)-.08,c.z],.07,'#405550');
+    }
+    for(const p of g.posts){
+      const bottom=terrainHeight(p.x,p.z)-b.base,top=g.roofHeight(0)-.02;
+      detail.box(p.x,(bottom+top)/2,p.z,.13,top-bottom,.13,'#3c5550');
+      addCollider({x:p.x,z:p.z,radius:.105,bottom,top,base:b.base});
+    }
+    world.add(canopy.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide,roughness:.86})));
+    addCollider({points:b.points,bottom:low,top:b.height,base:b.base});
+    addCollider({points:frameRectangle(f,g.canopy.depth,g.canopy.length,g.west-g.canopy.depth/2,(g.canopy.start+g.canopy.end)/2),bottom:3.38,top:4.05,base:b.base});
+  }
+
   function grandstand(b,concrete,detail,roofs){
     const pitch=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
     const f=orientedFrame(b.points,pitch.v),rows=6,rise=.37,depth=.85,front=f.width/2-1.1;
@@ -1317,6 +1479,9 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       // the embedded low foundation used by opaque building masses.
       if(['nida-theatre','whitehouse'].includes(profile.facade))b.base=Math.max(...pts.map(p=>terrainHeight(p.x,p.z)));
       if(profile.facade==='science-theatre')b.base=scienceTheatreFoundation(b,terrainHeight);
+      if(profile.facade==='webster-theatres'){
+        const g=websterTheatresGeometry(b),p=framePoint(g.frame,g.west,0);b.base=terrainHeight(p.x,p.z);
+      }
       for(const batch of allBatches)batch.base=b.base;
       if(b.id==='osm-way-1178531037'){scientiaCanopy(b,detail,glass);continue;}
       if(b.walkableUnder){
@@ -1335,6 +1500,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='science-theatre'){scienceTheatre(b,masonry,glass,detail,roofs);continue;}
       if(profile.facade==='dalton'){daltonBuilding(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='webster'){websterBuilding(b,masonry,glass,detail,roofs);continue;}
+      if(profile.facade==='chemical-complex'){chemicalComplex(b,masonry,brickwork,glass,detail,roofs);continue;}
+      if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(['village','postgraduate'].includes(profile.facade)){residentialComplex(b,profile,masonry,glass,detail,roofs);continue;}
       if(['shalom','international'].includes(profile.facade)){olderResidence(b,profile,clinkerwork,glass,detail,roofs);continue;}
       if(['warrane','new-college'].includes(profile.facade)){residence(b,profile,brickwork,glass,detail,roofs);continue;}

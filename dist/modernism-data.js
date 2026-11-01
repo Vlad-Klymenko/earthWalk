@@ -1,4 +1,4 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=acaf3f7bcacf';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=51f846109fd3';
 
 // Footprints and overall heights come from the retained map. Roof pitch,
 // panel spacing, glazing bands and canopy dimensions are photo-led estimates.
@@ -25,4 +25,14 @@ export function modernFacadeFrame(b){
 export function scienceTheatreFoundation(b,heightAt){
   const {frame}=scienceTheatreGeometry(b),front=framePoint(frame,0,frame.length/2);
   return Math.max(...b.points.map(p=>heightAt(p.x,p.z)),heightAt(front.x,front.z));
+}
+
+export function websterTheatresGeometry(b){
+  const frame=orientedFrame(b.points),west=-frame.width/2;
+  const canopy={depth:4.2,start:-5.5,end:9,length:14.5,west:west-4.2,height:3.5};
+  const roofHeight=t=>canopy.height+.45*Math.sin(Math.PI*t)+.2*(1-t);
+  const posts=[-5,-1,3,7,8.8].map(v=>framePoint(frame,west-3.9,v));
+  const paving=frameRectangle(frame,canopy.depth+.5,canopy.length+1.5,west-canopy.depth/2,(canopy.start+canopy.end)/2);
+  const arrival=framePoint(frame,west-8.5,-1.5);
+  return {frame,west,canopy,roofHeight,posts,paving,arrival,heading:Math.atan2(frame.u.x,-frame.u.z)};
 }

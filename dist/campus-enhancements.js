@@ -1,10 +1,10 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=acaf3f7bcacf';
-import { applyReportedHeight } from './building-heights.js?v=acaf3f7bcacf';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=acaf3f7bcacf';
-import { VILLAGE_SPORTS } from './sports-data.js?v=acaf3f7bcacf';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=acaf3f7bcacf';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=acaf3f7bcacf';
-import { scienceTheatreGeometry } from './modernism-data.js?v=acaf3f7bcacf';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=51f846109fd3';
+import { applyReportedHeight } from './building-heights.js?v=51f846109fd3';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=51f846109fd3';
+import { VILLAGE_SPORTS } from './sports-data.js?v=51f846109fd3';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=51f846109fd3';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=51f846109fd3';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=51f846109fd3';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -16,6 +16,7 @@ const cafePlazas=[
   {id:'home-ground-outdoor-seating',name:'Home Ground covered seating',points:frameRectangle(cafeShade,8,9)}
 ].map(p=>({...p,surface:'stone',reconstructed:true,source:'https://samcrawfordarchitects.com.au/project/unsw-village-green-home-ground-cafe'}));
 const scienceForecourt=scienceTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='science-theatre'));
+const theatrePassage=websterTheatresGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45488789'));
 
 function enhanceBuilding(b){
   if(b.id==='osm-way-71500653')return {...b,mappedHeight:b.height,height:12,heightSource:'estimated',heightReference:{title:'Photograph-led model estimate',url:'https://www.tkda.com.au/projects/university-of-nsw-goldstein-hall/',linkLabel:'Model height · exterior reference'},heightNote:'The original 20 m map tag is retained as conflicting evidence; the 12 m model height is a photograph-led estimate, not a measured replacement.'};
@@ -30,6 +31,8 @@ function enhanceLandmark(p){
   // renderer measures it from north; explicit photo-view overrides below
   // already use the renderer convention.
   if(Number.isFinite(p.heading))p={...p,heading:Math.atan2(Math.sin(p.heading),-Math.cos(p.heading))};
+  if(p.id==='chemical-sciences')return {...p,x:51.434,z:-25.375,heading:-40*Math.PI/180,pitch:16*Math.PI/180,showSign:false,description:'F10 · Banded tower, lower finned glazing and glazed stair bay. Viewpoint follows the inspected public panorama; massing and mechanical details are reconstructed'};
+  if(p.id==='osm-way-45488789')return {...p,...theatrePassage.arrival,heading:theatrePassage.heading,pitch:.06,showSign:false,description:'G15 · Glazed entrance and curved canopy panels beside the Quadrangle. Canopy and panel dimensions are reconstructed'};
   if(p.id==='science-theatre'){
     const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),g=scienceTheatreGeometry(b);
     return {...p,...g.arrival,heading:g.heading,pitch:.08,showSign:false,description:'F13 · Panelled auditorium, tall glazed entrance and covered forecourt. The five-level map tag is retained; the façade follows exterior photographs'};
@@ -72,9 +75,10 @@ export const CAMPUS={
   sportsAreas:VILLAGE_SPORTS,
   paths:[...MAPPED_CAMPUS.paths,{...VILLAGE_SPORTS.find(s=>s.kind==='track'),kind:'track',name:'Village Green running track',width:3.2,widthSource:'estimated from aerial reference'}],
   greens:MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),
-  plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'}],
+  plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'}],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
   landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),COLLEGE_COURTYARD_VIEW,
+    {id:'chemical-mall-view',name:'June Griffith tower from the Mall',x:12,z:10,heading:.25,pitch:.22,showSign:false,code:'F10',kind:'courtyard',description:'Comparison view of the reconstructed low teaching wings and retained 45 m tower maximum'},
     {id:'webster-west-view',name:'Robert Webster west façade',x:107,z:-12,heading:1.08,pitch:.14,showSign:false,code:'G14',kind:'courtyard',description:'Photo comparison view of the white end fins and reflective University Mall elevation'},
     {id:'dalton-east-view',name:'Dalton east façade',x:117,z:-18,heading:-.83,pitch:.1,showSign:false,code:'F12',kind:'courtyard',description:'Photo comparison view of Dalton’s broader eastern window bands and Teaching Commons glazing'},
     (()=>{const b=MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-196250617'),s=whiteHouseStair(b);return {id:'whitehouse-verandah',name:'White House verandah stair',x:s.a.x-s.direction.x*1.4,z:s.a.z-s.direction.z*1.4,heading:Math.atan2(s.direction.x,-s.direction.z),showSign:false,code:'C15',kind:'courtyard',description:'Photo-led exterior stair to the upper verandah; dimensions are estimated'};})(),

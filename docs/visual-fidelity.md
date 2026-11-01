@@ -6,9 +6,9 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 - Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. Base terrain sampling and foundations use metres in the same coordinate frame. Photo-led landscape additions use explicitly reconstructed dimensions.
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
-- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. The remaining 46 parent height tags are used unchanged; 49 footprints use estimates. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
+- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. The remaining 45 parent height tags are used unchanged; 49 footprints use estimates. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 44 campus footprints have a specific source-linked appearance profile, within 79 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 46 campus footprints have a specific source-linked appearance profile, within 89 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -45,6 +45,14 @@ Dalton retains its 15 m height, three-level tag and original detailed outline. T
 
 Robert Webster retains its 16 m height and mapped outline. Its west end now has closely spaced pale fins over three upper rows and a brown ground floor; the mall elevation has a reflective curtain wall, fine mullions, small opening lights and an entrance portico. A single 512 px cube reflection captures the reconstructed campus after loading and lighting changes. It is an approximate static local reflection with parallax limitations, not a continuously updated mirror. Unseen elevations, exact panel divisions and portal dimensions remain reconstructed. Comparison destinations show Webster’s west corner and Dalton’s eastern elevation.
 
+F10 / June Griffith: the former extrusion of the whole complex to 45 m is replaced by a tower and lower teaching wings. The reconstructed internal split follows returns already present in the mapped perimeter; boolean checks prove the volumes exactly partition that original outline without overlap. The original 45 m map tag and 14-level tag remain. Four Grimshaw massing views in the July 2016 SSD report (printed pp. 30–31 / PDF pp. 3–4) place the long tower through the central-west portion of the footprint and label its parapet approximately RL 75.6 m. The model places the parapet at that elevation and derives about 47.4 m above its DEM foundation, assuming the report RL and NSW ground datums are compatible. This is a derived approximation, not a surveyed overall height. Roof services extend an estimated 2.6 m above the parapet. Internal split lines, 15 m lower wings, visible glazing rows and equipment dimensions remain estimates. The public OSM map API was checked for separate building parts in this precinct and returned none; these generated parts are not claimed as mapped parts.
+
+Public Google panorama hrqvG25FXbeVUiwgZjnVOQ at -33.9175718, 151.2290574 (July 2015) was visually inspected alongside the official Learning Environments exterior, front / back StudentVIP photographs, contractor cladding account and Google aerial. The model now has light horizontal tower bands, brick ends, external duct bundles, estimated roof-service banks, lower front fins, a glazed stair bay, grey rear panels with narrow slots and photo-led succulent beds. Individual plant positions, detailed services, exact internal boundaries and unseen elevations remain reconstructed.
+
+Webster Theatres G15 retains its mapped perimeter and two-level tag with an estimated 6.4 m model height. The west entrance now has tall glazing, pale panels and curved light canopy sheets on dark steel supports. Its paving and canopy dimensions / positions are estimates; the northern end is shortened to clear the mapped Quadrangle perimeter. The entrance photographs show the neighbouring curved Quadrangle wall separately. A browser check walked 13 m into and along the covered route. Exact door placement, entrance treads and surrounding terrace levels still need better dimensioned evidence.
+
+Structural surface correction: the previous square beam helper emitted inward-facing side surfaces. Shared outward-facing tube geometry now makes railings, brackets and canopy beams visible from outside. Geometry tests cover vertical, horizontal and angled runs, including end caps.
+
 ## Remaining fidelity work
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
@@ -57,11 +65,9 @@ Named buildings still without a source-linked profile:
 - Sir John Clancy Auditorium - C24 (C24)
 - Civil Engineering - H20 (H20)
 - Patricia O'Shane Building K-E19 (E19)
-- Webster Theatres - G15 (G15)
 - Newton - J12 (J12)
 - Keith Burrows Theatre - J14 (J14)
 - Physics Theatre - K14 (K14)
-- June Griffith Building (F10)
 - Mathews Theatres (D23)
 - Barker Street Apartments - N13 (N13)
 - SDN House at Pooh Corner (osm-way-45561523)
@@ -89,6 +95,7 @@ Named buildings still without a source-linked profile:
 - node scripts/make-building-parts.mjs
 - node scripts/make-campus-details.mjs
 - node scripts/make-sports-data.mjs
+- node scripts/make-chemical-parts.mjs (reconstructed F10 split, preserving the mapped perimeter)
 - node scripts/make-residential-parts.mjs (polygon-clipping is a development dependency; output contains data only)
 - python3 scripts/fetch-elevation.py (uses retained TIFF when present; Pillow and NumPy required)
 - node scripts/build-reference-library.mjs
