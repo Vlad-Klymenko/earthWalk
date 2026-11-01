@@ -1,13 +1,14 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=f037fe429583';
-import { applyReportedHeight } from './building-heights.js?v=f037fe429583';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=f037fe429583';
-import { VILLAGE_SPORTS } from './sports-data.js?v=f037fe429583';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=f037fe429583';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=f037fe429583';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=f037fe429583';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=f037fe429583';
-import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=f037fe429583';
-import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=f037fe429583';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=68ba9bfc4c04';
+import { applyReportedHeight } from './building-heights.js?v=68ba9bfc4c04';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=68ba9bfc4c04';
+import { VILLAGE_SPORTS } from './sports-data.js?v=68ba9bfc4c04';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=68ba9bfc4c04';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=68ba9bfc4c04';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=68ba9bfc4c04';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=68ba9bfc4c04';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=68ba9bfc4c04';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=68ba9bfc4c04';
+import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=68ba9bfc4c04';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -26,6 +27,8 @@ const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.i
 const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(b.id==='osm-way-290473701')return {...b,heightNote:'The 28 m height and seven-level OSM tag are retained. Brick base, narrow window strips, white mesh sun screens and rooftop glasshouse follow public photographs; detailed dimensions and roof placement are reconstructed.'};
+  if(b.id==='osm-way-45604203')return {...b,heightNote:'The 15 m height and six-level OSM tag are retained. The courtyard shows four visible window rows; lower levels vary with the slope. The roof is placed 15 m above the courtyard entrance; lower masonry extends down the DEM slope. That foundation choice, window bays and the red-column canopy are reconstructions.'};
   if(b.id==='wallace-wurth'){
     const g=medicalGeometry(b);
     return {...b,previousEstimate:b.height,previousVisualEstimate:24,height:WALLACE_HEIGHT_REPORT.flueRL-g.base,heightSource:'derived',heightQuantity:'Flue top above model base',heightReference:WALLACE_HEIGHT_REPORT,
@@ -49,6 +52,10 @@ function enhanceBuilding(b){
 }
 
 function enhanceLandmark(p){
+  if(['osm-way-290473701','osm-way-45604203'].includes(p.id)){
+    const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),samuels=p.id==='osm-way-290473701',g=samuels?samuelsGeometry(b):goodsellGeometry(b);
+    return {...p,...g.arrival,heading:g.heading,pitch:samuels?.32:.25,showSign:false,description:samuels?'F25 · Pale metal cladding, narrow horizontal windows and white mesh screens above a brick base; glazed research rooms on the roof':'F20 · Pale brick, tall narrow windows and a glazed entrance canopy on red columns in the courtyard'};
+  }
   // The original map export measures heading from south. The first-person
   // renderer measures it from north; explicit photo-view overrides below
   // already use the renderer convention.
@@ -110,7 +117,7 @@ function enhanceLandmark(p){
 // official G19 campus map and Google's public Scientia place listing.
 export const CAMPUS={
   ...MAPPED_CAMPUS,
-  trees:[...HERITAGE_FIGS,...scienceForecourt.trees,...MAPPED_CAMPUS.trees],
+  trees:[...HERITAGE_FIGS,...scienceForecourt.trees,...samuelsGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-290473701')).trees,...MAPPED_CAMPUS.trees],
   sportsAreas:VILLAGE_SPORTS,
   paths:[...MAPPED_CAMPUS.paths,{...VILLAGE_SPORTS.find(s=>s.kind==='track'),kind:'track',name:'Village Green running track',width:3.2,widthSource:'estimated from aerial reference'}],
   greens:MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),

@@ -8,7 +8,7 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 44 parent height tags are used unchanged; 47 footprints use estimates; the two biosciences footprints use derived planning roof elevations, and Wallace Wurth uses separate planning parapet, plant and flue elevations. There are four derived heights overall. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 51 campus footprints have a specific source-linked appearance profile, within 117 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 53 campus footprints have a specific source-linked appearance profile, within 126 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -71,6 +71,10 @@ Wallace Wurth C27 now has two pale wings, amber shutters, vertical precast blade
 
 Lowy C25 retains its 32 m mapped overall height and eight-level tag. Public lahznimmo elevations and courtyard photographs guide different north / south façades: a jointed pale laboratory wall with narrow service louvres and an upper glazed band, versus green vertical courtyard screens and an elevated occupied return on round columns. Photographed cladding appearance is retained; Duratec reports that replacement panels match the original colour and appearance, and the Planning Portal records completion in August 2024. Window divisions, bridge soffit height, column spacing and plant dimensions are reconstructed. Geometry checks keep whole columns and plant within their respective upper outlines and preserve standing clearance above real terrain. Two additional 256 px static reflection probes serve these buildings; reflections remain approximate.
 
+Samuels F25 now retains its 28 m mapped height, seven-level tag and curved eastern perimeter while using a brick base, five upper rows of narrow horizontal windows, pale vertically jointed cladding and projecting white mesh sun screens. July 2015 Library Walk panorama WqdgjG-stUw4krMeGjTaZA was visually inspected. UNSW confirms over 400 m² of growing space in four rooftop chambers and roof replacement beginning in 2019; the four chambers are not treated as four roof gables. Girvan’s completed refurbishment gallery supplies roof, end-glazing and steelwork photographs. A reconstructed 54 by 8 m glazed enclosure has a shallow sloping roof within the original outline; the separate service enclosure does not overlap it. Exact roof footprint, pitch, façade divisions and screen spacing remain estimated. Four added gum trees follow the photo-led planted edge, with trunks kept outside mapped buildings and walking widths. The source's original tree positions remain intact.
+
+Goodsell F20 now uses pale brick piers, narrow vertical windows with light green upper panels, a stepped pale roof fascia and a glazed entrance canopy on red round columns. The official UNSW exterior, Ista Triana’s November 2025 CC0 photograph and July 2015 courtyard panorama y1eAKCu5MprdQ5bE3_GhCg were visually inspected. Four rows are visible above the courtyard; the original six-level OSM tag remains separate. Its mapped 15 m height is placed above the courtyard entrance, with lower masonry extending down the approximately 6 m DEM difference. This foundation reference, exact window bays and canopy dimensions are reconstructions, not a new measured overall height. Geometry checks keep grounded columns beneath the canopy and retain standing clearance across the sloped ground.
+
 ## Remaining fidelity work
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
@@ -87,7 +91,6 @@ Named buildings still without a source-linked profile:
 - Physics Theatre - K14 (K14)
 - Barker Street Apartments - N13 (N13)
 - SDN House at Pooh Corner (osm-way-45561523)
-- John Goodsell - F20 (F20)
 - Swimming Pool - B4 (B4)
 - Gym - B5, B6, B7 (B5)
 - Vallentine Annexe - H22 (H22)
@@ -97,7 +100,6 @@ Named buildings still without a source-linked profile:
 - J2 (J2)
 - J2 (J2)
 - Rex Vowels Theatre (F17)
-- Samuels Building - F25 (F25)
 - Campus Village Cafe (osm-way-584816505)
 - Computer Science and Engineering (K17) (K17)
 - Esme Timbery Creative Studio (D8) (D8)
