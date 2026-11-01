@@ -40,7 +40,8 @@ Before publication, run `npm run prepare:site` to regenerate the reference index
 - `dist/game.js` builds the Three.js scene and handles first-person movement, collision and rendering.
 - `dist/app.js` connects the interface, building search, interactive map and teleport controls.
 - `dist/terrain.js` and `dist/elevation-data.js` provide the measured terrain and consistent height sampling for meshes, buildings and walking.
-- `dist/visual-data.js` records appearance profiles and 165 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/visual-data.js` records appearance profiles and 177 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/science-precinct-data.js` separates D8 podium / lift and science-building parapet / plant / flue levels, with reconstructed terrace treads and glazed links.
 - `dist/architecture-data.js` holds photo-led NIDA roof / theatre geometry and New College roof sections, with reconstructed dimensions distinguished from mapped heights.
 - `dist/modernism-data.js` holds the Science Theatre roof / canopy frame and shares its terrain clearance calculation with tests. Dalton and Robert Webster use photo-led façades; Webster captures a static local campus reflection at load and after lighting changes.
 - `dist/lecture-precinct-data.js` records Civil Engineering’s eight upper façade rows / rooftop plant and Patricia O’Shane’s exterior stair / gallery. Source heights and outlines remain; terrace dimensions are reconstructed.

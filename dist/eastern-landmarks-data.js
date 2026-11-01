@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=98b8bca9f867';
-import { buildingBase } from './terrain.js?v=98b8bca9f867';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=03d74f1cbf42';
+import { buildingBase } from './terrain.js?v=03d74f1cbf42';
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});
 const heading=(from,to)=>Math.atan2(to.x-from.x,from.z-to.z);
 
