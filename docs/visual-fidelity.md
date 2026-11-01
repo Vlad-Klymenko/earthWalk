@@ -8,7 +8,7 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. The other 48 tagged footprints use community data, not a survey guarantee; 48 have estimated heights. Building cards identify the source category and link to the report when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 29 campus footprints have a specific source-linked appearance profile, within 48 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 33 campus footprints have a specific source-linked appearance profile, within 54 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -22,6 +22,12 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Blockhouse now uses brown brick, narrow framed bays and a pale fascia above shop fronts. Sam Cracknell Pavilion uses a white body with a curved glazed balcony and pergola edge. Its original exterior was inspected in July 2015 Street View, with 2023 upgrade photographs recorded separately; the model does not reproduce every later amenities alteration.
 
 - Home Ground Café: the public Google place coordinate (-33.9180069, 151.2286064) falls within OSM H11. The name and alias are now connected to that outline. A low glazed kiosk replaces the generic 9.6 m block; the 3.7 m roof height, rounded eaves, covered seating, forecourt paving and three palms are photo-led reconstructions, with estimated dimensions and positions. H11 remains searchable.
+
+NIDA and western residences now have additional photo-led models. The Parade Theatre uses the real E2 outline, fine-framed transparent glazing, a sloping roof with a drum opening, horizontal louvres and entrance signage. Hassell explicitly states an 11 m curtain wall; the 12 m OSM overall height is retained separately. Drum diameter, roof pitch and entrance dimensions are reconstructed. A level foyer floor sits above the highest DEM outline vertex to avoid terrain penetrating the transparent interior. The adjoining D2 brick wing has a source-led treatment, but its later upper Graduate School additions remain incomplete.
+
+New College retains its 15 m mapped height and detailed footprint. Three brick room rows, a light communal base, pale green upper cladding, a single eastern central glass bay and raised white / green roof sections follow two official UNSW photographs. Warrane retains its 27 m mapped height and outline; eight upper rows of paired narrow window strips, pale spandrel panels, brick wall fields and communal base follow its official exterior. Exact bay spacing, room dimensions, roof sections and services remain estimates. These are four researched footprints, not a claim that the surrounding residential precinct is finished.
+
+Browser checks: New College's single central glass bay and raised clerestory are visible from across the sports courts; Warrane's eight upper rows and communal base were inspected from Anzac Parade. The NIDA foyer floor no longer intersects the regional terrain. Holding forward at the glass boundary leaves the walking distance unchanged after arrival. No browser warnings or errors were captured in these checks. Geometry tests verify the theatre roof opening stays inside its mapped outline and triangulates without covering the drum.
 
 ## Remaining fidelity work
 
@@ -44,9 +50,7 @@ Named buildings still without a source-linked profile:
 - Physics Theatre - K14 (K14)
 - June Griffith Building (F10)
 - Mathews Theatres (D23)
-- Warrane College - M7 (M7)
 - New College Postgraduate Village (H3)
-- New College - L6 (L6)
 - Shalom College - N9 (N9)
 - Barker Street Apartments - N13 (N13)
 - SDN House at Pooh Corner (osm-way-45561523)
@@ -61,8 +65,6 @@ Named buildings still without a source-linked profile:
 - University Regiment - H1 (H1)
 - J2 (J2)
 - J2 (J2)
-- Parade Theatres - E2 (E2)
-- NIDA - D2 (D2)
 - The White House - C15 (C15)
 - David Gonski Chancellery (C22)
 - Rex Vowels Theatre (F17)

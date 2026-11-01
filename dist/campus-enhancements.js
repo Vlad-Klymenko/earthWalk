@@ -22,6 +22,10 @@ function enhanceBuilding(b){
 }
 
 function enhanceLandmark(p){
+  if(p.id==='osm-way-164558658')return {...p,x:-246,z:-181,heading:-Math.PI/2,showSign:false,description:'E2 · Glazed foyer, sloping roof and louvred Parade Theatre drum. Detail dimensions are reconstructed'};
+  if(p.id==='osm-way-164558661')return {...p,showSign:false};
+  if(p.id==='osm-way-45560472')return {...p,x:-201,z:143,heading:Math.PI/2,showSign:false,description:'M7 · Brick college with paired vertical window strips'};
+  if(p.id==='osm-way-45560776')return {...p,x:-127,z:64,heading:-Math.PI/2,showSign:false,description:'L6 · Brick accommodation, green-glass bay and raised clerestory roof'};
   if(p.id==='mathews')return {...p,description:'F23 · Concrete tower with horizontal window bands'};
   if(p.id==='osm-way-1178531040')return {...p,...standView,heading:Math.atan2(-standFrame.u.x,standFrame.u.z),showSign:false,description:'Three canopy leaves above yellow and black seating. Roof height and seating details are reconstructed'};
   if(p.id==='pavilion')return {...p,x:-80,z:15,heading:Math.atan2(-18,24),showSign:false};

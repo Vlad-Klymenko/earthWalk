@@ -34,7 +34,8 @@ Three.js **0.180.0** is served locally from `dist/vendor/`; the scene does not n
 - `dist/game.js` builds the Three.js scene and handles first-person movement, collision and rendering.
 - `dist/app.js` connects the interface, building search, interactive map and teleport controls.
 - `dist/terrain.js` and `dist/elevation-data.js` provide the measured terrain and consistent height sampling for meshes, buildings and walking.
-- `dist/visual-data.js` records appearance profiles and 32 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/visual-data.js` records appearance profiles and 54 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/architecture-data.js` holds photo-led NIDA roof / theatre geometry and New College roof sections, with reconstructed dimensions distinguished from mapped heights.
 - `dist/building-parts.js` retains five actual library part outlines. `dist/campus-details.js` retains 95 mapped furniture positions.
 - `dist/campus-enhancements.js` identifies the previously unnamed Scientia wing/canopy outlines without replacing their mapped footprints.
 - `server.mjs` serves `dist/` locally. There is no build step.

@@ -4,6 +4,7 @@ import { buildingAppearance } from './visual-data.js';
 import { BUILDING_PARTS } from './building-parts.js';
 import { CAMPUS_DETAILS } from './campus-details.js';
 import { VILLAGE_SPORTS } from './sports-data.js';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js';
 import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js';
 
 // Everything is measured in metres. East is +x; south is +z.
@@ -509,6 +510,148 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     }
   }
 
+  function residence(b,profile,brick,glass,detail,roofs){
+    const warrane=profile.facade==='warrane',roof=warrane?null:newCollegeRoof(b);
+    const top=warrane?b.height:roof.eave,ground=warrane?3.15:2.7;
+    const ordered=polygonArea(b.points)<0?[...b.points].reverse():b.points;
+    for(let i=0;i<ordered.length;i++){
+      const a=ordered[i],c=ordered[(i+1)%ordered.length],len=distance2(a,c);if(len<.3)continue;
+      const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,p=(t,y,off=.1)=>[a.x+(c.x-a.x)*t+nx*off,y,a.z+(c.z-a.z)*t+nz*off];
+      wallPanel(brick,a,c,ground,top,profile.color);
+      wallPanel(detail,a,c,0,ground,profile.trim);
+      wallPanel(detail,a,c,0,.45,'#8b8e84',.04);
+      if(warrane){
+        wallPanel(glass,a,c,.5,ground-.35,profile.glass,.08,.02,.98);
+        for(let d=.5;d<len;d+=6){wallPanel(detail,a,c,0,ground,profile.trim,.25,d/len,Math.min(1,(d+.3)/len));}
+        wallPanel(detail,a,c,ground-.2,ground+.08,profile.trim,.38);
+        // Eight accommodation rows over the communal base. Window pairs sit
+        // in continuous pale spandrel strips, rather than a generic glass grid.
+        const count=Math.max(1,Math.round(len/7.4)),storey=(top-ground)/8;
+        for(let bay=0;bay<count;bay++)for(const offset of [-.65,.65]){
+          const centre=(bay+.5)/count+offset/len,half=.43/len;
+          wallPanel(detail,a,c,ground,top-.25,'#b5b1a0',.055,centre-half,centre+half);
+          for(let floor=0;floor<8;floor++){
+            const low=ground+floor*storey+.65,high=ground+(floor+1)*storey-.25;
+            wallPanel(glass,a,c,low,high,profile.glass,.09,centre-half+.065/len,centre+half-.065/len);
+            wallPanel(detail,a,c,low-.08,low,'#ded9c6',.12,centre-half,centre+half);
+          }
+        }
+        wallPanel(detail,a,c,top-.22,top+.04,'#8a8d80',.3);
+      }else{
+        const storey=(top-ground-2.5)/3,count=Math.max(1,Math.round(len/2.8));
+        for(let bay=0;bay<count;bay++){
+          const centre=(bay+.5)/count;
+          wallPanel(glass,a,c,.55,ground-.5,'#7b9187',.055,centre-.62/len,centre+.62/len);
+          wallPanel(detail,a,c,.55,ground-.5,'#bac6b7',.08,centre-.025/len,centre+.025/len);
+        }
+        for(let floor=0;floor<3;floor++){
+          const low=ground+floor*storey,high=low+storey;
+          wallPanel(detail,a,c,high-.12,high,'#d0d1c3',.1);
+          for(let bay=0;bay<count;bay++){
+            const centre=(bay+.5)/count,left=centre-.38/len,right=centre+.38/len;
+            wallPanel(detail,a,c,low+.44,high-.35,'#d8d4bd',.055,left-.065/len,right+.065/len);
+            wallPanel(glass,a,c,low+.5,high-.42,profile.glass,.08,left,right);
+            detail.quad(p(left-.12/len,low+.39,.05),p(right+.12/len,low+.39,.05),p(right+.12/len,low+.39,.46),p(left-.12/len,low+.39,.46),'#d7d4bd');
+          }
+        }
+        const upper=top-2.5;
+        wallPanel(detail,a,c,upper,top,'#c1cfb1',.09);
+        for(let d=.15;d<len;d+=.35)wallPanel(detail,a,c,upper,top,'#879c82',.12,d/len,Math.min(1,(d+.025)/len));
+        for(let bay=0;bay<count;bay++){
+          const centre=(bay+.5)/count;
+          wallPanel(glass,a,c,upper+.35,top-.35,profile.glass,.15,centre-.38/len,centre+.38/len);
+        }
+        // The large eastern glass bay is visible in UNSW's aerial photograph.
+        const centreV=((a.x+c.x)/2-roof.frame.x)*roof.frame.v.x+((a.z+c.z)/2-roof.frame.z)*roof.frame.v.z;
+        if(nx>.7&&len>6&&Math.abs(centreV)<6){
+          const half=Math.min(.48,3.7/len);
+          wallPanel(glass,a,c,.15,top+.35,'#6b9d96',.42,.5-half,.5+half);
+          for(let d=-3.7;d<=3.8;d+=1.85)wallPanel(detail,a,c,.15,top+.4,'#526f68',.51,.5+(d-.045)/len,.5+(d+.045)/len);
+          for(let y=ground;y<top+.5;y+=storey)wallPanel(detail,a,c,y,y+.09,'#586f68',.54,.5-half,.5+half);
+        }
+        wallPanel(detail,a,c,top-.12,top+.08,'#b2c1a9',.48);
+      }
+    }
+    if(warrane)polygon(roofs,b.points,b.height,'#8d9185');
+    else{
+      const {frame:f,eave,clerestory,ridge,vertex:v}=roof,w=f.width/2+.45,l=f.length/2+.45,inner=f.width*.26;
+      const roofQuad=(a,b,c,d,color)=>{
+        const up=(b[2]-a[2])*(c[0]-a[0])-(b[0]-a[0])*(c[2]-a[2]);
+        if(up<0)roofs.quad(d,c,b,a,color);else roofs.quad(a,b,c,d,color);
+      };
+      // Green low roof with a raised white clerestory / gabled roof above it.
+      for(const side of [-1,1]){
+        roofQuad(v(side*w,-l,eave),v(side*inner,-l+2,eave+.8),v(side*inner,l-2,eave+.8),v(side*w,l,eave),'#a8baa5');
+        const a=framePoint(f,side*inner,side*(-l+2)),c=framePoint(f,side*inner,side*(l-2));
+        wallPanel(detail,a,c,eave+.8,clerestory,'#d9dcd0');
+        wallPanel(glass,a,c,eave+.92,clerestory-.18,'#4e635e',.06,.01,.99);
+        for(let z=-l+2;z<l-2;z+=2.8){const p=framePoint(f,side*inner,z);detail.box(p.x,(eave+.8+clerestory)/2,p.z,.09,clerestory-eave-.8,.09,'#d1d8c9');}
+        roofQuad(v(side*(inner+.4),-l+1.6,clerestory),v(0,-l+1.6,ridge),v(0,l-1.6,ridge),v(side*(inner+.4),l-1.6,clerestory),'#d1d6ce');
+        for(let z=-l+2;z<l-2;z+=1.1){
+          roofQuad(v(side*(inner+.4),z,clerestory+.015),v(0,z,ridge+.015),v(0,z+.025,ridge+.015),v(side*(inner+.4),z+.025,clerestory+.015),'#aab4a9');
+        }
+      }
+      for(const side of [-1,1]){
+        roofQuad(v(-w,side*l,eave),v(-inner,side*(l-2),eave+.8),v(inner,side*(l-2),eave+.8),v(w,side*l,eave),'#a8baa5');
+        detail.triangle(v(side*inner,side*(l-1.6),clerestory),v(0,side*(l-1.6),ridge),v(-side*inner,side*(l-1.6),clerestory),'#c2cbbd');
+      }
+    }
+    addCollider({points:b.points,top:b.height,base:b.base});
+  }
+
+  function nidaTheatre(b,concrete,detail,roofs){
+    const {front,drum,opening,roofHeight,curtainWallHeight}=theatreGeometry(b);
+    const ordered=polygonArea(b.points)<0?[...b.points].reverse():b.points,glazing=new Batch();glazing.base=b.base;
+    polygon(concrete,b.points,.12,'#8a9290');
+    for(let i=0;i<ordered.length;i++){
+      const a=ordered[i],c=ordered[(i+1)%ordered.length],len=distance2(a,c);if(len<.3)continue;
+      const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,p=(t,y,off=0)=>[a.x+(c.x-a.x)*t+nx*off,y,a.z+(c.z-a.z)*t+nz*off];
+      const visible=nx>.45||nz>.7;
+      if(visible){
+        glazing.quad(p(0,.2,.02),p(0,roofHeight(a)),p(1,roofHeight(c)),p(1,.2,.02),'#8aa9ad');
+        const count=Math.max(1,Math.round(len/2.25));
+        for(let j=0;j<=count;j++){
+          const t=j/count,roof=roofHeight({x:a.x+(c.x-a.x)*t,z:a.z+(c.z-a.z)*t});
+          wallPanel(detail,a,c,.12,roof,'#6c7975',.07,Math.max(0,t-.055/len),Math.min(1,t+.055/len));
+        }
+        for(const y of [3.45,7.1])wallPanel(detail,a,c,y,y+.045,'#6a7a78',.08);
+      }else wallPanel(concrete,a,c,0,9.8,'#a6aaa0');
+      wallPanel(detail,a,c,0,.2,'#687b77',.14);
+      const h0=roofHeight(a),h1=roofHeight(c);
+      roofs.quad(p(0,h0-.22,.8),p(0,h0,.8),p(1,h1,.8),p(1,h1-.22,.8),'#b9bfb5');
+      roofs.quad(p(0,h0-.22,.8),p(1,h1-.22,.8),p(1,h1-.22,-.2),p(0,h0-.22,-.2),'#b2b9b0');
+    }
+    // Triangulated roof with an actual opening around the reconstructed drum.
+    const contours=[ordered,opening],vertices=contours.flat();
+    for(const [a,c,d] of THREE.ShapeUtils.triangulateShape(ordered.map(p=>new THREE.Vector2(p.x,p.z)),[opening.map(p=>new THREE.Vector2(p.x,p.z))])){
+      const v=i=>[vertices[i].x,roofHeight(vertices[i]),vertices[i].z];
+      roofs.triangle(v(a),v(d),v(c),'#c4c9bd');
+      const under=i=>[vertices[i].x,roofHeight(vertices[i])-.22,vertices[i].z];
+      roofs.triangle(under(a),under(c),under(d),'#b8c0b6');
+    }
+    const circle=(angle,r,y)=>[drum.x+Math.cos(angle)*r,y,drum.z+Math.sin(angle)*r];
+    for(let i=0;i<64;i++){
+      const a=i/64*TAU,c=(i+1)/64*TAU;
+      concrete.quad(circle(a,drum.radius,0),circle(a,drum.radius,drum.height-.1),circle(c,drum.radius,drum.height-.1),circle(c,drum.radius,0),'#4b5550');
+      roofs.triangle([drum.x,drum.height,drum.z],circle(c,drum.radius,drum.height),circle(a,drum.radius,drum.height),'#929d93');
+      for(let y=3.3;y<drum.height-.1;y+=.27){
+        detail.quad(circle(a,drum.radius+.08,y),circle(a,drum.radius+.08,y+.06),circle(c,drum.radius+.08,y+.06),circle(c,drum.radius+.08,y),'#b7bdb1');
+        detail.quad(circle(a,drum.radius+.08,y+.06),circle(a,drum.radius+.28,y+.13),circle(c,drum.radius+.28,y+.13),circle(c,drum.radius+.08,y+.06),'#c1c5b9');
+      }
+      if(i%4===0)wallPanel(detail,{x:circle(a,drum.radius+.3,0)[0],z:circle(a,drum.radius+.3,0)[2]},{x:circle(a,drum.radius+.3,0)[0]+.06,z:circle(a,drum.radius+.3,0)[2]+.06},2.9,drum.height,'#697973');
+    }
+    const a=front[0],c=front[1],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,t=.9;
+    const x=a.x+(c.x-a.x)*t,z=a.z+(c.z-a.z)*t,angle=Math.atan2(-(c.z-a.z),c.x-a.x);
+    detail.box(x+nx*.7,3.75,z+nz*.7,7.6,.24,2.4,'#c6cbbb',angle);
+    const tex=canvasTexture(1024,128,(ctx,w,h)=>{ctx.fillStyle='#36413e';ctx.fillRect(0,0,w,h);ctx.fillStyle='#e7e9db';ctx.font='500 74px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('NIDA THEATRES',w/2,h/2);});
+    const sign=new THREE.Mesh(new THREE.PlaneGeometry(7.4,.92),new THREE.MeshBasicMaterial({map:tex}));
+    sign.position.set(x+nx*1.92,b.base+4.4,z+nz*1.92);sign.rotation.y=Math.atan2(nx,nz);world.add(sign);
+    world.add(glazing.mesh(style('#c0d4d1',{vertexColors:true,transparent:true,opacity:.3,roughness:.13,metalness:.18,depthWrite:false,side:THREE.DoubleSide}),false));
+    // Preserve the mapped solid building boundary: the detailed foyer is viewed
+    // from outside. The architect's 11 m dimension describes the curtain wall.
+    addCollider({points:b.points,top:Math.max(b.height,curtainWallHeight),base:b.base});
+  }
+
   function grandstand(b,concrete,detail,roofs){
     const pitch=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
     const f=orientedFrame(b.points,pitch.v),rows=6,rise=.37,depth=.85,front=f.width/2-1.1;
@@ -664,6 +807,9 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       b.points=pts;b.extent=extent(pts);b.height=Number(b.height)||12;b.base=buildingBase(pts);
       const profile=buildingAppearance(b);
       if(b.heightSource==='estimated'&&profile.heightEstimate)b.height=profile.heightEstimate;
+      // A transparent foyer needs a level floor above the terrain, rather than
+      // the embedded low foundation used by opaque building masses.
+      if(profile.facade==='nida-theatre')b.base=Math.max(...pts.map(p=>terrainHeight(p.x,p.z)));
       for(const batch of allBatches)batch.base=b.base;
       if(b.id==='osm-way-1178531037'){scientiaCanopy(b,detail,glass);continue;}
       if(b.walkableUnder){
@@ -676,6 +822,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(b.id==='roundhouse'){roundhouse(b,masonry,glass,detail,roofs);addCollider({points:b.points,top:b.height,base:b.base});continue;}
       if(profile.facade==='grandstand'){grandstand(b,masonry,detail,roofs);continue;}
       if(profile.facade==='cafe'){homeGroundCafe(b,masonry,glass,detail,roofs);continue;}
+      if(profile.facade==='nida-theatre'){nidaTheatre(b,masonry,detail,roofs);continue;}
+      if(['warrane','new-college'].includes(profile.facade)){residence(b,profile,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='college'){
         const ordered=polygonArea(pts)<0?[...pts].reverse():pts;
         polygon(roofs,pts,b.height,'#b5a58b',b.holes||[]);
