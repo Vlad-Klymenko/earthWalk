@@ -40,7 +40,8 @@ Before publication, run `npm run prepare:site` to regenerate the reference index
 - `dist/game.js` builds the Three.js scene and handles first-person movement, collision and rendering.
 - `dist/app.js` connects the interface, building search, interactive map and teleport controls.
 - `dist/terrain.js` and `dist/elevation-data.js` provide the measured terrain and consistent height sampling for meshes, buildings and walking.
-- `dist/visual-data.js` records appearance profiles and 177 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/parking-data.js` reconstructs the existing N18 split-level parking decks from public Architectus elevations and renders H25 with photo-led open decks and a pale screen grid. N18 screen RL 47.64 m is converted using DEM ground; H25 remains an estimated 12.8 m with a retained four-level map tag and separate six-deck photographic evidence. Both garages are exterior models; future expansion and current vehicle access are not inferred from old photos.
+- `dist/visual-data.js` records appearance profiles and 186 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
 - `dist/science-precinct-data.js` separates D8 podium / lift and science-building parapet / plant / flue levels, with reconstructed terrace treads and glazed links.
 - `dist/architecture-data.js` holds photo-led NIDA roof / theatre geometry and New College roof sections, with reconstructed dimensions distinguished from mapped heights.
 - `dist/modernism-data.js` holds the Science Theatre roof / canopy frame and shares its terrain clearance calculation with tests. Dalton and Robert Webster use photo-led façades; Webster captures a static local campus reflection at load and after lighting changes.

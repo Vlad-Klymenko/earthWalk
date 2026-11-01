@@ -1,22 +1,23 @@
-import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=03d74f1cbf42';
-import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=03d74f1cbf42';
-import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=03d74f1cbf42';
-import { WILLIS_ID, K17_VISUAL_HEIGHT, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=03d74f1cbf42';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=03d74f1cbf42';
-import { RUPERT_LAWN } from './rupert-parts.js?v=03d74f1cbf42';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=03d74f1cbf42';
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=03d74f1cbf42';
-import { applyReportedHeight } from './building-heights.js?v=03d74f1cbf42';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=03d74f1cbf42';
-import { VILLAGE_SPORTS } from './sports-data.js?v=03d74f1cbf42';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=03d74f1cbf42';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=03d74f1cbf42';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=03d74f1cbf42';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=03d74f1cbf42';
-import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=03d74f1cbf42';
-import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=03d74f1cbf42';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=03d74f1cbf42';
-import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=03d74f1cbf42';
+import { BARKER_PARKING_ID, BOTANY_PARKING_ID, BARKER_EXISTING_REPORT, parkingGeometry } from './parking-data.js?v=ec6a90b777fd';
+import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=ec6a90b777fd';
+import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=ec6a90b777fd';
+import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=ec6a90b777fd';
+import { WILLIS_ID, K17_VISUAL_HEIGHT, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=ec6a90b777fd';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=ec6a90b777fd';
+import { RUPERT_LAWN } from './rupert-parts.js?v=ec6a90b777fd';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=ec6a90b777fd';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=ec6a90b777fd';
+import { applyReportedHeight } from './building-heights.js?v=ec6a90b777fd';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=ec6a90b777fd';
+import { VILLAGE_SPORTS } from './sports-data.js?v=ec6a90b777fd';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=ec6a90b777fd';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=ec6a90b777fd';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=ec6a90b777fd';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=ec6a90b777fd';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=ec6a90b777fd';
+import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=ec6a90b777fd';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=ec6a90b777fd';
+import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=ec6a90b777fd';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -35,6 +36,8 @@ const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.i
 const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(b.id===BARKER_PARKING_ID){const g=parkingGeometry(b);return {...b,previousEstimate:b.height,height:BARKER_EXISTING_REPORT.screenRL-g.base,heightSource:'derived',heightQuantity:'Existing screen top above model base',heightReference:BARKER_EXISTING_REPORT,heightNote:'The public N18 section distinguishes existing five-storey parking from the proposed three additional storeys. Existing top decks are RL 42.90, 44.49 and 45.84 m; the eastern screen reaches RL 47.64 m. Maximum model height subtracts NSW DEM ground, assuming compatible datums. The old 16 m estimate and five-level tag remain. Intermediate floors, ramp dimensions, cores and screen pitch are reconstructed. The approved expansion is not treated as completed construction.'};}
+  if(b.id===BOTANY_PARKING_ID)return {...b,heightNote:'The 12.8 m estimated height and four-level survey tag remain. The public photo directory lists six parking levels, also visible as deck bands; this conflicting evidence is retained separately and does not establish a measured height. Mesh screens, deck spacing, vehicles and concrete core are reconstructed. UNSW announced entry relocation to the western end in May 2026; historical entrance imagery is appearance evidence, not current access directions. This outdoor map does not provide a driveable parking interior.'};
   if(b.id===ESME_ID){const g=esmeGeometry(b);return {...b,mappedHeight:b.height,height:ESME_HEIGHT_REPORT.liftRL-g.base,heightSource:'derived',heightQuantity:'Lift roof above model base',heightReference:ESME_HEIGHT_REPORT,heightNote:'The source 2 m height and one-level / one-roof-level tags remain as map evidence. The 2017 modification gives lift RL 35.10 m, 1.96 m above the podium maximum (derived RL 33.14 m). Model height subtracts NSW DEM ground, assuming compatible datums. The east-facing amphitheatre, treads, glazing and lift footprint follow built photos; detailed dimensions are reconstructed, not an as-built survey.'};}
   if(['science-engineering','hilmer'].includes(b.id)){const g=scienceLabGeometry(b);return {...b,previousEstimate:b.height,height:g.maximumRL-g.base,heightSource:'derived',heightQuantity:g.seb?'Flue top above model base':'Parapet above model base',heightReference:g.seb?SCIENCE_FLUE_REPORT:SCIENCE_HEIGHT_REPORT,heightNote:g.seb?'The 2016 planning report separates parapet RL 68.90 m, plant RL 73.80 m and flue RL 79.80 m. The displayed height subtracts the model DEM foundation, assuming compatible datums; the old 22.4 m generic estimate is retained. The seven-level tag remains independent of façade bands. Built photos corroborate the massing; fin angles, plant footprint and flue positions are reconstructed.':'The 2016 paired-building drawing labels Hilmer parapet RL 68.90 m. The displayed height subtracts the model DEM foundation, assuming compatible datums; the old 22.4 m estimate and seven-level tag remain. The distinct black upper plant zone is visible in built photos, but its separate wall level is not supplied; the lower cladding top and plant footprint are reconstructed.'};}
   if(b.id===POOL_ID)return {...b,heightNote:'The 10 m height, one-level tag and source perimeter remain. The southern blue-glazed reception strip is reconstructed at 4.8 m, with a shallow pitched hall roof reaching the mapped maximum. Exact roof pitch, internal split and façade dimensions are photo-led estimates.'};
@@ -74,6 +77,7 @@ function enhanceBuilding(b){
 }
 
 function enhanceLandmark(p){
+  if([BARKER_PARKING_ID,BOTANY_PARKING_ID].includes(p.id)){const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),g=parkingGeometry(b);return {...p,...g.arrival,heading:g.heading,pitch:.2,showSign:false,description:g.barker?'N18 · Existing split-level decks, expanded-metal screens and brick stair cores; heights use existing levels in public planning drawings':'H25 · Open parking decks, pale rectangular screen grid and concrete end core; overall height remains estimated, and current vehicle access differs from historical photos'};}
   if(p.id===ESME_ID||['science-engineering','hilmer'].includes(p.id)){const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),g=p.id===ESME_ID?esmeGeometry(b):scienceLabGeometry(b);return {...p,...g.arrival,heading:g.heading,pitch:p.id===ESME_ID?.15:.42,showSign:false,description:p.id===ESME_ID?'D8 · Walkable stepped roof theatre facing Alumni Lawn, glass foyer and dark lift enclosure; component heights use public planning levels':p.id==='hilmer'?'E10 · Folded off-white blades, glazed lower floor and dark plant zone; height derived from a public planning parapet level':'E8 · Folded off-white blades, glazed lower floor, recessed plant and exhaust flues; heights derived from public planning levels'};}
   if([POOL_ID,GYM_ID].includes(p.id)){const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),pool=p.id===POOL_ID,g=pool?poolGeometry(b):gymGeometry(b);return {...p,...g.arrival,heading:g.heading,pitch:pool?.12:.18,showSign:false,description:pool?'B4 · Blue-glazed reception frontage, dark sign fascia and pitched pool hall; details reconstructed':'B5–B7 · Tall brick sports halls, mustard bands, silver louvres and dark entrance glazing; details reconstructed'};}
   if([NEWTON_ID,KEITH_ID,PHYSICS_ID].includes(p.id)){const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),g=p.id===NEWTON_ID?newtonGeometry(b):p.id===KEITH_ID?keithGeometry(b):physicsGeometry(b);return {...p,...g.arrival,heading:g.heading,pitch:p.id===NEWTON_ID?.2:.12,showSign:false,description:p.id===NEWTON_ID?'J12 · Patterned brickwork, pale window panels and turquoise west entrance; dimensions reconstructed':p.id===KEITH_ID?'J14 · Curved brick auditorium above recessed glazing and a pale projecting soffit':'K14 · Brick service volume, rendered base, narrow high windows and roof services; details reconstructed'};}
