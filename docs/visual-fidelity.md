@@ -8,15 +8,18 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. The other 48 tagged footprints use community data, not a survey guarantee; 48 have estimated heights. Building cards identify the source category and link to the report when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 20 campus footprints have a specific source-linked appearance profile, within 35 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 25 campus footprints have a specific source-linked appearance profile, within 40 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
 - Ainsworth now has a photo-led folded terracotta screen, horizontal ceramic courses, grey ledges, glazed base and brick ends. The 24 m reconstruction and panel spacing remain estimates; neither is presented as surveyed.
 
+- Kensington Colleges: five mapped college wings now use photo-led brick patterns, narrow window bays, recessed / projecting balconies, floor ledges and light concrete cores. Public Street View panorama Slvij_TxFht4mcZH294sFw was inspected at -33.9162366, 151.23194; its location is a new map destination. The architect journal (printed pp. 180–183, PDF pp. 92–93), official Fig Tree Hall exterior and contractor aerial inform the model. Rooftop lawns, pergolas and vent rows are reconstructed details.
+- College courtyard paving, a 0.55 m raised planted edge and timber seating are photo-led approximations. The underlying garden boundary is actual OSM way 926419123; the added paving extent and landscape dimensions are marked as reconstructions. Terrain remains the NSW raster; no survey-grade terrace geometry is claimed.
+
 ## Remaining fidelity work
 
-All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
+All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
 
 Named buildings still without a source-linked profile:
 
@@ -60,11 +63,6 @@ Named buildings still without a source-linked profile:
 - David Gonski Chancellery (C22)
 - Rex Vowels Theatre (F17)
 - Samuels Building - F25 (F25)
-- Colombo House - B16 (B16)
-- Goldstein College - D17 (D17)
-- Fig Tree Hall - B18 (B18)
-- Philip Baxter College - D18 (D18)
-- Basser College - D17 (D17)
 - Old Tote Building - B15 (B15)
 - Campus Village Cafe (osm-way-584816505)
 - Biological Sciences North (D26)

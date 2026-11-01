@@ -143,7 +143,11 @@ function drawMap() {
   ctx.fillStyle = '#e9efdf'; ctx.fillRect(0, 0, width, height);
   drawElevationBase(ctx,width,height,project,scale);
   for (const green of CAMPUS.greens || []) { pathShape(ctx, green.points, project); ctx.closePath(); ctx.fillStyle = '#b5cfa0'; ctx.fill(); }
-  for (const plaza of CAMPUS.plazas || []) { pathShape(ctx, plaza.points, project); ctx.closePath(); ctx.fillStyle = '#e0d8bc'; ctx.fill(); }
+  for (const plaza of CAMPUS.plazas || []) {
+    pathShape(ctx, plaza.points, project); ctx.closePath();
+    for(const hole of plaza.holes||[]){const p=project(hole[0]);ctx.moveTo(p.x,p.y);for(const point of hole.slice(1)){const h=project(point);ctx.lineTo(h.x,h.y);}ctx.closePath();}
+    ctx.fillStyle = '#e0d8bc'; ctx.fill('evenodd');
+  }
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   for (const path of CAMPUS.paths || []) { pathShape(ctx, path.points, project); ctx.strokeStyle = path.kind === 'road' ? '#d0d2bc' : '#f8f9ed'; ctx.lineWidth = Math.max(1, (path.width || 3) * scale); ctx.stroke(); }
   for (const building of buildings) {
