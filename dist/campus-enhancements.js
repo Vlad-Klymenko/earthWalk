@@ -1,16 +1,18 @@
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=74cfa9848604';
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=74cfa9848604';
-import { applyReportedHeight } from './building-heights.js?v=74cfa9848604';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=74cfa9848604';
-import { VILLAGE_SPORTS } from './sports-data.js?v=74cfa9848604';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=74cfa9848604';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=74cfa9848604';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=74cfa9848604';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=74cfa9848604';
-import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=74cfa9848604';
-import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=74cfa9848604';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=74cfa9848604';
-import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=74cfa9848604';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=69a453579663';
+import { RUPERT_LAWN } from './rupert-parts.js?v=69a453579663';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=69a453579663';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=69a453579663';
+import { applyReportedHeight } from './building-heights.js?v=69a453579663';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=69a453579663';
+import { VILLAGE_SPORTS } from './sports-data.js?v=69a453579663';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=69a453579663';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=69a453579663';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=69a453579663';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=69a453579663';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=69a453579663';
+import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=69a453579663';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=69a453579663';
+import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=69a453579663';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -29,6 +31,7 @@ const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.i
 const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(b.id===RUPERT_ID)return {...b,heightNote:'The 20 m height and five-level OSM tag remain. The north entrance has a lower white-panel block, open steel frame and suspended upper floor; the principal wings remain taller. Component heights, cladding and columns are reconstructed from architect photographs and July 2015 Street View. The mapped Southern Drive and northern footways pass beneath raised floors.'};
   if(b.id==='osm-way-45604880')return {...b,heightNote:'The mapped 8 m height and two-level tag remain. Folded silver cladding and triangular glazed openings follow public photographs and July 2015 Street View. Bay divisions, projection and detailed dimensions are reconstructed; service faces are approximate.'};
   if(b.id==='osm-way-101505149')return {...b,heightNote:'The mapped 20 m height and five-level tag remain. Pale brick street faces and curved courtyard glazing follow official exterior photographs and February 2022 Street View. Exact floor divisions, pergola dimensions and unseen elevations are reconstructed.'};
   if(b.id==='osm-way-45230790')return {...b,heightNote:'The 40 m height and ten-level OSM tag are retained. Eight upper window rows, pale projecting bands, a dark teaching base and separate rooftop plant follow the public exterior. Their component dimensions are reconstructed.'};
@@ -58,6 +61,7 @@ function enhanceBuilding(b){
 }
 
 function enhanceLandmark(p){
+  if(p.id===RUPERT_ID){const g=rupertGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));return {...p,...g.arrival,heading:g.heading,pitch:.25,showSign:false,description:'M15 · Black steel frame, tilted white entrance panels, pale vertical fins and raised wings above Southern Drive; detailed dimensions are reconstructed'};}
   if(['osm-way-45604880','osm-way-101505149'].includes(p.id)){
     const b=MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),sirf=p.id==='osm-way-45604880',g=sirf?sirfGeometry(b):agsmGeometry(b);
     return {...p,...g.arrival,heading:g.heading,pitch:sirf?.12:.35,showSign:false,description:sirf?'G23 · Folded silver cladding and triangular glazed openings; detailed dimensions are reconstructed':'G27 · Pale brick wings, curved courtyard glazing and slatted pergola; details are photo-led estimates'};
@@ -131,13 +135,14 @@ function enhanceLandmark(p){
 // official G19 campus map and Google's public Scientia place listing.
 export const CAMPUS={
   ...MAPPED_CAMPUS,
-  trees:[...HERITAGE_FIGS,...scienceForecourt.trees,...civilGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45230790')).trees,...samuelsGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-290473701')).trees,...MAPPED_CAMPUS.trees],
+  trees:[...rupertGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID)).trees,...HERITAGE_FIGS,...scienceForecourt.trees,...civilGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45230790')).trees,...samuelsGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-290473701')).trees,...MAPPED_CAMPUS.trees],
   sportsAreas:VILLAGE_SPORTS,
   paths:[...MAPPED_CAMPUS.paths,{...VILLAGE_SPORTS.find(s=>s.kind==='track'),kind:'track',name:'Village Green running track',width:3.2,widthSource:'estimated from aerial reference'}],
-  greens:MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),
-  plazas:[...MAPPED_CAMPUS.plazas,{id:'sirf-north-paving',name:'SIRF northern footway',points:sirfGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45604880')).paving,surface:'stone',color:'#a4b0a5',reconstructed:true,source:'https://www.google.com/maps/@?api=1&map_action=pano&pano=-TC9UCgCuGSTseqqjeCIXg&heading=180&pitch=5&fov=90'},{id:'mathews-theatres-entry',name:'Mathews Theatres entrance paving',points:mathewsForecourt.paving,surface:'stone',color:'#baaa8b',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/133153'},{id:'bioscience-north-terrace',name:'Biosciences northern entrance terrace',points:bioscienceForecourt.forecourt,surface:'stone',reconstructed:true,source:'https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/'},COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'},{id:'clancy-north-forecourt',name:'Clancy northern forecourt',points:clancyForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.lahznimmo.com/gate-9-unsw'},{id:'chancellery-entry-paving',name:'Chancellery eastern forecourt',points:chancelleryForecourt.paving,holes:chancelleryForecourt.beds,surface:'stone',color:'#ad9d89',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135096'}],
+  greens:[...MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),...RUPERT_LAWN.map((points,i)=>({id:'rupert-courtyard-lawn-'+i,name:'Rupert Myers courtyard lawn',points,reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/133844'}))],
+  plazas:[...MAPPED_CAMPUS.plazas,{id:'rupert-north-entry-paving',name:'Rupert Myers north entrance paving',points:frameRectangle(rupertGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID)).frame,28,10.4,-22,-12.8),surface:'stone',color:'#a49b85',reconstructed:true,source:'https://dentoncorkermarshall.com/projects/rupert-myers-building-university-of-new-south-wales/'},{id:'rupert-courtyard-paving',name:'Rupert Myers courtyard paving',points:MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID).holes[0],holes:RUPERT_LAWN,surface:'brick',color:'#9e9884',reconstructed:true,source:'https://www.google.com/maps/@?api=1&map_action=pano&pano=MY7rSxmegZUS33zB5RS9iA&heading=69&pitch=0&fov=90'},{id:'sirf-north-paving',name:'SIRF northern footway',points:sirfGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45604880')).paving,surface:'stone',color:'#a4b0a5',reconstructed:true,source:'https://www.google.com/maps/@?api=1&map_action=pano&pano=-TC9UCgCuGSTseqqjeCIXg&heading=180&pitch=5&fov=90'},{id:'mathews-theatres-entry',name:'Mathews Theatres entrance paving',points:mathewsForecourt.paving,surface:'stone',color:'#baaa8b',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/133153'},{id:'bioscience-north-terrace',name:'Biosciences northern entrance terrace',points:bioscienceForecourt.forecourt,surface:'stone',reconstructed:true,source:'https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/'},COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'},{id:'clancy-north-forecourt',name:'Clancy northern forecourt',points:clancyForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.lahznimmo.com/gate-9-unsw'},{id:'chancellery-entry-paving',name:'Chancellery eastern forecourt',points:chancelleryForecourt.paving,holes:chancelleryForecourt.beds,surface:'stone',color:'#ad9d89',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135096'}],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
   landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),COLLEGE_COURTYARD_VIEW,
+    (()=>{const g=rupertGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID));return {id:'rupert-courtyard',name:'Rupert Myers courtyard and undercroft',...g.courtyardView,heading:g.courtyardHeading,pitch:.18,showSign:false,code:'M15',kind:'courtyard',description:'Public panorama comparison view; walk east or west beneath reconstructed upper floors along the mapped Southern Drive'};})(),
     (()=>{const b=MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45230803'),g=patriciaGeometry(b);return {id:'patricia-foyer-stair',name:'Patricia O’Shane exterior stair',...g.stairArrival,heading:g.stairHeading,pitch:.18,showSign:false,code:'E19',kind:'courtyard',description:'Photo-led stair in the north-east recess to a walkable upper gallery; exact dimensions and level are reconstructed'};})(),
     {id:'chancellery-vaults',name:'Chancellery Executive wing vaults',x:477,z:-116,heading:-.03,pitch:.12,code:'C22',kind:'courtyard',showSign:false,description:'Library Lawn view of the repeated concrete vaults; bay spacing is reconstructed'},
     {id:'chemical-mall-view',name:'June Griffith tower from the Mall',x:12,z:10,heading:.25,pitch:.22,showSign:false,code:'F10',kind:'courtyard',description:'Comparison view of the reconstructed low teaching wings and retained 45 m tower maximum'},

@@ -1,26 +1,28 @@
-import * as THREE from './vendor/three.module.js?v=74cfa9848604';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=74cfa9848604';
-import { buildingAppearance } from './visual-data.js?v=74cfa9848604';
-import { BUILDING_PARTS } from './building-parts.js?v=74cfa9848604';
-import { CAMPUS_DETAILS } from './campus-details.js?v=74cfa9848604';
-import { VILLAGE_SPORTS } from './sports-data.js?v=74cfa9848604';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=74cfa9848604';
-import { NIDA_PARTS } from './nida-parts.js?v=74cfa9848604';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=74cfa9848604';
-import { tubeFaces } from './structure-data.js?v=74cfa9848604';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=74cfa9848604';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=74cfa9848604';
-import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=74cfa9848604';
-import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=74cfa9848604';
-import { medicalGeometry } from './medical-data.js?v=74cfa9848604';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=74cfa9848604';
-import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=74cfa9848604';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=74cfa9848604';
-import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=74cfa9848604';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=74cfa9848604';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=74cfa9848604';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=74cfa9848604';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=74cfa9848604';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=69a453579663';
+import { RUPERT_PARTS } from './rupert-parts.js?v=69a453579663';
+import * as THREE from './vendor/three.module.js?v=69a453579663';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=69a453579663';
+import { buildingAppearance } from './visual-data.js?v=69a453579663';
+import { BUILDING_PARTS } from './building-parts.js?v=69a453579663';
+import { CAMPUS_DETAILS } from './campus-details.js?v=69a453579663';
+import { VILLAGE_SPORTS } from './sports-data.js?v=69a453579663';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=69a453579663';
+import { NIDA_PARTS } from './nida-parts.js?v=69a453579663';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=69a453579663';
+import { tubeFaces } from './structure-data.js?v=69a453579663';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=69a453579663';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=69a453579663';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=69a453579663';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=69a453579663';
+import { medicalGeometry } from './medical-data.js?v=69a453579663';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=69a453579663';
+import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=69a453579663';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=69a453579663';
+import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=69a453579663';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=69a453579663';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=69a453579663';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=69a453579663';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=69a453579663';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -1179,7 +1181,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
   }
 
   function updateCampusReflection(){
-    // Three static local probes update after loading or a lighting change;
+    // Static local probes update after loading or a lighting change;
     // walking never triggers six additional scene renders per probe per frame.
     for(const {mesh}of campusReflections)mesh.visible=false;
     try{for(const {probe}of campusReflections)probe.update(renderer,scene);}
@@ -1674,6 +1676,88 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     const texture=canvasTexture(2048,128,(ctx,w,h)=>{ctx.clearRect(0,0,w,h);ctx.fillStyle=color;ctx.textBaseline='middle';ctx.font='500 76px sans-serif';ctx.fillText(text,24,h/2,w-48);});
     const sign=new THREE.Mesh(new THREE.PlaneGeometry(width,width/16),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}));
     sign.position.set((a.x+c.x)/2+nx*.8,b.base+y,(a.z+c.z)/2+nz*.8);sign.rotation.y=Math.atan2(nx,nz);world.add(sign);
+  }
+
+  function rupertMyers(b,concrete,brick,detail,roofs){
+    const g=rupertGeometry(b),f=g.frame,undersides=new Batch(),glass=new Batch();undersides.base=glass.base=b.base;
+    const pointAt=(u,v,y)=>{const p=framePoint(f,u,v);return [p.x,y,p.z];};
+    const gridFacade=(a,c,low,high,north=false)=>{
+      const len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,nu=nx*f.u.x+nz*f.u.z,nv=nx*f.v.x+nz*f.v.z;
+      if(north&&(nv<-.6||nu<-.6)){
+        if(low<11.3)wallPanel(brick,a,c,low,Math.min(high,11.3),'#806e61');
+        if(high>11.6){wallPanel(glass,a,c,11.6,high-.35,'#5b7174',.05);for(let d=.25;d<len;d+=1.5)wallPanel(detail,a,c,11.6,high-.3,'#bdc1b5',.22,d/len,Math.min(1,(d+.25)/len));}
+      }else{
+        wallPanel(concrete,a,c,low,high,'#bfc4b9');
+        const rows=low===g.northUpper?[[low+.25,high-.25,low]]:Array.from({length:5},(_,row)=>[Math.max(low,row*4+.25),Math.min(high-.25,(row+1)*4-.2),row*4]);
+        for(const [bottom,top,band] of rows){
+          if(top-bottom<.3)continue;
+          const count=Math.max(1,Math.round(len/3.1));
+          wallPanel(glass,a,c,bottom,top,'#506a70',.04);
+          for(let bay=0;bay<count;bay++){
+            const l=(bay+.05)/count,r=(bay+.38)/count;
+            wallPanel(detail,a,c,bottom,top,bay%4===0?'#b1b9af':'#d1d5c8',.15,l,r);
+            wallPanel(detail,a,c,bottom,bottom+(top-bottom)*.32,'#81928b',.07,(bay+.4)/count,(bay+.98)/count);
+            wallPanel(detail,a,c,bottom,top,'#b9c4b9',.1,(bay+.66)/count,(bay+.68)/count);
+          }
+          const bandLow=Math.max(low,band),bandHigh=Math.min(high,band+.25);
+          if(bandHigh>bandLow)wallPanel(detail,a,c,bandLow,bandHigh,'#354c4b',.35);
+        }
+        for(let d=.1;d<len;d+=9.4)wallPanel(detail,a,c,low,high,'#324946',.39,d/len,Math.min(1,(d+.28)/len));
+      }
+      wallPanel(detail,a,c,high-.25,high,'#3e5150',.4);
+    };
+    const prism=(part,low,high,mode)=>{
+      const ring=polygonArea(part.points)<0?[...part.points].reverse():part.points;
+      polygon(roofs,ring,high,mode==='white'?'#c7cdc0':'#939f96',part.holes);
+      // Double-sided undersides are explicit physical floors over the drive.
+      if(low>0)polygon(undersides,ring,low,'#d4d8ca',part.holes);
+      for(const loop of [ring,...part.holes.map(h=>polygonArea(h)>0?[...h].reverse():h)])for(let i=0;i<loop.length;i++){
+        const a=loop[i],c=loop[(i+1)%loop.length],len=distance2(a,c);if(len<.1)continue;
+        if(mode==='white'){
+          const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,tilt=.65;
+          const p=(t,y,offset)=>[a.x+(c.x-a.x)*t+nx*offset,y,a.z+(c.z-a.z)*t+nz*offset];
+          const count=Math.max(1,Math.round(len/2.2));
+          for(let k=0;k<count;k++){
+            const l=(k+.006)/count,r=(k+.994)/count,y=low+(high-low)*(.47+(k%2)*.12);
+            for(const [y0,y1] of [[low,y-.018],[y+.018,high]]){
+              const off0=tilt*(y0-low)/(high-low),off1=tilt*(y1-low)/(high-low);
+              concrete.quad(p(l,y0,off0),p(l,y1,off1),p(r,y1,off1),p(r,y0,off0),'#d4d8ce');
+            }
+            batchBeam(detail,p(r,low,0),p(r,high,tilt),.012,'#8d9e94');
+          }
+        }else gridFacade(a,c,low,high,mode==='north');
+      }
+      addCollider({points:ring,holes:part.holes,bottom:low,top:high,base:b.base});
+    };
+    for(const part of RUPERT_PARTS){
+      if(part.kind==='north-portico'){
+        prism(part,g.whiteBoxBottom,g.whiteBoxTop,'white');prism(part,g.northUpper,g.northTop,'north');
+      }else if(part.kind==='west-bridge')prism(part,g.corridor.westBottom,g.northTop,'grid');
+      else if(part.kind==='east-bridge')prism(part,g.corridor.eastBottom,b.height,'grid');
+      else if(part.kind==='north')prism(part,0,g.northTop,'north');
+      else prism(part,0,b.height,'grid');
+    }
+    // Black entrance frame and open middle terrace. Columns stay outside the
+    // mapped drive / footway envelope; their precise positions are estimated.
+    for(const p of g.columns){
+      const ground=terrainHeight(p.x,p.z)-b.base;
+      detail.box(p.x,(ground+g.northUpper)/2,p.z,.38,g.northUpper-ground,.38,'#2c4140',Math.atan2(-f.u.z,f.u.x));
+      addCollider({x:p.x,z:p.z,radius:p.radius,base:b.base,bottom:ground,top:g.northUpper});
+    }
+    for(const v of [-8.8,4.8])for(const y of [g.whiteBoxTop-.1,g.northUpper,g.northTop-.1])batchBeam(detail,pointAt(-22.1,v,y),pointAt(-10,v,y),.18,'#304442');
+    for(const u of [-22.1,-10])for(const y of [g.northUpper,g.northTop-.1])batchBeam(detail,pointAt(u,-16,y),pointAt(u,4.8,y),.18,'#304442');
+    const cover=frameRectangle(f,12.1,1.9,-16.05,-7.6);polygon(roofs,cover,g.whiteBoxTop,'#a8b4a6');polygon(undersides,cover,g.whiteBoxTop-.22,'#d4d8ca');
+    const labelA=framePoint(f,-10,-8.85),labelC=framePoint(f,-22.1,-8.85);
+    facadeCaption(b,labelA,labelC,'Rupert Myers · North Wing',7.6,g.whiteBoxTop-.6,'#d3ddcc');
+    // The southern lawn is already a source courtyard hole. Seats follow the
+    // photographed black brick edges while leaving the longitudinal footway open.
+    for(const u of [-7,8.5]){
+      const a=framePoint(f,u,12),c=framePoint(f,u,25),y=Math.max(terrainHeight(a.x,a.z),terrainHeight(c.x,c.z))-b.base+.35;
+      batchBeam(brick,[a.x,y,a.z],[c.x,y,c.z],.2,'#3f4e45');
+    }
+    const glazing=glass.mesh(style('#ffffff',{vertexColors:true,roughness:.08,metalness:.62,envMapIntensity:1.1}));
+    world.add(glazing,undersides.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+    medicalReflection(glazing,framePoint(f,1,8),b.base+9);
   }
 
   function sirfBuilding(b,concrete,glass,detail,roofs){
@@ -2368,6 +2452,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='clancy'){clancyAuditorium(b,detail);continue;}
       if(profile.facade==='bioscience'){bioscienceBuilding(b,detail,roofs);continue;}
+      if(profile.facade==='rupert'){rupertMyers(b,masonry,brickwork,detail,roofs);continue;}
       if(profile.facade==='sirf'){sirfBuilding(b,masonry,glass,detail,roofs);continue;}
       if(profile.facade==='agsm'){agsmBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='civil'){civilBuilding(b,masonry,aggregatework,glass,detail,roofs);continue;}
@@ -2658,7 +2743,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     }
     for(let i=0;i<100;i++) candidates.push({x:bounds.minX+8+random()*(bounds.maxX-bounds.minX-16),z:bounds.minZ+8+random()*(bounds.maxZ-bounds.minZ-16),big:false});
     for(const c of candidates) {
-      const fig=c.form==='heritage-fig',fixedTree=['samuels-gum','civil-poplar'].includes(c.form);
+      const fig=c.form==='heritage-fig',fixedTree=['samuels-gum','civil-poplar','rupert-courtyard'].includes(c.form);
       if(c.x<bounds.minX+3||c.x>bounds.maxX-3||c.z<bounds.minZ+3||c.z>bounds.maxZ-3)continue;
       if(blocked(c.x,c.z,null,fixedTree?.55:fig?1:3))continue;
       if(trees.some(t=>distance2(c,t)<(fixedTree?3:c.big?10:8)))continue;
