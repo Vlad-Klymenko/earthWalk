@@ -86,6 +86,7 @@ Named buildings still without a source-linked profile:
 - node scripts/make-sports-data.mjs
 - python3 scripts/fetch-elevation.py (uses retained TIFF when present; Pillow and NumPy required)
 - node scripts/build-reference-library.mjs
+- npm run prepare:site (reference index and browser asset revision, before publication)
 - npm test
 
 NSW terrain: © State of New South Wales (Spatial Services, Department of Customer Service NSW), extracted 2 November 2026. Source grid resampled via the public ImageServer and interpolated over rendered triangles; CC BY 4.0. Current source: https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_5M_Elevation/ImageServer

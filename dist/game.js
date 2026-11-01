@@ -1,11 +1,11 @@
-import * as THREE from './vendor/three.module.js';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js';
-import { buildingAppearance } from './visual-data.js';
-import { BUILDING_PARTS } from './building-parts.js';
-import { CAMPUS_DETAILS } from './campus-details.js';
-import { VILLAGE_SPORTS } from './sports-data.js';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js';
+import * as THREE from './vendor/three.module.js?v=0e152b3ce28e';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=0e152b3ce28e';
+import { buildingAppearance } from './visual-data.js?v=0e152b3ce28e';
+import { BUILDING_PARTS } from './building-parts.js?v=0e152b3ce28e';
+import { CAMPUS_DETAILS } from './campus-details.js?v=0e152b3ce28e';
+import { VILLAGE_SPORTS } from './sports-data.js?v=0e152b3ce28e';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=0e152b3ce28e';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=0e152b3ce28e';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);

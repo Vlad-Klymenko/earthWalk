@@ -15,6 +15,8 @@ Open [http://localhost:4173](http://localhost:4173) in a desktop browser with We
 
 Three.js **0.180.0** is served locally from `dist/vendor/`; the scene does not need a Google Maps API key.
 
+Before publication, run `npm run prepare:site` to regenerate the reference index and version the complete JavaScript import graph / stylesheet. This prevents stale browser modules from hiding newly deployed model changes. The script is deterministic and can be run repeatedly.
+
 ## Controls
 
 | Action | Control |

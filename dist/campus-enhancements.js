@@ -1,8 +1,8 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js';
-import { applyReportedHeight } from './building-heights.js';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js';
-import { VILLAGE_SPORTS } from './sports-data.js';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=0e152b3ce28e';
+import { applyReportedHeight } from './building-heights.js?v=0e152b3ce28e';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=0e152b3ce28e';
+import { VILLAGE_SPORTS } from './sports-data.js?v=0e152b3ce28e';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=0e152b3ce28e';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);

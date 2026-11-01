@@ -1,4 +1,4 @@
-import { orientedFrame, framePoint } from './geometry.js';
+import { orientedFrame, framePoint } from './geometry.js?v=0e152b3ce28e';
 
 // Photograph-led details, expressed in the same world-metre frame as OSM.
 // These are reconstructions, not surveyed building parts. Overall tagged heights
