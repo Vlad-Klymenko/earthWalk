@@ -148,8 +148,11 @@ function drawMap() {
     for(const hole of plaza.holes||[]){const p=project(hole[0]);ctx.moveTo(p.x,p.y);for(const point of hole.slice(1)){const h=project(point);ctx.lineTo(h.x,h.y);}ctx.closePath();}
     ctx.fillStyle = '#e0d8bc'; ctx.fill('evenodd');
   }
+  for(const area of CAMPUS.sportsAreas||[])if(area.sport!=='soccer'&&area.kind!=='track'){
+    pathShape(ctx,area.points,project);ctx.closePath();ctx.fillStyle=area.sport==='fitness'?'#92bad0':area.sport==='bouldering'?'#d6cdbb':'#c99caf';ctx.fill();
+  }
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-  for (const path of CAMPUS.paths || []) { pathShape(ctx, path.points, project); ctx.strokeStyle = path.kind === 'road' ? '#d0d2bc' : '#f8f9ed'; ctx.lineWidth = Math.max(1, (path.width || 3) * scale); ctx.stroke(); }
+  for (const path of CAMPUS.paths || []) { pathShape(ctx, path.points, project); ctx.strokeStyle = path.kind === 'track' ? '#69acc8' : path.kind === 'road' ? '#d0d2bc' : '#f8f9ed'; ctx.lineWidth = Math.max(1, (path.width || 3) * scale); ctx.stroke(); }
   for (const building of buildings) {
     pathShape(ctx, building.points, project); ctx.closePath();
     for (const hole of building.holes || []) { const p = project(hole[0]);ctx.moveTo(p.x,p.y);for(const point of hole.slice(1)){const h=project(point);ctx.lineTo(h.x,h.y);}ctx.closePath(); }

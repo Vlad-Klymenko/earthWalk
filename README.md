@@ -58,3 +58,5 @@ Architectural references informed the simplified landmark shapes:
 Reference photographs were used for visual research only. No copied photographs or Google satellite imagery are included as scene assets. Three.js is distributed under its [MIT license](https://github.com/mrdoob/three.js/blob/r180/LICENSE).
 
 The Kensington Colleges courtyard is available in the map search. Its public Street View location anchors a photo-led reconstruction of five college façades, roof details and planted courtyard edges. Added landscape dimensions and façade spacing are approximations; the mapped garden boundary is preserved.
+
+Village Green sports geometry is reproduced with `node scripts/make-sports-data.mjs`. The track trace, pitch and surrounding sports areas come from retained OSM data. The Moya Dodd Grandstand is an open model with three canopy leaves, seats, walkable aisles and a reconstructed rear earth bank. Stadium details, sports markings and equipment dimensions are estimates guided by Sam Crawford Architects photographs; the underlying field orientation and sports-area outlines are mapped geometry.

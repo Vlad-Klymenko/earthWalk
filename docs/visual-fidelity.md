@@ -4,11 +4,11 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 ## Evidence added
 
-- Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. All ground sampling, foundations and walking use metres in the same coordinate frame.
+- Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. Base terrain sampling and foundations use metres in the same coordinate frame. Photo-led landscape additions use explicitly reconstructed dimensions.
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. The other 48 tagged footprints use community data, not a survey guarantee; 48 have estimated heights. Building cards identify the source category and link to the report when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 25 campus footprints have a specific source-linked appearance profile, within 40 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 29 campus footprints have a specific source-linked appearance profile, within 48 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -16,6 +16,12 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 - Kensington Colleges: five mapped college wings now use photo-led brick patterns, narrow window bays, recessed / projecting balconies, floor ledges and light concrete cores. Public Street View panorama Slvij_TxFht4mcZH294sFw was inspected at -33.9162366, 151.23194; its location is a new map destination. The architect journal (printed pp. 180–183, PDF pp. 92–93), official Fig Tree Hall exterior and contractor aerial inform the model. Rooftop lawns, pergolas and vent rows are reconstructed details.
 - College courtyard paving, a 0.55 m raised planted edge and timber seating are photo-led approximations. The underlying garden boundary is actual OSM way 926419123; the added paving extent and landscape dimensions are marked as reconstructions. Terrain remains the NSW raster; no survey-grade terrace geometry is claimed.
+
+- Village Green: eight retained OSM sports features now supply the running trace, main field, four courts and two activity areas. Soccer markings and goal placement use the real 9.28-degree pitch frame, replacing the former world-aligned rectangle. Court colours and equipment are reconstructed from the architect aerial. The mapped running trace includes an access spur and is retained without a fabricated closing edge.
+- Moya Dodd Grandstand: the solid generic building is replaced with three rounded canopy leaves, steel beams, supports, yellow / black seating terraces, walkable aisles and a rear earth bank. The roof height (6.2 m), seat layout, risers and mound are photo-led estimates; their positions use the mapped grandstand outline and the field axis. The walking surface shares the reconstructed mound geometry.
+- Blockhouse now uses brown brick, narrow framed bays and a pale fascia above shop fronts. Sam Cracknell Pavilion uses a white body with a curved glazed balcony and pergola edge. Its original exterior was inspected in July 2015 Street View, with 2023 upgrade photographs recorded separately; the model does not reproduce every later amenities alteration.
+
+- Home Ground Café: the public Google place coordinate (-33.9180069, 151.2286064) falls within OSM H11. The name and alias are now connected to that outline. A low glazed kiosk replaces the generic 9.6 m block; the 3.7 m roof height, rounded eaves, covered seating, forecourt paving and three palms are photo-led reconstructions, with estimated dimensions and positions. H11 remains searchable.
 
 ## Remaining fidelity work
 
@@ -25,8 +31,6 @@ Named buildings still without a source-linked profile:
 
 - Barker Street Carpark (N18)
 - Botany Street Carpark (H25)
-- Blockhouse (G6)
-- Sam Cracknell Pavilion (H8)
 - Science Theatre (F13)
 - Dalton Building (F12)
 - Willis Annex - J18 (J18)
@@ -69,8 +73,6 @@ Named buildings still without a source-linked profile:
 - Biological Sciences South (E26)
 - Computer Science and Engineering (K17) (K17)
 - Esme Timbery Creative Studio (D8) (D8)
-- Moya Dodd Grandstand (osm-way-1178531040)
-- H11 (H11)
 - Rupert Myers Building (M15)
 - International House (C6)
 - UNSW Village (B10)
@@ -79,6 +81,7 @@ Named buildings still without a source-linked profile:
 
 - node scripts/make-building-parts.mjs
 - node scripts/make-campus-details.mjs
+- node scripts/make-sports-data.mjs
 - python3 scripts/fetch-elevation.py (uses retained TIFF when present; Pillow and NumPy required)
 - node scripts/build-reference-library.mjs
 - npm test
