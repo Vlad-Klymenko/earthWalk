@@ -6,9 +6,9 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 - Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. Base terrain sampling and foundations use metres in the same coordinate frame. Photo-led landscape additions use explicitly reconstructed dimensions.
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
-- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. The remaining 47 tagged footprints use community data, not a survey guarantee; 48 have estimated heights. Building cards identify the source category and link to its public source when used.
+- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. The remaining 46 parent height tags are used unchanged; 49 footprints use estimates. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 37 campus footprints have a specific source-linked appearance profile, within 64 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 41 campus footprints have a specific source-linked appearance profile, within 71 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -32,6 +32,12 @@ Browser checks: New College's single central glass bay and raised clerestory are
 Residential precinct: the actual UNSW Village multipolygon, including its three holes, is partitioned into photo-led tall wings and lower boundary blocks. The 25.6 / 12.8 / 9.6 m heights are estimates guided by Clare / Architectus photographs and their eight-storey description. Four mapped through-footways now pass under reconstructed bridges. Their source coordinates are preserved; 3 m doorway widths, end clearances and 3.2 / 5.8 m overhead clearances are estimates. A browser walking check moved 37 m through the first bridge into the next court. Boolean geometry tests prove complete footprint / hole preservation, no overlapping volumes and clearance for the player at every mapped threshold.
 
 New College Postgraduate Village retains its U-shaped outline, now with a blue-glass southern screen and lower ochre side wing. Its 25.6 / 13.2 m split is reconstructed from the official exterior, not mapped height evidence. The official college page describes seven floors; the original eight-level OSM tag remains in the data. Shalom uses three visible rows and projecting open metal balconies; its 12 m mapped height and conflicting four-level tag are both retained. International House uses a 7.8 m estimated exterior with light brick, pale upper panels, small upper windows and a dark roof fascia. Its two visible exterior rows differ from its retained three-level tag. Its mapped courtyard opening now contains a photo-led pond, pergola, picnic furniture and tropical planting; individual feature positions and dimensions are estimates.
+
+Heritage precinct: the White House now has weatherboards, two levels of French windows, wraparound X balustrades, curved brackets and a climbable exterior stair to the upper verandah. Old Tote uses three visible storeys, informed by exterior photographs and the public heritage history, while retaining its conflicting two-level map tag. Fig Tree Theatre has corrugated cladding, an offset gable, lower side annex and a reconstructed foyer window box. Their 9.6 / 11.2 / 5.7 m model heights are estimates. Four additional mature fig trees have explicitly reconstructed positions and heights; the original 30 mapped trees remain.
+
+Goldstein Dining Hall now uses a tall concrete frame, timber glazing and a lower service wing within its original mapped outline. No measured replacement height was found: the 12 m model estimate and original 20 m OSM tag are both disclosed in its building card. The formal pool, sculpture and precise courtyard terraces remain incomplete. Other heritage details, including Old Tote’s fire stair, also remain incomplete.
+
+Arrival headings were corrected from the map exporter’s south-based convention to the renderer’s north-based convention, so legacy map destinations face their buildings. The elevation HUD now reports the walker’s feet altitude, including raised decks, with terrain altitude retained separately.
 
 ## Remaining fidelity work
 
@@ -61,17 +67,13 @@ Named buildings still without a source-linked profile:
 - Gym - B5, B6, B7 (B5)
 - Vallentine Annexe - H22 (H22)
 - Solar Industrial Research Facility (SIRF) - G23 (G23)
-- Goldstein Dining Hall - D16 (D16)
 - Australian Graduate School of Management - G27 (G27)
-- Fig Tree Theatre - B14d (osm-way-164552439)
 - University Regiment - H1 (H1)
 - J2 (J2)
 - J2 (J2)
-- The White House - C15 (C15)
 - David Gonski Chancellery (C22)
 - Rex Vowels Theatre (F17)
 - Samuels Building - F25 (F25)
-- Old Tote Building - B15 (B15)
 - Campus Village Cafe (osm-way-584816505)
 - Biological Sciences North (D26)
 - Biological Sciences South (E26)

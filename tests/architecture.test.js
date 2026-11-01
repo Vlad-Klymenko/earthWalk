@@ -5,6 +5,8 @@ import { buildingAppearance, VISUAL_REFERENCES } from '../dist/visual-data.js';
 import { theatreGeometry, newCollegeRoof } from '../dist/architecture-data.js';
 import { heightDescription } from '../dist/building-heights.js';
 import { ShapeUtils, Vector2 } from '../dist/vendor/three.module.js';
+import { CAMPUS as MAPPED_CAMPUS } from '../dist/campus-data.js';
+import { heritageGeometry, whiteHouseStair } from '../dist/heritage-data.js';
 
 const inside=(p,ring)=>{
   let result=false;
@@ -15,6 +17,40 @@ const inside=(p,ring)=>{
   return result;
 };
 const area=ring=>Math.abs(ring.reduce((sum,p,i)=>{const q=ring[(i+1)%ring.length];return sum+p.x*q.z-q.x*p.z;},0))/2;
+
+test('map arrivals face their destinations in the first-person heading convention',()=>{
+  for(const id of ['library','mathews','osm-way-196250617','osm-way-306785257','osm-way-164552439']){
+    const b=CAMPUS.buildings.find(b=>b.id===id),p=CAMPUS.landmarks.find(p=>p.id===id);
+    const dx=b.points.reduce((s,q)=>s+q.x,0)/b.points.length-p.x;
+    const dz=b.points.reduce((s,q)=>s+q.z,0)/b.points.length-p.z;
+    assert.ok((Math.sin(p.heading)*dx-Math.cos(p.heading)*dz)/Math.hypot(dx,dz)>.95,id);
+  }
+});
+
+test('White House stair reaches a verandah around an inset solid body',()=>{
+  const b=CAMPUS.buildings.find(b=>b.id==='osm-way-196250617'),g=heritageGeometry(b,'whitehouse'),s=whiteHouseStair(b);
+  assert.ok(g.body.every(p=>inside(p,b.points)));
+  assert.ok(area(b.points)-area(g.body)>40,'verandah has usable floor area');
+  assert.ok((s.high-s.low)/s.count<.2,'risers are walkable');
+  assert.ok(Math.hypot(s.b.x-s.a.x,s.b.z-s.a.z)/s.count>.24,'treads accommodate walking');
+  assert.ok(s.width>.68,'stair fits the player capsule');
+  // Final tread and landing must be within the physical step tolerance.
+  assert.ok((s.high-s.low)/s.count<.27);
+});
+
+test('photo-led height changes retain conflicting source data and stay labelled estimates',()=>{
+  const b=CAMPUS.buildings.find(b=>b.id==='osm-way-71500653'),raw=MAPPED_CAMPUS.buildings.find(q=>q.id===b.id);
+  assert.equal(raw.height,20);
+  assert.equal(b.mappedHeight,raw.height);
+  const description=heightDescription(b,buildingAppearance(b));
+  assert.equal(description.metres,12);
+  assert.equal(description.label,'estimated');
+  assert.match(description.reference.url,/tkda\.com\.au/);
+  assert.match(b.heightNote,/20 m/);
+  const tote=CAMPUS.buildings.find(b=>b.id==='osm-way-306785257');
+  assert.equal(heightDescription(tote,buildingAppearance(tote)).label,'estimated');
+  assert.equal(heightDescription(tote,buildingAppearance(tote)).metres,11.2);
+});
 
 test('theatre roof opening fits the real footprint and triangulates without filling the drum',()=>{
   const b=CAMPUS.buildings.find(b=>b.id==='osm-way-164558658'),g=theatreGeometry(b);
