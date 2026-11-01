@@ -1,19 +1,21 @@
-import * as THREE from './vendor/three.module.js?v=3a12a1f14521';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=3a12a1f14521';
-import { buildingAppearance } from './visual-data.js?v=3a12a1f14521';
-import { BUILDING_PARTS } from './building-parts.js?v=3a12a1f14521';
-import { CAMPUS_DETAILS } from './campus-details.js?v=3a12a1f14521';
-import { VILLAGE_SPORTS } from './sports-data.js?v=3a12a1f14521';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=3a12a1f14521';
-import { NIDA_PARTS } from './nida-parts.js?v=3a12a1f14521';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=3a12a1f14521';
-import { tubeFaces } from './structure-data.js?v=3a12a1f14521';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=3a12a1f14521';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=3a12a1f14521';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=3a12a1f14521';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=3a12a1f14521';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=3a12a1f14521';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=3a12a1f14521';
+import * as THREE from './vendor/three.module.js?v=d06fe8625606';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=d06fe8625606';
+import { buildingAppearance } from './visual-data.js?v=d06fe8625606';
+import { BUILDING_PARTS } from './building-parts.js?v=d06fe8625606';
+import { CAMPUS_DETAILS } from './campus-details.js?v=d06fe8625606';
+import { VILLAGE_SPORTS } from './sports-data.js?v=d06fe8625606';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=d06fe8625606';
+import { NIDA_PARTS } from './nida-parts.js?v=d06fe8625606';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=d06fe8625606';
+import { tubeFaces } from './structure-data.js?v=d06fe8625606';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=d06fe8625606';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=d06fe8625606';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=d06fe8625606';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=d06fe8625606';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=d06fe8625606';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=d06fe8625606';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=d06fe8625606';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=d06fe8625606';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -299,7 +301,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
   let totalDistance = 0, lastFrame = performance.now(), reportTime = 0, elapsed = 0, animation = 0;
   let curiosities = [], found = new Set(), ball = null, ballSpawn = null, lastInteraction = '';
   let minimapBase = null, minimapInfo = null, shadowAnchor = { x:1e6,z:1e6 };
-  let campusReflection=null;
+  const campusReflections=[];
   const inputs = {forward:false,backward:false,left:false,right:false,sprint:false};
   const listeners = [];
   const listen = (target,type,fn,options) => { target.addEventListener(type,fn,options); listeners.push(() => target.removeEventListener(type,fn,options)); };
@@ -337,13 +339,14 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     y=y??terrainHeight(x,z);
     if (!bounds || x < bounds.minX+1 || x > bounds.maxX-1 || z < bounds.minZ+1 || z > bounds.maxZ-1) return true;
     for (const c of nearbyColliders(x,z,radius)) {
-      if (y >= colliderTop(c,x,z)-(c.stepHeight||.1) || y+1.65 <= (c.bottom || 0)+.03) continue;
+      if (y >= colliderTop(c,x,z)-(c.stepHeight||.1) || y+1.65 <= colliderBottom(c,x,z)+.03) continue;
       if (c.points ? circleTouchesPolygon(x,z,radius,c.points,c.holes) : Math.hypot(x-c.x,z-c.z) < radius+c.radius) return true;
     }
     return false;
   }
 
   function colliderTop(c,x,z){return c.terrainOffset!==undefined?terrainHeight(x,z)+c.terrainOffset:c.top;}
+  function colliderBottom(c,x,z){return c.terrainBottom!==undefined?terrainHeight(x,z)+c.terrainBottom:(c.bottom||0);}
 
   function clearInputs() { for (const key in inputs) inputs[key]=false; dragging=false; }
   function surfaceHeight(x,z){
@@ -1166,14 +1169,16 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     const mesh=mirror.mesh(style('#ffffff',{vertexColors:true,roughness:.035,metalness:.82,envMapIntensity:1.2}));world.add(mesh);
     const front=framePoint(f,-f.width/2-1.5,0),target=new THREE.WebGLCubeRenderTarget(512,{type:THREE.HalfFloatType,generateMipmaps:true,minFilter:THREE.LinearMipmapLinearFilter});
     const probe=new THREE.CubeCamera(.3,380,target);probe.position.set(front.x,b.base+9,front.z);
-    campusReflection={mesh,probe,target};mesh.material.envMap=target.texture;
+    campusReflections.push({mesh,probe,target});mesh.material.envMap=target.texture;
     addCollider({points:b.points,top:b.height,base:b.base});
   }
 
   function updateCampusReflection(){
-    if(!campusReflection)return;
-    const {mesh,probe}=campusReflection;mesh.visible=false;
-    try{probe.update(renderer,scene);}finally{mesh.visible=true;}
+    // Three static local probes update after loading or a lighting change;
+    // walking never triggers six additional scene renders per probe per frame.
+    for(const {mesh}of campusReflections)mesh.visible=false;
+    try{for(const {probe}of campusReflections)probe.update(renderer,scene);}
+    finally{for(const {mesh}of campusReflections)mesh.visible=true;}
   }
 
   function chemicalComplex(b,masonry,brick,glass,detail,roofs){
@@ -1497,6 +1502,168 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     world.add(mulch.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('aggregate')})),wood.mesh(style('#ffffff',{vertexColors:true})),fronds.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
   }
 
+  function bioscienceBuilding(b,detail,roofs){
+    const g=bioscienceGeometry(b),f=g.frame,panels=new Batch(),glazing=new Batch();panels.base=glazing.base=b.base;
+    const northPalette=['#c4cdc7','#aab6b1','#d4d8ce','#8b9e9a','#bdc5bd','#dae0d6'];
+    const clay=['#b9653d','#bd7d50','#d3aa77','#b45236','#d8be8b','#996244','#d1cdc0'];
+    for(const part of BIOSCIENCE_PARTS.filter(p=>p.buildingId===b.id)){
+      const ring=polygonArea(part.points)<0?[...part.points].reverse():part.points,top=part.roofRL-b.base;
+      const floating=part.kind==='glass-box',bottom=floating?57.57-b.base:0;
+      for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.1)continue;
+        const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,nu=nx*f.u.x+nz*f.u.z,nv=nx*f.v.x+nz*f.v.z;
+        const mid=g.local({x:(a.x+c.x)/2,z:(a.z+c.z)/2});
+        const grayEnd=g.north&&part.kind==='main'&&nu>.8;
+        const allGlass=floating||part.kind==='atrium'||g.north&&part.kind==='main'&&nv<-.7&&mid.u>30;
+        wallPanel(panels,a,c,bottom,top,part.kind==='biolink'?'#9baba2':grayEnd?'#bdc5b8':g.north?'#a9b8b1':'#745a46');
+        if(grayEnd){
+          const cols=Math.max(1,Math.round(len/.5)),rows=18;
+          for(let j=0;j<cols;j++)for(let r=0;r<rows;r++){
+            const t=(j+.5)/cols,wave=Math.sin(j*.36+r*.48)+Math.sin(j*.15-r*.69),color=northPalette[Math.max(0,Math.min(5,Math.floor(2.5+wave*1.5)))];
+            wallPanel(panels,a,c,bottom+(top-bottom)*r/rows,bottom+(top-bottom)*(r+1)/rows-.014,color,.025,(j+.02)/cols,(j+.98)/cols);
+          }
+        }else if(part.kind==='biolink'){
+          for(let r=1;r<8;r++){
+            const lo=g.levels[r]-b.base+.32,hi=Math.min(top-.25,lo+2.35);if(hi<=lo)continue;
+            wallPanel(glazing,a,c,lo,hi,'#69858a',.055,.015,.985);
+            wallPanel(detail,a,c,hi,hi+.19,'#d2d9ce',.17);
+            for(let d=.4;d<len;d+=1.2)wallPanel(detail,a,c,lo,hi,'#b5c5bb',.09,d/len,Math.min(1,(d+.05)/len));
+          }
+        }else{
+          // Raised glass base and repeated laboratory levels follow the
+          // planning floor RLs. Missing map-level tags are never fabricated.
+          const count=Math.max(1,Math.round(len/(allGlass?1.5:g.north?1.05:.55)));
+          for(let r=0;r<g.levels.length-1;r++){
+            const lo=Math.max(bottom,g.levels[r]-b.base+.1),hi=Math.min(top-.16,g.levels[r+1]-b.base-.12);if(hi<=lo)continue;
+            const baseLevel=g.levels[r]<61.53;
+            for(let j=0;j<count;j++){
+              const start=j/count,end=(j+1)/count,cell=(j*13+r*7)%17;
+              const blue=baseLevel?'#3e5a55':['#90abb3','#a4b9b8','#b8c8bf','#96b0b5','#c1cfc5'][Math.floor(j/4+r)%5];
+              wallPanel(glazing,a,c,lo,hi,blue,.065,start+.018/count,end-.018/count);
+              if(allGlass||baseLevel){
+                wallPanel(detail,a,c,lo,hi,'#657f7c',.1,start,Math.min(end,start+.045/len));
+              }else if(g.north){
+                const shade=northPalette[(Math.floor(j/3)+r*2)%northPalette.length],width=cell<5?.8:cell<11?.52:.24;
+                wallPanel(panels,a,c,lo,hi,shade,.14,start,Math.min(end,start+width/count));
+                wallPanel(detail,a,c,lo,hi,'#d3dcd2',.31,Math.min(end,start+.08/count),Math.min(end,start+.15/count));
+              }else{
+                const shade=clay[(Math.floor(j/3)+r+Math.floor(j/11))%clay.length];
+                const p={x:a.x+(c.x-a.x)*(start+end)/2+nx*.3,z:a.z+(c.z-a.z)*(start+end)/2+nz*.3};
+                detail.box(p.x,(lo+hi)/2,p.z,.105,hi-lo,.36,shade,Math.atan2(-(c.z-a.z),c.x-a.x));
+                if(cell<5)wallPanel(panels,a,c,lo,lo+(hi-lo)*.34,shade,.1,start,end);
+              }
+            }
+            wallPanel(detail,a,c,hi,hi+.08,allGlass?'#5f7b7f':g.north?'#7e938e':'#826b52',.18);
+          }
+        }
+        wallPanel(detail,a,c,top-.15,top+.04,g.north?'#c6cfc4':'#8f7963',.22);
+      }
+      polygon(roofs,part.points,top,g.north?'#aab7ac':'#9c9d87',part.holes);
+      if(floating){
+        polygon(panels,part.points,bottom,'#586e6a',part.holes);
+        for(const p of g.supports){
+          const ground=terrainHeight(p.x,p.z)-b.base;
+          detail.box(p.x,(ground+bottom)/2,p.z,.75,bottom-ground,.75,'#b8c4b6');addCollider({x:p.x,z:p.z,radius:.47,top:bottom,base:b.base});
+        }
+      }
+      addCollider({points:part.points,holes:part.holes,bottom,top,base:b.base});
+    }
+    for(const plant of g.plants){
+      const low=plant.bottomRL-b.base,high=plant.roofRL-b.base,ring=polygonArea(plant.points)<0?[...plant.points].reverse():plant.points;
+      polygon(roofs,ring,high,'#77867b');
+      for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length];wallPanel(panels,a,c,low,high,g.north?'#7c877d':'#95795e');
+        for(let y=low+.12;y<high;y+=.18)wallPanel(detail,a,c,y,y+.035,g.north?'#626f65':'#665e4b',.055);
+      }
+    }
+    if(g.north){
+      const c=g.canopy,start=c.start,end=c.end,roof=c.roofRL-b.base;
+      const canopy=frameRectangle(f,end-start,c.depth,(start+end)/2,c.v-c.depth/2),underside=new Batch();underside.base=b.base;
+      polygon(detail,canopy,roof,'#6a7c70');polygon(underside,canopy,roof-.17,'#aa7947');
+      world.add(underside.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+      const a=framePoint(f,start,c.v-c.depth),z=framePoint(f,end,c.v-c.depth);wallPanel(detail,a,z,roof-.2,roof,'#344d46');
+      addCollider({points:canopy,bottom:roof-.2,top:roof,base:b.base});
+    }
+    const mesh=glazing.mesh(style('#ffffff',{vertexColors:true,roughness:.065,metalness:.76,envMapIntensity:1.25}));
+    world.add(panels.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('concrete'),bumpMap:surfaceTexture('concrete'),bumpScale:.014,side:THREE.DoubleSide})),mesh);
+    const front=framePoint(f,g.north?0:39,g.north?-29:-6),target=new THREE.WebGLCubeRenderTarget(512,{type:THREE.HalfFloatType,generateMipmaps:true,minFilter:THREE.LinearMipmapLinearFilter});
+    const probe=new THREE.CubeCamera(.3,300,target);probe.position.set(front.x,72,front.z);
+    mesh.material.envMap=target.texture;campusReflections.push({mesh,probe,target});
+    if(!g.north)bioscienceStreetGarden(g);
+  }
+
+  function bioscienceStreetGarden(g){
+    const soil=new Batch(),wall=new Batch(),plants=new Batch(),wood=new Batch();plants.base=wood.base=0;
+    polygon(soil,g.streetGarden.points,.09,'#918d68');
+    const a=framePoint(g.frame,47.3,-19),c=framePoint(g.frame,47.3,19);
+    wallPanel(wall,a,c,0,.62,'#a3a387');wallPanel(wall,c,a,0,.62,'#a3a387');
+    ribbon(wall,[a,c],.3,.65,'#c2c4ac');
+    addCollider({points:frameRectangle(g.frame,.3,38,47.3,0),base:0,terrainOffset:.65});
+    for(let u=42.1;u<47;u+=.8)for(let v=-18.5;v<19;v+=1.1){
+      const p=framePoint(g.frame,u,v),base=terrainHeight(p.x,p.z)+.12;
+      for(let i=0;i<11;i++){
+        const angle=i/11*TAU+v,dx=Math.cos(angle),dz=Math.sin(angle),length=.48+((i+Math.round(v))%3+3)%3*.16,shade=['#597d46','#899c54','#63874b'][i%3];
+        const left=[p.x+dx*.18-dz*.05,base+.5,p.z+dz*.18+dx*.05],right=[p.x+dx*.18+dz*.05,base+.5,p.z+dz*.18-dx*.05];
+        plants.triangle([p.x,base,p.z],left,right,shade);plants.triangle(left,[p.x+dx*length,base+.25,p.z+dz*length],right,shade);
+      }
+    }
+    for(const tree of g.streetGarden.trees){
+      const base=terrainHeight(tree.x,tree.z);batchPipe(wood,[tree.x,base,tree.z],[tree.x,base+3.7,tree.z],.07,'#8e8b6e');
+      for(let i=0;i<9;i++){
+        const angle=i/9*TAU,x=tree.x+Math.cos(angle)*1.1,z=tree.z+Math.sin(angle)*1.1,y=base+3.7+(i%3)*.3;
+        batchPipe(wood,[tree.x,base+2.3,tree.z],[x,y,z],.025,'#9b987e');
+        for(let j=0;j<10;j++){
+          const t=j/10,px=tree.x+(x-tree.x)*t,pz=tree.z+(z-tree.z)*t,py=base+2.3+(y-base-2.3)*t;
+          plants.triangle([px-.14,py,pz],[px+.14,py+.16,pz],[px,py+.5,pz+.24],j%2?'#71965b':'#8ca36b');
+        }
+      }
+      addCollider({x:tree.x,z:tree.z,radius:.1,top:tree.height,base});
+    }
+    world.add(soil.mesh(style('#ffffff',{vertexColors:true})),wall.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('brick')})),plants.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})),wood.mesh(style('#ffffff',{vertexColors:true})));
+  }
+
+  function mathewsTheatre(b,concrete,glass,detail,roofs){
+    const g=mathewsTheatreGeometry(b),f=g.frame,ring=polygonArea(b.points)<0?[...b.points].reverse():b.points;
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,nu=nx*f.u.x+nz*f.u.z;
+      wallPanel(concrete,a,c,0,b.height,'#b9b6a3');
+      wallPanel(detail,a,c,0,.45,'#5b7180',.03);
+      if(nu<-.8){
+        wallPanel(glass,a,c,.35,3.1,'#648079',.07,.04,.96);
+        wallPanel(detail,a,c,3.12,3.75,'#e0e0d0',.18);
+        for(let d=.3;d<len;d+=2.7)wallPanel(detail,a,c,.15,3.75,'#ccd1bd',.24,d/len,Math.min(1,(d+.24)/len));
+        for(const y of [4.2,8.2])wallPanel(detail,a,c,y,y+.35,'#b1b5a3',.55);
+        const p=t=>({x:a.x+(c.x-a.x)*t,z:a.z+(c.z-a.z)*t});
+        const midV=(((a.x+c.x)/2-f.x)*f.v.x+((a.z+c.z)/2-f.z)*f.v.z);
+        if(midV>-3&&midV<7){
+          facadeLabel(b,p(.25),p(.75),'Mathews Theatres','A B C D',4.8,3.4,'#36443c');
+          wallPanel(detail,a,c,1.05,1.1,'#d3ddd0',.09,.15,.85);
+          wallPanel(detail,a,c,1.8,1.85,'#d3ddd0',.09,.15,.85);
+        }
+      }else{
+        for(let d=.3;d<len;d+=2.2)wallPanel(detail,a,c,.5,b.height-.2,'#a2ad9f',.022,d/len,Math.min(1,(d+.025)/len));
+        wallPanel(detail,a,c,5.2,5.25,'#a1ac9c',.045);
+      }
+      wallPanel(detail,a,c,b.height-.35,b.height,'#d1d3bf',.4);
+    }
+    polygon(roofs,b.points,b.height,'#9daa9b');
+    addCollider({points:b.points,top:b.height,base:b.base});
+  }
+
+  function terrainCanopy(b){
+    const roof=new Batch(),supports=new Batch();supports.base=0;
+    polygon(roof,b.points,3.8,'#bcc5b8',b.holes||[]);
+    const ring=polygonArea(b.points)<0?[...b.points].reverse():b.points,posts=[];
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length];wallPanel(roof,a,c,3.55,3.8,'#a0aea3');
+      if(posts.some(p=>distance2(p,a)<8)||nearestPath(a.x,a.z).distance<.6)continue;
+      posts.push(a);const base=terrainHeight(a.x,a.z),top=base+3.58;
+      batchPipe(supports,[a.x,base,a.z],[a.x,top,a.z],.055,'#526962');addCollider({x:a.x,z:a.z,radius:.075,top:3.6,base});
+    }
+    world.add(roof.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})),supports.mesh(style('#ffffff',{vertexColors:true,metalness:.4})));
+    addCollider({points:b.points,holes:b.holes,base:0,terrainBottom:3.55,terrainOffset:3.8});
+  }
+
   function grandstand(b,concrete,detail,roofs){
     const pitch=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
     const f=orientedFrame(b.points,pitch.v),rows=6,rise=.37,depth=.85,front=f.width/2-1.1;
@@ -1664,6 +1831,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       }
       for(const batch of allBatches)batch.base=b.base;
       if(b.modelledWith)continue;
+      if(b.terrainCanopy){terrainCanopy(b);continue;}
       if(b.id==='osm-way-1178531037'){scientiaCanopy(b,detail,glass);continue;}
       if(b.walkableUnder){
         const h=Math.max(3,b.height),ordered=polygonArea(pts)<0?[...pts].reverse():pts;
@@ -1684,6 +1852,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='chemical-complex'){chemicalComplex(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='clancy'){clancyAuditorium(b,detail);continue;}
+      if(profile.facade==='bioscience'){bioscienceBuilding(b,detail,roofs);continue;}
+      if(profile.facade==='mathews-theatre'){mathewsTheatre(b,masonry,glass,detail,roofs);continue;}
       if(profile.facade==='chancellery'){chancelleryBuilding(b,brickwork,glass,detail,roofs);continue;}
       if(['village','postgraduate'].includes(profile.facade)){residentialComplex(b,profile,masonry,glass,detail,roofs);continue;}
       if(['shalom','international'].includes(profile.facade)){olderResidence(b,profile,clinkerwork,glass,detail,roofs);continue;}
@@ -2146,7 +2316,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
   function disposeWorld() {
     const geometries=new Set(),materials=new Set(),textures=new Set();
     world.traverse(object=>{if(object.geometry)geometries.add(object.geometry);for(const mat of Array.isArray(object.material)?object.material:object.material?[object.material]:[]){materials.add(mat);for(const value of Object.values(mat))if(value?.isTexture)textures.add(value);}});
-    if(campusReflection){textures.delete(campusReflection.target.texture);campusReflection.target.dispose();campusReflection=null;}
+    for(const {target}of campusReflections){textures.delete(target.texture);target.dispose();}campusReflections.length=0;
     for(const geo of geometries)geo.dispose();for(const mat of materials)mat.dispose();for(const texture of textures)texture.dispose();
     scene.remove(world);world=new THREE.Group();scene.add(world);
   }

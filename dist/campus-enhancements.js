@@ -1,11 +1,12 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=3a12a1f14521';
-import { applyReportedHeight } from './building-heights.js?v=3a12a1f14521';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=3a12a1f14521';
-import { VILLAGE_SPORTS } from './sports-data.js?v=3a12a1f14521';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=3a12a1f14521';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=3a12a1f14521';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=3a12a1f14521';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=3a12a1f14521';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=d06fe8625606';
+import { applyReportedHeight } from './building-heights.js?v=d06fe8625606';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=d06fe8625606';
+import { VILLAGE_SPORTS } from './sports-data.js?v=d06fe8625606';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=d06fe8625606';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=d06fe8625606';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=d06fe8625606';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=d06fe8625606';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=d06fe8625606';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -20,8 +21,16 @@ const scienceForecourt=scienceTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.
 const theatrePassage=websterTheatresGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45488789'));
 const clancyForecourt=clancyGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-45230512'));
 const chancelleryForecourt=chancelleryGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='chancellery'));
+const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='biological-north'));
+const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(['biological-north','biological-south'].includes(b.id)){
+    const g=bioscienceGeometry(b);
+    return {...b,previousEstimate:b.height,height:g.report.roofRL-g.base,heightSource:'derived',heightQuantity:'Plant roof above model base',heightReference:g.report,
+      heightNote:'Planning roof elevation minus NSW DEM foundation, assuming compatible vertical datums. Built photographs corroborate the massing; this is not an as-built height survey. Internal massing, cladding pitch and plant footprints are reconstructed. The source has no measured OSM height or level tag.'};
+  }
+  if(MATHEWS_COVERED_ROUTES.includes(b.id))return {...b,previousEstimate:b.height,height:3.8,heightSource:'estimated',terrainCanopy:true,heightNote:'Estimated 3.8 m cover above local terrain, following the mapped roof outline. Supports and roof pitch are photo-led approximations, not surveyed dimensions.'};
   if(CLANCY_HOODS.includes(b.id))return {...b,modelledWith:'osm-way-45230512',heightNote:'Mapped roof outline retained. Rendered with Clancy’s reconstructed copper hoods; the original generic 9.6 m estimate is not a measured roof height.'};
   if(b.id==='osm-way-45230512')return {...b,mappedHeight:b.height,height:14.5,heightSource:'estimated',heightReference:{title:'Architect scaled section and exterior photographs',url:'https://www.lahznimmo.com/gate-9-unsw',linkLabel:'Model height · architect section'},heightNote:'Overall 14.5 m is a scaled-section model estimate; the original 8 m map tag remains. The architect describes 10 m glazing and the engineer describes 8 m frontage / a 23 m portal: these are differing component figures, not surveyed overall heights.'};
   if(b.id==='chancellery')return {...b,heightNote:'The 15 m height is the retained OSM tag. The NBRS survey describes five storeys including basement and sub-basement; visible rows change with the slope. Façade divisions and vault dimensions are reconstructed.',heightReference:{title:'Retained OSM height tag',url:'https://www.openstreetmap.org/way/265881082',linkLabel:'Height · OSM tag'}};
@@ -37,6 +46,14 @@ function enhanceLandmark(p){
   // renderer measures it from north; explicit photo-view overrides below
   // already use the renderer convention.
   if(Number.isFinite(p.heading))p={...p,heading:Math.atan2(Math.sin(p.heading),-Math.cos(p.heading))};
+  if(['biological-north','biological-south'].includes(p.id)){
+    const g=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));
+    return {...p,...g.arrival,heading:g.heading,pitch:.27,showSign:false,description:g.north?'D26 · Silver aluminium fins, patterned panels and stepped rooftop plant. Planning elevations and photo-led reconstruction':'E26 · Terracotta fins, projecting blue-glass box and glazed connecting atrium. Planning elevations and photo-led reconstruction'};
+  }
+  if(p.id==='mathews-theatres'){
+    const g=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));
+    return {...p,...g.arrival,heading:g.heading,pitch:.08,showSign:false,description:'D23 · Concrete auditorium shell, glazed entrance and covered pedestrian route. Entrance details are reconstructed from public photographs'};
+  }
   if(p.id==='osm-way-45230512')return {...p,...clancyForecourt.arrival,heading:clancyForecourt.heading,pitch:.1,showSign:false,description:'C24 · Flared copper hood, golden soffit and tall glazed northern foyer. Overall height and hood geometry are reconstructed'};
   if(p.id==='chancellery'){
     const g=chancelleryGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));
@@ -86,7 +103,7 @@ export const CAMPUS={
   sportsAreas:VILLAGE_SPORTS,
   paths:[...MAPPED_CAMPUS.paths,{...VILLAGE_SPORTS.find(s=>s.kind==='track'),kind:'track',name:'Village Green running track',width:3.2,widthSource:'estimated from aerial reference'}],
   greens:MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),
-  plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'},{id:'clancy-north-forecourt',name:'Clancy northern forecourt',points:clancyForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.lahznimmo.com/gate-9-unsw'},{id:'chancellery-entry-paving',name:'Chancellery eastern forecourt',points:chancelleryForecourt.paving,holes:chancelleryForecourt.beds,surface:'stone',color:'#ad9d89',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135096'}],
+  plazas:[...MAPPED_CAMPUS.plazas,{id:'mathews-theatres-entry',name:'Mathews Theatres entrance paving',points:mathewsForecourt.paving,surface:'stone',color:'#baaa8b',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/133153'},{id:'bioscience-north-terrace',name:'Biosciences northern entrance terrace',points:bioscienceForecourt.forecourt,surface:'stone',reconstructed:true,source:'https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/'},COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'},{id:'clancy-north-forecourt',name:'Clancy northern forecourt',points:clancyForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.lahznimmo.com/gate-9-unsw'},{id:'chancellery-entry-paving',name:'Chancellery eastern forecourt',points:chancelleryForecourt.paving,holes:chancelleryForecourt.beds,surface:'stone',color:'#ad9d89',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135096'}],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
   landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),COLLEGE_COURTYARD_VIEW,
     {id:'chancellery-vaults',name:'Chancellery Executive wing vaults',x:477,z:-116,heading:-.03,pitch:.12,code:'C22',kind:'courtyard',showSign:false,description:'Library Lawn view of the repeated concrete vaults; bay spacing is reconstructed'},

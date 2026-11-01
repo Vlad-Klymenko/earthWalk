@@ -1,7 +1,7 @@
 // Publicly reported heights and parapet levels, separate from ground and OSM
 // tags. A roof RL minus coarse DEM ground is explicitly a derived estimate.
-import { NIDA_PARTS } from './nida-parts.js?v=3a12a1f14521';
-import { buildingBase } from './terrain.js?v=3a12a1f14521';
+import { NIDA_PARTS } from './nida-parts.js?v=d06fe8625606';
+import { buildingBase } from './terrain.js?v=d06fe8625606';
 export const CHEMICAL_ROOF_REPORT={
   title:'Science and Engineering Building · Grimshaw SSD report, July 2016',
   url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-7518%2120190227T232843.857+GMT',
@@ -33,7 +33,7 @@ export function heightDescription(building, appearance={}) {
   const estimated=building.heightSource==='estimated';
   return {
     metres: estimated ? (appearance.heightEstimate||building.height) : building.height,
-    quantity:building.heightSource==='derived'?'Parapet above model base':'Building',
+    quantity:building.heightQuantity||(building.heightSource==='derived'?'Parapet above model base':'Building'),
     label: building.heightSource==='derived'?'approx. planning RL minus DEM':building.heightSource==='reported' ? 'NSW planning report' : building.heightSource==='mapped' ? 'OSM height tag' : building.heightSource==='mapped-parts'?'OSM building-part tags':'estimated',
     reference: building.heightReference||null,
   };

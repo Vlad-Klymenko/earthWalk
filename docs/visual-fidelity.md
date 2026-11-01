@@ -6,9 +6,9 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 - Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. Base terrain sampling and foundations use metres in the same coordinate frame. Photo-led landscape additions use explicitly reconstructed dimensions.
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
-- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 44 parent height tags are used unchanged; 50 footprints use estimates. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
+- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 44 parent height tags are used unchanged; 48 footprints use estimates; the two biosciences footprints now also use derived planning roof elevations. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 48 campus footprints have a specific source-linked appearance profile, within 98 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 51 campus footprints have a specific source-linked appearance profile, within 108 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -57,6 +57,14 @@ Google Street View panorama 2eariXTnlgfVb6_HXbUA1Q at -33.9163674, 151.2349538 (
 
 Chancellery C22 retains its detailed H-shaped footprint, 15 m OSM height and five-level tag. NBRS’s 2019 heritage report (printed pp. 16–17 / PDF pp. 22–23, photos May 2018) describes four wings, with five storeys including basement and sub-basement. The eastern entrance faces Michael Birt Gardens. The model now has brown brick, recessed glazing, a white canopy, reconstructed tree ferns, stone bollards and paving; the western Executive wing has repeated concrete piers, segmental barrel vaults and northern balcony parapets. Roof regions exactly partition the original footprint without overlap. Vault count, pitch, window divisions and landscape dimensions are estimates. The heritage report does not supply the 15 m height; the map tag remains its numeric source. Current official Library Lawn photography was also visually checked. The former proposed B22 replacement is not represented as an existing building.
 
+Biosciences precinct: the generic northern fins and green southern façade are replaced by separate, source-led masses. North D26 uses silver vertical aluminium strips and changing panel widths, a glazed base / canopy, a grey pixel-pattern eastern end and stepped plant enclosures. South E26 uses dense terracotta battens, a blue-glass box on concrete columns and a glazed connection; the lower western link remains a separate volume. Five reconstructed regions exactly partition the two mapped outlines, without overlap or changed perimeter coordinates. Each plant footprint stays inside its parent outline. UNSW describes eight- and nine-storey projects; the absent OSM level tags remain absent.
+
+The 2016 Woods Bagot S96 statement (printed / PDF pp. 5–6) labels D26’s main roof RL 86.40, lower plant RL 90.40 and upper plant RL 96.20. The stage-one design report (pp. 10–11) labels maximum E26 plant RL 89.50, with separate lower roof levels. Subtracting the retained DEM foundations yields about 42.6 m and 36.8 m to the respective plant roofs. These are **derived planning approximations**, assuming compatible vertical datums; they are not as-built height surveys. Built architect photographs corroborate the separate glass, terracotta and stepped plant forms. Exact internal boundaries, fin pitch, panel colours, plant footprints and service details remain reconstructed.
+
+Public February 2022 Google panorama qoZ46Cc4gByr1ND5ajcxkg at -33.9175089, 151.2363401 was visually inspected from Botany Street. It confirms the elevated glass box, narrow glazed link, patterned grey wall and planted street edge. Added planting, low retaining edge, saplings and northern terrace dimensions are estimates. Geometry checks keep saplings and terrace clear of mapped buildings. Two additional 512 px static local cube probes provide approximate glass reflections; they update only on load / lighting changes, alongside the existing Webster probe. All probe targets are disposed when the world is rebuilt. Reflections retain parallax limitations.
+
+Mathews Theatres D23 retains its 12 m height, three-level tag and original outline. Public entrance photographs guide the pale concrete shell, dark glazing, white fascia and entrance lettering; unphotographed upper elevations remain simplified. Two surrounding mapped covered-route outlines are retained, with estimated covers 3.8 m above local terrain in place of oversized 9.6 m generic roof blocks. Roofs, sides and collision clearances now follow the slope. Individual pavilion roof folds, precise structural bays and stepped terrace levels remain incomplete. A browser check walked beneath the cover toward the entrance.
+
 Structural surface correction: the previous square beam helper emitted inward-facing side surfaces. Shared outward-facing tube geometry now makes railings, brackets and canopy beams visible from outside. Geometry tests cover vertical, horizontal and angled runs, including end caps.
 
 ## Remaining fidelity work
@@ -73,7 +81,6 @@ Named buildings still without a source-linked profile:
 - Newton - J12 (J12)
 - Keith Burrows Theatre - J14 (J14)
 - Physics Theatre - K14 (K14)
-- Mathews Theatres (D23)
 - Barker Street Apartments - N13 (N13)
 - SDN House at Pooh Corner (osm-way-45561523)
 - John Goodsell - F20 (F20)
@@ -88,8 +95,6 @@ Named buildings still without a source-linked profile:
 - Rex Vowels Theatre (F17)
 - Samuels Building - F25 (F25)
 - Campus Village Cafe (osm-way-584816505)
-- Biological Sciences North (D26)
-- Biological Sciences South (E26)
 - Computer Science and Engineering (K17) (K17)
 - Esme Timbery Creative Studio (D8) (D8)
 - Rupert Myers Building (M15)
@@ -101,6 +106,7 @@ Named buildings still without a source-linked profile:
 - node scripts/make-sports-data.mjs
 - node scripts/make-chemical-parts.mjs (reconstructed F10 split, preserving the mapped perimeter)
 - node scripts/make-chancellery-roofs.mjs (reconstructed roof split within the mapped Chancellery outline)
+- node scripts/make-bioscience-parts.mjs (reconstructed internal regions preserving both biosciences outlines)
 - node scripts/make-residential-parts.mjs (polygon-clipping is a development dependency; output contains data only)
 - python3 scripts/fetch-elevation.py (uses retained TIFF when present; Pillow and NumPy required)
 - node scripts/build-reference-library.mjs
