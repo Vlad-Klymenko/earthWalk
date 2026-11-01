@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#e9eddd">
+  <meta name="description" content="A low-poly, first-person interactive map of UNSW Kensington. Find a building, take a wander, and explore campus in your browser.">
+  <title>Earthwalk — UNSW Campus Wander</title><link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="map-icon" viewBox="0 0 24 24"><path d="m3 5 6-2 6 3 6-2v15l-6 2-6-3-6 2Zm6-2v15m6-12v15"/></symbol>
+    <symbol id="arrow-icon" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="close-icon" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol>
+    <symbol id="pin-icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="reset-icon" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 2 8M4 4v6h6"/></symbol>
+    <symbol id="expand-icon" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="pause-icon" viewBox="0 0 24 24"><path d="M9 5v14m6-14v14"/></symbol>
+    <symbol id="play-icon" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+  </svg>
+  <main id="experience">
+    <canvas id="world" tabindex="0" aria-label="First person UNSW campus. W A S D to walk, Shift to sprint, Space to jump. Click or drag to look around."></canvas>
+    <div class="edge-shade" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✳</span><div><strong>earthwalk<span>.</span></strong><small>UNSW / KENSINGTON</small></div></div>
+      <div class="location-pill"><span class="location-dot"></span><span id="current-area">University Mall</span></div>
+      <nav class="top-actions" aria-label="Game controls"><button id="open-map" class="map-button"><svg><use href="#map-icon"/></svg><span>Campus map</span><kbd>M</kbd></button><button id="time" class="circle-button" title="Switch to golden hour" aria-label="Switch to golden hour"><svg><use href="#sun-icon"/></svg></button><button id="help" class="circle-button" title="Controls and sources" aria-label="Controls and sources">?</button></nav>
+    </header>
+    <section id="welcome" class="welcome paper">
+      <div class="eyebrow"><span>+</span> NO CLASS. NO RUSH.</div><h1>A little<br>campus wander.</h1><p>A familiar place, a different perspective.<br>Find your building. Or just take the long way.</p><button id="start" class="primary">Let’s wander <svg><use href="#arrow-icon"/></svg></button><div class="welcome-note">FIRST PERSON <span>·</span> LOW POLY <span>·</span> JUST FOR FUN</div>
+    </section>
+    <div id="loading" class="loading paper" role="status"><span class="spinner"></span><span>Opening the campus gates…</span></div>
+    <div id="fatal" class="fatal paper" hidden><h2>The 3D view couldn’t start</h2><p>Try a recent browser with WebGL 2 and hardware acceleration enabled.</p><button onclick="location.reload()" class="primary">Try again</button></div>
+    <div id="crosshair" class="crosshair" aria-hidden="true" hidden></div>
+    <div id="paused" class="paused paper" hidden><div class="eyebrow">TAKE A BREATHER</div><strong>Paused</strong><button id="resume" class="primary">Keep wandering <svg><use href="#arrow-icon"/></svg></button></div>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <div id="interaction" class="interaction" hidden><kbd>E</kbd> <span></span></div>
+    <div class="bottom-left"><button id="reset" class="circle-button" title="Return to University Mall" aria-label="Return to University Mall"><svg><use href="#reset-icon"/></svg></button><button id="pause" class="circle-button" title="Pause" aria-label="Pause"><svg><use href="#pause-icon"/></svg></button><button id="fullscreen" class="circle-button" title="Full screen" aria-label="Full screen"><svg><use href="#expand-icon"/></svg></button><span id="walked" class="walked">0 m wandered</span></div>
+    <button id="mini-map-button" class="minimap-card paper" aria-label="Open interactive campus map"><div class="minimap-heading"><span>THE BIG PICTURE</span><span>N ↑</span></div><canvas id="minimap" width="300" height="190" aria-label="Campus overview and your position"></canvas><div class="minimap-footer"><span>UNSW Kensington</span><svg><use href="#expand-icon"/></svg></div></button>
+    <div class="walk-guide"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> walk</span><span><kbd>SHIFT</kbd> sprint</span><span><kbd>SPACE</kbd> jump</span><span id="look-guide">click or drag to look</span></div>
+    <div class="touch-controls" aria-label="Touch controls"><div class="touch-dpad"><button data-input="forward" aria-label="Walk forward">↑</button><div><button data-input="left" aria-label="Walk left">←</button><button data-input="reverse" aria-label="Walk backward">↓</button><button data-input="right" aria-label="Walk right">→</button></div></div><button id="touch-jump" aria-label="Jump">JUMP</button></div>
+    <footer class="credits">Unofficial campus MVP · Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> · <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">ODbL</a></footer>
+  </main>
+  <dialog id="map-dialog" class="map-dialog">
+    <header class="dialog-heading"><div><div class="eyebrow">UNSW KENSINGTON / INTERACTIVE MAP</div><h2>Find your corner of campus.</h2></div><button id="close-map" class="circle-button" aria-label="Close campus map"><svg><use href="#close-icon"/></svg></button></header>
+    <div class="map-content"><aside class="map-sidebar"><label class="search-field"><svg><use href="#search-icon"/></svg><input id="building-search" type="search" placeholder="Find a building or place…" aria-label="Find a campus building or place" autocomplete="off"></label><span id="result-count" class="result-count"></span><div id="building-list" class="building-list" aria-label="Campus destinations"></div><section class="selected-place"><span class="eyebrow">YOUR NEXT STOP</span><h3 id="selected-name">University Mall</h3><p id="selected-description">The campus is yours to explore.</p><button id="walk-here" class="primary">Walk here <svg><use href="#arrow-icon"/></svg></button></section></aside><div class="large-map-wrap"><canvas id="large-map" aria-label="Interactive campus map. Select a building or open space, then choose Walk here."></canvas><span class="map-north">N ↑</span><div class="map-instruction">Click a building or path to choose a destination</div><div class="map-key"><span><i class="key-building"></i>Buildings</span><span><i class="key-green"></i>Green spaces</span><span><i class="key-you"></i>You</span></div></div></div>
+  </dialog>
+  <dialog id="help-dialog" class="help-dialog"><button id="close-help" class="circle-button dialog-close" aria-label="Close help"><svg><use href="#close-icon"/></svg></button><div class="eyebrow">WELCOME TO EARTHWALK</div><h2>Take the scenic route.</h2><p>A walkable interactive map of UNSW’s main Kensington campus. Find a building on the map, jump nearby, and explore on foot.</p><dl class="controls"><div><dt><kbd>W A S D</kbd> / <kbd>↑ ↓ ← →</kbd></dt><dd>Walk</dd></div><div><dt>Mouse / drag</dt><dd>Look around</dd></div><div><dt><kbd>SHIFT</kbd> / <kbd>SPACE</kbd></dt><dd>Sprint / jump</dd></div><div><dt><kbd>M</kbd> / <kbd>R</kbd></dt><dd>Map / return to start</dd></div><div><dt><kbd>ESC</kbd></dt><dd>Release mouse / pause</dd></div></dl><h3>A little artistic license</h3><p>The layout uses real OpenStreetMap building footprints and paths. Heights, façades, landscaping and elevation are simplified. This is an unofficial exterior-only recreation, not a current accessibility or navigation guide.</p><div id="campus-stats" class="campus-stats"></div><div class="sources"><a href="https://www.unsw.edu.au/content/dam/pdfs/estate-management/general/2025-04-estate-management/2025-04-Kensington-Campus-Map_2.pdf" target="_blank" rel="noopener">Official UNSW campus map ↗</a><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap data & attribution ↗</a></div><button id="help-done" class="primary">Back to campus <svg><use href="#arrow-icon"/></svg></button></dialog>
+  <script type="module" src="./app.js"></script>
+</body></html>

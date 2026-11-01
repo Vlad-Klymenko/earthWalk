@@ -1,0 +1,52 @@
+# Earthwalk — UNSW Kensington
+
+An unofficial, low-poly browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark.
+
+## Run locally
+
+Requires Node.js and npm. From this directory:
+
+```sh
+npm install
+npm run dev
+```
+
+Open [http://localhost:4173](http://localhost:4173) in a desktop browser with WebGL support. Keep the terminal running. Set `PORT` to use another port. The browser's JavaScript modules need the local server; opening the HTML file directly will not work.
+
+Three.js **0.180.0** is served locally from `dist/vendor/`; the scene does not need a Google Maps API key.
+
+## Controls
+
+| Action | Control |
+| --- | --- |
+| Walk | WASD or arrow keys |
+| Sprint | Hold Shift |
+| Jump | Space |
+| Look around | Click the scene to capture the mouse, or drag to look |
+| Release mouse | Esc |
+| Reset position | R |
+| Find a building | Use the map's search field |
+| Teleport | Select a map landmark or destination |
+
+## Implementation
+
+- `dist/campus-data.js` contains the mapped campus layout: real building footprints, paths, landmark names, and source notes. Coordinates are projected into local metres.
+- `dist/game.js` builds the Three.js scene and handles first-person movement, collision and rendering.
+- `dist/app.js` connects the interface, building search, interactive map and teleport controls.
+- `server.mjs` serves `dist/` locally. There is no build step.
+
+## Accuracy and credits
+
+The layout uses OpenStreetMap geometry, with landmark names checked against the [official UNSW Kensington campus map](https://www.unsw.edu.au/content/dam/pdfs/estate-management/general/2025-04-estate-management/2025-04-Kensington-Campus-Map_2.pdf). Heights, façades, terrain, vegetation and other details are approximate. This MVP covers campus exteriors; it does not reproduce interiors or guarantee current construction, access restrictions or landscaping. It is an independent project, unaffiliated with UNSW.
+
+Map data **© [OpenStreetMap contributors](https://www.openstreetmap.org/copyright)**, available under the [Open Database License 1.0](https://opendatacommons.org/licenses/odbl/1-0/). The OSM-derived layout data retains that license. See `CAMPUS.sources` and `CAMPUS.notes` in `dist/campus-data.js` for dataset provenance.
+
+Architectural references informed the simplified landmark shapes:
+
+- [Roundhouse — Tonkin Zulaikha Greer](https://tzg.com.au/project/unsw-roundhouse/): circular form, glazing and balcony.
+- [Law Building — Lyons](https://www.lyonsarch.com.au/project/faculty-of-law-university-of-nsw/): angular four-level building.
+- [Red Centre — FJC Studio](https://fjcstudio.com/projects/red-centre-2/): terracotta screen wall and recessed glass volumes.
+- [Business School — lahznimmo](https://www.lahznimmo.com/australian-school-of-business-unsw): six-storey refurbished Heffron Building.
+- [Village Green — UNSW](https://www.unsw.edu.au/estate/campus-development/projects/village-green-redevelopment): sports pitch, track and landscape.
+
+Reference photographs were used for visual research only. No copied photographs or Google satellite imagery are included as scene assets. Three.js is distributed under its [MIT license](https://github.com/mrdoob/three.js/blob/r180/LICENSE).

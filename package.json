@@ -1,0 +1,13 @@
+{
+  "name": "earthwalk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A walkable, low-poly interactive map of UNSW Kensington campus.",
+  "scripts": {
+    "dev": "node server.mjs",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check dist/app.js && node --check dist/game.js && node --check dist/campus-data.js"
+  },
+  "dependencies": { "three": "0.180.0" }
+}
