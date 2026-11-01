@@ -1,25 +1,26 @@
-import * as THREE from './vendor/three.module.js?v=a7223a2d8ef8';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=a7223a2d8ef8';
-import { buildingAppearance } from './visual-data.js?v=a7223a2d8ef8';
-import { BUILDING_PARTS } from './building-parts.js?v=a7223a2d8ef8';
-import { CAMPUS_DETAILS } from './campus-details.js?v=a7223a2d8ef8';
-import { VILLAGE_SPORTS } from './sports-data.js?v=a7223a2d8ef8';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=a7223a2d8ef8';
-import { NIDA_PARTS } from './nida-parts.js?v=a7223a2d8ef8';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=a7223a2d8ef8';
-import { tubeFaces } from './structure-data.js?v=a7223a2d8ef8';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=a7223a2d8ef8';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=a7223a2d8ef8';
-import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=a7223a2d8ef8';
-import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=a7223a2d8ef8';
-import { medicalGeometry } from './medical-data.js?v=a7223a2d8ef8';
-import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=a7223a2d8ef8';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=a7223a2d8ef8';
-import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=a7223a2d8ef8';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=a7223a2d8ef8';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=a7223a2d8ef8';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=a7223a2d8ef8';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=a7223a2d8ef8';
+import * as THREE from './vendor/three.module.js?v=74cfa9848604';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=74cfa9848604';
+import { buildingAppearance } from './visual-data.js?v=74cfa9848604';
+import { BUILDING_PARTS } from './building-parts.js?v=74cfa9848604';
+import { CAMPUS_DETAILS } from './campus-details.js?v=74cfa9848604';
+import { VILLAGE_SPORTS } from './sports-data.js?v=74cfa9848604';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=74cfa9848604';
+import { NIDA_PARTS } from './nida-parts.js?v=74cfa9848604';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=74cfa9848604';
+import { tubeFaces } from './structure-data.js?v=74cfa9848604';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=74cfa9848604';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=74cfa9848604';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=74cfa9848604';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=74cfa9848604';
+import { medicalGeometry } from './medical-data.js?v=74cfa9848604';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=74cfa9848604';
+import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=74cfa9848604';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=74cfa9848604';
+import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=74cfa9848604';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=74cfa9848604';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=74cfa9848604';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=74cfa9848604';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=74cfa9848604';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -1675,6 +1676,105 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     sign.position.set((a.x+c.x)/2+nx*.8,b.base+y,(a.z+c.z)/2+nz*.8);sign.rotation.y=Math.atan2(nx,nz);world.add(sign);
   }
 
+  function sirfBuilding(b,concrete,glass,detail,roofs){
+    const g=sirfGeometry(b),metal=new Batch(),screen=new Batch();metal.base=screen.base=b.base;
+    // Only the northern street face and eastern end are established by the
+    // inspected references. Unseen service faces remain a restrained metal shell.
+    for(const i of [1,2])wallPanel(concrete,b.points[i],b.points[(i+1)%b.points.length],0,b.height,'#aeb5af');
+    for(const face of g.facades){
+      const {a,c,len,normal:n}=face;
+      const p=(t,y,offset=0)=>[a.x+(c.x-a.x)*t+n.x*offset,y,a.z+(c.z-a.z)*t+n.z*offset];
+      const tri=(batch,vertices,color,uvScale=1)=>batch.triangle(...vertices.map(v=>p(...v)),color,vertices.map(v=>[v[0]*len*uvScale,v[1]*uvScale]));
+      for(const q of face.portals){
+        const {start:s,end:e,peak:m,bottom:low,glassPeak:h,outerPeak:high,projection:off}=q;
+        const inset=.8/len,l=s+inset,r=e-inset;
+        // Flat upper envelope and folded crystal seams above the portal.
+        for(const [verts,col] of [
+          [[[s,low],[s,b.height],[m,b.height]],'#c8cdc6'],
+          [[[s,low],[m,b.height],[m,high]],'#aeb7b1'],
+          [[[m,high],[m,b.height],[e,b.height]],'#c2c9c3'],
+          [[[m,high],[e,b.height],[e,low]],'#b6beb7']])tri(metal,verts,col);
+        const outer=[[s,low,0],[m,high,off],[e,low,0]],inner=[[l,low,.02],[m,h,.02],[r,low,.02]];
+        // The dark expanded-metal transition is actual folded geometry. Its
+        // perforation pattern is generated, not sampled from copyrighted photos.
+        for(const j of [0,1]){tri(screen,[outer[j],outer[j+1],inner[j+1]],'#71847b',7);tri(screen,[outer[j],inner[j+1],inner[j]],'#71847b',7);}
+        tri(glass,[[l,low,.04],[m,h,.04],[r,low,.04]],'#647f79');
+        const heightAt=t=>low+(h-low)*(1-Math.abs((t-m)/((r-l)/2)));
+        for(let t=l;t<r;t+=1.45/len){
+          const y=heightAt(t);if(y>low+.1)batchBeam(detail,p(t,low,.1),p(t,y,.1),.045,'#a0ada3');
+        }
+        for(const y of [2.35,4.6])if(y<h){const span=(r-l)/2*(1-(y-low)/(h-low));batchBeam(detail,p(m-span,y,.11),p(m+span,y,.11),.04,'#9caaa0');}
+        batchBeam(detail,p(l,low,.12),p(m,h,.12),.055,'#a7b4a6');batchBeam(detail,p(m,h,.12),p(r,low,.12),.055,'#a7b4a6');
+        // Fine vertical panel seams stop at the sloping outer opening.
+        for(let t=s+.8/len;t<e;t+=.8/len){
+          const y=low+(high-low)*(1-Math.abs((t-m)/((e-s)/2)));
+          batchBeam(detail,p(t,Math.max(low,y)+.025,.02),p(t,b.height-.03,.02),.008,'#8f9d94');
+        }
+        wallPanel(concrete,a,c,0,.24,'#abb5aa',.05,s,e);
+      }
+    }
+    const meshTexture=canvasTexture(64,64,ctx=>{ctx.fillStyle='#d1d9d1';ctx.fillRect(0,0,64,64);ctx.fillStyle='#40564e';for(let y=0;y<64;y+=16)for(let x=0;x<64;x+=16){ctx.beginPath();ctx.ellipse(x+(y%32?8:0),y,5,2.4,-.35,0,TAU);ctx.fill();}});
+    meshTexture.wrapS=meshTexture.wrapT=THREE.RepeatWrapping;meshTexture.anisotropy=4;
+    world.add(metal.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide,metalness:.45,roughness:.5})),screen.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide,map:meshTexture,metalness:.4,roughness:.55})));
+    polygon(roofs,b.points,b.height,'#a9b5ab');
+    addCollider({points:b.points,holes:b.holes,top:b.height,base:b.base});
+  }
+
+  function agsmBuilding(b,concrete,brick,glass,detail,roofs){
+    const g=agsmGeometry(b),points=b.points,ring=polygonArea(points)<0?[...points].reverse():points;
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.1)continue;
+      const court=g.courtyard.some((p,j)=>j<g.courtyard.length-1&&p===a&&g.courtyard[j+1]===c);
+      wallPanel(brick,a,c,0,b.height,'#b3a27c');
+      wallPanel(detail,a,c,0,.4,'#8d9383',.04);
+      if(court){
+        // Curved glass follows every original recess facet. Metal blind panels
+        // and a projecting horizontal brow distinguish it from the brick street.
+        wallPanel(glass,a,c,.45,b.height-.65,'#6e8d83',.06);
+        for(let d=.2;d<len;d+=3.2){
+          const end=Math.min(1,(d+2.7)/len);
+          wallPanel(detail,a,c,.4,2.65,'#91a38a',.075,d/len,end);
+          wallPanel(detail,a,c,.45,2.6,'#607969',.09,(d+.1)/len,Math.min(end,(d+1.25)/len));
+          wallPanel(detail,a,c,1.1,1.16,'#b6c1ae',.12,(d+.75)/len,Math.min(end,(d+1.1)/len));
+        }
+        for(let row=0;row<5;row++){
+          const y=row*g.rowPitch;
+          wallPanel(detail,a,c,y+g.rowPitch-.75,y+g.rowPitch-.1,row===4?'#d4d7c8':'#aab6aa',.32);
+          if(row===1)for(let j=0;j<11;j++)wallPanel(detail,a,c,y+.4+j*.23,y+.51+j*.23,'#b6c0b2',.2);
+        }
+        for(let t=.1;t<len;t+=1.6)wallPanel(detail,a,c,.4,b.height-.65,'#879e8d',.14,t/len,Math.min(1,(t+.06)/len));
+      }else if(len>3){
+        const bays=Math.max(1,Math.round(len/2.6));
+        for(let row=0;row<5;row++){
+          const low=row*g.rowPitch+.75,high=(row+1)*g.rowPitch-1.1;
+          wallPanel(detail,a,c,low-.1,high+.12,'#46584f',.055,.015,.985);
+          for(let bay=0;bay<bays;bay++){
+            const s=(bay+.05)/bays,e=(bay+.95)/bays;
+            wallPanel(glass,a,c,low,high,'#7c8f80',.075,s,e);
+            if((bay+row)%4!==0)wallPanel(detail,a,c,low+.1,high-.05,'#bbc3ad',.085,s+.02/bays,e-.02/bays);
+            wallPanel(detail,a,c,low-.08,high+.1,'#647567',.13,(bay+.96)/bays,(bay+1)/bays);
+          }
+          wallPanel(concrete,a,c,high+.13,high+.3,'#c8cabb',.19);
+        }
+      }
+      wallPanel(detail,a,c,b.height-.25,b.height,'#d0d4c4',.3);
+    }
+    // Slatted pergola follows the mapped curved courtyard wall. The passage
+    // below remains open, with physically collidable slender support posts.
+    const roof=new Batch();roof.base=b.base;
+    for(let i=0;i<g.pergola.length-1;i++){
+      const a=g.pergola[i],c=g.pergola[i+1],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len;
+      const p=(t,y,off)=>[a.x+(c.x-a.x)*t+nx*off,y,a.z+(c.z-a.z)*t+nz*off];
+      const high=4.05,low=3.78;
+      batchBeam(roof,p(0,low,.15),p(1,low,.15),.08,'#566a5d');batchBeam(roof,p(0,high,1.8),p(1,high,1.8),.1,'#546b5b');
+      for(let d=0;d<len;d+=.4)batchBeam(roof,p(d/len,low,.1),p(d/len,high,1.95),.045,'#6d8170');
+      if(i%2===0){const q=p(.5,0,1.75),ground=terrainHeight(q[0],q[2])-b.base;batchPipe(detail,[q[0],ground,q[2]],[q[0],high,q[2]],.07,'#738473');addCollider({x:q[0],z:q[2],radius:.09,base:b.base,bottom:ground,top:high});}
+    }
+    world.add(roof.mesh(style('#ffffff',{vertexColors:true,metalness:.35})));
+    polygon(roofs,b.points,b.height,'#a6b1a0',b.holes||[]);
+    addCollider({points:b.points,holes:b.holes,top:b.height,base:b.base});
+  }
+
   function civilBuilding(b,concrete,aggregate,glass,detail,roofs){
     const g=civilGeometry(b),f=g.frame,outline=lectureFacadeRing(b.points),ring=polygonArea(outline)<0?[...outline].reverse():outline;
     for(let i=0;i<ring.length;i++){
@@ -2268,6 +2368,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='clancy'){clancyAuditorium(b,detail);continue;}
       if(profile.facade==='bioscience'){bioscienceBuilding(b,detail,roofs);continue;}
+      if(profile.facade==='sirf'){sirfBuilding(b,masonry,glass,detail,roofs);continue;}
+      if(profile.facade==='agsm'){agsmBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='civil'){civilBuilding(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='patricia'){patriciaBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='samuels'){samuelsBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
