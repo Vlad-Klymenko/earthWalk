@@ -8,7 +8,7 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 44 parent height tags are used unchanged; 47 footprints use estimates; the two biosciences footprints use derived planning roof elevations, and Wallace Wurth uses separate planning parapet, plant and flue elevations. There are four derived heights overall. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 58 campus footprints have a specific source-linked appearance profile, within 141 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 60 campus footprints have a specific source-linked appearance profile, within 149 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -89,6 +89,14 @@ Rupert Myers M15 now has a photograph-led north entrance with black steel framin
 
 Southern Drive and its northern pedestrian route previously crossed solid generic building volumes. They now pass beneath raised upper floors at both ends of the actual courtyard hole, as confirmed by the inspected panorama. Six reconstructed regions exactly partition the unchanged outer outline and courtyard. The original paths, 20 m height and five-level tags remain intact. A photo-led courtyard lawn, black brick seats and four tree candidates sit inside the original hole; planting, paving extent and steel-column positions are approximate. A browser walking check traversed 47 m through the eastern undercroft while ground elevation rose from about 30.7 to 32.4 m. Local courtyard reflections are captured once after loading and when lighting changes, keeping walking free of per-frame reflection captures. The outdoor courtyard is walkable; indoor rooms are not modelled.
 
+K17 now uses a screened upper façade, transparent double-height foyer, pale round columns and a visible orange stair, with mostly blank board-formed concrete and projecting landings on the west. The rear uses a pale concrete grid, dark spandrels and seven reconstructed window rows. Aaron.Quigley's May 2020 Commons page preview, StudentVIP front / rear photos and July 2015 panorama gL9ZgoQtUJxOTQ74YKfyeQ were visually inspected. The original-size Commons image returned a rate limit; only the available page preview is claimed. The foyer floor / ceiling, stair glimpse, landings, screen pitch and all dimensions are model reconstructions. Indoor circulation remains outside this outdoor map.
+
+The original 19.2 m generic height estimate is preserved in source data; the revised 26 m K17 massing is explicitly labelled as a photograph-led estimate. No measured overall height was found. The six-level OSM tag and all eight source perimeter vertices remain. The visible rear rows and basement / ground differences are not substituted for that map tag.
+
+Willis Annexe J18 retains its 12 m mapped height, three-level tag and seven-vertex footprint. Its two tall workshop window rows, brick piers, dark tiled bands, narrow opening lights, pale sills, northern breeze-block motif and low-pitched roof follow inspected StudentVIP entrance / laneway photographs. These visible window rows are not treated as a replacement level count. A reconstructed glazed metal-framed roof covers about 39 m of the existing narrow lane between Ainsworth and Willis; its height follows the original DEM so the mapped route remains open below it. Cover extent, window bays and precise roof pitch are estimated. A browser walking check covered 43 m through and beyond the glass canopy, with ground elevation remaining about 36.8–36.9 m.
+
+The publicly accessible 2012 Bates Smart report excerpt contains nine PDF pages. Printed pp. 10–11 / PDF pp. 7–8 were rendered and visually inspected for historic entrance and workshop context. Its table of contents lists later elevation sheets that are absent from this excerpt; no measured elevation was extracted from those missing sheets. Current gallery photos guide the glazed cover. Public source images are linked, not copied into scene textures.
+
 ## Remaining fidelity work
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
@@ -97,7 +105,6 @@ Named buildings still without a source-linked profile:
 
 - Barker Street Carpark (N18)
 - Botany Street Carpark (H25)
-- Willis Annex - J18 (J18)
 - Newton - J12 (J12)
 - Keith Burrows Theatre - J14 (J14)
 - Physics Theatre - K14 (K14)
@@ -111,7 +118,6 @@ Named buildings still without a source-linked profile:
 - J2 (J2)
 - Rex Vowels Theatre (F17)
 - Campus Village Cafe (osm-way-584816505)
-- Computer Science and Engineering (K17) (K17)
 - Esme Timbery Creative Studio (D8) (D8)
 
 ## Reproduction
