@@ -1,8 +1,8 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=0e152b3ce28e';
-import { applyReportedHeight } from './building-heights.js?v=0e152b3ce28e';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=0e152b3ce28e';
-import { VILLAGE_SPORTS } from './sports-data.js?v=0e152b3ce28e';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=0e152b3ce28e';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=af4aa1dbb222';
+import { applyReportedHeight } from './building-heights.js?v=af4aa1dbb222';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=af4aa1dbb222';
+import { VILLAGE_SPORTS } from './sports-data.js?v=af4aa1dbb222';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=af4aa1dbb222';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -22,6 +22,10 @@ function enhanceBuilding(b){
 }
 
 function enhanceLandmark(p){
+  if(p.id==='new-college-village')return {...p,x:-227,z:3,heading:-.89,showSign:false,description:'H3 · Blue-glass screen and stepped residential wings. Height split is reconstructed'};
+  if(p.id==='osm-way-45560897')return {...p,x:-47,z:210,heading:-.1,showSign:false,description:'N9 · Pale brickwork and two upper balcony rows. Visible storeys differ from the retained four-level map tag'};
+  if(p.id==='osm-relation-1178128-0')return {...p,showSign:false,description:'C6 · Light brick courtyard college with a shaded water garden'};
+  if(p.id==='osm-relation-2637829-0')return {...p,showSign:false,description:'B10 · Tall residential wings, lower screened blocks and mapped through-passages. Massing heights are reconstructed'};
   if(p.id==='osm-way-164558658')return {...p,x:-246,z:-181,heading:-Math.PI/2,showSign:false,description:'E2 · Glazed foyer, sloping roof and louvred Parade Theatre drum. Detail dimensions are reconstructed'};
   if(p.id==='osm-way-164558661')return {...p,showSign:false};
   if(p.id==='osm-way-45560472')return {...p,x:-201,z:143,heading:Math.PI/2,showSign:false,description:'M7 · Brick college with paired vertical window strips'};
@@ -42,5 +46,8 @@ export const CAMPUS={
   greens:MAPPED_CAMPUS.greens.map(g=>g.id===COLLEGE_GARDEN.id?COLLEGE_GARDEN:g),
   plazas:[...MAPPED_CAMPUS.plazas,COLLEGE_PAVING,...cafePlazas],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
-  landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),COLLEGE_COURTYARD_VIEW,{id:'osm-way-1178531037',name:'John Niland Scientia',x:323,z:22,heading:1.38,code:'G19',kind:'scientia',description:'G19 · Sandstone podium and tree-like glass canopy at the top of the main steps'}],
+  landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),COLLEGE_COURTYARD_VIEW,
+    {id:'village-courtyard',name:'UNSW Village courtyard',x:35,z:-228.31,heading:1.7313,code:'B10',kind:'courtyard',showSign:false,description:'Mapped courtyard and east-west footway beneath reconstructed residential bridges'},
+    {id:'international-courtyard',name:'International House courtyard',x:-125.5,z:-218.1,heading:.16,code:'C6',kind:'courtyard',showSign:false,description:'Mapped courtyard opening; pond, pergola and planting are photo-led estimates'},
+    {id:'osm-way-1178531037',name:'John Niland Scientia',x:323,z:22,heading:1.38,code:'G19',kind:'scientia',description:'G19 · Sandstone podium and tree-like glass canopy at the top of the main steps'}],
 };

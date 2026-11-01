@@ -1,11 +1,13 @@
-import * as THREE from './vendor/three.module.js?v=0e152b3ce28e';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=0e152b3ce28e';
-import { buildingAppearance } from './visual-data.js?v=0e152b3ce28e';
-import { BUILDING_PARTS } from './building-parts.js?v=0e152b3ce28e';
-import { CAMPUS_DETAILS } from './campus-details.js?v=0e152b3ce28e';
-import { VILLAGE_SPORTS } from './sports-data.js?v=0e152b3ce28e';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=0e152b3ce28e';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=0e152b3ce28e';
+import * as THREE from './vendor/three.module.js?v=af4aa1dbb222';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=af4aa1dbb222';
+import { buildingAppearance } from './visual-data.js?v=af4aa1dbb222';
+import { BUILDING_PARTS } from './building-parts.js?v=af4aa1dbb222';
+import { CAMPUS_DETAILS } from './campus-details.js?v=af4aa1dbb222';
+import { VILLAGE_SPORTS } from './sports-data.js?v=af4aa1dbb222';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=af4aa1dbb222';
+import { NIDA_PARTS } from './nida-parts.js?v=af4aa1dbb222';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=af4aa1dbb222';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=af4aa1dbb222';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -629,16 +631,33 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       const under=i=>[vertices[i].x,roofHeight(vertices[i])-.22,vertices[i].z];
       roofs.triangle(under(a),under(c),under(d),'#b8c0b6');
     }
-    const circle=(angle,r,y)=>[drum.x+Math.cos(angle)*r,y,drum.z+Math.sin(angle)*r];
-    for(let i=0;i<64;i++){
-      const a=i/64*TAU,c=(i+1)/64*TAU;
-      concrete.quad(circle(a,drum.radius,0),circle(a,drum.radius,drum.height-.1),circle(c,drum.radius,drum.height-.1),circle(c,drum.radius,0),'#4b5550');
-      roofs.triangle([drum.x,drum.height,drum.z],circle(c,drum.radius,drum.height),circle(a,drum.radius,drum.height),'#929d93');
+    const drumRing=polygonArea(drum.points)<0?[...drum.points].reverse():drum.points;
+    polygon(roofs,drumRing,drum.height,'#929d93');
+    for(let i=0;i<drumRing.length;i++){
+      const a=drumRing[i],c=drumRing[(i+1)%drumRing.length];
+      wallPanel(concrete,a,c,0,drum.height,'#4b5550');
       for(let y=3.3;y<drum.height-.1;y+=.27){
-        detail.quad(circle(a,drum.radius+.08,y),circle(a,drum.radius+.08,y+.06),circle(c,drum.radius+.08,y+.06),circle(c,drum.radius+.08,y),'#b7bdb1');
-        detail.quad(circle(a,drum.radius+.08,y+.06),circle(a,drum.radius+.28,y+.13),circle(c,drum.radius+.28,y+.13),circle(c,drum.radius+.08,y+.06),'#c1c5b9');
+        wallPanel(detail,a,c,y,y+.08,'#b7bdb1',.18);
       }
-      if(i%4===0)wallPanel(detail,{x:circle(a,drum.radius+.3,0)[0],z:circle(a,drum.radius+.3,0)[2]},{x:circle(a,drum.radius+.3,0)[0]+.06,z:circle(a,drum.radius+.3,0)[2]+.06},2.9,drum.height,'#697973');
+    }
+    // The public OSM parts distinguish the 17 m auditorium shell from two
+    // 19 m upper volumes. Their min_height=12 tags locate the added storeys.
+    for(const part of NIDA_PARTS.filter(p=>p.osmId!==drum.osmId)){
+      const ring=polygonArea(part.points)<0?[...part.points].reverse():part.points;
+      polygon(roofs,ring,part.height,'#b4bdb7');
+      const floor=new Batch();floor.base=b.base;
+      polygon(floor,ring,part.minHeight,'#b4bdb7');
+      world.add(floor.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+      for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len;
+        const glazed=nz>.7&&len<25;
+        wallPanel(glazed?glazing:concrete,a,c,part.minHeight,part.height,glazed?'#486b70':'#9eaca9');
+        for(let d=.12;d<len;d+=glazed?1.45:1.1)wallPanel(detail,a,c,part.minHeight,part.height,glazed?'#344f50':'#7a8b87',.055,d/len,Math.min(1,(d+.035)/len));
+        for(let y=part.minHeight+1;y<part.height;y+=glazed?2.4:.55)wallPanel(detail,a,c,y,y+.035,'#7a8b87',.06);
+        // Pale structural frame and thin edge reveal around the added boxes.
+        wallPanel(detail,a,c,part.height-.13,part.height+.04,'#c9cec0',.2);
+        for(const p of [a,c])detail.box(p.x+nx*.05,part.minHeight/2,p.z+nz*.05,.16,part.minHeight,.16,'#879b91');
+      }
     }
     const a=front[0],c=front[1],len=distance2(a,c),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,t=.1;
     const x=a.x+(c.x-a.x)*t,z=a.z+(c.z-a.z)*t,angle=Math.atan2(-(c.z-a.z),c.x-a.x);
@@ -650,6 +669,141 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     // Preserve the mapped solid building boundary: the detailed foyer is viewed
     // from outside. The architect's 11 m dimension describes the curtain wall.
     addCollider({points:b.points,top:Math.max(b.height,curtainWallHeight),base:b.base});
+  }
+
+  function residentialComplex(b,profile,concrete,glass,detail,roofs){
+    const village=profile.facade==='village',parts=RESIDENTIAL_PARTS.filter(p=>p.parent===b.id);
+    for(const part of parts){
+      const base=buildingBase(part.points),bottom=part.minHeight||0,height=part.height,level=height/part.floors;
+      for(const batch of [concrete,glass,detail,roofs])batch.base=base;
+      polygon(roofs,part.points,height,'#9aa79c',part.holes);
+      if(bottom){
+        const underside=new Batch();underside.base=base;polygon(underside,part.points,bottom,'#c9cbbc',part.holes);
+        world.add(underside.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+      }
+      const outer=polygonArea(part.points)<0?[...part.points].reverse():part.points;
+      for(const ring of [outer,...part.holes.map(h=>polygonArea(h)>0?[...h].reverse():h)])for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.35)continue;
+        const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len;
+        const southern=nz>.7,screen=village&&Math.abs(nz)>.7;
+        const color=village?(screen?'#c5b38c':'#bac0b7'):(height<20?'#c3ad78':'#687f85');
+        wallPanel(concrete,a,c,bottom,height,color);
+        wallPanel(detail,a,c,height-.12,height+.18,'#cdd1c0',.16);
+        for(let f=Math.floor(bottom/level);f<part.floors;f++){
+          const low=Math.max(bottom,f*level+(village&&f>0?1.2:.5)),top=(f+1)*level-.3;if(top<=low)continue;
+          if(!village&&southern&&len>20){
+            wallPanel(glass,a,c,low,top,'#548e97',.5,.005,.995);
+            wallPanel(detail,a,c,f*level+.05,f*level+.13,'#c0d2c9',.57);
+            for(let d=.25;d<len;d+=2.8)wallPanel(detail,a,c,low,top,'#9db7b0',.56,d/len,Math.min(1,(d+.045)/len));
+          }else{
+            const bays=Math.max(1,Math.round(len/(screen?3.6:4.2)));
+            for(let bay=0;bay<bays;bay++){
+              const start=(bay+.12)/bays,end=(bay+.9)/bays;
+              wallPanel(glass,a,c,low,top,profile.glass,.065,start,end);
+              if(screen){
+                for(let y=low;y<top;y+=.19)wallPanel(detail,a,c,y,y+.045,'#bca16b',.28,start,end);
+                wallPanel(detail,a,c,low,top,'#a7b5a8',.32,start,start+.06/len);
+              }else{
+                const fascia=village?(f%3===1?'#98a49e':'#d4d6c9'):'#c5cebe';
+                wallPanel(detail,a,c,Math.max(bottom,f*level),low,fascia,village?.55:.22);
+                if(village&&f>0&&f*level>=bottom){
+                  const p=(t,y,off)=>[a.x+(c.x-a.x)*t+nx*off,y,a.z+(c.z-a.z)*t+nz*off];
+                  detail.quad(p(start,f*level+.08,.05),p(end,f*level+.08,.05),p(end,f*level+.08,.55),p(start,f*level+.08,.55),'#c5cdbd');
+                  detail.quad(p(start,f*level,.05),p(start,top,.05),p(start,top,.55),p(start,f*level,.55),'#b7c0b5');
+                }
+                for(const t of [start,end])wallPanel(detail,a,c,low,top,'#c5cebf',.1,t-.025/len,t+.025/len);
+                if(village&&(bay+f)%4===1)wallPanel(detail,a,c,low,top,'#cfad3d',.12,start,Math.min(end,start+.75/len));
+              }
+            }
+          }
+        }
+      }
+      addCollider({points:part.points,holes:part.holes,bottom,top:height,base});
+    }
+  }
+
+  function olderResidence(b,profile,brick,glass,detail,roofs){
+    const shalom=profile.facade==='shalom',floors=shalom?3:2,level=b.height/floors;
+    const ordered=polygonArea(b.points)<0?[...b.points].reverse():b.points;
+    polygon(roofs,b.points,b.height,'#737d71',b.holes);
+    for(const ring of [ordered,...b.holes.map(h=>polygonArea(h)>0?[...h].reverse():h)])for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.3)continue;
+      const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,p=(t,y,off=0)=>[a.x+(c.x-a.x)*t+nx*off,y,a.z+(c.z-a.z)*t+nz*off];
+      wallPanel(brick,a,c,0,b.height,profile.color);
+      wallPanel(detail,a,c,b.height-.35,b.height+.1,'#655f4f',.45);
+      if(!shalom)wallPanel(detail,a,c,level+.3,b.height-.6,'#c6cbbb',.035,.14,.86);
+      const bays=Math.max(1,Math.round(len/(shalom?3.5:3.1)));
+      for(let f=0;f<floors;f++)for(let bay=0;bay<bays;bay++){
+        const mid=(bay+.5)/bays,half=(shalom?.55:1.05)/len;
+        const low=f*level+(shalom?.25:f?2.05:.55),top=Math.min((f+1)*level-.6,low+(shalom?2.8:1.35));
+        wallPanel(glass,a,c,low,top,profile.glass,.075,mid-half,mid+half);
+        for(const t of [mid-half,mid+half])wallPanel(detail,a,c,low-.04,top+.04,'#444f45',.1,t-.035/len,t+.035/len);
+        if(shalom&&f>0&&len>6){
+          const left=mid-.82/len,right=mid+.82/len,y=f*level+.12,depth=1.05;
+          detail.quad(p(left,y,.03),p(right,y,.03),p(right,y,depth),p(left,y,depth),'#9c9d89');
+          wallPanel(detail,a,c,y-.16,y,'#b2ad94',depth,left,right);
+          wallPanel(detail,a,c,y+1.08,y+1.14,'#615742',depth,left,right);
+          for(let d=-.8;d<=.8;d+=.15)wallPanel(detail,a,c,y,y+1.12,'#675c47',depth,mid+(d-.015)/len,mid+(d+.015)/len);
+          for(const t of [left,right]){
+            for(let d=0;d<=depth;d+=.15){const q=p(t,y+.56,d);detail.box(q[0],q[1],q[2],.025,1.12,.025,'#675c47');}
+            const q=p(t,y+1.11,depth/2);detail.box(q[0],q[1],q[2],depth,.045,.04,'#615742',Math.atan2(-nz,nx));
+          }
+        }
+      }
+    }
+    addCollider({points:b.points,holes:b.holes,top:b.height,base:b.base});
+    if(!shalom)internationalCourtyard(b);
+  }
+
+  function internationalCourtyard(b){
+    const f=orientedFrame(b.holes[0]),base=terrainHeight(f.x,f.z),stone=new Batch(),wood=new Batch(),plants=new Batch(),water=new Batch();
+    for(const batch of [stone,wood,plants,water])batch.base=base;
+    // Pond and pergola positions are photograph-led estimates inside the mapped
+    // courtyard opening. No survey of the individual garden features is claimed.
+    const pond=roundedFrameRectangle(f,3.8,10,.75,1.5,0),ring=polygonArea(pond)<0?[...pond].reverse():pond;
+    polygon(water,pond,.12,'#3b6460');
+    for(let i=0;i<ring.length;i++)wallPanel(stone,ring[i],ring[(i+1)%ring.length],-.1,.3,'#778b72',.12);
+    addCollider({points:pond,top:.5,base});
+    const beamAngle=Math.atan2(-f.v.z,f.v.x),crossAngle=Math.atan2(-f.u.z,f.u.x);
+    for(const u of [-f.width/2+1,f.width/2-1])for(const v of [-f.length/2+1,f.length/2-1]){
+      const p=framePoint(f,u,v);wood.box(p.x,1.5,p.z,.16,3,.16,'#5d6450');addCollider({x:p.x,z:p.z,radius:.13,top:3,base});
+    }
+    for(let v=-f.length/2+1;v<f.length/2;v+=2.7){const p=framePoint(f,0,v);wood.box(p.x,3,p.z,f.width-2,.14,.13,'#59634e',crossAngle);}
+    for(const u of [-f.width/2+1,f.width/2-1]){const p=framePoint(f,u,0);wood.box(p.x,2.97,p.z,f.length-2,.18,.16,'#59634e',beamAngle);}
+    for(const v of [-f.length/2+3,f.length/2-3]){
+      const p=framePoint(f,-2.6,v);wood.box(p.x,.8,p.z,2,.12,1.25,'#867353',beamAngle);
+      for(const u of [-3.05,-2.15])for(const dv of [-.7,.7]){const q=framePoint(f,u,v+dv);wood.box(q.x,.37,q.z,.09,.74,.09,'#64664f');}
+      for(const u of [-3.5,-1.7]){
+        const q=framePoint(f,u,v);wood.box(q.x,.46,q.z,2,.1,.32,'#867353',beamAngle);
+        for(const dv of [-.7,.7]){const leg=framePoint(f,u,v+dv);wood.box(leg.x,.2,leg.z,.08,.4,.08,'#64664f');}
+      }
+      addCollider({x:p.x,z:p.z,radius:1.05,top:.9,base});
+    }
+    for(let v=-f.length/2+2;v<f.length/2-1;v+=1.05)for(const u of [-f.width/2+.6,-f.width/2+1.3,f.width/2-.6,f.width/2-1.3]){
+      const p=framePoint(f,u,v);
+      for(let leaf=0;leaf<12;leaf++){
+        const a=leaf/12*TAU,dx=Math.cos(a),dz=Math.sin(a),h=1.1+(leaf%3)*.25,shade=leaf%2?'#466936':'#658543';
+        const left=[p.x+dx*.4-dz*.14,h*.8,p.z+dz*.4+dx*.14],right=[p.x+dx*.4+dz*.14,h*.8,p.z+dz*.4-dx*.14];
+        plants.quad([p.x-dz*.025,.05,p.z+dx*.025],left,right,[p.x+dz*.025,.05,p.z-dx*.025],shade);
+        plants.triangle(left,[p.x+dx*.95,h*.65,p.z+dz*.95],right,shade);
+      }
+    }
+    for(const u of [-f.width/2+1,f.width/2-1])for(const v of [-6,0,6]){
+      const p=framePoint(f,u,v),height=3.5+(v+6)/30;
+      for(let i=0;i<8;i++){
+        const a=i/8*TAU,c=(i+1)/8*TAU;
+        wood.quad([p.x+Math.cos(a)*.085,0,p.z+Math.sin(a)*.085],[p.x+Math.cos(a)*.065,height,p.z+Math.sin(a)*.065],[p.x+Math.cos(c)*.065,height,p.z+Math.sin(c)*.065],[p.x+Math.cos(c)*.085,0,p.z+Math.sin(c)*.085],'#89916b');
+      }
+      for(let leaf=0;leaf<10;leaf++){
+        const a=leaf/10*TAU+v*.2,dx=Math.cos(a),dz=Math.sin(a),px=-dz,pz=dx;
+        for(let i=0;i<12;i++){
+          const t=i/12,q={x:p.x+dx*1.9*t,z:p.z+dz*1.9*t},y=height+.55*Math.sin(t*Math.PI)-.8*t*t,w=.5*(1-t)+.08;
+          for(const side of [-1,1])plants.triangle([q.x-dx*.025,y,q.z-dz*.025],[q.x+dx*.025,y,q.z+dz*.025],[q.x+px*w*side+dx*.1,y-.15,q.z+pz*w*side+dz*.1],leaf%2?'#688846':'#8aa357');
+        }
+      }
+      addCollider({x:p.x,z:p.z,radius:.11,top:height,base});
+    }
+    world.add(stone.mesh(style('#ffffff',{vertexColors:true})),wood.mesh(style('#ffffff',{vertexColors:true})),plants.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})),water.mesh(style('#ffffff',{vertexColors:true,roughness:.13,metalness:.35})));
   }
 
   function grandstand(b,concrete,detail,roofs){
@@ -823,6 +977,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='grandstand'){grandstand(b,masonry,detail,roofs);continue;}
       if(profile.facade==='cafe'){homeGroundCafe(b,masonry,glass,detail,roofs);continue;}
       if(profile.facade==='nida-theatre'){nidaTheatre(b,masonry,detail,roofs);continue;}
+      if(['village','postgraduate'].includes(profile.facade)){residentialComplex(b,profile,masonry,glass,detail,roofs);continue;}
+      if(['shalom','international'].includes(profile.facade)){olderResidence(b,profile,clinkerwork,glass,detail,roofs);continue;}
       if(['warrane','new-college'].includes(profile.facade)){residence(b,profile,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='college'){
         const ordered=polygonArea(pts)<0?[...pts].reverse():pts;
@@ -1322,7 +1478,9 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     if(!l)return false;
     const p=safePoint(l.walkPoint||l.teleport||l);
     Object.assign(player,{x:p.x,y:surfaceHeight(p.x,p.z),z:p.z,vx:0,vz:0,vy:0,grounded:true,pitch:0});
-    const b=buildings.find(b=>b.id===id);if(b)player.heading=Math.atan2(b.extent.x-p.x,-(b.extent.z-p.z));
+    const b=buildings.find(b=>b.id===id);
+    if(Number.isFinite(l.heading))player.heading=l.heading;
+    else if(b)player.heading=Math.atan2(b.extent.x-p.x,-(b.extent.z-p.z));
     clearInputs();updateCamera(0);report();return true;
   }
 
@@ -1330,6 +1488,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     if(!campus||!Number.isFinite(position?.x)||!Number.isFinite(position?.z))return false;
     const p=safePoint({x:clamp(position.x,bounds.minX+2,bounds.maxX-2),z:clamp(position.z,bounds.minZ+2,bounds.maxZ-2)});
     Object.assign(player,{x:p.x,y:surfaceHeight(p.x,p.z),z:p.z,vx:0,vz:0,vy:0,grounded:true,pitch:0});
+    if(Number.isFinite(position.heading))player.heading=position.heading;
     clearInputs();updateCamera(0);report();return true;
   }
 

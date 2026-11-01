@@ -6,9 +6,9 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 - Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. Base terrain sampling and foundations use metres in the same coordinate frame. Photo-led landscape additions use explicitly reconstructed dimensions.
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
-- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. The other 48 tagged footprints use community data, not a survey guarantee; 48 have estimated heights. Building cards identify the source category and link to the report when used.
+- 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. The remaining 47 tagged footprints use community data, not a survey guarantee; 48 have estimated heights. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 33 campus footprints have a specific source-linked appearance profile, within 54 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 37 campus footprints have a specific source-linked appearance profile, within 64 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -23,11 +23,15 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 
 - Home Ground Café: the public Google place coordinate (-33.9180069, 151.2286064) falls within OSM H11. The name and alias are now connected to that outline. A low glazed kiosk replaces the generic 9.6 m block; the 3.7 m roof height, rounded eaves, covered seating, forecourt paving and three palms are photo-led reconstructions, with estimated dimensions and positions. H11 remains searchable.
 
-NIDA and western residences now have additional photo-led models. The Parade Theatre uses the real E2 outline, fine-framed transparent glazing, a sloping roof with a drum opening, horizontal louvres and entrance signage. Hassell explicitly states an 11 m curtain wall; the 12 m OSM overall height is retained separately. Drum diameter, roof pitch and entrance dimensions are reconstructed. A level foyer floor sits above the highest DEM outline vertex to avoid terrain penetrating the transparent interior. The adjoining D2 brick wing has a source-led treatment, but its later upper Graduate School additions remain incomplete.
+NIDA and western residences now have additional photo-led models. The Parade Theatre uses the real E2 outline, fine-framed transparent glazing, a sloping roof with a drum opening, horizontal louvres and entrance signage. Hassell explicitly states an 11 m curtain wall. The former circular drum approximation has been replaced by actual OSM part 609912640: a D-shaped 17 m shell. Parts 609912635 and 609912638 provide two 19 m upper volumes with min_height=12. These are retained public map tags and outlines, not a survey guarantee. Roof pitch, perforated artwork, precise interior supports and entrance details remain reconstructed / incomplete. A level foyer floor sits above the highest DEM outline vertex to avoid terrain penetrating the transparent interior.
 
 New College retains its 15 m mapped height and detailed footprint. Three brick room rows, a light communal base, pale green upper cladding, a single eastern central glass bay and raised white / green roof sections follow two official UNSW photographs. Warrane retains its 27 m mapped height and outline; eight upper rows of paired narrow window strips, pale spandrel panels, brick wall fields and communal base follow its official exterior. Exact bay spacing, room dimensions, roof sections and services remain estimates. These are four researched footprints, not a claim that the surrounding residential precinct is finished.
 
 Browser checks: New College's single central glass bay and raised clerestory are visible from across the sports courts; Warrane's eight upper rows and communal base were inspected from Anzac Parade. The NIDA foyer floor no longer intersects the regional terrain. Holding forward at the glass boundary leaves the walking distance unchanged after arrival. No browser warnings or errors were captured in these checks. Geometry tests verify the theatre roof opening stays inside its mapped outline and triangulates without covering the drum.
+
+Residential precinct: the actual UNSW Village multipolygon, including its three holes, is partitioned into photo-led tall wings and lower boundary blocks. The 25.6 / 12.8 / 9.6 m heights are estimates guided by Clare / Architectus photographs and their eight-storey description. Four mapped through-footways now pass under reconstructed bridges. Their source coordinates are preserved; 3 m doorway widths, end clearances and 3.2 / 5.8 m overhead clearances are estimates. A browser walking check moved 37 m through the first bridge into the next court. Boolean geometry tests prove complete footprint / hole preservation, no overlapping volumes and clearance for the player at every mapped threshold.
+
+New College Postgraduate Village retains its U-shaped outline, now with a blue-glass southern screen and lower ochre side wing. Its 25.6 / 13.2 m split is reconstructed from the official exterior, not mapped height evidence. The official college page describes seven floors; the original eight-level OSM tag remains in the data. Shalom uses three visible rows and projecting open metal balconies; its 12 m mapped height and conflicting four-level tag are both retained. International House uses a 7.8 m estimated exterior with light brick, pale upper panels, small upper windows and a dark roof fascia. Its two visible exterior rows differ from its retained three-level tag. Its mapped courtyard opening now contains a photo-led pond, pergola, picnic furniture and tropical planting; individual feature positions and dimensions are estimates.
 
 ## Remaining fidelity work
 
@@ -50,8 +54,6 @@ Named buildings still without a source-linked profile:
 - Physics Theatre - K14 (K14)
 - June Griffith Building (F10)
 - Mathews Theatres (D23)
-- New College Postgraduate Village (H3)
-- Shalom College - N9 (N9)
 - Barker Street Apartments - N13 (N13)
 - SDN House at Pooh Corner (osm-way-45561523)
 - John Goodsell - F20 (F20)
@@ -76,14 +78,13 @@ Named buildings still without a source-linked profile:
 - Computer Science and Engineering (K17) (K17)
 - Esme Timbery Creative Studio (D8) (D8)
 - Rupert Myers Building (M15)
-- International House (C6)
-- UNSW Village (B10)
 
 ## Reproduction
 
 - node scripts/make-building-parts.mjs
 - node scripts/make-campus-details.mjs
 - node scripts/make-sports-data.mjs
+- node scripts/make-residential-parts.mjs (polygon-clipping is a development dependency; output contains data only)
 - python3 scripts/fetch-elevation.py (uses retained TIFF when present; Pillow and NumPy required)
 - node scripts/build-reference-library.mjs
 - npm run prepare:site (reference index and browser asset revision, before publication)

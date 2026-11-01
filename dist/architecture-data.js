@@ -1,13 +1,16 @@
-import { orientedFrame, framePoint } from './geometry.js?v=0e152b3ce28e';
+import { orientedFrame, framePoint } from './geometry.js?v=af4aa1dbb222';
+import { NIDA_PARTS } from './nida-parts.js?v=af4aa1dbb222';
 
 // Photograph-led details, expressed in the same world-metre frame as OSM.
-// These are reconstructions, not surveyed building parts. Overall tagged heights
-// remain unchanged. The 11 m curtain wall is stated by the original architect.
+// Roof pitch is reconstructed; the D-shaped theatre outline / heights now use
+// actual OSM parts. The original 12 m overall tag remains separately retained.
+// The 11 m curtain wall is stated by the original architect.
 export const NIDA_REFERENCE='https://www.hassellstudio.com/conversation/nida-21-years-in-the-limelight';
 export function theatreGeometry(building){
   const front=[building.points[4],building.points[3]];
-  const drum={x:-307,z:-182,radius:19.5,height:building.height};
-  const opening=Array.from({length:64},(_,i)=>({x:drum.x+Math.cos(i/64*Math.PI*2)*(drum.radius+.45),z:drum.z+Math.sin(i/64*Math.PI*2)*(drum.radius+.45)}));
+  const drum=NIDA_PARTS.find(p=>p.osmId===609912640);
+  const centre=drum.points.reduce((s,p)=>({x:s.x+p.x/drum.points.length,z:s.z+p.z/drum.points.length}),{x:0,z:0});
+  const opening=drum.points.map(p=>({x:centre.x+(p.x-centre.x)*1.025,z:centre.z+(p.z-centre.z)*1.025}));
   const roofHeight=p=>10.05+Math.max(0,Math.min(1,(p.x+344)/86))*.95;
   return {front,drum,opening,roofHeight,curtainWallHeight:11,source:NIDA_REFERENCE};
 }

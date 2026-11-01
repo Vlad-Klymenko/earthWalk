@@ -36,9 +36,10 @@ Before publication, run `npm run prepare:site` to regenerate the reference index
 - `dist/game.js` builds the Three.js scene and handles first-person movement, collision and rendering.
 - `dist/app.js` connects the interface, building search, interactive map and teleport controls.
 - `dist/terrain.js` and `dist/elevation-data.js` provide the measured terrain and consistent height sampling for meshes, buildings and walking.
-- `dist/visual-data.js` records appearance profiles and 54 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
+- `dist/visual-data.js` records appearance profiles and 64 visual/data sources, including Google Street View references and architect galleries. `dist/references.html` is the browsable source index.
 - `dist/architecture-data.js` holds photo-led NIDA roof / theatre geometry and New College roof sections, with reconstructed dimensions distinguished from mapped heights.
 - `dist/building-parts.js` retains five actual library part outlines. `dist/campus-details.js` retains 95 mapped furniture positions.
+- `dist/nida-parts.js` retains three actual OSM upper-part outlines and 17 / 19 m height tags. `dist/residential-parts.js` partitions the original Village outlines into explicitly estimated masses and mapped through-passages. Reproduce them with `node scripts/make-residential-parts.mjs`; the clipping utility runs only during data preparation, not in the browser.
 - `dist/campus-enhancements.js` identifies the previously unnamed Scientia wing/canopy outlines without replacing their mapped footprints.
 - `server.mjs` serves `dist/` locally. There is no build step.
 
