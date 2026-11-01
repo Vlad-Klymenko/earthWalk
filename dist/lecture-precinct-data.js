@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=06356e0af2e9';
-import { buildingBase, terrainHeight } from './terrain.js?v=06356e0af2e9';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=98b8bca9f867';
+import { buildingBase, terrainHeight } from './terrain.js?v=98b8bca9f867';
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});
 export function civilGeometry(b){
   const frame=frameFor(b),base=buildingBase(b.points),bodyRoof=b.height-3,upperBase=7,rows=8;

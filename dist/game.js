@@ -1,30 +1,31 @@
-import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=06356e0af2e9';
-import { k17Geometry, willisGeometry } from './engineering-lane-data.js?v=06356e0af2e9';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=06356e0af2e9';
-import { RUPERT_PARTS } from './rupert-parts.js?v=06356e0af2e9';
-import * as THREE from './vendor/three.module.js?v=06356e0af2e9';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=06356e0af2e9';
-import { buildingAppearance } from './visual-data.js?v=06356e0af2e9';
-import { BUILDING_PARTS } from './building-parts.js?v=06356e0af2e9';
-import { CAMPUS_DETAILS } from './campus-details.js?v=06356e0af2e9';
-import { VILLAGE_SPORTS } from './sports-data.js?v=06356e0af2e9';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=06356e0af2e9';
-import { NIDA_PARTS } from './nida-parts.js?v=06356e0af2e9';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=06356e0af2e9';
-import { tubeFaces } from './structure-data.js?v=06356e0af2e9';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=06356e0af2e9';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=06356e0af2e9';
-import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=06356e0af2e9';
-import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=06356e0af2e9';
-import { medicalGeometry } from './medical-data.js?v=06356e0af2e9';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=06356e0af2e9';
-import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=06356e0af2e9';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=06356e0af2e9';
-import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=06356e0af2e9';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=06356e0af2e9';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=06356e0af2e9';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=06356e0af2e9';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=06356e0af2e9';
+import { poolGeometry, gymGeometry } from './aquatic-data.js?v=98b8bca9f867';
+import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=98b8bca9f867';
+import { k17Geometry, willisGeometry } from './engineering-lane-data.js?v=98b8bca9f867';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=98b8bca9f867';
+import { RUPERT_PARTS } from './rupert-parts.js?v=98b8bca9f867';
+import * as THREE from './vendor/three.module.js?v=98b8bca9f867';
+import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=98b8bca9f867';
+import { buildingAppearance } from './visual-data.js?v=98b8bca9f867';
+import { BUILDING_PARTS } from './building-parts.js?v=98b8bca9f867';
+import { CAMPUS_DETAILS } from './campus-details.js?v=98b8bca9f867';
+import { VILLAGE_SPORTS } from './sports-data.js?v=98b8bca9f867';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=98b8bca9f867';
+import { NIDA_PARTS } from './nida-parts.js?v=98b8bca9f867';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=98b8bca9f867';
+import { tubeFaces } from './structure-data.js?v=98b8bca9f867';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=98b8bca9f867';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=98b8bca9f867';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=98b8bca9f867';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=98b8bca9f867';
+import { medicalGeometry } from './medical-data.js?v=98b8bca9f867';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=98b8bca9f867';
+import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=98b8bca9f867';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=98b8bca9f867';
+import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=98b8bca9f867';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=98b8bca9f867';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=98b8bca9f867';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=98b8bca9f867';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=98b8bca9f867';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -1680,6 +1681,90 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     sign.position.set((a.x+c.x)/2+nx*.8,b.base+y,(a.z+c.z)/2+nz*.8);sign.rotation.y=Math.atan2(nx,nz);world.add(sign);
   }
 
+  function aquaticPool(b,concrete,brick,glass,detail,roofs){
+    const g=poolGeometry(b),ordered=r=>polygonArea(r)<0?[...r].reverse():r;
+    shapedRoof(roofs,g.hall,g.roofHeight,'#a6b2a6');polygon(roofs,g.front,g.frontTop,'#7b8a82');
+    for(const [points,front] of [[g.hall,false],[g.front,true]]){
+      const ring=ordered(points);
+      for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.1)continue;
+        const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,top=front?g.frontTop:g.eave;
+        wallPanel(brick,a,c,0,top,front?'#a79d80':'#b3a17e');
+        if(front&&nz>.45&&len>7){
+          wallPanel(concrete,a,c,0,.55,'#b5baad',.12);
+          wallPanel(glass,a,c,.55,3.35,'#487e8a',.08);
+          wallPanel(detail,a,c,.55,2.18,'#237e9e',.1);
+          for(let d=.8;d<len;d+=1.65)wallPanel(detail,a,c,.5,3.4,'#424f48',.14,d/len,Math.min(1,(d+.055)/len));
+          wallPanel(detail,a,c,3.4,g.frontTop,'#303e3c',.12);
+          if(len>20)facadeCaption(b,a,c,'UNSW FITNESS & AQUATIC CENTRE',Math.min(22,len-.8),4.1,'#e7c538');
+          // A few coloured notices are procedural shapes, never copied photographs.
+          for(const [t,color] of [[.65,'#d8c856'],[.69,'#a5c5a5'],[.73,'#cc925f']])wallPanel(detail,a,c,1.1,2.8,color,.17,t,t+.025);
+        }else if(front){
+          wallPanel(detail,a,c,3.45,g.frontTop,'#354640',.08);
+          if(nx>.4&&len>5){wallPanel(glass,a,c,.2,3.3,'#46695f',.08,.25,.75);wallPanel(detail,a,c,.2,3.3,'#303c36',.13,.49,.51);}
+        }else{
+          const bays=Math.max(1,Math.round(len/5.8));
+          for(let k=0;k<=bays;k++){const t=k/bays,p={x:a.x+(c.x-a.x)*t+nx*.11,z:a.z+(c.z-a.z)*t+nz*.11};batchBeam(detail,[p.x,0,p.z],[p.x,g.eave,p.z],.09,'#919d8c');}
+          wallPanel(glass,a,c,6.8,g.eave-.25,'#495b54',.08);
+          for(let d=.4;d<len;d+=1.4)wallPanel(detail,a,c,6.75,g.eave-.2,'#333f38',.15,d/len,Math.min(1,(d+.055)/len));
+          wallPanel(detail,a,c,g.eave-.15,g.eave,'#a8b9ab',.2);
+          const count=Math.max(1,Math.ceil(len));
+          for(let k=0;k<count;k++){
+            const p={x:a.x+(c.x-a.x)*k/count,z:a.z+(c.z-a.z)*k/count},q={x:a.x+(c.x-a.x)*(k+1)/count,z:a.z+(c.z-a.z)*(k+1)/count};
+            roofs.quad([p.x,g.eave,p.z],[p.x,g.roofHeight(p),p.z],[q.x,g.roofHeight(q),q.z],[q.x,g.eave,q.z],'#9aab9c');
+          }
+        }
+      }
+      addCollider({points,top:front?g.frontTop:b.height,base:b.base});
+    }
+    // Thin standing seams follow the pitched hall roof, staying below its mapped maximum.
+    for(let x=-240;x<-181;x+=3.2){
+      const north={x,z:Math.min(...g.hall.map(p=>p.z))+.4},south={x,z:g.splitZ-.4},mid={x,z:g.ridgeZ};
+      if([north,south,mid].every(p=>inPolygon(p.x,p.z,g.hall))){batchBeam(detail,[north.x,g.roofHeight(north)-.025,north.z],[mid.x,b.height-.025,mid.z],.025,'#b6c2b1');batchBeam(detail,[mid.x,b.height-.025,mid.z],[south.x,g.roofHeight(south)-.025,south.z],.025,'#b6c2b1');}
+    }
+  }
+
+  function aquaticGym(b,concrete,brick,glass,detail,roofs){
+    const g=gymGeometry(b),f=g.frame,ring=polygonArea(b.points)<0?[...b.points].reverse():b.points;
+    shapedRoof(roofs,b.points,g.roofHeight,'#aab8ac');
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c);if(len<.1)continue;
+      const nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len,nu=nx*f.u.x+nz*f.u.z,nv=nx*f.v.x+nz*f.v.z;
+      wallPanel(brick,a,c,0,g.eave,'#ad9d78');
+      wallPanel(concrete,a,c,0,2.85,nv<-.3?'#bba14f':'#5b6456');
+      if(len>4){
+        wallPanel(glass,a,c,nv<-.3?1.45:.15,2.85,'#3c514b',.07);
+        wallPanel(detail,a,c,2.85,3.4,'#c2a34a',.15);
+        wallPanel(detail,a,c,3.48,4.45,'#4c5950',.06);
+        for(let y=3.5;y<4.45;y+=.14)wallPanel(concrete,a,c,y,y+.04,'#a5ad98',.15);
+        const bays=Math.max(1,Math.round(len/5.2));
+        for(let k=0;k<=bays;k++){
+          const t=k/bays,dx=.11/len;
+          wallPanel(brick,a,c,3.35,g.eave,'#998969',.15,Math.max(0,t-dx),Math.min(1,t+dx));
+          wallPanel(detail,a,c,0,2.85,'#303e37',.17,Math.max(0,t-dx),Math.min(1,t+dx));
+        }
+        if(nu<-.65||nv>.65){
+          wallPanel(glass,a,c,g.eave-1.1,g.eave-.15,'#798d83',.08);
+          for(let d=.5;d<len;d+=1.6)wallPanel(detail,a,c,g.eave-1.1,g.eave-.1,'#bdc6b4',.13,d/len,Math.min(1,(d+.04)/len));
+        }
+        if(g.entryEdge.includes(a)&&g.entryEdge.includes(c)){
+          wallPanel(glass,a,c,.05,2.7,'#426156',.13,.38,.68);
+          wallPanel(concrete,a,c,.15,1.05,'#b8c7b2',.16,.38,.68);
+          wallPanel(detail,a,c,.05,2.75,'#273830',.18,.51,.525);
+          wallPanel(detail,a,c,1.15,1.3,'#bec9b7',.2,.48,.5);wallPanel(detail,a,c,1.15,1.3,'#bec9b7',.2,.54,.56);
+          facadeCaption(b,a,c,'FITNESS & AQUATIC CENTRE · B5',Math.min(8,len-1),3.12,'#34463a');
+        }
+      }
+      wallPanel(concrete,a,c,g.eave-.13,g.eave,'#c2caba',.4);
+      const count=Math.max(1,Math.ceil(len));
+      for(let k=0;k<count;k++){
+        const p={x:a.x+(c.x-a.x)*k/count,z:a.z+(c.z-a.z)*k/count},q={x:a.x+(c.x-a.x)*(k+1)/count,z:a.z+(c.z-a.z)*(k+1)/count};
+        roofs.quad([p.x,g.eave,p.z],[p.x,g.roofHeight(p),p.z],[q.x,g.roofHeight(q),q.z],[q.x,g.eave,q.z],'#a7b4a5');
+      }
+    }
+    addCollider({points:b.points,holes:b.holes,top:b.height,base:b.base});
+  }
+
   function newtonBuilding(b,concrete,brick,glass,detail,roofs){
     const g=newtonGeometry(b),f=g.frame,ring=polygonArea(b.points)<0?[...b.points].reverse():b.points;
     for(let i=0;i<ring.length;i++){
@@ -2700,6 +2785,8 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='clancy'){clancyAuditorium(b,detail);continue;}
       if(profile.facade==='bioscience'){bioscienceBuilding(b,detail,roofs);continue;}
+      if(profile.facade==='aquatic-pool'){aquaticPool(b,masonry,brickwork,glass,detail,roofs);continue;}
+      if(profile.facade==='aquatic-gym'){aquaticGym(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='newton'){newtonBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='keith-burrows'){keithBurrows(b,masonry,brickwork,glass,detail,roofs);continue;}
       if(profile.facade==='physics-theatre'){physicsTheatre(b,masonry,brickwork,glass,detail,roofs);continue;}
