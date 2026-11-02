@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=fd948496a741';
-import { buildingBase } from './terrain.js?v=fd948496a741';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=09f375356b13';
+import { buildingBase } from './terrain.js?v=09f375356b13';
 
 export const BIOSCIENCE_REPORTS={
   north:{title:'Woods Bagot · 2016 biosciences S96 design statement',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-6674-MOD-1%2120190228T015509.308+GMT',printedPage:5,pdfPage:5,roofRL:96.2,approximate:true},
@@ -32,4 +32,5 @@ export function mathewsTheatreGeometry(b){
   return {frame,arrival,target,paving:frameRectangle(frame,4,10,-frame.width/2-2,3),heading:Math.atan2(target.x-arrival.x,arrival.z-target.z),canopyHeight:3.6};
 }
 
-export const MATHEWS_COVERED_ROUTES=['osm-way-1178531022','osm-relation-15937009-0'];
+// The E24 pavilion roof now has its own curved / glazed reconstruction.
+export const MATHEWS_COVERED_ROUTES=['osm-way-1178531022'];
