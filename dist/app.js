@@ -1,9 +1,9 @@
-import { campusTerrainHeight as terrainHeight } from './electrical-landscape.js?v=e77dc5c20f34';
-import { CAMPUS } from './campus-enhancements.js?v=e77dc5c20f34';
-import { createGame } from './game.js?v=e77dc5c20f34';
-import { TERRAIN_SOURCE } from './terrain.js?v=e77dc5c20f34';
-import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=e77dc5c20f34';
-import { heightDescription } from './building-heights.js?v=e77dc5c20f34';
+import { campusTerrainHeight as terrainHeight } from './electrical-landscape.js?v=63f3d77050b7';
+import { CAMPUS } from './campus-enhancements.js?v=63f3d77050b7';
+import { createGame } from './game.js?v=63f3d77050b7';
+import { TERRAIN_SOURCE } from './terrain.js?v=63f3d77050b7';
+import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=63f3d77050b7';
+import { heightDescription } from './building-heights.js?v=63f3d77050b7';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;

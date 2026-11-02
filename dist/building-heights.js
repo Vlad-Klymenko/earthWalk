@@ -1,7 +1,7 @@
 // Publicly reported heights and parapet levels, separate from ground and OSM
 // tags. A roof RL minus coarse DEM ground is explicitly a derived estimate.
-import { NIDA_PARTS } from './nida-parts.js?v=e77dc5c20f34';
-import { buildingBase } from './terrain.js?v=e77dc5c20f34';
+import { NIDA_PARTS } from './nida-parts.js?v=63f3d77050b7';
+import { buildingBase } from './terrain.js?v=63f3d77050b7';
 export const CHEMICAL_ROOF_REPORT={
   title:'Science and Engineering Building · Grimshaw SSD report, July 2016',
   url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-7518%2120190227T232843.857+GMT',
