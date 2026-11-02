@@ -36,6 +36,8 @@ Before publication, run `npm run prepare:site` to regenerate the reference index
 
 ## Implementation
 
+University Terraces B8 now has two residential wings, an open internal court, orange balcony dividers / silver rails, pale end louvres, a lower northern link and glazed retail beneath raised planted decks. The original east-west footway remains walkable beneath both wings. `dist/terraces-data.js` distinguishes the public context roof RL from reconstructed component dimensions; `node scripts/make-terraces-parts.mjs` reproduces the masses, exposed façades and clipped paving. Source outlines and level tags remain intact, with a separate reconstructed hole displayed on the maps.
+
 The latest UNSW Village pass separates pale balcony bands / grey sliding panels, charcoal tower ends, white and yellow core bays, and dense timber screens with recessed glazing. Only exposed vertical spans are drawn; the existing stepped masses, courtyard holes and four mapped passages stay intact. The Gate 2 security frontage and two exterior map viewpoints follow public architect photos / historical Street View, cross-checked against current university location information. `dist/village-data.js` records reconstructed dimensions; regenerate exposed surfaces with `node scripts/make-village-facades.mjs`. The map now reports the same 25.6 m estimated main-wing height as the renderer, retaining the previous 22.4 m estimate, seven mapped levels and separate eight-storey architect description.
 
 - `dist/campus-data.js` contains the mapped campus layout: real building footprints, paths, landmark names, and source notes. Coordinates are projected into local metres.

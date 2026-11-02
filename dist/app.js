@@ -1,9 +1,9 @@
-import { campusTerrainHeight as terrainHeight } from './electrical-landscape.js?v=fba683d592b3';
-import { CAMPUS } from './campus-enhancements.js?v=fba683d592b3';
-import { createGame } from './game.js?v=fba683d592b3';
-import { TERRAIN_SOURCE } from './terrain.js?v=fba683d592b3';
-import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=fba683d592b3';
-import { heightDescription } from './building-heights.js?v=fba683d592b3';
+import { campusTerrainHeight as terrainHeight } from './electrical-landscape.js?v=9fd142bfaba1';
+import { CAMPUS } from './campus-enhancements.js?v=9fd142bfaba1';
+import { createGame } from './game.js?v=9fd142bfaba1';
+import { TERRAIN_SOURCE } from './terrain.js?v=9fd142bfaba1';
+import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=9fd142bfaba1';
+import { heightDescription } from './building-heights.js?v=9fd142bfaba1';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;
@@ -156,7 +156,7 @@ function drawMap() {
   for (const path of CAMPUS.paths || []) { pathShape(ctx, path.points, project); ctx.strokeStyle = path.kind === 'track' ? '#69acc8' : path.kind === 'road' ? '#d0d2bc' : '#f8f9ed'; ctx.lineWidth = Math.max(1, (path.width || 3) * scale); ctx.stroke(); }
   for (const building of buildings) {
     pathShape(ctx, building.points, project); ctx.closePath();
-    for (const hole of building.holes || []) { const p = project(hole[0]);ctx.moveTo(p.x,p.y);for(const point of hole.slice(1)){const h=project(point);ctx.lineTo(h.x,h.y);}ctx.closePath(); }
+    for (const hole of [...(building.holes||[]),...(building.reconstructedMapHoles||[])]) { const p = project(hole[0]);ctx.moveTo(p.x,p.y);for(const point of hole.slice(1)){const h=project(point);ctx.lineTo(h.x,h.y);}ctx.closePath(); }
     ctx.fillStyle = building.id === selected?.id ? '#eb9b70' : building.campus ? '#a7b997' : '#d0d8c5'; ctx.fill('evenodd');
     ctx.lineWidth = .5; ctx.strokeStyle = building.id === selected?.id ? '#d97548' : '#8ca47d'; ctx.stroke();
   }
