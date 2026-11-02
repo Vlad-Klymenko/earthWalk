@@ -1,9 +1,11 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=5b2998530615';
-import { buildingBase, terrainHeight } from './terrain.js?v=5b2998530615';
+import { CAMPUS as SOURCE } from './campus-data.js?v=7a4884bc1805';
+import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=7a4884bc1805';
+import { buildingBase, terrainHeight } from './terrain.js?v=7a4884bc1805';
 export const WILLIS_ID='osm-way-45229601';
 export const K17_VISUAL_HEIGHT=26;
 export const K17_FRONT_PHOTO={title:'Aaron.Quigley · K17 glass foyer, 31 May 2020',url:'https://commons.wikimedia.org/wiki/File:CSE-K17-UNSW-Front.jpg'};
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});
+const WILLIS_FRAME=frameFor(SOURCE.buildings.find(b=>b.id===WILLIS_ID));
 export function k17Geometry(b){
   const frame=frameFor(b),base=buildingBase(b.points),a=b.points[7],c=b.points[0],len=Math.hypot(c.x-a.x,c.z-a.z),nx=(c.z-a.z)/len,nz=-(c.x-a.x)/len;
   const along=(t,offset=0)=>({x:a.x+(c.x-a.x)*t+nx*offset,z:a.z+(c.z-a.z)*t+nz*offset});
@@ -24,8 +26,26 @@ export function k17Geometry(b){
   return {frame,base,front:{a,c,len,nx,nz,along},floor,foyerTop,foyerFloor,paving,arrival,target,heading:head(arrival,target),rows:7,pitch:K17_VISUAL_HEIGHT/7,stairBay:{start:.15,end:.7,depth:3.2},screen,screenPanels,west,beds,shrubs,screenArrival,screenTarget,screenHeading:head(screenArrival,screenTarget),westArrival,westTarget,westHeading:head(westArrival,westTarget),rearArrival,rearTarget,rearHeading:head(rearArrival,rearTarget),reconstructed:true};
 }
 export function willisGeometry(b){
-  const frame=frameFor(b),base=buildingBase(b.points),entry=framePoint(frame,-3,-55),entryGround=terrainHeight(entry.x,entry.z);
-  const arrival=framePoint(frame,-5,-70),target=framePoint(frame,-3,-54),laneView=framePoint(frame,-19.3,-44);
-  const cover={points:frameRectangle(frame,6.5,39,-19.35,-25),u0:-22.6,u1:-16.1,v0:-44.5,v1:-5.5,clearance:3.8,reconstructed:true};
-  return {frame,base,entry,entryGround,arrival,target,heading:Math.atan2(target.x-arrival.x,arrival.z-target.z),laneView,laneHeading:Math.atan2(frame.v.x,-frame.v.z),cover,eave:b.height-.55};
+  const frame=frameFor(b),base=buildingBase(b.points),local=p=>({u:(p.x-frame.x)*frame.u.x+(p.z-frame.z)*frame.u.z,v:(p.x-frame.x)*frame.v.x+(p.z-frame.z)*frame.v.z});
+  // North face has a small mapped change in direction at vertex 6.
+  const northEdges=[[b.points[0],b.points[6]],[b.points[6],b.points[5]]].map(([a,c])=>{const len=Math.hypot(c.x-a.x,c.z-a.z);return {a,c,len,ua:local(a).u,uc:local(c).u,nx:(c.z-a.z)/len,nz:-(c.x-a.x)/len};});
+  const northAt=(u,off=0)=>{const edge=northEdges.find(e=>u>=e.ua-1e-6&&u<=e.uc+1e-6)||northEdges[0],t=(u-edge.ua)/(edge.uc-edge.ua);return {x:edge.a.x+(edge.c.x-edge.a.x)*t+edge.nx*off,z:edge.a.z+(edge.c.z-edge.a.z)*t+edge.nz*off};};
+  const entryU=local(b.points[6]).u,entry=northAt(entryU),entryGround=terrainHeight(entry.x,entry.z),ground=entryGround-base,eave=b.height-.55;
+  const roofHeight=p=>b.height-.55*Math.min(1,Math.abs(local(p).u)/(frame.width/2)),crossFrame={...frame,u:frame.v,v:frame.u};
+  const roofFaces=[clipFrameStrip(b.points,crossFrame,-100,0),clipFrameStrip(b.points,crossFrame,0,100)];
+  const arrival=framePoint(frame,.5,-76),target=northAt(entryU),laneView=framePoint(frame,-19.3,-44),laneDetail=framePoint(frame,-19.3,-28),laneTarget=framePoint(frame,-15.5,-23);
+  const cover={points:frameRectangle(frame,6.5,39,-19.35,-25),u0:-22.6,u1:-16.1,v0:-44.5,v1:-5.5,previousClearance:3.8,reconstructed:true};
+  // Component level is a photo-led estimate near the upper workshop windows.
+  // It is deliberately independent of the varying DEM beneath the lane.
+  cover.heightAt=p=>base+10.9+Math.max(0,Math.min(1,(-local(p).u-16.1)/6.5))*.12;
+  cover.bottomRL=base+10.9-.24;cover.topRL=base+11.02;
+  cover.clearance=Math.min(...cover.points.map(p=>cover.bottomRL-terrainHeight(p.x,p.z)));
+  const entryCanopy={points:[northAt(entryU-3.2,.02),northAt(entryU+3.2,.02),northAt(entryU+3.2,1.8),northAt(entryU-3.2,1.8)],top:ground+3.52,bottom:ground+3.34,reconstructed:true};
+  const apron=[northAt(entryU-2.6,.05),northAt(entryU+2.6,.05),northAt(entryU+2.6,3.5),northAt(entryU-2.6,3.5)];
+  const northStrips=[-13,-8.5,-4,8,13].map(u=>({left:u-.85,right:u+.85,bottom:ground+.3,top:eave-.3,reconstructed:true}));
+  const trees=[[-11,-66,11],[8,-64,12]].map(([u,v,height])=>({...framePoint(frame,u,v),u,v,height,form:'samuels-gum',reconstructed:true}));
+  const sign={...framePoint(frame,-5,-68),width:.85,height:1.6,reconstructed:true};
+  const shrubs=[[-12,-59],[-10,-61],[-8,-60]].map(([u,v],i)=>({...framePoint(frame,u,v),height:1.25+i*.15,reconstructed:true}));
+  return {frame,base,local,northEdges,northAt,entryU,entry,entryGround,ground,arrival,target,heading:Math.atan2(target.x-arrival.x,arrival.z-target.z),laneView,laneHeading:Math.atan2(frame.v.x,-frame.v.z),laneDetail,laneDetailHeading:Math.atan2(laneTarget.x-laneDetail.x,laneDetail.z-laneTarget.z),cover,eave,roofHeight,roofFaces,entryCanopy,apron,northStrips,trees,shrubs,sign,reconstructed:true};
 }
+export function inWillisForecourt(x,z){const f=WILLIS_FRAME,u=(x-f.x)*f.u.x+(z-f.z)*f.u.z,v=(x-f.x)*f.v.x+(z-f.z)*f.v.z;return u>-17&&u<17&&v>-77&&v<-55;}
