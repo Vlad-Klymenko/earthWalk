@@ -2,6 +2,16 @@
 
 The goal remains a detailed, recognizable recreation of the entire main Kensington campus. This pass does not establish photorealistic accuracy for the whole campus.
 
+## UNSW Village exposed façades and Gate 2 frontage
+
+The full Clare / Architectus courtyard, entry and timber-screen detail photographs were re-inspected. Tall wings now have continuous pale balcony / parapet bands, recessed dark glazing, grey sliding panels and white / yellow core strips; tall end faces use charcoal panels and paired windows. Lower screened blocks have full-height dense timber slats, metal supports and glazing recessed behind them. Detailed dimensions, panel positions and unseen elevations remain reconstructed. Photographs are linked sources, never copied scene textures.
+
+The original residential partition, three source courtyard holes and four mapped through-footways remain intact. A reproducible exposed-surface generator removes neighbouring occupied vertical intervals, avoiding phantom façades on internal partition boundaries. Roofs, lower volumes, foundations and passage colliders retain their previous geometry. A browser preview caught missing backing behind the projecting balcony edges; continuous recessed backing and soffit returns close those gaps.
+
+The map previously showed the old 22.4 m estimate while the renderer already used 25.6 m main wings. Both now use the same explicit 25.6 m estimate, with the former value retained. Seven mapped levels remain independent from the architect’s eight-storey design description and assumed 3.2 m floor spacing; no measured height has been found. The July 2015 Gate Two panorama guides the signed Campus Security glazing beside the café. Current university protective-services information confirms the Gate 2 office location. The reconstructed closed exterior, paving and two new viewpoints do not establish present entrance access.
+
+Four additional tests cover height provenance / source preservation, exposed façade perimeters at four absolute levels, occupied-neighbour exclusion, different façade types, suspended-core gaps, source-wall security placement and building-clear paving / arrivals. All 203 tests pass. Native browser walking went west beneath the first bridge, then east through all remaining mapped passages: 163 m total, with terrain elevations approximately 30.2–33.5 m. Daytime / golden-hour views and runtime logs were checked without captured errors. The source library now contains 307 linked records; the whole-campus realism goal remains ongoing.
+
 ## Campus Village Cafe kiosk and walkable seating deck
 
 The mapped café footprint previously inherited a generic 9.6 m estimate despite having no measured height or level tag. It now has a reconstructed single-storey kiosk: horizontal pale timber cladding, dark fascia / serving-window frames, sliding divisions, counter ledge, propped serving flap and red café lettering. The original four-point perimeter, tags and missing level count remain. The former 9.6 m value is retained as previous evidence. The new 3.3 m kiosk height is explicitly estimated above the reconstructed deck floor, not presented as measured public height data.

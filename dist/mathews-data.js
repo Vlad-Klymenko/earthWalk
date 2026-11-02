@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=2aeb82caa197';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=2aeb82caa197';
-import { buildingBase, terrainHeight } from './terrain.js?v=2aeb82caa197';
+import { CAMPUS as SOURCE } from './campus-data.js?v=fba683d592b3';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=fba683d592b3';
+import { buildingBase, terrainHeight } from './terrain.js?v=fba683d592b3';
 
 export const MATHEWS_ID='mathews';
 export const MATHEWS_SHARED_LANE={id:'osm-way-1384227356',renderWidth:5.8,url:'https://www.google.com/maps/@?api=1&map_action=pano&pano=Xg7JfVHtHLbiVeBYlHBtkg&heading=350&pitch=20'};
