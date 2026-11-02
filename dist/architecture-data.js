@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint } from './geometry.js?v=cb48261f7262';
-import { NIDA_PARTS } from './nida-parts.js?v=cb48261f7262';
+import { orientedFrame, framePoint } from './geometry.js?v=bd77208c6e8e';
+import { NIDA_PARTS } from './nida-parts.js?v=bd77208c6e8e';
 
 // Photograph-led details, expressed in the same world-metre frame as OSM.
 // Roof pitch is reconstructed; the D-shaped theatre outline / heights now use
