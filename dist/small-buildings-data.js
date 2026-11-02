@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, clipFrameStrip } from './geometry.js?v=d4d5b3ba061f';
-import { buildingBase, terrainHeight } from './terrain.js?v=d4d5b3ba061f';
+import { orientedFrame, framePoint, clipFrameStrip } from './geometry.js?v=376919c44ac6';
+import { buildingBase, terrainHeight } from './terrain.js?v=376919c44ac6';
 export const REX_ID='osm-way-280411955',REX_LINK_ID='osm-way-45230027',SDN_ID='osm-way-45561523';
 export const REX_VISUAL_HEIGHT=5.8,SDN_VISUAL_HEIGHT=4.7;
 export const SDN_CURRENT_NAME='SDN Kensington at UNSW Sydney';
