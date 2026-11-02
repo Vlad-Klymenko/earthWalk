@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=be5557850bd0';
-import { buildingBase, terrainHeight } from './terrain.js?v=be5557850bd0';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=fafc541ec63f';
+import { buildingBase, terrainHeight } from './terrain.js?v=fafc541ec63f';
 export const VALLENTINE_ID='osm-way-45604879';
 export function vallentineGeometry(b){
   const frame=orientedFrame(b.points,{x:-.16,z:1}),base=buildingBase(b.points),east=frame.width/2;

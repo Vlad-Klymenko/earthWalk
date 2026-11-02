@@ -8,7 +8,7 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 43 parent height tags are used unchanged; 44 footprints use estimates; the two biosciences footprints use derived planning roof elevations, and Wallace Wurth uses separate planning parapet, plant and flue elevations. Science and Engineering, Hilmer and D8 now also use separately identified planning elevations minus DEM ground. Barker parking now uses an existing screen level from its public architectural sections. There are eight derived heights overall. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 70 campus footprints have a specific source-linked appearance profile, within 196 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 73 campus footprints have a specific source-linked appearance profile, within 206 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -137,17 +137,27 @@ Vallentine H22 now distinguishes the northern tan-brick façade, upper clerestor
 
 Ten public references were added, including Google Images discovery, two Street View panoramas, university photographs, the existing-site survey and the architectural context report. All 83 tests pass, covering retained source evidence, exact footprint partition, passage headroom and clearance, roof bounds, stair / landing continuity and clear exterior arrivals. Browser checks covered a complete 49 m passage walk to Southern Drive and a Vallentine ascent from about 55.6 m to the HUD-rounded 58.2 m landing. Visual inspection exposed missing downward-facing ceilings beneath the new links and parking decks; explicit underside winding corrects those surfaces.
 
+## Rex Vowels Theatre and SDN Kensington
+
+Rex Vowels F17 now has a low auditorium form, tan-brick panels, one high window band, pale framing / fascia, a shallow metal roof and a small reconstructed roof fitting. University exterior photography and Hassell's existing-condition photographs (2016 context report, PDF pp. 4 and 7) distinguish the theatre from the taller buildings behind. The generic 9.6 m estimate is retained as `previousEstimate`; its new 5.8 m envelope remains a photo-led estimate, not a measured height. The separate proposed G17 elevation was inspected for context, but its numerical parapet / plant levels are not assigned to F17.
+
+The covered F17/G17 link is an existing separate OSM footprint, way 45230027, previously rendered as an anonymous solid 9.6 m block. It now shares the theatre renderer and becomes an open portal / breezeway with a terrain-conforming paved floor. The original outline is retained exactly; canopy height and columns are reconstructed using DEM ground plus estimated clearance. A new destination enables an east-west walk beneath the canopy. Browser verification covered 19 m from west to east without blockage.
+
+SDN Kensington at UNSW Sydney retains the mapped N8 L-shaped perimeter and now has a yellow-brick entry wing, lower hall, open front verandah, pale framing / rafters, large glazing, shallow pitched roofs, mesh frontage fence and photo-led garden planting. The original 9.6 m generic estimate is retained; its 4.7 m maximum is estimated from the low-rise exterior form. Main hall and verandah levels account for the sloping DEM so the verandah is not buried. Exact roof splits, fence alignment and garden / tree positions are reconstructed. The provider's announced December 2026 playground completion is not assumed to have occurred.
+
+The provider history documents the name change on 2 June 2025. The interactive map uses the current name and N8 code, retaining the former mapped name and source tags. Searching “House at Pooh Corner” or “Pooh Corner” still finds the centre, verified in the browser.
+
+Ten references were added: university exterior, existing-condition exterior / roof images, public proposed elevation, current provider gallery / history, two provider exterior photographs, the older entry photograph and July 2015 Street View. All 89 tests pass, including unchanged source outlines / tags, retained estimates and old-name evidence, exact roof-region partition, terrain clearance, garden containment and an unobstructed link route. The wider campus remains an ongoing reconstruction; a source-linked appearance profile alone does not establish accurate massing or detail for every elevation.
+
 ## Remaining fidelity work
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
 
 Named buildings still without a source-linked profile:
 
-- SDN House at Pooh Corner (osm-way-45561523)
 - University Regiment - H1 (H1)
 - J2 (J2)
 - J2 (J2)
-- Rex Vowels Theatre (F17)
 - Campus Village Cafe (osm-way-584816505)
 
 ## Reproduction
