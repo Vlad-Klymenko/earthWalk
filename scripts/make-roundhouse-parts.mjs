@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import clip from 'polygon-clipping';
 import { CAMPUS } from '../dist/campus-data.js';
 import { roundhouseGeometry,ROUNDHOUSE_ID } from '../dist/roundhouse-data.js';
+import { roundhouseEntryGeometry } from '../dist/roundhouse-entry.js';
 import { frameRectangle } from '../dist/geometry.js';
 const poly=(points,holes=[])=>[points,...holes].map(r=>r.map(p=>[p.x,p.z]));
 const clean=r=>(Math.hypot(r[0][0]-r.at(-1)[0],r[0][1]-r.at(-1)[1])<1e-9?r.slice(0,-1):r).map(([x,z])=>({x,z}));
@@ -18,7 +19,9 @@ const others=clip.union(...CAMPUS.buildings.filter(b=>b.id!==ROUNDHOUSE_ID&&!b.w
 // Arc's completed-landscape photographs show broad paving south of the hall.
 // Its detailed boundary is reconstructed; keep source buildings / path ribbons clear.
 const forecourt=poly([g.center,...Array.from({length:35},(_,i)=>g.at((26+i*2.5)*Math.PI/180,54))]);
-const paving=emit(clip.difference(clip.union(poly(g.scale(1.15)),forecourt,...g.stairs.map(s=>poly(s.apron))),source,others,paths));
-const data={ROUNDHOUSE_MAIN:emit(main),ROUNDHOUSE_UPPER:emit(upper),ROUNDHOUSE_GROUND:ground,ROUNDHOUSE_ROOFS:roofs,ROUNDHOUSE_DECK:deck,ROUNDHOUSE_PARAPET:parapet,ROUNDHOUSE_STEPS:steps,ROUNDHOUSE_PAVING:paving};
+const entry=roundhouseEntryGeometry(b);
+const canopy=emit(clip.difference(poly(entry.points),...ground.filter(p=>p.kind!=='arcade').map(p=>poly(p.points,p.holes)),others));
+const paving=emit(clip.difference(clip.union(poly(g.scale(1.15)),forecourt,poly(entry.paving),...g.stairs.map(s=>poly(s.apron))),source,others,paths));
+const data={ROUNDHOUSE_MAIN:emit(main),ROUNDHOUSE_UPPER:emit(upper),ROUNDHOUSE_GROUND:ground,ROUNDHOUSE_ROOFS:roofs,ROUNDHOUSE_DECK:deck,ROUNDHOUSE_PARAPET:parapet,ROUNDHOUSE_STEPS:steps,ROUNDHOUSE_PAVING:paving,ROUNDHOUSE_CANOPY:canopy};
 fs.writeFileSync(new URL('../dist/roundhouse-parts.js',import.meta.url),'// Reconstructed Roundhouse components partition its retained mapped perimeter.\n// Regenerate with node scripts/make-roundhouse-parts.mjs.\n'+Object.entries(data).map(([k,v])=>'export const '+k+' = '+JSON.stringify(v,null,2)+';').join('\n')+'\n');
 console.log(`${roofs.length} Roundhouse roof regions, ${ground.length} ground regions, ${steps.length} treads`);

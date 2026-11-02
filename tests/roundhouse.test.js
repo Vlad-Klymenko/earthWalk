@@ -77,3 +77,17 @@ test('Roundhouse reconstructed tree seat and furniture leave both stair routes a
  }
  assert.ok(area(clip.intersection([poly(roundDisc(t,6))],ROUNDHOUSE_PAVING.map(shape)))>60,'paved surround reaches the new tree seat');
 });
+
+test('Roundhouse southwestern entrance canopy preserves occupied rooms and has walkable headroom',async()=>{
+ const {roundhouseEntryGeometry}=await import('../dist/roundhouse-entry.js');const {ROUNDHOUSE_CANOPY}=await import('../dist/roundhouse-parts.js');const e=roundhouseEntryGeometry(b);
+ assert.equal(e.reconstructed,true);assert.ok(ROUNDHOUSE_CANOPY.length);assert.ok(area(ROUNDHOUSE_CANOPY.map(shape))>150);
+ for(const p of ROUNDHOUSE_CANOPY){for(const other of [...ROUNDHOUSE_GROUND.filter(p=>p.kind!=='arcade'),...SOURCE.buildings.filter(p=>p.id!==ROUNDHOUSE_ID&&!p.walkableUnder)])assert.ok(area(clip.intersection([shape(p)],[shape(other)]))<1e-6,'canopy clears occupied volumes');for(const q of p.points){assert.ok(e.heightAt(q)-e.thickness-terrainHeight(q.x,q.z)-.22>2.25,'standing clearance below canopy');assert.ok(e.heightAt(q)<g.base+g.deck+.1);}}
+ // The centre approach is a real outside route to the closed glazed doorway.
+ for(let i=0;i<=60;i++){const t=i/60,p={x:e.arrival.x+(e.target.x-e.arrival.x)*t,z:e.arrival.z+(e.target.z-e.arrival.z)*t};for(const other of SOURCE.buildings.filter(p=>p.id!==ROUNDHOUSE_ID&&!p.walkableUnder))assert.ok(area(clip.intersection([disc(p,.4)],[shape(other)]))<1e-6);for(const c of e.columns)assert.ok(Math.hypot(p.x-c.x,p.z-c.z)>c.radius+.5);}
+});
+
+test('Roundhouse entrance columns keep source footpaths and both exterior stair routes open',async()=>{
+ const {roundhouseEntryGeometry}=await import('../dist/roundhouse-entry.js');const e=roundhouseEntryGeometry(b);
+ for(const c of e.columns){assert.ok(c.top-terrainHeight(c.x,c.z)-.22>2.25);for(const path of SOURCE.paths)for(let i=1;i<path.points.length;i++){const a=path.points[i-1],b=path.points[i],dx=b.x-a.x,dz=b.z-a.z,len=Math.hypot(dx,dz);if(!len)continue;const t=Math.max(0,Math.min(1,((c.x-a.x)*dx+(c.z-a.z)*dz)/(len*len)));assert.ok(Math.hypot(c.x-a.x-dx*t,c.z-a.z-dz*t)>c.radius+(path.width||3)/2+.35,`${path.id} clears the columns`);}for(const s of g.stairs)assert.ok(Math.hypot(c.x-s.bottom.x,c.z-s.bottom.z)>s.width/2+c.radius+1);}
+ const p=CAMPUS.landmarks.find(p=>p.id==='roundhouse-main-entry');assert.ok(p);assert.deepEqual({x:p.x,z:p.z},e.arrival);for(const other of SOURCE.buildings.filter(b=>!b.walkableUnder))assert.ok(area(clip.intersection([disc(p,.5)],[shape(other)]))<1e-6);
+});
