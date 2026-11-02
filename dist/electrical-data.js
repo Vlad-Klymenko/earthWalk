@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=7a4884bc1805';
-import { buildingBase } from './terrain.js?v=7a4884bc1805';
+import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=58401f45b1c1';
+import { buildingBase } from './terrain.js?v=58401f45b1c1';
 
 export const ELECTRICAL_ID='osm-way-45230019';
 export const ELECTRICAL_LEVELS={
