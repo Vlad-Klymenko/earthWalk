@@ -15,7 +15,10 @@ const deck=emit(clip.difference(main,upper)),parapet=emit(clip.difference(main,p
 const steps=[];for(const [stair,s]of g.stairs.entries())for(let i=0;i<s.count;i++){const v0=s.run*(1-(i+1)/s.count),v1=s.run*(1-i/s.count);steps.push({stair,index:i,points:frameRectangle(s.frame,s.width,v1-v0,0,(v0+v1)/2),rl:s.lowRL+(s.highRL-s.lowRL)*(i+1)/s.count,reconstructed:true});}
 const buffer=(points,width)=>{const out=[];for(let i=0;i<points.length-1;i++){const a=points[i],c=points[i+1],len=Math.hypot(c.x-a.x,c.z-a.z),nx=-(c.z-a.z)/len*width/2,nz=(c.x-a.x)/len*width/2;out.push([[[a.x+nx,a.z+nz],[a.x-nx,a.z-nz],[c.x-nx,c.z-nz],[c.x+nx,c.z+nz]]]);}return clip.union(...out);};
 const others=clip.union(...CAMPUS.buildings.filter(b=>b.id!==ROUNDHOUSE_ID&&!b.walkableUnder).map(b=>poly(b.points,b.holes))),paths=clip.union(...CAMPUS.paths.filter(p=>p.points.some(p=>Math.hypot(p.x-g.center.x,p.z-g.center.z)<100)).map(p=>buffer(p.points,(p.width||3)+.16)));
-const paving=emit(clip.difference(clip.union(poly(g.scale(1.15)),...g.stairs.map(s=>poly(s.apron))),source,others,paths));
+// Arc's completed-landscape photographs show broad paving south of the hall.
+// Its detailed boundary is reconstructed; keep source buildings / path ribbons clear.
+const forecourt=poly([g.center,...Array.from({length:35},(_,i)=>g.at((26+i*2.5)*Math.PI/180,54))]);
+const paving=emit(clip.difference(clip.union(poly(g.scale(1.15)),forecourt,...g.stairs.map(s=>poly(s.apron))),source,others,paths));
 const data={ROUNDHOUSE_MAIN:emit(main),ROUNDHOUSE_UPPER:emit(upper),ROUNDHOUSE_GROUND:ground,ROUNDHOUSE_ROOFS:roofs,ROUNDHOUSE_DECK:deck,ROUNDHOUSE_PARAPET:parapet,ROUNDHOUSE_STEPS:steps,ROUNDHOUSE_PAVING:paving};
 fs.writeFileSync(new URL('../dist/roundhouse-parts.js',import.meta.url),'// Reconstructed Roundhouse components partition its retained mapped perimeter.\n// Regenerate with node scripts/make-roundhouse-parts.mjs.\n'+Object.entries(data).map(([k,v])=>'export const '+k+' = '+JSON.stringify(v,null,2)+';').join('\n')+'\n');
 console.log(`${roofs.length} Roundhouse roof regions, ${ground.length} ground regions, ${steps.length} treads`);

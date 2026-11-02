@@ -6,7 +6,7 @@ import { CAMPUS } from '../dist/campus-enhancements.js';
 import { ROUNDHOUSE_ID,roundhouseGeometry } from '../dist/roundhouse-data.js';
 import { ROUNDHOUSE_MAIN,ROUNDHOUSE_UPPER,ROUNDHOUSE_GROUND,ROUNDHOUSE_ROOFS,ROUNDHOUSE_DECK,ROUNDHOUSE_PARAPET,ROUNDHOUSE_STEPS,ROUNDHOUSE_PAVING } from '../dist/roundhouse-parts.js';
 import { terrainHeight } from '../dist/terrain.js';
-import { framePoint } from '../dist/geometry.js';
+import { framePoint,frameRectangle } from '../dist/geometry.js';
 const raw=SOURCE.buildings.find(b=>b.id===ROUNDHOUSE_ID),b=CAMPUS.buildings.find(b=>b.id===ROUNDHOUSE_ID),g=roundhouseGeometry(b);
 const poly=(points,holes=[])=>[points,...holes].map(r=>r.map(p=>[p.x,p.z]));
 const shape=p=>poly(p.points,p.holes);
@@ -63,4 +63,17 @@ test('Roundhouse added paving avoids retained building footprints and source pat
 test('Roundhouse map arrivals stay outdoors and retain source path coordinates',()=>{
  for(const id of [ROUNDHOUSE_ID,'roundhouse-west','roundhouse-se-stairs','roundhouse-nw-stairs']){const p=CAMPUS.landmarks.find(p=>p.id===id);assert.ok(p);for(const other of SOURCE.buildings.filter(b=>!b.walkableUnder))assert.ok(area(clip.intersection([disc(p,.4)],[shape(other)]))<1e-6,`${id} clears ${other.id}`);}
  for(const path of SOURCE.paths.filter(p=>p.points.some(p=>Math.hypot(p.x-g.center.x,p.z-g.center.z)<100)))assert.deepEqual(CAMPUS.paths.find(p=>p.id===path.id).points,path.points);
+});
+
+test('Roundhouse reconstructed tree seat and furniture leave both stair routes and mapped buildings clear',async()=>{
+ const {ROUNDHOUSE_PLANE:t,ROUNDHOUSE_GARDEN_SEATS:seats,roundDisc}=await import('../dist/roundhouse-landscape.js');
+ assert.equal(t.reconstructed,true);assert.equal(t.form,'plane');assert.equal(t.height,21);assert.equal(t.base,terrainHeight(t.x,t.z)+.22);
+ const occupied=[disc(t,t.radius+.5)];
+ for(const p of seats){const dx=-Math.sin(p.angle),dz=Math.cos(p.angle),nx=Math.cos(p.angle),nz=Math.sin(p.angle),q={x:p.x+nx*1.5,z:p.z+nz*1.5};occupied.push(poly(frameRectangle({x:q.x,z:q.z,u:{x:dx,z:dz},v:{x:nx,z:nz}},2.4,.7)),disc({x:q.x+dx*1.7,z:q.z+dz*1.7},.65),disc(p,.25));}
+ for(const shape of occupied){
+  for(const b of SOURCE.buildings.filter(b=>!b.walkableUnder))assert.ok(area(clip.intersection([shape],[poly(b.points,b.holes)]))<1e-7,`${b.id} remains clear`);
+  for(const path of SOURCE.paths)for(let i=1;i<path.points.length;i++){const a=path.points[i-1],c=path.points[i],len=Math.hypot(c.x-a.x,c.z-a.z);if(!len)continue;const f={x:(a.x+c.x)/2,z:(a.z+c.z)/2,u:{x:-(c.z-a.z)/len,z:(c.x-a.x)/len},v:{x:(c.x-a.x)/len,z:(c.z-a.z)/len}};assert.ok(area(clip.intersection([shape],[poly(frameRectangle(f,(path.width||3)+.5,len))]))<1e-7,`${path.id} keeps its clear width, item ${occupied.indexOf(shape)}`);}
+  for(const s of g.stairs){assert.ok(area(clip.intersection([shape],[poly(frameRectangle(s.frame,s.width+1,14,0,5))]))<1e-7,'clear stair approach');assert.ok(area(clip.intersection([shape],[disc(s.arrival,.6)]))<1e-7,'clear map arrival');}
+ }
+ assert.ok(area(clip.intersection([poly(roundDisc(t,6))],ROUNDHOUSE_PAVING.map(shape)))>60,'paved surround reaches the new tree seat');
 });
