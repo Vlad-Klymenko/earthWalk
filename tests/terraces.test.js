@@ -14,7 +14,7 @@ const disc=(p,r)=>[Array.from({length:24},(_,i)=>[p.x+Math.cos(i/24*Math.PI*2)*r
 const perimeter=geometry=>geometry.flat().reduce((s,r)=>s+r.reduce((n,p,i)=>{const q=r[(i+1)%r.length];return n+Math.hypot(q[0]-p[0],q[1]-p[1]);},0),0);
 
 test('B8 identity and derived context roof retain the source envelope and independent level evidence',()=>{
- assert.equal(b.name,'University Terraces');assert.equal(b.campusRef,'B8');assert.equal(b.mappedHeight,32);assert.equal(b.levels,8);assert.equal(b.builderLevels,7);assert.equal(b.heightSource,'derived');
+ assert.equal(b.name,'University Terraces');assert.equal(b.campusRef,'B8');assert.equal(b.mappedHeight,32);assert.equal(b.levels,8);assert.equal(b.builderLevels,7);assert.equal(b.heightSource,'derived');assert.equal(b.heightQuantity,'Context roof above model base');
  assert.equal(b.height+g.base,TERRACES_HEIGHT_REPORT.roofRL);assert.deepEqual(b.points,raw.points);assert.deepEqual(b.holes,raw.holes);assert.deepEqual(b.tags,raw.tags);assert.deepEqual(b.reconstructedMapHoles,[g.court.points]);
  assert.ok(CAMPUS.landmarks.some(p=>p.id===TERRACES_ID));assert.ok(CAMPUS.landmarks.some(p=>p.id==='university-terraces-west'));
 });
