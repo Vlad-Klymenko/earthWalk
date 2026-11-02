@@ -1,52 +1,54 @@
-import { morvenGeometry, inMorvenCourt } from './morven-brown-data.js?v=58c986164b09';
-import { MORVEN_PARTS, MORVEN_PAVING } from './morven-brown-parts.js?v=58c986164b09';
-import { squarehouseGeometry } from './squarehouse-data.js?v=58c986164b09';
-import { SQUAREHOUSE_PARTS } from './squarehouse-parts.js?v=58c986164b09';
-import { redCentreGeometry, inLawrenceForecourt } from './red-centre-data.js?v=58c986164b09';
-import { RED_CENTRE_PARTS, RED_CENTRE_ROOFS, RED_CENTRE_PAVING } from './red-centre-parts.js?v=58c986164b09';
-import { oldMainGeometry } from './old-main-data.js?v=58c986164b09';
-import { businessGeometry, businessCanopyFaces } from './business-data.js?v=58c986164b09';
-import { lawGeometry } from './law-data.js?v=58c986164b09';
-import { BASSER_STEP_IDS, BASSER_REMOVED_TRIANGLES, BASSER_GROUND_EDGES } from './basser-ground-parts.js?v=58c986164b09';
-import { quadrangleGeometry } from './quadrangle-data.js?v=58c986164b09';
-import { QUADRANGLE_PARTS } from './quadrangle-parts.js?v=58c986164b09';
-import { ELECTRICAL_LANDSCAPE as electricalGround, campusTerrainHeight as terrainHeight, inElectricalCourt, courtGround, ELECTRICAL_REPLACED_STEPS } from './electrical-landscape.js?v=58c986164b09';
-import { ELECTRICAL_REMOVED_TRIANGLES, ELECTRICAL_GROUND_EDGES } from './electrical-landscape-parts.js?v=58c986164b09';
-import { electricalGeometry, ELECTRICAL_LEVELS } from './electrical-data.js?v=58c986164b09';
-import { REX_LINK_ID, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=58c986164b09';
-import { BARKER_APARTMENTS_PARTS } from './barker-apartments-parts.js?v=58c986164b09';
-import { barkerApartmentsGeometry } from './barker-apartments-data.js?v=58c986164b09';
-import { vallentineGeometry } from './vallentine-data.js?v=58c986164b09';
-import { parkingGeometry, parkingEntry, parkingCars } from './parking-data.js?v=58c986164b09';
-import { esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=58c986164b09';
-import { poolGeometry, gymGeometry } from './aquatic-data.js?v=58c986164b09';
-import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=58c986164b09';
-import { k17Geometry, willisGeometry } from './engineering-lane-data.js?v=58c986164b09';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=58c986164b09';
-import { RUPERT_PARTS } from './rupert-parts.js?v=58c986164b09';
-import * as THREE from './vendor/three.module.js?v=58c986164b09';
-import { terrainHeight as demHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=58c986164b09';
-import { buildingAppearance } from './visual-data.js?v=58c986164b09';
-import { BUILDING_PARTS } from './building-parts.js?v=58c986164b09';
-import { CAMPUS_DETAILS } from './campus-details.js?v=58c986164b09';
-import { VILLAGE_SPORTS } from './sports-data.js?v=58c986164b09';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=58c986164b09';
-import { NIDA_PARTS } from './nida-parts.js?v=58c986164b09';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=58c986164b09';
-import { tubeFaces } from './structure-data.js?v=58c986164b09';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=58c986164b09';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=58c986164b09';
-import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=58c986164b09';
-import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=58c986164b09';
-import { medicalGeometry } from './medical-data.js?v=58c986164b09';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=58c986164b09';
-import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=58c986164b09';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=58c986164b09';
-import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=58c986164b09';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=58c986164b09';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=58c986164b09';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=58c986164b09';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=58c986164b09';
+import { blockhouseGeometry, inBlockhouseForecourt } from './blockhouse-data.js?v=bb9674a3c57f';
+import { BLOCKHOUSE_PARTS, BLOCKHOUSE_ROOFS, BLOCKHOUSE_AWNING, BLOCKHOUSE_PAVING } from './blockhouse-parts.js?v=bb9674a3c57f';
+import { morvenGeometry, inMorvenCourt } from './morven-brown-data.js?v=bb9674a3c57f';
+import { MORVEN_PARTS, MORVEN_PAVING } from './morven-brown-parts.js?v=bb9674a3c57f';
+import { squarehouseGeometry } from './squarehouse-data.js?v=bb9674a3c57f';
+import { SQUAREHOUSE_PARTS } from './squarehouse-parts.js?v=bb9674a3c57f';
+import { redCentreGeometry, inLawrenceForecourt } from './red-centre-data.js?v=bb9674a3c57f';
+import { RED_CENTRE_PARTS, RED_CENTRE_ROOFS, RED_CENTRE_PAVING } from './red-centre-parts.js?v=bb9674a3c57f';
+import { oldMainGeometry } from './old-main-data.js?v=bb9674a3c57f';
+import { businessGeometry, businessCanopyFaces } from './business-data.js?v=bb9674a3c57f';
+import { lawGeometry } from './law-data.js?v=bb9674a3c57f';
+import { BASSER_STEP_IDS, BASSER_REMOVED_TRIANGLES, BASSER_GROUND_EDGES } from './basser-ground-parts.js?v=bb9674a3c57f';
+import { quadrangleGeometry } from './quadrangle-data.js?v=bb9674a3c57f';
+import { QUADRANGLE_PARTS } from './quadrangle-parts.js?v=bb9674a3c57f';
+import { ELECTRICAL_LANDSCAPE as electricalGround, campusTerrainHeight as terrainHeight, inElectricalCourt, courtGround, ELECTRICAL_REPLACED_STEPS } from './electrical-landscape.js?v=bb9674a3c57f';
+import { ELECTRICAL_REMOVED_TRIANGLES, ELECTRICAL_GROUND_EDGES } from './electrical-landscape-parts.js?v=bb9674a3c57f';
+import { electricalGeometry, ELECTRICAL_LEVELS } from './electrical-data.js?v=bb9674a3c57f';
+import { REX_LINK_ID, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=bb9674a3c57f';
+import { BARKER_APARTMENTS_PARTS } from './barker-apartments-parts.js?v=bb9674a3c57f';
+import { barkerApartmentsGeometry } from './barker-apartments-data.js?v=bb9674a3c57f';
+import { vallentineGeometry } from './vallentine-data.js?v=bb9674a3c57f';
+import { parkingGeometry, parkingEntry, parkingCars } from './parking-data.js?v=bb9674a3c57f';
+import { esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=bb9674a3c57f';
+import { poolGeometry, gymGeometry } from './aquatic-data.js?v=bb9674a3c57f';
+import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=bb9674a3c57f';
+import { k17Geometry, willisGeometry } from './engineering-lane-data.js?v=bb9674a3c57f';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=bb9674a3c57f';
+import { RUPERT_PARTS } from './rupert-parts.js?v=bb9674a3c57f';
+import * as THREE from './vendor/three.module.js?v=bb9674a3c57f';
+import { terrainHeight as demHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=bb9674a3c57f';
+import { buildingAppearance } from './visual-data.js?v=bb9674a3c57f';
+import { BUILDING_PARTS } from './building-parts.js?v=bb9674a3c57f';
+import { CAMPUS_DETAILS } from './campus-details.js?v=bb9674a3c57f';
+import { VILLAGE_SPORTS } from './sports-data.js?v=bb9674a3c57f';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=bb9674a3c57f';
+import { NIDA_PARTS } from './nida-parts.js?v=bb9674a3c57f';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=bb9674a3c57f';
+import { tubeFaces } from './structure-data.js?v=bb9674a3c57f';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=bb9674a3c57f';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=bb9674a3c57f';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=bb9674a3c57f';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=bb9674a3c57f';
+import { medicalGeometry } from './medical-data.js?v=bb9674a3c57f';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=bb9674a3c57f';
+import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=bb9674a3c57f';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=bb9674a3c57f';
+import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=bb9674a3c57f';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=bb9674a3c57f';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=bb9674a3c57f';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=bb9674a3c57f';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=bb9674a3c57f';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -1726,6 +1728,105 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     const texture=canvasTexture(2048,128,(ctx,w,h)=>{ctx.clearRect(0,0,w,h);ctx.fillStyle=color;ctx.textBaseline='middle';ctx.font='500 76px sans-serif';ctx.fillText(text,24,h/2,w-48);});
     const sign=new THREE.Mesh(new THREE.PlaneGeometry(width,width/16),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}));
     sign.position.set((a.x+c.x)/2+nx*.8,b.base+y,(a.z+c.z)/2+nz*.8);sign.rotation.y=Math.atan2(nx,nz);world.add(sign);
+  }
+
+  function blockhouseBuilding(b,concrete,brick,glass,detail,roofs){
+    const g=blockhouseGeometry(b),f=g.frame,metal=new Batch(),soffits=new Batch(),paving=new Batch(),garden=new Batch(),angle=Math.atan2(-f.u.z,f.u.x);
+    metal.base=soffits.base=b.base;
+    const at=(u,v,y)=>{const p=framePoint(f,u,v);return [p.x,y,p.z];},box=(batch,u,v,y,w,h,d,color)=>{const p=framePoint(f,u,v);batch.box(p.x,y,p.z,w,h,d,color,angle);};
+    const ordered=(raw,hole=false)=>(polygonArea(raw)>0)!==hole?raw:[...raw].reverse();
+    for(const part of BLOCKHOUSE_PARTS){
+      if(part.kind==='ground')for(const raw of [part.points,...part.holes]){const ring=ordered(raw,raw!==part.points);for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c),mid=g.local({x:(a.x+c.x)/2,z:(a.z+c.z)/2}),shop=len>4&&(mid.v>5.5||(mid.v<-4&&mid.u>3)),n={x:(c.z-a.z)/len,z:-(c.x-a.x)/len};
+        wallPanel(shop?glass:brick,a,c,0,3.8,shop?'#455e58':'#857054');
+        if(shop){
+          for(let d=.15;d<len;d+=1.3){const t=d/len;batchBeam(detail,[a.x+(c.x-a.x)*t+n.x*.06,.1,a.z+(c.z-a.z)*t+n.z*.06],[a.x+(c.x-a.x)*t+n.x*.06,3.4,a.z+(c.z-a.z)*t+n.z*.06],.055,'#bcc8b5');}
+          for(const y of [.14,.8,2.85,3.4])wallPanel(detail,a,c,y,y+.045,'#bbc8b4',.065);
+        }
+      }}
+      if(part.minHeight)polygon(soffits,part.points,part.minHeight,'#c6c9b7',part.holes,true);
+      addCollider({points:part.points,holes:part.holes,base:b.base,bottom:part.minHeight,top:3.8});
+    }
+    addCollider({points:b.points,holes:b.holes,base:b.base,bottom:3.8,top:g.roof});
+    const ring=ordered(b.points),faces=[],cb=g.core.bounds;
+    // Split original façade edges at the reconstructed core. Its concrete
+    // shell replaces these spans instead of competing with brick / fascia.
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],c=ring[(i+1)%ring.length],la=g.local(a),lc=g.local(c),cuts=[0,1];
+      if(Math.max(la.u,lc.u)<cb.u0||Math.min(la.u,lc.u)>cb.u1||Math.max(la.v,lc.v)<cb.v0||Math.min(la.v,lc.v)>cb.v1){faces.push({a,c});continue;}
+      for(const [key,value] of [['u',cb.u0],['u',cb.u1],['v',cb.v0],['v',cb.v1]])if(Math.abs(lc[key]-la[key])>1e-8){const t=(value-la[key])/(lc[key]-la[key]);if(t>0&&t<1)cuts.push(t);}
+      cuts.sort((a,b)=>a-b);
+      for(let j=0;j<cuts.length-1;j++){
+        const l=cuts[j],r=cuts[j+1],t=(l+r)/2,u=la.u+(lc.u-la.u)*t,v=la.v+(lc.v-la.v)*t;
+        if(r-l<1e-8||u>cb.u0-1e-7&&u<cb.u1+1e-7&&v>cb.v0-1e-7&&v<cb.v1+1e-7)continue;
+        faces.push({a:{x:a.x+(c.x-a.x)*l,z:a.z+(c.z-a.z)*l},c:{x:a.x+(c.x-a.x)*r,z:a.z+(c.z-a.z)*r}});
+      }
+    }
+    for(let i=0;i<faces.length;i++){
+      const {a,c}=faces[i],len=distance2(a,c),la=g.local(a),lc=g.local(c),mid={u:(la.u+lc.u)/2,v:(la.v+lc.v)/2},n={x:(c.z-a.z)/len,z:-(c.x-a.x)/len},long=Math.abs(lc.u-la.u)>4;
+      const p=(t,y,off=0)=>[a.x+(c.x-a.x)*t+n.x*off,y,a.z+(c.z-a.z)*t+n.z*off];
+      wallPanel(brick,a,c,3.8,g.roof,'#857054');
+      if(long){
+        const count=Math.max(1,Math.round(len/3.4));
+        for(const row of g.rows)for(let j=0;j<count;j++){
+          const t=(j+.5)/count,u=la.u+(lc.u-la.u)*t;if(Math.abs(u)>32.5||mid.v<-7)continue;
+          const l=t-.32/len,r=t+.32/len;
+          wallPanel(glass,a,c,row.low,row.high,'#435b57',.025,l,r);
+          for(const q of [l,r])batchBeam(detail,p(q,row.low,.07),p(q,row.high,.07),.035,'#bec8b6');
+          for(const y of [row.low,row.low+.67,row.high])batchBeam(detail,p(l,y,.08),p(r,y,.08),.04,'#bec8b6');
+          if((i+j)%3===0)wallPanel(detail,a,c,row.low+.05,row.low+.61,'#8e9e94',.05,l+.025/len,r-.025/len);
+          // Small pale reveals project beyond the glazing and brick face.
+          batchBeam(metal,p(l,row.low-.04,.16),p(r,row.low-.04,.16),.08,'#a8b29d');
+          brick.quad(p(l-.06/len,row.low,.22),p(l-.06/len,row.high,.22),p(l,row.high,0),p(l,row.low,0),'#74644d');
+          brick.quad(p(r,row.low,0),p(r,row.high,0),p(r+.06/len,row.high,.22),p(r+.06/len,row.low,.22),'#74644d');
+        }
+        for(const y of [3.78,7.72,11.65])batchBeam(metal,p(0,y,.10),p(1,y,.10),y===3.78?.18:.10,'#d0d3bf');
+        if(mid.v>6){
+          wallPanel(concrete,a,c,3.0,3.68,'#d1d1bd',.06);
+          // End rooms retain a high horizontal ground window above the hedge.
+          for(const [u0,u1] of [[-37.5,-34.2],[30.2,37.5]]){const ts=[(u0-la.u)/(lc.u-la.u),(u1-la.u)/(lc.u-la.u)].sort((a,b)=>a-b),l=Math.max(0,ts[0]),r=Math.min(1,ts[1]);if(r>l){wallPanel(glass,a,c,2.1,2.65,'#465e57',.03,l,r);for(let d=l*len;d<r*len;d+=1.2)batchBeam(detail,p(d/len,2.1,.08),p(d/len,2.65,.08),.035,'#c2c9b5');}}
+        }
+      }
+      batchBeam(metal,p(0,11.78,.14),p(1,11.78,.14),.15,'#c3c9b5');
+    }
+    for(const part of BLOCKHOUSE_ROOFS){
+      polygon(roofs,part.points,part.height,'#a4ac98',part.holes);
+      if(part.kind!=='core')continue;
+      const ring=ordered(part.points);
+      for(let i=0;i<ring.length;i++){
+        const a=ring[i],c=ring[(i+1)%ring.length],len=distance2(a,c),n={x:(c.z-a.z)/len,z:-(c.x-a.x)/len};
+        wallPanel(concrete,a,c,0,part.height,'#abb5a5',.04);
+        for(const y of [3.9,7.75,11.8,14.8])wallPanel(detail,a,c,y,y+.025,'#839383',.055);
+        for(let d=.85;d<len;d+=1.1)wallPanel(detail,a,c,3.8,part.height,'#8b9b8c',.055,d/len,(d+.018)/len);
+        if(len>3){wallPanel(glass,a,c,4.2,13.9,'#526c65',.06,.12,.27);for(const y of [7.7,11.5])wallPanel(detail,a,c,y,y+.06,'#bbc7b5',.08,.12,.27);}
+        if(n.x*f.v.x+n.z*f.v.z<-.7)wallPanel(glass,a,c,.2,3.2,'#455e58',.08,.36,.72);
+        batchBeam(metal,[a.x+n.x*.07,part.height,a.z+n.z*.07],[c.x+n.x*.07,part.height,c.z+n.z*.07],.09,'#c1c9b3');
+      }
+      addCollider({points:part.points,holes:part.holes,base:b.base,bottom:g.roof,top:part.height});
+    }
+    // Pillars remain on the original south perimeter, outside the source
+    // through-route buffer. Recessed glazing stays behind the covered walk.
+    for(const u of [-33.5,-29,-23,-17,-11,-5,1,7,13,19,25,29.5]){
+      box(brick,u,8.65,1.9,.46,3.8,.55,'#857054');addCollider({points:frameRectangle(f,.46,.55,u,8.65),base:b.base,top:3.8});
+    }
+    for(const part of BLOCKHOUSE_AWNING){
+      polygon(metal,part.points,part.top,'#8d9b8e',part.holes);polygon(soffits,part.points,part.bottom,'#b9c1b1',part.holes,true);
+      const ring=ordered(part.points);for(let i=0;i<ring.length;i++)wallPanel(metal,ring[i],ring[(i+1)%ring.length],part.bottom,part.top,'#58695d');
+      addCollider({points:part.points,holes:part.holes,base:b.base,bottom:part.bottom,top:part.top});
+    }
+    for(let u=-36;u<37;u+=3.4){
+      // Thin cantilever rafters and pale parallel soffit strips.
+      batchBeam(metal,at(u,-12.7,3.65),at(u,-4.7,3.65),.12,'#4a5c51');
+      for(let v=-12.6;v<-5;v+=.38)batchBeam(metal,at(u,v,3.705),at(Math.min(37,u+3.4),v,3.705),.016,'#8f9b8a');
+    }
+    for(const floor of BLOCKHOUSE_PAVING)polygon(paving,floor.points,.22,'#aca893',floor.holes);
+    for(const hedge of g.hedges){
+      for(let u=hedge.u-hedge.width/2+.3;u<hedge.u+hedge.width/2;u+=.65){box(garden,u,hedge.v,.32,.07,.64,.07,'#857356');box(garden,u,hedge.v,.85,.76,.55,.72,'#55784b');box(garden,u+.12,hedge.v-.05,1.12,.55,.15,.65,'#698957');}
+    }
+    // Discreet campus identity on the fascia; historical tenant names are not
+    // presented as current businesses.
+    facadeCaption(b,framePoint(f,17.5,9.05),framePoint(f,4.5,8.93),'G6 | Blockhouse',7.5,3.38,'#566655');
+    world.add(metal.mesh(style('#ffffff',{vertexColors:true,metalness:.18})),soffits.mesh(style('#ffffff',{vertexColors:true})),paving.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('paving')})),garden.mesh(style('#ffffff',{vertexColors:true})));
   }
 
   function morvenBrownBuilding(b,brick,glass,detail,roofs){
@@ -4158,6 +4259,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       if(profile.facade==='webster-theatres'){websterTheatres(b,masonry,aggregatework,glass,detail,roofs);continue;}
       if(profile.facade==='clancy'){clancyAuditorium(b,detail);continue;}
       if(profile.facade==='bioscience'){bioscienceBuilding(b,detail,roofs);continue;}
+      if(profile.facade==='blockhouse'){blockhouseBuilding(b,masonry,clinkerwork,glass,detail,roofs);continue;}
       if(profile.facade==='morven-brown'){morvenBrownBuilding(b,clinkerwork,glass,detail,roofs);continue;}
       if(profile.facade==='squarehouse'){squarehouseBuilding(b,masonry,clinkerwork,glass,detail,roofs);continue;}
       if(profile.facade==='red-centre'){redCentreBuilding(b,masonry,brickwork,glass,detail,roofs);continue;}
@@ -4457,7 +4559,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     }
     for(let i=0;i<100;i++) candidates.push({x:bounds.minX+8+random()*(bounds.maxX-bounds.minX-16),z:bounds.minZ+8+random()*(bounds.maxZ-bounds.minZ-16),big:false});
     for(const c of candidates) {
-      if(!c.retained&&(inLawrenceForecourt(c.x,c.z)||inMorvenCourt(c.x,c.z)))continue;
+      if(!c.retained&&(inLawrenceForecourt(c.x,c.z)||inMorvenCourt(c.x,c.z)||inBlockhouseForecourt(c.x,c.z)))continue;
       const fig=c.form==='heritage-fig',fixedTree=['samuels-gum','civil-poplar','rupert-courtyard'].includes(c.form);
       if(inElectricalCourt(c.x,c.z))continue;
       if(c.x<bounds.minX+3||c.x>bounds.maxX-3||c.z<bounds.minZ+3||c.z>bounds.maxZ-3)continue;
@@ -4471,6 +4573,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     }
     const morven=morvenGeometry(campus.buildings.find(b=>b.id==='osm-relation-2328645-0'));
     for(const [u,v,height] of [[8,-7,13],[14,3,14]]){const p=framePoint(morven.frame,u,v);trees.push({...p,height,scale:height/9.5,rotation:u,form:'rupert-courtyard'});addCollider({...p,radius:.4,top:height});}
+    for(const tree of blockhouseGeometry(campus.buildings.find(b=>b.id==='blockhouse')).trees){trees.push({...tree,scale:tree.height/9.5,rotation:tree.u});addCollider({x:tree.x,z:tree.z,radius:.75,top:tree.height});}
     const branchCount=trees.length*9;
     const branches=new THREE.InstancedMesh(new THREE.CylinderGeometry(.72,1,1,9),style('#c2bfb0',{map:surfaceTexture('bark')}),branchCount);
     const leafCount=trees.reduce((sum,t)=>sum+(t.form==='heritage-fig'?160:64),0);
