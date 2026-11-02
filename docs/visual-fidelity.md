@@ -8,7 +8,7 @@ The goal remains a detailed, recognizable recreation of the entire main Kensingt
 - Lower University Mall sample: about 27.6 m; library forecourt: about 52.5 m. Full raster values span 20.2–65.3 m, including surrounding streets.
 - 50/98 campus footprints have an explicit OSM height tag. Two now use stronger public planning evidence instead: Library 57.74 m and Mathews 54 m (NSW B22 assessment, June 2020, printed p. 22 / PDF p. 28). Both OSM tags said 60 m; those conflicting values are retained as mappedHeight. NIDA / Parade Theatre now uses the maximum 19 m mapped building-part tag rather than its old 12 m overall tag, retained separately. Goldstein Dining Hall retains a conflicting 20 m map tag while its model uses a clearly labelled 12 m photograph-led estimate. F10 now uses a derived parapet height from an approximate public planning RL, with its original 45 m tag retained. Clancy retains its old 8 m tag while using a scaled-section 14.5 m model estimate. The remaining 43 parent height tags are used unchanged; 44 footprints use estimates; the two biosciences footprints use derived planning roof elevations, and Wallace Wurth uses separate planning parapet, plant and flue elevations. Science and Engineering, Hilmer and D8 now also use separately identified planning elevations minus DEM ground. Barker parking now uses an existing screen level from its public architectural sections. There are eight derived heights overall. Mapped building-part heights also remain community data, not a survey guarantee. Building cards identify the source category and link to its public source when used.
 - Five actual library building-part outlines separate the tower and lower podium. Tower maximum uses the report's 57.74 m figure; lower parts estimate height from mapped levels.
-- 68 campus footprints have a specific source-linked appearance profile, within 186 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
+- 70 campus footprints have a specific source-linked appearance profile, within 196 visual/data references. This includes the existing custom Roundhouse and Scientia models, now correctly registered in the profile audit. Some additional buildings use type-based appearance rather than building-specific research.
 - Two Google Street View headings at University Mall were visually inspected, alongside Google Images and original architect/university galleries. Photographs are linked as research references, not redistributed as game textures.
 - 95 OSM furniture positions are retained; object designs remain approximate. Mapped stair locations use DEM endpoint rises; individual risers, railings and terrain below 5 m resolution are not surveyed reproductions.
 
@@ -127,15 +127,23 @@ Botany H25 now has six visual parking decks, open roof, pale rectangular screen 
 
 Nine public references were added: university entrance photographs / project context, two historical Google Street View panoramas, two exterior photo directories, architectural drawings and a survey. Procedural mesh textures and generic cars do not redistribute source photography. All 77 tests pass. Automated checks cover source geometry preservation, split-level coverage, component containment, evidence conflicts and clear map arrival positions. Browser verification covered both destination cards and exterior models, an 11 m Botany approach and a 7 m Barker exterior walk. A renderer argument error found during inspection was corrected; no warnings or errors were recorded for the final asset revision.
 
+## Barker apartments and Vallentine Annexe
+
+Barker N13 now uses yellow-brick upper floors, a red-brick base, narrow grey courses, pale window frames / curtains and black steel balconies. The November 2025 Bates Smart report's existing-context diagram (PDF p. 14), the public N13 entrance photograph and February 2022 Street View distinguish existing staggered buildings and pitched angular roofs from proposed replacement towers. The original 12 m height and four-level tag remain. The report describes three-to-five-storey components; their precise roof levels have not been established. Ridge positions, roof pitch, bay spacing and balconies are photo-led reconstructions. The public site survey corroborates courtyards and paths but does not provide a new measured N13 roof height in the inspected sheets.
+
+The Gate 15 route follows five retained OSM footway sections. A generated split partitions the original N13 polygon exactly into solid sections and two raised covered links, with reconstructed clearance 3.2 m above local DEM ground. Source geometry is preserved, and the route now remains walkable beneath both links. No replacement-development road or future building is treated as current.
+
+Vallentine H22 now distinguishes the northern tan-brick façade, upper clerestory, eave brackets, small vertical windows and projecting lower canopy from the eastern white diamond-pattern cladding, window shades, teal stair wall, red treads, thin white rails and wave canopy. The face assignment was checked in July 2015 Street View against university and photo-directory images. The 12 m height and three-level map tag remain; the 2.4 m stair rise, rail dimensions, wave profile and small brick apron are reconstructed. New map destinations show the northern façade and allow climbing to the eastern landing. This is not a surveyed accessibility route.
+
+Ten public references were added, including Google Images discovery, two Street View panoramas, university photographs, the existing-site survey and the architectural context report. All 83 tests pass, covering retained source evidence, exact footprint partition, passage headroom and clearance, roof bounds, stair / landing continuity and clear exterior arrivals. Browser checks covered a complete 49 m passage walk to Southern Drive and a Vallentine ascent from about 55.6 m to the HUD-rounded 58.2 m landing. Visual inspection exposed missing downward-facing ceilings beneath the new links and parking decks; explicit underside winding corrects those surfaces.
+
 ## Remaining fidelity work
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
 
 Named buildings still without a source-linked profile:
 
-- Barker Street Apartments - N13 (N13)
 - SDN House at Pooh Corner (osm-way-45561523)
-- Vallentine Annexe - H22 (H22)
 - University Regiment - H1 (H1)
 - J2 (J2)
 - J2 (J2)
@@ -149,6 +157,7 @@ Named buildings still without a source-linked profile:
 - node scripts/make-sports-data.mjs
 - node scripts/make-chemical-parts.mjs (reconstructed F10 split, preserving the mapped perimeter)
 - node scripts/make-chancellery-roofs.mjs (reconstructed roof split within the mapped Chancellery outline)
+- node scripts/make-barker-apartments-parts.mjs (reconstructed Gate 15 split preserving the mapped N13 footprint)
 - node scripts/make-rupert-parts.mjs (reconstructed regions preserve the mapped courtyard and outline)
 - node scripts/make-medical-parts.mjs (reconstructed medical precinct split, preserving mapped footprints)
 - node scripts/make-bioscience-parts.mjs (reconstructed internal regions preserving both biosciences outlines)
