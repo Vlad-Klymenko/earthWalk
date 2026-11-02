@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=5d6025d5a108';
-import { buildingBase } from './terrain.js?v=5d6025d5a108';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=4fc824924df7';
+import { buildingBase } from './terrain.js?v=4fc824924df7';
 
 export const WALLACE_HEIGHT_REPORT={
   title:'NSW Wallace Wurth modification assessment · Figure 4',

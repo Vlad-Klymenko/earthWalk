@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=5d6025d5a108';
-import { buildingBase, terrainHeight } from './terrain.js?v=5d6025d5a108';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=4fc824924df7';
+import { buildingBase, terrainHeight } from './terrain.js?v=4fc824924df7';
 export const NEWTON_ID='osm-way-45489051',KEITH_ID='osm-way-45489639',PHYSICS_ID='osm-way-45489666';
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});
 const heading=(a,c)=>Math.atan2(c.x-a.x,a.z-c.z);
