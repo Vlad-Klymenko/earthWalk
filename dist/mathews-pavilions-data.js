@@ -1,6 +1,6 @@
-import {CAMPUS} from './campus-data.js?v=35987af06682';
-import {terrainHeight,buildingBase} from './terrain.js?v=35987af06682';
-import {orientedFrame,framePoint,frameRectangle,roundedFrameRectangle} from './geometry.js?v=35987af06682';
+import {CAMPUS} from './campus-data.js?v=0471b93d3b95';
+import {terrainHeight,buildingBase} from './terrain.js?v=0471b93d3b95';
+import {orientedFrame,framePoint,frameRectangle,roundedFrameRectangle} from './geometry.js?v=0471b93d3b95';
 export const MATHEWS_PAVILIONS_ID='osm-relation-15937009-0';
 export const MATHEWS_PAVILIONS_REFERENCE='https://studentvip.com.au/unsw/kensington/maps/133719';
 export const MATHEWS_PAVILIONS_PANORAMA='https://www.google.com/maps/@-33.9173922,151.2344323,3a,90y,100t/data=!3m4!1e1!3m2!1sCIHM0ogKEICAgICmuczLEg!2e10';
