@@ -1,26 +1,27 @@
-import { REX_ID, REX_LINK_ID, SDN_ID, REX_VISUAL_HEIGHT, SDN_VISUAL_HEIGHT, SDN_CURRENT_NAME, SDN_RENAME_SOURCE, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=fafc541ec63f';
-import { BARKER_APARTMENTS_ID, barkerApartmentsGeometry } from './barker-apartments-data.js?v=fafc541ec63f';
-import { VALLENTINE_ID, vallentineGeometry } from './vallentine-data.js?v=fafc541ec63f';
-import { BARKER_PARKING_ID, BOTANY_PARKING_ID, BARKER_EXISTING_REPORT, parkingGeometry } from './parking-data.js?v=fafc541ec63f';
-import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=fafc541ec63f';
-import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=fafc541ec63f';
-import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=fafc541ec63f';
-import { WILLIS_ID, K17_VISUAL_HEIGHT, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=fafc541ec63f';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=fafc541ec63f';
-import { RUPERT_LAWN } from './rupert-parts.js?v=fafc541ec63f';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=fafc541ec63f';
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=fafc541ec63f';
-import { applyReportedHeight } from './building-heights.js?v=fafc541ec63f';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=fafc541ec63f';
-import { VILLAGE_SPORTS } from './sports-data.js?v=fafc541ec63f';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=fafc541ec63f';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=fafc541ec63f';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=fafc541ec63f';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=fafc541ec63f';
-import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=fafc541ec63f';
-import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=fafc541ec63f';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=fafc541ec63f';
-import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=fafc541ec63f';
+import { ELECTRICAL_ID, ELECTRICAL_LEVELS, electricalGeometry } from './electrical-data.js?v=ee6aa2c8dfff';
+import { REX_ID, REX_LINK_ID, SDN_ID, REX_VISUAL_HEIGHT, SDN_VISUAL_HEIGHT, SDN_CURRENT_NAME, SDN_RENAME_SOURCE, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=ee6aa2c8dfff';
+import { BARKER_APARTMENTS_ID, barkerApartmentsGeometry } from './barker-apartments-data.js?v=ee6aa2c8dfff';
+import { VALLENTINE_ID, vallentineGeometry } from './vallentine-data.js?v=ee6aa2c8dfff';
+import { BARKER_PARKING_ID, BOTANY_PARKING_ID, BARKER_EXISTING_REPORT, parkingGeometry } from './parking-data.js?v=ee6aa2c8dfff';
+import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=ee6aa2c8dfff';
+import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=ee6aa2c8dfff';
+import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=ee6aa2c8dfff';
+import { WILLIS_ID, K17_VISUAL_HEIGHT, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=ee6aa2c8dfff';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=ee6aa2c8dfff';
+import { RUPERT_LAWN } from './rupert-parts.js?v=ee6aa2c8dfff';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=ee6aa2c8dfff';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=ee6aa2c8dfff';
+import { applyReportedHeight } from './building-heights.js?v=ee6aa2c8dfff';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=ee6aa2c8dfff';
+import { VILLAGE_SPORTS } from './sports-data.js?v=ee6aa2c8dfff';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=ee6aa2c8dfff';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=ee6aa2c8dfff';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=ee6aa2c8dfff';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=ee6aa2c8dfff';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=ee6aa2c8dfff';
+import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=ee6aa2c8dfff';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=ee6aa2c8dfff';
+import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=ee6aa2c8dfff';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -39,6 +40,8 @@ const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.i
 const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(b.id===ELECTRICAL_ID){const g=electricalGeometry(b);return {...b,mappedHeight:b.height,height:g.maximumRL-g.base,heightSource:'derived',heightQuantity:'Lightning mast above model base',heightReference:ELECTRICAL_LEVELS,heightNote:'Hassell DA_A_2001 Rev C labels the existing parapet RL 57.141 m, plant RL 63.711 m, stair enclosure RL 60.856 m and highest lightning mast RL 69.50 m. The maximum subtracts NSW DEM ground, assuming compatible datums; it is not a surveyed building height. The original 24 m height and eight-level OSM tag remain separate evidence. Brick piers, blue-grey ceramic panels, bay windows, breeze blocks and folded translucent plant screens follow completed photographs. Floor spacing, core and plant footprints, flues and mast locations are reconstructed. The outdoor model keeps the occupied perimeter closed and the separately mapped Rex link clear.'};}
+
   if(b.id===REX_ID)return {...b,previousEstimate:b.height,height:REX_VISUAL_HEIGHT,heightSource:'estimated',heightReference:{title:'Photo-led theatre massing estimate',url:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f17',linkLabel:'Model height · exterior photographs'},heightNote:'The former 9.6 m generic estimate is replaced by a 5.8 m photo-led maximum. The public Hassell report shows a low theatre, roof and covered link; the university exterior confirms pale fascia, window framing and a metal roof. No measured F17 roof level was extracted. Roof slope, window band, vent and portal dimensions remain reconstructed; the source outline and tags are retained.'};
   if(b.id===REX_LINK_ID){const g=rexGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===REX_ID),b);return {...b,modelledWith:REX_ID,previousEstimate:b.height,height:g.bridge.roofRL-g.bridge.base,heightSource:'estimated',heightQuantity:'Canopy above model base',heightNote:'This separately mapped footprint is the covered link between F17 and G17 shown in university photographs. The former 9.6 m solid block becomes an open breezeway. Canopy elevation and columns are reconstructed from local DEM ground plus estimated clearance; the original source footprint and tags remain.'};}
   if(b.id===SDN_ID)return {...b,mappedName:b.name,name:SDN_CURRENT_NAME,nameSource:SDN_RENAME_SOURCE,campusRef:'N8',aliases:[...b.aliases,'House at Pooh Corner','Pooh Corner','SDN Kensington','N8',SDN_CURRENT_NAME],previousEstimate:b.height,height:SDN_VISUAL_HEIGHT,heightSource:'estimated',heightReference:{title:'Photo-led low-rise massing estimate',url:'https://www.sdn.org.au/services/our-centres/sdn-kensington-at-unsw-sydney/',linkLabel:'Model height · provider photographs'},heightNote:'The former 9.6 m generic estimate becomes a 4.7 m photo-led maximum, with a lower main hall and verandah. Roof pitch, wall levels, glazing, fence and garden detail are reconstructed, not surveyed. The source outline and tags remain. SDN renamed House at Pooh Corner on 2 June 2025; the old name remains searchable. The provider announces playground work expected in December 2026; future equipment is not treated as completed.'};
@@ -85,6 +88,8 @@ function enhanceBuilding(b){
 }
 
 function enhanceLandmark(p){
+  if(p.id===ELECTRICAL_ID){const g=electricalGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));return {...p,...g.arrival,heading:g.heading,pitch:.27,showSign:false,description:'G17 · Brick piers, blue-grey ceramic panels, projecting bay windows, tall brick cores and folded translucent rooftop plant. Heights distinguish planning roof / plant / mast levels; detailed dimensions are reconstructed'};}
+
   if(p.id===REX_ID){const g=rexGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id),MAPPED_CAMPUS.buildings.find(b=>b.id===REX_LINK_ID));return {...p,...g.arrival,heading:g.heading,pitch:.02,showSign:false,description:'F17 · Low theatre with pale window framing and a shallow metal roof beside the covered link to Electrical Engineering; height and details are photo-led estimates'};}
   if(p.id===SDN_ID){const g=sdnGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));return {...p,name:SDN_CURRENT_NAME,...g.arrival,heading:g.heading,pitch:.04,showSign:false,code:'N8',description:'N8 · Former House at Pooh Corner: yellow-brick low-rise centre, glazed verandah and fenced garden; detailed dimensions reconstructed'};}
   if(p.id===BARKER_APARTMENTS_ID){const g=barkerApartmentsGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===p.id));return {...p,...g.arrival,heading:g.heading,pitch:.18,showSign:false,description:'N13 · Yellow and red brick, angular roofs, black steel balconies and the walkable Gate 15 passage; detailed dimensions reconstructed'};}

@@ -1,4 +1,4 @@
-import { ELEVATION } from './elevation-data.js?v=fafc541ec63f';
+import { ELEVATION } from './elevation-data.js?v=ee6aa2c8dfff';
 
 // Local campus coordinates: east +x, south +z. Elevations remain in real metres.
 const EARTH = 6371008.8, RAD = Math.PI / 180;
