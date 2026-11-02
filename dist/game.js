@@ -1,38 +1,40 @@
-import { electricalGeometry, ELECTRICAL_LEVELS } from './electrical-data.js?v=ee6aa2c8dfff';
-import { REX_LINK_ID, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=ee6aa2c8dfff';
-import { BARKER_APARTMENTS_PARTS } from './barker-apartments-parts.js?v=ee6aa2c8dfff';
-import { barkerApartmentsGeometry } from './barker-apartments-data.js?v=ee6aa2c8dfff';
-import { vallentineGeometry } from './vallentine-data.js?v=ee6aa2c8dfff';
-import { parkingGeometry, parkingEntry, parkingCars } from './parking-data.js?v=ee6aa2c8dfff';
-import { esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=ee6aa2c8dfff';
-import { poolGeometry, gymGeometry } from './aquatic-data.js?v=ee6aa2c8dfff';
-import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=ee6aa2c8dfff';
-import { k17Geometry, willisGeometry } from './engineering-lane-data.js?v=ee6aa2c8dfff';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=ee6aa2c8dfff';
-import { RUPERT_PARTS } from './rupert-parts.js?v=ee6aa2c8dfff';
-import * as THREE from './vendor/three.module.js?v=ee6aa2c8dfff';
-import { terrainHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=ee6aa2c8dfff';
-import { buildingAppearance } from './visual-data.js?v=ee6aa2c8dfff';
-import { BUILDING_PARTS } from './building-parts.js?v=ee6aa2c8dfff';
-import { CAMPUS_DETAILS } from './campus-details.js?v=ee6aa2c8dfff';
-import { VILLAGE_SPORTS } from './sports-data.js?v=ee6aa2c8dfff';
-import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=ee6aa2c8dfff';
-import { NIDA_PARTS } from './nida-parts.js?v=ee6aa2c8dfff';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=ee6aa2c8dfff';
-import { tubeFaces } from './structure-data.js?v=ee6aa2c8dfff';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=ee6aa2c8dfff';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=ee6aa2c8dfff';
-import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=ee6aa2c8dfff';
-import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=ee6aa2c8dfff';
-import { medicalGeometry } from './medical-data.js?v=ee6aa2c8dfff';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=ee6aa2c8dfff';
-import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=ee6aa2c8dfff';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=ee6aa2c8dfff';
-import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=ee6aa2c8dfff';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=ee6aa2c8dfff';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=ee6aa2c8dfff';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=ee6aa2c8dfff';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=ee6aa2c8dfff';
+import { ELECTRICAL_LANDSCAPE as electricalGround, campusTerrainHeight as terrainHeight, inElectricalCourt, courtGround, ELECTRICAL_REPLACED_STEPS } from './electrical-landscape.js?v=28a53c4d98d5';
+import { ELECTRICAL_REMOVED_TRIANGLES, ELECTRICAL_GROUND_EDGES } from './electrical-landscape-parts.js?v=28a53c4d98d5';
+import { electricalGeometry, ELECTRICAL_LEVELS } from './electrical-data.js?v=28a53c4d98d5';
+import { REX_LINK_ID, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=28a53c4d98d5';
+import { BARKER_APARTMENTS_PARTS } from './barker-apartments-parts.js?v=28a53c4d98d5';
+import { barkerApartmentsGeometry } from './barker-apartments-data.js?v=28a53c4d98d5';
+import { vallentineGeometry } from './vallentine-data.js?v=28a53c4d98d5';
+import { parkingGeometry, parkingEntry, parkingCars } from './parking-data.js?v=28a53c4d98d5';
+import { esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=28a53c4d98d5';
+import { poolGeometry, gymGeometry } from './aquatic-data.js?v=28a53c4d98d5';
+import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=28a53c4d98d5';
+import { k17Geometry, willisGeometry } from './engineering-lane-data.js?v=28a53c4d98d5';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=28a53c4d98d5';
+import { RUPERT_PARTS } from './rupert-parts.js?v=28a53c4d98d5';
+import * as THREE from './vendor/three.module.js?v=28a53c4d98d5';
+import { terrainHeight as demHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=28a53c4d98d5';
+import { buildingAppearance } from './visual-data.js?v=28a53c4d98d5';
+import { BUILDING_PARTS } from './building-parts.js?v=28a53c4d98d5';
+import { CAMPUS_DETAILS } from './campus-details.js?v=28a53c4d98d5';
+import { VILLAGE_SPORTS } from './sports-data.js?v=28a53c4d98d5';
+import { theatreGeometry, newCollegeRoof } from './architecture-data.js?v=28a53c4d98d5';
+import { NIDA_PARTS } from './nida-parts.js?v=28a53c4d98d5';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=28a53c4d98d5';
+import { tubeFaces } from './structure-data.js?v=28a53c4d98d5';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=28a53c4d98d5';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=28a53c4d98d5';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=28a53c4d98d5';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=28a53c4d98d5';
+import { medicalGeometry } from './medical-data.js?v=28a53c4d98d5';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=28a53c4d98d5';
+import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=28a53c4d98d5';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=28a53c4d98d5';
+import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=28a53c4d98d5';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=28a53c4d98d5';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=28a53c4d98d5';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=28a53c4d98d5';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=28a53c4d98d5';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -367,6 +369,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
 
   function clearInputs() { for (const key in inputs) inputs[key]=false; dragging=false; }
   function surfaceHeight(x,z){
+    if(inElectricalCourt(x,z))return courtGround(x,z)+.22;
     for(const s of stairSegments){
       const q=nearestOnSegment(x,z,s.a,s.b);
       if(Math.hypot(x-q.x,z-q.z)<=s.width/2+.04){
@@ -397,11 +400,22 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     const grid=TERRAIN_GRID,pad=65,gx=grid.cols-1+pad*2,gz=grid.rows-1+pad*2;
     const groundGeo=new THREE.PlaneGeometry(gx*grid.dx,gz*grid.dz,gx,gz);groundGeo.rotateX(-Math.PI/2);groundGeo.translate(grid.x0+(grid.cols-1)*grid.dx/2,0,grid.z0+(grid.rows-1)*grid.dz/2);
     const groundVertices=groundGeo.getAttribute('position');
-    for(let i=0;i<groundVertices.count;i++)groundVertices.setY(i,terrainHeight(groundVertices.getX(i),groundVertices.getZ(i))-.08);
-    groundGeo.computeVertexNormals();
+    for(let i=0;i<groundVertices.count;i++)groundVertices.setY(i,demHeight(groundVertices.getX(i),groundVertices.getZ(i))-.08);
+    // Exact clipped DEM boundaries avoid stretching coarse terrain triangles
+    // across the reconstructed court and through the visible bleacher floors.
+    const removed=new Set(ELECTRICAL_REMOVED_TRIANGLES.map(([col,row,i])=>((row+pad)*gx+col+pad)*2+i));
+    const oldIndex=groundGeo.index.array,kept=[];
+    for(let triangle=0;triangle<oldIndex.length/3;triangle++)if(!removed.has(triangle))kept.push(...oldIndex.subarray(triangle*3,triangle*3+3));
+    groundGeo.setIndex(kept);groundGeo.computeVertexNormals();
     const groundTexture=surfaceTexture('grass');groundTexture.repeat.set(280,190);
     const ground = new THREE.Mesh(groundGeo,style('#82916b',{map:groundTexture,flatShading:false}));
     ground.receiveShadow=true; world.add(ground);
+    const groundEdges=new Batch();groundEdges.base=0;
+    for(const part of ELECTRICAL_GROUND_EDGES){
+      const all=[...part.points,...part.holes.flat()],contour=part.points.map(p=>new THREE.Vector2(p.x,p.z)),holes=part.holes.map(r=>r.map(p=>new THREE.Vector2(p.x,p.z)));
+      for(const [a,b,c] of THREE.ShapeUtils.triangulateShape(contour,holes))groundEdges.triangle(...[a,c,b].map(i=>[all[i].x,demHeight(all[i].x,all[i].z)-.08,all[i].z]),'#82916b');
+    }
+    world.add(groundEdges.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('grass')}),false));
     const landscape = new Batch(), paving = new Batch(), asphalt = new Batch(), edges = new Batch(),stairs=new Batch(),rails=new Batch();
     stairs.base=rails.base=0;
     for (const green of greens) {
@@ -413,7 +427,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     for(const plaza of campus.plazas||[])polygon(plaza.surface==='stone'?paving:edges,validPoints(plaza),plaza.surface==='stone'?.22:.022,plaza.color||'#d6d1c6',plaza.holes||[]);
     for (const path of paths) {
       const pts=validPoints(path); if(pts.length<2) continue;
-      const road=/road|service|residential|street/i.test(path.kind || path.type || '');
+      const road=path.renderSurface!=='paving'&&/road|service|residential|street/i.test(path.kind || path.type || '');
       const width=path.width || (/mall/i.test(path.name||'')?12:road?7:3.4);
       if(path.kind!=='steps')ribbon(edges,pts,width+.5,.035,road?'#d9d6c7':'#b0aea0');
       if(path.kind!=='steps')ribbon(road?asphalt:paving,pts,width,road?.055:.22,road?'#666b69':'#b9b6b0');
@@ -1785,6 +1799,87 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     // Exterior model: original building perimeter remains solid. The separately
     // mapped Rex covered link is outside this collider and stays walkable.
     addCollider({points:b.points,holes:b.holes,top:b.height,base:b.base});
+  }
+
+  function electricalOutdoor(){
+    const g=electricalGround,f=g.frame,angle=Math.atan2(-f.u.z,f.u.x);
+    const concrete=new Batch(),paving=new Batch(),wood=new Batch(),rails=new Batch(),leaves=new Batch(),balustrade=new Batch();
+    for(const batch of [concrete,paving,wood,rails,leaves,balustrade])batch.base=0;
+    const solid=(points,top,color,batch=concrete)=>{
+      const ring=polygonArea(points)<0?[...points].reverse():points;
+      polygon(batch,ring,top,color);
+      for(let i=0;i<ring.length;i++)wallPanel(batch,ring[i],ring[(i+1)%ring.length],g.lowGround-.3,top,color);
+    };
+    for(const points of g.lowParts)solid(points,g.lowGround+.22,'#b5b9a8',paving);
+    for(const tier of g.tiers){
+      const top=tier.ground+.22;solid(tier.points,top,'#bfc5b3');
+      addCollider({points:tier.points,bottom:g.lowGround,top,base:0,stepHeight:.18});
+      const us=tier.points.map(p=>g.local(p).u),front=Math.min(...us);
+      for(let plank=0;plank<4;plank++){
+        const strip=clipFrameStrip(tier.points,{...f,v:f.u},front+.1+plank*.13,front+.21+plank*.13);
+        polygon(wood,strip,top+.035,plank%2?'#937653':'#80694a');
+      }
+    }
+    for(const step of g.steps)solid(step.points,step.ground+.22,'#b7bda9');
+    shapedRoof(paving,g.ramp,p=>courtGround(p.x,p.z)+.22,'#b5b9a8');
+    // Retaining skirts close the refined link's cut in the coarser ground.
+    const bridgeRing=polygonArea(g.bridge)<0?[...g.bridge].reverse():g.bridge;
+    for(let i=0;i<bridgeRing.length;i++){
+      const a=bridgeRing[i],b=bridgeRing[(i+1)%bridgeRing.length],n=Math.max(1,Math.ceil(distance2(a,b)/.5));
+      for(let k=0;k<n;k++){const p={x:a.x+(b.x-a.x)*k/n,z:a.z+(b.z-a.z)*k/n},q={x:a.x+(b.x-a.x)*(k+1)/n,z:a.z+(b.z-a.z)*(k+1)/n};
+        if(inElectricalCourt((p.x+q.x)/2,(p.z+q.z)/2))continue;
+        const ph=Math.max(g.lowGround+.22,demHeight(p.x,p.z)+.22),qh=Math.max(g.lowGround+.22,demHeight(q.x,q.z)+.22);
+        concrete.quad([p.x,g.lowGround+.21,p.z],[p.x,ph,p.z],[q.x,qh,q.z],[q.x,g.lowGround+.21,q.z],'#a1aa96');
+      }
+    }
+    // The stair aisle has the same eighteen discrete levels in rendering and
+    // movement. The handrail rises continuously along its northern side.
+    const railPoint=(t,y)=>{const p=framePoint(f,g.startU+(g.endU-g.startU)*t,g.aisleV+.13);return [p.x,g.lowGround+g.rise*t+y,p.z];};
+    batchPipe(rails,railPoint(0,1.16),railPoint(1,1.16),.035,'#8b9c91');
+    for(let i=0;i<=6;i++)batchPipe(rails,railPoint(i/6,.22),railPoint(i/6,1.16),.028,'#87998d');
+    const shrub=(u,v,y,scale=1)=>{
+      const p=framePoint(f,u,v);
+      for(let leaf=0;leaf<9;leaf++){
+        const a=leaf/9*TAU,dx=Math.cos(a),dz=Math.sin(a),h=(.3+(leaf%3)*.08)*scale;
+        leaves.triangle([p.x-dz*.06*scale,y,p.z+dx*.06*scale],[p.x+dx*.36*scale,y+h,p.z+dz*.36*scale],[p.x+dz*.06*scale,y,p.z-dx*.06*scale],leaf%2?'#617b4e':'#7e8d57');
+      }
+    };
+    for(const index of [1,3,5]){
+      const tier=g.tiers[index];if(!tier)continue;
+      const p=tier.points.map(p=>g.local(p)),u=(Math.min(...p.map(p=>p.u))+Math.max(...p.map(p=>p.u)))/2;
+      const bed=frameRectangle(f,.82,1.4,u,18.2),top=tier.ground+.67;
+      solid(bed,top,'#89917a');addCollider({points:bed,bottom:tier.ground+.22,top,base:0});
+      polygon(paving,frameRectangle(f,.68,1.25,u,18.2),top+.01,'#66674e');
+      for(const v of [17.8,18.2,18.6])shrub(u,v,top+.02,.85);
+    }
+    // Southern forecourt planting follows the public plan's low planted edge;
+    // the mapped stair corridor immediately south remains clear.
+    for(const bed of g.beds){
+      const top=p=>demHeight(p.x,p.z)+.67;shapedRoof(concrete,bed.points,top,'#a2a58a');
+      for(let i=0;i<bed.points.length;i++){
+        const a=bed.points[i],b=bed.points[(i+1)%bed.points.length],n=Math.max(1,Math.ceil(distance2(a,b)/.6));
+        for(let k=0;k<n;k++){const p={x:a.x+(b.x-a.x)*k/n,z:a.z+(b.z-a.z)*k/n},q={x:a.x+(b.x-a.x)*(k+1)/n,z:a.z+(b.z-a.z)*(k+1)/n};concrete.quad([p.x,demHeight(p.x,p.z)+.22,p.z],[p.x,top(p),p.z],[q.x,top(q),q.z],[q.x,demHeight(q.x,q.z)+.22,q.z],'#acaf98');}
+      }
+      addCollider({points:bed.points,base:0,terrainBottom:.22,terrainOffset:.67});
+      for(let u=bed.u0+.35;u<bed.u1;u+=.52){const p=framePoint(f,u,bed.v);shrub(u,bed.v,top(p)+.02,.9);}
+    }
+    // Glazed edge is interrupted before the retained eastern crossing steps.
+    for(let u=-9.6;u<17.4;u+=1.7){
+      const a=framePoint(f,u,53.05),b=framePoint(f,Math.min(17.4,u+1.7),53.05),h0=demHeight(a.x,a.z)+.22,h1=demHeight(b.x,b.z)+.22;
+      balustrade.quad([a.x,h0+.12,a.z],[a.x,h0+.9,a.z],[b.x,h1+.9,b.z],[b.x,h1+.12,b.z],'#b2cec3');
+      batchPipe(rails,[a.x,h0,a.z],[a.x,h0+1,a.z],.026,'#85988a');batchPipe(rails,[a.x,h0+1,a.z],[b.x,h1+1,b.z],.03,'#96a69a');
+    }
+    addCollider({points:g.rail,base:0,terrainBottom:.22,terrainOffset:1.22});
+    // Seats stand back from the mapped through-path along the forecourt.
+    for(const seat of g.seats){
+      const {u,v}=seat,p=framePoint(f,u,v),h=demHeight(p.x,p.z)+.22;
+      addCollider({points:seat.points,base:0,terrainBottom:.22,terrainOffset:.72,stepHeight:.1});
+      for(let k=0;k<4;k++){const q=framePoint(f,u,v-.21+k*.12);wood.box(q.x,h+.43,q.z,2.5,.065,.105,'#887051',angle);}
+      for(const du of [-.9,.9]){const q=framePoint(f,u+du,v);rails.box(q.x,h+.2,q.z,.08,.4,.45,'#6e7e71',angle);}
+    }
+    world.add(concrete.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('concrete'),bumpMap:surfaceTexture('concrete'),bumpScale:.025})),paving.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('paving')}),false));
+    world.add(wood.mesh(style('#ffffff',{vertexColors:true})),rails.mesh(style('#ffffff',{vertexColors:true,metalness:.3})),leaves.mesh(style('#ffffff',{vertexColors:true,side:THREE.DoubleSide})));
+    world.add(balustrade.mesh(style('#ffffff',{vertexColors:true,transparent:true,opacity:.24,side:THREE.DoubleSide,roughness:.2,depthWrite:false})));
   }
 
   function rexTheatre(b,concrete,brick,glass,detail,roofs){
@@ -3572,6 +3667,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     for(let i=0;i<100;i++) candidates.push({x:bounds.minX+8+random()*(bounds.maxX-bounds.minX-16),z:bounds.minZ+8+random()*(bounds.maxZ-bounds.minZ-16),big:false});
     for(const c of candidates) {
       const fig=c.form==='heritage-fig',fixedTree=['samuels-gum','civil-poplar','rupert-courtyard'].includes(c.form);
+      if(inElectricalCourt(c.x,c.z))continue;
       if(c.x<bounds.minX+3||c.x>bounds.maxX-3||c.z<bounds.minZ+3||c.z>bounds.maxZ-3)continue;
       if(blocked(c.x,c.z,null,fixedTree?.55:fig?1:3))continue;
       if(trees.some(t=>distance2(c,t)<(fixedTree?3:c.big?10:8)))continue;
@@ -3764,13 +3860,13 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       paths=data.paths||data.roads||[];greens=data.greens||data.parks||[];landmarks=(data.landmarks||[]).map(l=>({...l,...(l.position||{})}));
       stairSegments=[];surfaceCells=new Map();groundPatches=[];
       for(const path of paths)for(let i=0;i<path.points.length-1;i++){
-        const a=path.points[i],b=path.points[i+1],width=path.width||3,road=/road|service|residential|street/i.test(path.kind||path.type||'');
+        const a=path.points[i],b=path.points[i+1],width=path.width||3,road=path.renderSurface!=='paving'&&/road|service|residential|street/i.test(path.kind||path.type||'');
         const item={a,b,width,road};
         for(let x=Math.floor((Math.min(a.x,b.x)-width)/20);x<=Math.floor((Math.max(a.x,b.x)+width)/20);x++)for(let z=Math.floor((Math.min(a.z,b.z)-width)/20);z<=Math.floor((Math.max(a.z,b.z)+width)/20);z++){
           const key=`${x},${z}`;if(!surfaceCells.has(key))surfaceCells.set(key,[]);surfaceCells.get(key).push(item);
         }
       }
-      for(const path of paths.filter(p=>p.kind==='steps'))for(let i=0;i<path.points.length-1;i++){
+      for(const path of paths.filter(p=>p.kind==='steps'&&!ELECTRICAL_REPLACED_STEPS.includes(p.id)))for(let i=0;i<path.points.length-1;i++){
         const a=path.points[i],b=path.points[i+1],h0=terrainHeight(a.x,a.z)+.17,h1=terrainHeight(b.x,b.z)+.17;
         if(distance2(a,b)>.2)stairSegments.push({a,b,h0,h1,width:path.width||3,count:Math.max(1,Math.ceil(Math.abs(h1-h0)/.17))});
       }
@@ -3778,7 +3874,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       bounds={minX:bb.minX??bb.west??-245,maxX:bb.maxX??bb.east??290,minZ:bb.minZ??bb.north??-240,maxZ:bb.maxZ??bb.south??190};
       colliders=[];spatial=new Map();found=new Set();curiosities=[];ball=null;totalDistance=0;
       spawn={x:data.spawn?.x??-125,z:data.spawn?.z??-35,heading:data.spawn?.heading??Math.PI/2};
-      groundAndPaths();buildingWorld();courtyardLandscape();treesAndFurniture();sportsField();signsAndCuriosities();
+      groundAndPaths();buildingWorld();electricalOutdoor();courtyardLandscape();treesAndFurniture();sportsField();signsAndCuriosities();
       updateCampusReflection();
       spawn=safePoint(spawn);reset();makeMinimap();report();
     }catch(error){onError(error);throw error;}
