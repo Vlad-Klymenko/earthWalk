@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=e4dcaf0c048b';
-import { buildingBase, terrainHeight } from './terrain.js?v=e4dcaf0c048b';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=e77dc5c20f34';
+import { buildingBase, terrainHeight } from './terrain.js?v=e77dc5c20f34';
 export const WILLIS_ID='osm-way-45229601';
 export const K17_VISUAL_HEIGHT=26;
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});

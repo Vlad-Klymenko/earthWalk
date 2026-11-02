@@ -2,6 +2,14 @@
 
 The goal remains a detailed, recognizable recreation of the entire main Kensington campus. This pass does not establish photorealistic accuracy for the whole campus.
 
+## Main Library exterior refinement
+
+The Library now uses a dedicated exterior instead of fourteen rows of narrow generic windows. Public directory photographs distinguish seven exposed northern window rows, broad concrete bays, a blank end strip, dark ribbed UNSW fascia, a brick podium with horizontal glazing and a flared white entrance canopy. Sardaka’s 27 December 2024 public photograph and the directory’s Scientia Lawn entrance photograph show the western face’s broad blank concrete fields and one narrow recessed window slot. The white side portal is placed at the original western footprint projection. Unseen elevations, bay spacing, window heights, portal dimensions and canopy geometry remain reconstructed estimates.
+
+All five OSM component outlines and their existing heights remain: 57.74 / 16 / 12 / 4 / 4 m. The 57.74 m maximum continues to come from the public NSW planning report, independently of the retained 60 m OSM tag and fourteen-level tag. The two separately mapped stair projections retain their outlines, tags and 9.6 m estimates, with brick appearance rendered alongside the Library. Roofs and collision volumes use exact source outlines; near-collinear façade vertices alone are simplified within 7.5 cm to avoid restarting the window grid at every survey vertex. The previous tall parent collider is replaced with a low parent plinth and component-specific collision heights. The regional DEM and source footways are unchanged.
+
+The northern canopy was shortened after browser comparison because its first reconstruction projected too far into the Lawn view. Four additional tests bring the suite to 155 checks, covering source evidence, component outlines, façade simplification tolerance, canopy headroom above sloping terrain, support / portal clearance and arrival positions. Native browser checks walked 30 m from the Lawn to beneath the entrance cover and back (54.7–55.5 m elevation), then 23 m each way along the covered walk (55.5–55.6 m). No runtime errors were captured. Five new linked research records bring the reference library to 280; the explicit appearance-profile count remains 73 of 98 campus footprints. July 2015 Street View verifies the Lawn’s covered walk and historical roof / support forms, not current access conditions. No reference photographs or Google imagery are copied into scene assets.
+
 ## Evidence added
 
 - Public NSW 5 m elevation raster retained at dist/data/unsw-elevation.tif with SHA-256 provenance. Base terrain sampling and foundations use metres in the same coordinate frame. Photo-led landscape additions use explicitly reconstructed dimensions.
