@@ -1,4 +1,4 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=ea018f24b958';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=c65eae45fe39';
 
 // Footprints and overall heights come from the retained map. Roof pitch,
 // panel spacing, glazing bands and canopy dimensions are photo-led estimates.

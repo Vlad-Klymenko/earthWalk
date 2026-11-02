@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=ea018f24b958';
-import { frameRectangle } from './geometry.js?v=ea018f24b958';
-import { buildingBase, terrainHeight } from './terrain.js?v=ea018f24b958';
+import { CAMPUS as SOURCE } from './campus-data.js?v=c65eae45fe39';
+import { frameRectangle } from './geometry.js?v=c65eae45fe39';
+import { buildingBase, terrainHeight } from './terrain.js?v=c65eae45fe39';
 export const ROUNDHOUSE_ID='roundhouse';
 export const ROUNDHOUSE_ARCHITECT={title:'TZG · UNSW Roundhouse, 2015–2017',url:'https://tzg.com.au/project/unsw-roundhouse/'};
 const raw=SOURCE.buildings.find(b=>b.id===ROUNDHOUSE_ID),curve=[...raw.points.slice(0,13),...raw.points.slice(22)];

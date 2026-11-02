@@ -36,6 +36,8 @@ Before publication, run `npm run prepare:site` to regenerate the reference index
 
 ## Implementation
 
+Shalom College N9 now separates the stepped northern balcony wings, central western block, lower common-room / entrance wing and curved-roof Barker Street frontage. It has cream brick, brown balcony rails, exposed rafters, two fitted lightwell openings, an open northern garden, tree ferns, northern boulders, boundary walls and a closed southern gate. The 12 m mapped maximum and four-level tag remain separate from the university GIS fields. Fine levels, roof boundaries and plant positions remain approximate. Regenerate with `node scripts/make-shalom-parts.mjs`.
+
 Warrane College M7 now has separate northern / southern residential wings, a taller glazed stair core, concrete podium and a genuinely open timber courtyard. Six photo-led upper window rows replace the earlier eight-row approximation. The entrance has sloping piers, a suspended glass canopy and twelve climbable treads; the court has a deck, pergola, planting and seating. The original 27 m / nine-level map evidence stays separate from university GIS and residential-use counts. Internal boundaries and detailed levels remain estimates. Regenerate with `node scripts/make-warrane-parts.mjs`.
 
 The Bank F22 now has a searchable identity, brown brick, broad glazing, dark metal fascias, pale entrance steps and a walkable outdoor switchback ramp with silver double rails. The 6.4 m generic height estimate and two-level map tag remain independent from the university GIS 7.99 / three-floor fields. Fine dimensions, entrance orientation and levels remain reconstructed from a university exterior photograph.

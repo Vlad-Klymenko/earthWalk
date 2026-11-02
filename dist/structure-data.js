@@ -1,4 +1,4 @@
-import { Vector3 } from './vendor/three.module.js?v=ea018f24b958';
+import { Vector3 } from './vendor/three.module.js?v=c65eae45fe39';
 
 // Outward-facing low-poly tubes, also used for square rails / beams. The
 // vertex order matters: inward side faces disappear when viewed from outside.
