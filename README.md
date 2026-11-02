@@ -36,6 +36,8 @@ Before publication, run `npm run prepare:site` to regenerate the reference index
 
 ## Implementation
 
+The Bank F22 now has a searchable identity, brown brick, broad glazing, dark metal fascias, pale entrance steps and a walkable outdoor switchback ramp with silver double rails. The 6.4 m generic height estimate and two-level map tag remain independent from the university GIS 7.99 / three-floor fields. Fine dimensions, entrance orientation and levels remain reconstructed from a university exterior photograph.
+
 Sam Cracknell Pavilion H8 now has an open curved viewing balcony, inset glazed upper room, pergola, yellow seating, painted brick, orange northern amenities screen and signed yellow panels. The reconstructed northern stair reaches its landing; the balcony has a separate map destination. Ground and balcony walking surfaces are selected by vertical layer so the lower seating area stays usable. Detailed dimensions / furniture remain estimates. Reproduce the parts with `node scripts/make-pavilion-parts.mjs`.
 
 L5 at 223 Anzac Parade now has separate tall street / lower rear wings around a raised timber courtyard, deep concrete blades, recessed glazing, a broad climbable entrance stair, bamboo, seating and shade panels. The original 30 m map height and nine-level tag remain independent from builder component counts and university GIS fields. Internal boundaries and detailed dimensions remain reconstructed. Reproduce the parts with `node scripts/make-l5-parts.mjs`.

@@ -1,6 +1,6 @@
-import { CAMPUS } from './campus-data.js?v=376919c44ac6';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=376919c44ac6';
-import { terrainHeight, buildingBase } from './terrain.js?v=376919c44ac6';
+import { CAMPUS } from './campus-data.js?v=3d885f78072e';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=3d885f78072e';
+import { terrainHeight, buildingBase } from './terrain.js?v=3d885f78072e';
 export const QUADRANGLE_ID='osm-way-45229649';
 export const QUADRANGLE_PHOTO={title:'Sardaka · Quadrangle sundial and courtyard, March 2019',url:'https://commons.wikimedia.org/wiki/File:(1)UNSW_Quadrangle_002.jpg',linkLabel:'Height · photograph-led tower estimate'};
 export function quadrangleGeometry(b){
