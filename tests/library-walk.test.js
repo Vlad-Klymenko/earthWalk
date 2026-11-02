@@ -5,7 +5,7 @@ import {CAMPUS as RAW} from '../dist/campus-data.js';
 import {CAMPUS} from '../dist/campus-enhancements.js';
 import {LIBRARY_WALK_ID,libraryWalkGeometry} from '../dist/library-walk-data.js';
 import {LIBRARY_WALK_ROOFS,LIBRARY_WALK_CELLS,LIBRARY_WALK_PAVING} from '../dist/library-walk-parts.js';
-import {terrainHeight} from '../dist/terrain.js';
+import {campusTerrainHeight as terrainHeight} from '../dist/spiral-landscape.js';
 import {ShapeUtils,Vector2} from '../dist/vendor/three.module.js';
 const raw=RAW.buildings.find(b=>b.id===LIBRARY_WALK_ID),b=CAMPUS.buildings.find(b=>b.id===LIBRARY_WALK_ID),g=libraryWalkGeometry();
 const poly=p=>[p.points,...p.holes||[]].map(r=>r.map(p=>[p.x,p.z]));

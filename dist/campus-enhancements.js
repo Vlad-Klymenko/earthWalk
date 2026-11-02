@@ -1,62 +1,64 @@
-import {NIDA_SCHOOL_ID,NIDA_WEST_ID,NIDA_SCHOOL_IDS,NIDA_SCHOOL_STREET,nidaSchoolGeometry} from './nida-school-data.js?v=93d09dddcf6c';
-import {NIDA_SCHOOL_COURTS} from './nida-school-parts.js?v=93d09dddcf6c';
-import {REGIMENT_HALL_ID,REGIMENT_HALL_PHOTO,regimentHallGeometry} from './regiment-hall-data.js?v=93d09dddcf6c';
-import {LIBRARY_WALK_ID,LIBRARY_WALK_STREET,libraryWalkGeometry} from './library-walk-data.js?v=93d09dddcf6c';
-import {MATHEWS_PAVILIONS_ID,MATHEWS_PAVILIONS_REFERENCE,mathewsPavilionsGeometry} from './mathews-pavilions-data.js?v=93d09dddcf6c';
-import {NEW_COLLEGE_ID,NEW_COLLEGE_GIS,NEW_COLLEGE_SOURCE,newCollegeGeometry} from './new-college-data.js?v=93d09dddcf6c';
-import {SHALOM_ID,SHALOM_GIS,SHALOM_COLLEGE,shalomGeometry} from './shalom-data.js?v=93d09dddcf6c';
-import {SHALOM_GARDEN,SHALOM_LIGHTWELLS} from './shalom-parts.js?v=93d09dddcf6c';
-import {WARRANE_ID,WARRANE_GIS,WARRANE_LIVING,warraneGeometry} from './warrane-data.js?v=93d09dddcf6c';
-import {BANK_ID,BANK_SOURCE,BANK_GIS,bankGeometry} from './bank-data.js?v=93d09dddcf6c';
-import {PAVILION_ID,PAVILION_GIS,pavilionGeometry} from './pavilion-data.js?v=93d09dddcf6c';
-import {L5_ID,L5_GIS,l5Geometry} from './l5-data.js?v=93d09dddcf6c';
-import { NCPV_ID,NCPV_RED_ID,NCPV_CORNER_ID,NCPV_HEIGHT,NCPV_COLLEGE,NCPV_GIS,ncpvGeometry } from './ncpv-data.js?v=93d09dddcf6c';
-import { GOLDSTEIN_ID,GOLDSTEIN_ART,goldsteinCourtGeometry } from './goldstein-courtyard-data.js?v=93d09dddcf6c';
-import { TERRACES_ID,TERRACES_ARCHITECT,TERRACES_HEIGHT_REPORT,terracesGeometry } from './terraces-data.js?v=93d09dddcf6c';
-import { VILLAGE_ID,VILLAGE_ARCHITECT,VILLAGE_FACADE,VILLAGE_SECURITY,VILLAGE_WEST_VIEW } from './village-data.js?v=93d09dddcf6c';
-import { VILLAGE_CAFE_ID,VILLAGE_CAFE_HEIGHT,VILLAGE_CAFE_PHOTO,villageCafeGeometry } from './village-cafe-data.js?v=93d09dddcf6c';
-import { REGIMENT_J2_IDS,REGIMENT_STREET_VIEW,regimentGeometry } from './regiment-data.js?v=93d09dddcf6c';
-import { roundhouseEntryGeometry } from './roundhouse-entry.js?v=93d09dddcf6c';
-import { ROUNDHOUSE_ID, ROUNDHOUSE_ARCHITECT, roundhouseGeometry } from './roundhouse-data.js?v=93d09dddcf6c';
-import { AINSWORTH_ID, AINSWORTH_HEIGHT_REPORT, AINSWORTH_DESIGN, ainsworthGeometry } from './ainsworth-data.js?v=93d09dddcf6c';
-import { MATHEWS_SIRF_PAVING } from './mathews-parts.js?v=93d09dddcf6c';
-import { MATHEWS_ID, MATHEWS_PHOTO, MATHEWS_SHARED_LANE, mathewsGeometry } from './mathews-data.js?v=93d09dddcf6c';
-import { LIBRARY_ID, LIBRARY_ANNEX_IDS, LIBRARY_PHOTO, libraryGeometry } from './library-data.js?v=93d09dddcf6c';
-import { TYREE_ID, TYREE_CANOPY_ID, TYREE_ARCHITECT, TYREE_HEIGHT_REPORT, tyreeGeometry } from './tyree-data.js?v=93d09dddcf6c';
-import { BLOCKHOUSE_ID, BLOCKHOUSE_PHOTO, blockhouseGeometry } from './blockhouse-data.js?v=93d09dddcf6c';
-import { MORVEN_ID, MORVEN_PHOTO, morvenGeometry } from './morven-brown-data.js?v=93d09dddcf6c';
-import { SQUAREHOUSE_ID, SQUAREHOUSE_PHOTO, squarehouseGeometry } from './squarehouse-data.js?v=93d09dddcf6c';
-import { RED_CENTRE_IDS, LAWRENCE_RENAME, RED_CENTRE_ARCHITECT, redCentreGeometry } from './red-centre-data.js?v=93d09dddcf6c';
-import { OLD_MAIN_ID, OLD_MAIN_PHYSICS, oldMainGeometry } from './old-main-data.js?v=93d09dddcf6c';
-import { BUSINESS_ID, BUSINESS_ARCHITECT, businessGeometry } from './business-data.js?v=93d09dddcf6c';
-import { LAW_ID, LAW_ARCHITECT, lawGeometry } from './law-data.js?v=93d09dddcf6c';
-import { QUADRANGLE_ID, QUADRANGLE_PHOTO, quadrangleGeometry } from './quadrangle-data.js?v=93d09dddcf6c';
-import { ELECTRICAL_LANDSCAPE, ELECTRICAL_LANDSCAPE_REPORT } from './electrical-landscape.js?v=93d09dddcf6c';
-import { ELECTRICAL_APRON } from './electrical-landscape-parts.js?v=93d09dddcf6c';
-import { ELECTRICAL_ID, ELECTRICAL_LEVELS, electricalGeometry } from './electrical-data.js?v=93d09dddcf6c';
-import { REX_ID, REX_LINK_ID, SDN_ID, REX_VISUAL_HEIGHT, SDN_VISUAL_HEIGHT, SDN_CURRENT_NAME, SDN_RENAME_SOURCE, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=93d09dddcf6c';
-import { BARKER_APARTMENTS_ID, barkerApartmentsGeometry } from './barker-apartments-data.js?v=93d09dddcf6c';
-import { VALLENTINE_ID, vallentineGeometry } from './vallentine-data.js?v=93d09dddcf6c';
-import { BARKER_PARKING_ID, BOTANY_PARKING_ID, BARKER_EXISTING_REPORT, parkingGeometry } from './parking-data.js?v=93d09dddcf6c';
-import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=93d09dddcf6c';
-import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=93d09dddcf6c';
-import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=93d09dddcf6c';
-import { WILLIS_ID, K17_VISUAL_HEIGHT, K17_FRONT_PHOTO, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=93d09dddcf6c';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=93d09dddcf6c';
-import { RUPERT_LAWN } from './rupert-parts.js?v=93d09dddcf6c';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=93d09dddcf6c';
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=93d09dddcf6c';
-import { applyReportedHeight } from './building-heights.js?v=93d09dddcf6c';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=93d09dddcf6c';
-import { VILLAGE_SPORTS } from './sports-data.js?v=93d09dddcf6c';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=93d09dddcf6c';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=93d09dddcf6c';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=93d09dddcf6c';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=93d09dddcf6c';
-import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=93d09dddcf6c';
-import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=93d09dddcf6c';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=93d09dddcf6c';
-import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=93d09dddcf6c';
+import {SPIRAL_ID,SPIRAL_STREET,GRAD_SHOP_SOURCE,spiralGeometry} from './spiral-data.js?v=ddae060d1036';
+import {SPIRAL_OPEN} from './spiral-parts.js?v=ddae060d1036';
+import {NIDA_SCHOOL_ID,NIDA_WEST_ID,NIDA_SCHOOL_IDS,NIDA_SCHOOL_STREET,nidaSchoolGeometry} from './nida-school-data.js?v=ddae060d1036';
+import {NIDA_SCHOOL_COURTS} from './nida-school-parts.js?v=ddae060d1036';
+import {REGIMENT_HALL_ID,REGIMENT_HALL_PHOTO,regimentHallGeometry} from './regiment-hall-data.js?v=ddae060d1036';
+import {LIBRARY_WALK_ID,LIBRARY_WALK_STREET,libraryWalkGeometry} from './library-walk-data.js?v=ddae060d1036';
+import {MATHEWS_PAVILIONS_ID,MATHEWS_PAVILIONS_REFERENCE,mathewsPavilionsGeometry} from './mathews-pavilions-data.js?v=ddae060d1036';
+import {NEW_COLLEGE_ID,NEW_COLLEGE_GIS,NEW_COLLEGE_SOURCE,newCollegeGeometry} from './new-college-data.js?v=ddae060d1036';
+import {SHALOM_ID,SHALOM_GIS,SHALOM_COLLEGE,shalomGeometry} from './shalom-data.js?v=ddae060d1036';
+import {SHALOM_GARDEN,SHALOM_LIGHTWELLS} from './shalom-parts.js?v=ddae060d1036';
+import {WARRANE_ID,WARRANE_GIS,WARRANE_LIVING,warraneGeometry} from './warrane-data.js?v=ddae060d1036';
+import {BANK_ID,BANK_SOURCE,BANK_GIS,bankGeometry} from './bank-data.js?v=ddae060d1036';
+import {PAVILION_ID,PAVILION_GIS,pavilionGeometry} from './pavilion-data.js?v=ddae060d1036';
+import {L5_ID,L5_GIS,l5Geometry} from './l5-data.js?v=ddae060d1036';
+import { NCPV_ID,NCPV_RED_ID,NCPV_CORNER_ID,NCPV_HEIGHT,NCPV_COLLEGE,NCPV_GIS,ncpvGeometry } from './ncpv-data.js?v=ddae060d1036';
+import { GOLDSTEIN_ID,GOLDSTEIN_ART,goldsteinCourtGeometry } from './goldstein-courtyard-data.js?v=ddae060d1036';
+import { TERRACES_ID,TERRACES_ARCHITECT,TERRACES_HEIGHT_REPORT,terracesGeometry } from './terraces-data.js?v=ddae060d1036';
+import { VILLAGE_ID,VILLAGE_ARCHITECT,VILLAGE_FACADE,VILLAGE_SECURITY,VILLAGE_WEST_VIEW } from './village-data.js?v=ddae060d1036';
+import { VILLAGE_CAFE_ID,VILLAGE_CAFE_HEIGHT,VILLAGE_CAFE_PHOTO,villageCafeGeometry } from './village-cafe-data.js?v=ddae060d1036';
+import { REGIMENT_J2_IDS,REGIMENT_STREET_VIEW,regimentGeometry } from './regiment-data.js?v=ddae060d1036';
+import { roundhouseEntryGeometry } from './roundhouse-entry.js?v=ddae060d1036';
+import { ROUNDHOUSE_ID, ROUNDHOUSE_ARCHITECT, roundhouseGeometry } from './roundhouse-data.js?v=ddae060d1036';
+import { AINSWORTH_ID, AINSWORTH_HEIGHT_REPORT, AINSWORTH_DESIGN, ainsworthGeometry } from './ainsworth-data.js?v=ddae060d1036';
+import { MATHEWS_SIRF_PAVING } from './mathews-parts.js?v=ddae060d1036';
+import { MATHEWS_ID, MATHEWS_PHOTO, MATHEWS_SHARED_LANE, mathewsGeometry } from './mathews-data.js?v=ddae060d1036';
+import { LIBRARY_ID, LIBRARY_ANNEX_IDS, LIBRARY_PHOTO, libraryGeometry } from './library-data.js?v=ddae060d1036';
+import { TYREE_ID, TYREE_CANOPY_ID, TYREE_ARCHITECT, TYREE_HEIGHT_REPORT, tyreeGeometry } from './tyree-data.js?v=ddae060d1036';
+import { BLOCKHOUSE_ID, BLOCKHOUSE_PHOTO, blockhouseGeometry } from './blockhouse-data.js?v=ddae060d1036';
+import { MORVEN_ID, MORVEN_PHOTO, morvenGeometry } from './morven-brown-data.js?v=ddae060d1036';
+import { SQUAREHOUSE_ID, SQUAREHOUSE_PHOTO, squarehouseGeometry } from './squarehouse-data.js?v=ddae060d1036';
+import { RED_CENTRE_IDS, LAWRENCE_RENAME, RED_CENTRE_ARCHITECT, redCentreGeometry } from './red-centre-data.js?v=ddae060d1036';
+import { OLD_MAIN_ID, OLD_MAIN_PHYSICS, oldMainGeometry } from './old-main-data.js?v=ddae060d1036';
+import { BUSINESS_ID, BUSINESS_ARCHITECT, businessGeometry } from './business-data.js?v=ddae060d1036';
+import { LAW_ID, LAW_ARCHITECT, lawGeometry } from './law-data.js?v=ddae060d1036';
+import { QUADRANGLE_ID, QUADRANGLE_PHOTO, quadrangleGeometry } from './quadrangle-data.js?v=ddae060d1036';
+import { ELECTRICAL_LANDSCAPE, ELECTRICAL_LANDSCAPE_REPORT } from './electrical-landscape.js?v=ddae060d1036';
+import { ELECTRICAL_APRON } from './electrical-landscape-parts.js?v=ddae060d1036';
+import { ELECTRICAL_ID, ELECTRICAL_LEVELS, electricalGeometry } from './electrical-data.js?v=ddae060d1036';
+import { REX_ID, REX_LINK_ID, SDN_ID, REX_VISUAL_HEIGHT, SDN_VISUAL_HEIGHT, SDN_CURRENT_NAME, SDN_RENAME_SOURCE, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=ddae060d1036';
+import { BARKER_APARTMENTS_ID, barkerApartmentsGeometry } from './barker-apartments-data.js?v=ddae060d1036';
+import { VALLENTINE_ID, vallentineGeometry } from './vallentine-data.js?v=ddae060d1036';
+import { BARKER_PARKING_ID, BOTANY_PARKING_ID, BARKER_EXISTING_REPORT, parkingGeometry } from './parking-data.js?v=ddae060d1036';
+import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=ddae060d1036';
+import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=ddae060d1036';
+import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=ddae060d1036';
+import { WILLIS_ID, K17_VISUAL_HEIGHT, K17_FRONT_PHOTO, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=ddae060d1036';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=ddae060d1036';
+import { RUPERT_LAWN } from './rupert-parts.js?v=ddae060d1036';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=ddae060d1036';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=ddae060d1036';
+import { applyReportedHeight } from './building-heights.js?v=ddae060d1036';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=ddae060d1036';
+import { VILLAGE_SPORTS } from './sports-data.js?v=ddae060d1036';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=ddae060d1036';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=ddae060d1036';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=ddae060d1036';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=ddae060d1036';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=ddae060d1036';
+import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=ddae060d1036';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=ddae060d1036';
+import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=ddae060d1036';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -75,9 +77,10 @@ const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.i
 const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(b.id===SPIRAL_ID)return {...b,name:'Morven Brown · spiral stair / Grad Shop',named:true,aliases:[...(b.aliases||[]),'Grad Shop','C20','Morven Brown spiral staircase'],appearanceReference:SPIRAL_STREET.url,identityReference:GRAD_SHOP_SOURCE,reconstructedMapHoles:SPIRAL_OPEN.map(p=>p.points),heightNote:'The original outer ring, empty hole list, missing level tag and 9.6 m estimated maximum remain. July 2015 public Street View and aerial context guide an open curved concrete stair, blue rails, orange columns, raised annular gallery and glazed northern shop annex. Official university / Arc information identifies the Grad Shop at Morven Brown C20 by the spiral stair. The lower floor anchors to the NSW DEM at the mapped approach endpoint, with a bounded reconstructed floor / approach replacing coarse terrain inside the sheltered passage. The 3.55 m rise, 24 treads, 200 degree turn, radii, gallery levels and unseen elevations are fitted estimates, not surveyed values. Raw DEM samples and mapped path coordinates remain unchanged; current access is not represented.'};
   if(b.id==='osm-way-164558658')b={...b,aliases:[...(b.aliases||[]),'NIDA','NIDA Parade Theatre','National Institute of Dramatic Art']};
   if(NIDA_SCHOOL_IDS.includes(b.id))return {...b,name:b.id===NIDA_SCHOOL_ID?'NIDA · original school':'NIDA · western teaching wing',named:true,aliases:[...(b.aliases||[]),'NIDA','National Institute of Dramatic Art','NIDA school courtyards'],appearanceReference:NIDA_SCHOOL_STREET.url,reconstructedMapHoles:NIDA_SCHOOL_COURTS.filter(p=>p.sourceId===b.id).map(p=>p.points),heightNote:'Original outer perimeter, hole list and two-level map tag remain. The 6.4 m height is the original estimate, not a measured survey. Separate photo-fitted teaching rooms, low hipped roofs / small lanterns, front rooms, open courts and covered galleries replace the generic full-outline extrusion. Hips rise from an estimated 4.7 m eave to a 5.8 m plateau, with lanterns reaching the retained 6.4 m maximum; galleries follow NSW ground at 3.35 m. Public September 2024 Street View, Google aerial roofs, original 1983 parliamentary floor plans and NIDA photographs guide this reconstruction. The 2012 DA’s 14 m James Fairfax Foyer addition is a different component and is not applied here. Exact room uses, courtyard / shade / tree coordinates, unseen elevations and current access remain unverified.'};
-  if(b.id===LIBRARY_WALK_ID)return {...b,name:'Library Lawn covered walks',named:true,aliases:[...b.aliases,'Library Lawn covered walkway','Upper campus covered walks'],previousEstimate:b.height,previousVisualEstimate:3.8,height:4.2,heightSource:'estimated',heightQuantity:'Highest walkway cover above local terrain; Library canopy separate',appearanceReference:LIBRARY_WALK_STREET,terrainCanopy:false,modelledCanopyWith:'library',heightNote:'The complete mapped roof-network outline and source footways remain unchanged. The original 9.6 m generic estimate and later 3.8 m flat terrain-following cover remain historical estimates. Corrugated curved roof strips, narrow glazing, two light crossing nodes, paired brown steel supports, lamps and Lawn-side benches are reconstructed from July 2015 Street View and public aerial / university photographs. Walkway roofs rise approximately 3.25–4.2 m above the local NSW DEM; this is a visual estimate, not a surveyed height. The taller concrete Library entrance canopy uses four mapped roof corners; its detailed roof levels are estimated separately. Detailed roof / structural bays, bench positions and unseen junctions remain approximate. Current access is not represented.'};
+  if(b.id===LIBRARY_WALK_ID)return {...b,name:'Library Lawn covered walks',named:true,aliases:[...b.aliases,'Library Lawn covered walkway','Upper campus covered walks'],previousEstimate:b.height,previousVisualEstimate:3.8,height:4.2,heightSource:'estimated',heightQuantity:'Highest walkway cover above local terrain; Library canopy separate',appearanceReference:LIBRARY_WALK_STREET,terrainCanopy:false,modelledCanopyWith:'library',heightNote:'The complete mapped roof-network outline and source footways remain unchanged. The original 9.6 m generic estimate and later 3.8 m flat terrain-following cover remain historical estimates. Corrugated curved roof strips, narrow glazing, two light crossing nodes, paired brown steel supports, lamps and Lawn-side benches are reconstructed from July 2015 Street View and public aerial / university photographs. Walkway roofs rise approximately 3.25–4.2 m above local terrain, including the documented reconstructed Grad Shop lower passage; this is a visual estimate, not a surveyed height. The taller concrete Library entrance canopy uses four mapped roof corners; its detailed roof levels are estimated separately. Detailed roof / structural bays, bench positions and unseen junctions remain approximate. Current access is not represented.'};
 
   if(b.id===MATHEWS_PAVILIONS_ID){const g=mathewsPavilionsGeometry(b);return {...b,name:'Mathews Pavilions',named:true,campusRef:'E24',aliases:[...b.aliases,'E24','The Pavilions','Mathews Pavilions'],previousEstimate:b.height,previousVisualEstimate:3.8,height:g.maximum,heightSource:'estimated',heightQuantity:'Reconstructed highest roof above DEM foundation',appearanceReference:MATHEWS_PAVILIONS_REFERENCE,heightNote:'The complete mapped roof outline, courtyard hole, missing level tag, roof classification and walkable-under source tag remain unchanged. The original 9.6 m generic estimate and earlier 3.8 m terrain-following cover remain separate historical estimates. A common eave reference and curved roofs replace the flat cover, following labelled public photos, a 29 July 2017 university archive photograph, January 2022 contributor Street View panoramas and Google aerial context. No surveyed numeric roof height was verified: roof reference, pitch / curvature, skylight widths, glazed room bounds, steel branching supports, tree / planter and bench positions are reconstructed. Contributor panorama coordinates and headings are approximate; visible Mathews Tower / Library landmarks and aerial layout guide alignment. Outdoor paving retains the regional DEM. Fine stepped terrace / lower western lightwell geometry remains incomplete; current room access and private interiors are not represented.'};}
 
@@ -163,6 +166,8 @@ function enhanceBuilding(b){
 }
 
 function enhanceLandmark(p){
+  if(p.id===SPIRAL_ID){const g=spiralGeometry();return {...p,name:'Morven Brown · spiral stair / Grad Shop',...g.arrival,heading:g.heading,pitch:.18,showSign:false,description:'C20 · Orange columns, blue rails and an open curved stair beside the Grad Shop. Upper gallery and lower passage are separate walking layers; detailed geometry and floor levels are reconstructed'};}
+
   if(p.id===NIDA_SCHOOL_ID){const g=nidaSchoolGeometry();return {...p,name:'NIDA · original school',...g.streetArrival,heading:g.streetHeading,pitch:.15,showSign:false,description:'D2 · Original pale brick street-side rooms, lower window band, narrow upper slots and mature trees. Separate teaching-room roofs and courts behind the frontage. Source outlines / two-level tags remain; roof heights and small dimensions are reconstructed'};}
   if(p.id===NEW_COLLEGE_ID){const g=newCollegeGeometry();return {...p,...g.arrival,heading:g.heading,pitch:.26,showSign:false,description:'L6 · Anzac Parade brick rooms, white colonnade, projecting green-glass entrance bay and pale green upper level. 15 m mapped maximum retained; detailed dimensions reconstructed'};}
 
@@ -280,6 +285,9 @@ export const CAMPUS={
   plazas:[...MAPPED_CAMPUS.plazas,...ELECTRICAL_APRON.map((p,i)=>({...p,id:`electrical-south-apron-${i}`,name:'Electrical Engineering paved forecourt',surface:'stone',color:'#b6ad97',source:ELECTRICAL_LANDSCAPE_REPORT.url})),...[POOL_ID,GYM_ID].flatMap(id=>{const b=MAPPED_CAMPUS.buildings.find(b=>b.id===id),g=id===POOL_ID?poolGeometry(b):gymGeometry(b);return g.paving.map((points,i)=>({id:`${id}-entrance-apron-${i}`,name:'Fitness and Aquatic Centre exterior apron',points,surface:'stone',color:'#a6afa0',reconstructed:true,source:id===POOL_ID?'https://www.unsw.edu.au/news/2020/10/unsw-seeks-new-management-partner-for-fitness---aquatic-centre':'https://studentvip.com.au/unsw/kensington/maps/135782'}));}),{id:'k17-foyer-footway',name:'K17 glazed foyer footway',points:k17Geometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='k17')).paving,surface:'stone',color:'#a6b2a0',reconstructed:true,source:'https://commons.wikimedia.org/wiki/File:CSE-K17-UNSW-Front.jpg'},{id:'rupert-north-entry-paving',name:'Rupert Myers north entrance paving',points:frameRectangle(rupertGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID)).frame,28,10.4,-22,-12.8),surface:'stone',color:'#a49b85',reconstructed:true,source:'https://dentoncorkermarshall.com/projects/rupert-myers-building-university-of-new-south-wales/'},{id:'rupert-courtyard-paving',name:'Rupert Myers courtyard paving',points:MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID).holes[0],holes:RUPERT_LAWN,surface:'brick',color:'#9e9884',reconstructed:true,source:'https://www.google.com/maps/@?api=1&map_action=pano&pano=MY7rSxmegZUS33zB5RS9iA&heading=69&pitch=0&fov=90'},...MATHEWS_SIRF_PAVING.map((part,i)=>({...part,id:i?'sirf-north-paving-'+i:'sirf-north-paving',name:'SIRF northern footway',surface:'stone',color:'#a4b0a5',reconstructed:true,source:'https://www.google.com/maps/@?api=1&map_action=pano&pano=-TC9UCgCuGSTseqqjeCIXg&heading=180&pitch=5&fov=90'})),{id:'mathews-theatres-entry',name:'Mathews Theatres entrance paving',points:mathewsForecourt.paving,surface:'stone',color:'#baaa8b',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/133153'},{id:'bioscience-north-terrace',name:'Biosciences northern entrance terrace',points:bioscienceForecourt.forecourt,surface:'stone',reconstructed:true,source:'https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/'},COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'},{id:'clancy-north-forecourt',name:'Clancy northern forecourt',points:clancyForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.lahznimmo.com/gate-9-unsw'},{id:'chancellery-entry-paving',name:'Chancellery eastern forecourt',points:chancelleryForecourt.paving,holes:chancelleryForecourt.beds,surface:'stone',color:'#ad9d89',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135096'}],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
   landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),
+    ...(()=>{const g=spiralGeometry();return [{id:SPIRAL_ID,name:'Morven Brown · spiral stair / Grad Shop',kind:'courtyard',...g.arrival,heading:g.heading,pitch:.18,showSign:false,description:'C20 · Open curved stair, orange columns and blue gallery rails beside the Grad Shop. Detailed levels and dimensions reconstructed'},
+    {id:'morven-spiral-start',name:'Morven Brown · spiral stair foot',kind:'courtyard',...g.start,heading:g.startHeading,pitch:.1,showSign:false,description:'Foot of the reconstructed curved stair. Follow the blue handrail uphill to the gallery; the lower passage continues beneath it'},
+    {id:'morven-spiral-gallery',name:'Morven Brown · upper spiral gallery',kind:'courtyard',...g.upperArrival,walkFloor:g.upper,heading:g.upperHeading,pitch:.05,showSign:false,description:'First-floor annular gallery above the Grad Shop passage. Floor level, radius and rail spacing are photo-fitted estimates; this game viewpoint does not imply real access'}];})(),
     ...(()=>{const g=nidaSchoolGeometry();return [{id:NIDA_WEST_ID,name:'NIDA · western teaching wing',kind:'courtyard',...g.northArrival,heading:g.northHeading,pitch:.15,showSign:false,description:'Stepped western teaching wing, low hipped roofs with small clerestory lanterns and covered gallery. Formerly an unnamed generic block. Room boundaries / uses, detailed heights and current access are not surveyed'},
     {id:'nida-school-court',name:'NIDA · school courtyard',kind:'courtyard',...g.arrival,heading:g.heading,pitch:.22,showSign:false,description:'Reconstructed outdoor court between brick teaching rooms and the street-side room band, with planting, benches and folded shade. Ground follows NSW elevation; exact landscape positions and present access are not implied'},
     {id:'nida-west-gallery',name:'NIDA · western covered gallery',kind:'courtyard',...g.galleryArrival,heading:g.galleryHeading,pitch:.08,showSign:false,description:'Ground-level covered gallery beside the original teaching-room roofs. Reconstructed 3.35 m cover clearance follows the local slope; this game view does not establish present access'}];})(),

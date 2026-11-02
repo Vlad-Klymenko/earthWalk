@@ -2,6 +2,10 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
+## Latest visual update: Morven Brown spiral stair
+
+The Grad Shop stair is now an open, walkable reconstruction with white concrete treads, blue balusters, silver handrails, orange columns, a raised annular gallery and a glazed northern shop annex. Separate map destinations reach the stair foot, upper gallery and Basser approach. The 3.55 m gallery rise, 24 treads, radii and component levels are photo-fitted estimates. A bounded lower-passage grade resolves coarse NSW terrain beneath the structure; raw elevation samples, original source footprint, path coordinates and the original 9.6 m estimated maximum remain intact. Linked July 2015 Street View, aerial context and official Grad Shop location evidence are in the reference library. 375 references, 85 of 98 original footprints with explicit appearance profiles and 283 checks do not imply finished campus fidelity.
+
 ## Deployment
 
 GitHub Pages is the primary public demo. The user requests publication after every meaningful change. The workflow in `.github/workflows/pages.yml` installs the locked dependencies, regenerates references / asset versions, checks JavaScript, runs the campus tests and deploys `dist/` whenever `main` is pushed. It also supports manual dispatch. Live demo: [vlad-klymenko.github.io/earthWalk](https://vlad-klymenko.github.io/earthWalk/). Source: [Vlad-Klymenko/earthWalk](https://github.com/Vlad-Klymenko/earthWalk).
