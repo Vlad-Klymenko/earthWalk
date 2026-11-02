@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=c65eae45fe39';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=c65eae45fe39';
-import { terrainHeight, buildingBase } from './terrain.js?v=c65eae45fe39';
+import { CAMPUS as SOURCE } from './campus-data.js?v=fd948496a741';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=fd948496a741';
+import { terrainHeight, buildingBase } from './terrain.js?v=fd948496a741';
 export const BUSINESS_ID='business-school';
 export const BUSINESS_ARCHITECT={url:'https://www.lahznimmo.com/australian-school-of-business-unsw',title:'lahznimmo / FJC · Heffron refurbishment, 2008',describedStoreys:6};
 export function businessGeometry(b){

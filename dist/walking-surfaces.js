@@ -8,3 +8,9 @@ export function walkingSurfaceHeight(base,patches,x,z,referenceY,inside){
  }
  return height;
 }
+
+// Keep the selected vertical layer when a landmark's safe X/Z arrival is
+// cached. A first-floor court can have occupied rooms at the same X/Z below.
+export function walkingDestination(landmark,point=landmark.walkPoint??landmark.teleport??landmark){
+ return {x:point.x,z:point.z,walkFloor:landmark.walkFloor??point.walkFloor};
+}
