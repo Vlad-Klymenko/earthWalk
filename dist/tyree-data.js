@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=4fc824924df7';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=4fc824924df7';
-import { buildingBase, terrainHeight } from './terrain.js?v=4fc824924df7';
+import { CAMPUS as SOURCE } from './campus-data.js?v=2c6e10d9fbfe';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=2c6e10d9fbfe';
+import { buildingBase, terrainHeight } from './terrain.js?v=2c6e10d9fbfe';
 export const TYREE_ID='tyree',TYREE_CANOPY_ID='osm-way-926419128';
 export const TYREE_ARCHITECT={url:'https://fjcstudio.com/projects/tyree-energy-technologies-building/',title:'FJC Studio · Tyree completed exterior photographs'};
 export const TYREE_HEIGHT_REPORT={url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=MP09_0163%2120190826T023421.077+GMT',title:'FJMT PA14 · East Elevation, 10 December 2009',linkLabel:'Planning component levels · PA14',groundRL:28.2,level1RL:32.7,pvRL:50.7,plantRoofRL:55.2,lowScreenRL:56.7,screenRL:59.7};

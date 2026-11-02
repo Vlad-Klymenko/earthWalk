@@ -1,9 +1,9 @@
-import { campusTerrainHeight as terrainHeight } from './electrical-landscape.js?v=4fc824924df7';
-import { CAMPUS } from './campus-enhancements.js?v=4fc824924df7';
-import { createGame } from './game.js?v=4fc824924df7';
-import { TERRAIN_SOURCE } from './terrain.js?v=4fc824924df7';
-import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=4fc824924df7';
-import { heightDescription } from './building-heights.js?v=4fc824924df7';
+import { campusTerrainHeight as terrainHeight } from './electrical-landscape.js?v=2c6e10d9fbfe';
+import { CAMPUS } from './campus-enhancements.js?v=2c6e10d9fbfe';
+import { createGame } from './game.js?v=2c6e10d9fbfe';
+import { TERRAIN_SOURCE } from './terrain.js?v=2c6e10d9fbfe';
+import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=2c6e10d9fbfe';
+import { heightDescription } from './building-heights.js?v=2c6e10d9fbfe';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;
@@ -190,7 +190,7 @@ $('large-map').addEventListener('click', event => {
   const bounds = CAMPUS.bounds;
   if (point.x < bounds.minX || point.x > bounds.maxX || point.z < bounds.minZ || point.z > bounds.maxZ) return;
   const building = buildings.find(b => inside(point, b.points) && !(b.holes || []).some(h => inside(point, h)));
-  const landmark = building && places.find(p => p.id === building.id);
+  const landmark = building && places.find(p => p.id === (building.modelledWith||building.id));
   if (landmark) choose(landmark);
   else choose({ id: null, name: building?.name || 'A spot on campus', x: point.x, z: point.z, description: 'We’ll put you on the nearest open ground.' });
 });
