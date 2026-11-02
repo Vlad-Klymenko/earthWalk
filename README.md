@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: B21 Repository and service yard
+## Latest visual update: Barker’s detached eastern wings
+
+The two unnamed blocks beside Southern Drive now read as Barker apartment wings: red-brick bases, two yellow-brick upper window rows, pale corners, grey courses, red tiled hips, small roof caps and Barker Apartments lettering. The larger wing has a reconstructed external steel stair / access galleries; the lower footpath stays separate from the raised walking layers. Clipped hedge beds, brick aprons and a mature gum follow public photographs / aerial context. Original source footprints, paths, null storey tags and 9.6 m estimated maxima remain. Detailed roof, stair and landscape dimensions are estimates; the independent N13 compound GIS fields are not assigned to these smaller wings. 382 linked references, explicit appearance profiles for 90 of 98 original footprints and 295 checks document progress rather than completed campus fidelity.
+
+## Previous visual update: B21 Repository and service yard
 
 Three formerly generic blocks north of Chancellery now have separate forms: the Repository's dark gravel roof / six square vents, a lower sloping metal annex and a small eastern block with a shallow parapet. Pale service cladding, green roof edges, bounded asphalt hardstand and mature aerial-led trees replace the uniform 9.6 m blocks / grass. New map destinations reach each component. Official public GIS supplies B21 identity and a two-floor field, but no usable measured height; detailed component heights and screened elevations remain estimates. Source outlines, null OSM level tags, original estimates, terrain and paths remain separate from the reconstruction. 379 linked references and explicit profiles for 88 of 98 original footprints document progress rather than finished campus fidelity.
 

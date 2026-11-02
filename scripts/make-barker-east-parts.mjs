@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import clip from 'polygon-clipping';
+import {CAMPUS} from '../dist/campus-data.js';
+import {frameRectangle} from '../dist/geometry.js';
+import {BARKER_EAST_IDS,barkerEastGeometry} from '../dist/barker-east-data.js';
+const poly=p=>[p.map(p=>[p.x,p.z])],ring=r=>r.slice(0,-1).map(([x,z])=>({x,z})),parts=m=>m.map(p=>({points:ring(p[0]),holes:p.slice(1).map(ring),reconstructed:true}));
+const paths=CAMPUS.paths.flatMap(path=>path.points.slice(1).map((c,i)=>{const a=path.points[i],l=Math.hypot(c.x-a.x,c.z-a.z),u={x:(c.x-a.x)/l,z:(c.z-a.z)/l};return poly(frameRectangle({x:(a.x+c.x)/2,z:(a.z+c.z)/2,u,v:{x:-u.z,z:u.x}},l+.02,path.width+.12));}));
+const buildings=CAMPUS.buildings.filter(b=>!b.walkableUnder).map(b=>[b.points,...b.holes].map(r=>r.map(p=>[p.x,p.z]))),gs=BARKER_EAST_IDS.map(id=>barkerEastGeometry(CAMPUS.buildings.find(b=>b.id===id)));
+const hedges=parts(clip.difference(clip.union(...gs.map(g=>poly(g.hedge))),...buildings,...paths));
+const stair=gs[0],paving=parts(clip.difference(clip.union(...gs.map(g=>poly(g.apron)),poly(frameRectangle(stair.frame,12.4,4.4,0,-6.4))),...buildings,...paths,...hedges.map(p=>[p.points,...p.holes].map(r=>r.map(p=>[p.x,p.z])))));
+fs.writeFileSync(new URL('../dist/barker-east-parts.js',import.meta.url),'// Photo-fitted Barker wing gardens / aprons, with original paths and footprints masked.\nexport const BARKER_EAST_PAVING = '+JSON.stringify(paving)+';\nexport const BARKER_EAST_HEDGES = '+JSON.stringify(hedges)+';\n');console.log(paving.length+' apron regions, '+hedges.length+' hedge regions');

@@ -1,7 +1,7 @@
-import {CAMPUS} from './campus-data.js?v=c8731b0931a3';
-import {orientedFrame,framePoint,frameRectangle,clipFrameStrip} from './geometry.js?v=c8731b0931a3';
-import {buildingBase} from './terrain.js?v=c8731b0931a3';
-import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=c8731b0931a3';
+import {CAMPUS} from './campus-data.js?v=382061cd44e1';
+import {orientedFrame,framePoint,frameRectangle,clipFrameStrip} from './geometry.js?v=382061cd44e1';
+import {buildingBase} from './terrain.js?v=382061cd44e1';
+import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=382061cd44e1';
 
 export const REGIMENT_HALL_ID='osm-way-164553176';
 export const REGIMENT_HALL_PHOTO={url:'https://studentvip.com.au/unsw/kensington/maps/135725',photo:'https://s3.studentvip.com.au/photos/gated-building-178410-small.jpg'};
