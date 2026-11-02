@@ -59,7 +59,7 @@ test('new viewpoints fit the player and covered-route source outlines remain unc
   for(const id of MATHEWS_COVERED_ROUTES){
     const b=CAMPUS.buildings.find(b=>b.id===id),raw=SOURCE.buildings.find(b=>b.id===id);
     assert.deepEqual(b.points,raw.points);assert.deepEqual(b.holes,raw.holes);
-    assert.equal(b.heightSource,'estimated');assert.equal(b.terrainCanopy,true);assert.equal(b.height,3.8);
+    assert.equal(b.heightSource,'estimated');assert.equal(b.previousVisualEstimate,3.8);assert.equal(b.height,4.2);assert.equal(b.modelledCanopyWith,'library');
     assert.ok(b.height-.25-1.65>.8,'cover clears a standing player across terrain rather than a single low foundation');
   }
 });

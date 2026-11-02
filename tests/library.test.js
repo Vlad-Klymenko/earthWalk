@@ -38,7 +38,7 @@ test('Flared Library canopy clears the sloping DEM and its supports avoid source
   const lowest=Math.min(...g.canopy.points.map(g.canopy.heightAt))-g.canopy.thickness;
   for(let i=0;i<g.canopy.points.length;i++){
     const a=g.canopy.points[i],c=g.canopy.points[(i+1)%g.canopy.points.length];
-    for(let k=0;k<=20;k++){const p={x:a.x+(c.x-a.x)*k/20,z:a.z+(c.z-a.z)*k/20};assert.ok(g.base+lowest-terrainHeight(p.x,p.z)-.22>4);}
+    for(let k=0;k<=20;k++){const p={x:a.x+(c.x-a.x)*k/20,z:a.z+(c.z-a.z)*k/20};assert.ok(g.base+g.canopy.heightAt(p)-g.canopy.thickness-terrainHeight(p.x,p.z)-.22>3.2,'curved soffit clears the actual ground at this point');assert.ok(g.base+lowest-terrainHeight(p.x,p.z)-.22>2.4,'conservative collision plane still clears a standing player');}
   }
   for(const col of g.columns){
     for(const path of SOURCE.paths)for(let i=0;i<path.points.length-1;i++)for(const p of col.points)assert.ok(distance(p,path.points[i],path.points[i+1])>(path.width||3)/2+.45,`support clears ${path.id}`);

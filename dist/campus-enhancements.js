@@ -1,58 +1,59 @@
-import {MATHEWS_PAVILIONS_ID,MATHEWS_PAVILIONS_REFERENCE,mathewsPavilionsGeometry} from './mathews-pavilions-data.js?v=09f375356b13';
-import {NEW_COLLEGE_ID,NEW_COLLEGE_GIS,NEW_COLLEGE_SOURCE,newCollegeGeometry} from './new-college-data.js?v=09f375356b13';
-import {SHALOM_ID,SHALOM_GIS,SHALOM_COLLEGE,shalomGeometry} from './shalom-data.js?v=09f375356b13';
-import {SHALOM_GARDEN,SHALOM_LIGHTWELLS} from './shalom-parts.js?v=09f375356b13';
-import {WARRANE_ID,WARRANE_GIS,WARRANE_LIVING,warraneGeometry} from './warrane-data.js?v=09f375356b13';
-import {BANK_ID,BANK_SOURCE,BANK_GIS,bankGeometry} from './bank-data.js?v=09f375356b13';
-import {PAVILION_ID,PAVILION_GIS,pavilionGeometry} from './pavilion-data.js?v=09f375356b13';
-import {L5_ID,L5_GIS,l5Geometry} from './l5-data.js?v=09f375356b13';
-import { NCPV_ID,NCPV_RED_ID,NCPV_CORNER_ID,NCPV_HEIGHT,NCPV_COLLEGE,NCPV_GIS,ncpvGeometry } from './ncpv-data.js?v=09f375356b13';
-import { GOLDSTEIN_ID,GOLDSTEIN_ART,goldsteinCourtGeometry } from './goldstein-courtyard-data.js?v=09f375356b13';
-import { TERRACES_ID,TERRACES_ARCHITECT,TERRACES_HEIGHT_REPORT,terracesGeometry } from './terraces-data.js?v=09f375356b13';
-import { VILLAGE_ID,VILLAGE_ARCHITECT,VILLAGE_FACADE,VILLAGE_SECURITY,VILLAGE_WEST_VIEW } from './village-data.js?v=09f375356b13';
-import { VILLAGE_CAFE_ID,VILLAGE_CAFE_HEIGHT,VILLAGE_CAFE_PHOTO,villageCafeGeometry } from './village-cafe-data.js?v=09f375356b13';
-import { REGIMENT_J2_IDS,REGIMENT_STREET_VIEW,regimentGeometry } from './regiment-data.js?v=09f375356b13';
-import { roundhouseEntryGeometry } from './roundhouse-entry.js?v=09f375356b13';
-import { ROUNDHOUSE_ID, ROUNDHOUSE_ARCHITECT, roundhouseGeometry } from './roundhouse-data.js?v=09f375356b13';
-import { AINSWORTH_ID, AINSWORTH_HEIGHT_REPORT, AINSWORTH_DESIGN, ainsworthGeometry } from './ainsworth-data.js?v=09f375356b13';
-import { MATHEWS_SIRF_PAVING } from './mathews-parts.js?v=09f375356b13';
-import { MATHEWS_ID, MATHEWS_PHOTO, MATHEWS_SHARED_LANE, mathewsGeometry } from './mathews-data.js?v=09f375356b13';
-import { LIBRARY_ID, LIBRARY_ANNEX_IDS, LIBRARY_PHOTO, libraryGeometry } from './library-data.js?v=09f375356b13';
-import { TYREE_ID, TYREE_CANOPY_ID, TYREE_ARCHITECT, TYREE_HEIGHT_REPORT, tyreeGeometry } from './tyree-data.js?v=09f375356b13';
-import { BLOCKHOUSE_ID, BLOCKHOUSE_PHOTO, blockhouseGeometry } from './blockhouse-data.js?v=09f375356b13';
-import { MORVEN_ID, MORVEN_PHOTO, morvenGeometry } from './morven-brown-data.js?v=09f375356b13';
-import { SQUAREHOUSE_ID, SQUAREHOUSE_PHOTO, squarehouseGeometry } from './squarehouse-data.js?v=09f375356b13';
-import { RED_CENTRE_IDS, LAWRENCE_RENAME, RED_CENTRE_ARCHITECT, redCentreGeometry } from './red-centre-data.js?v=09f375356b13';
-import { OLD_MAIN_ID, OLD_MAIN_PHYSICS, oldMainGeometry } from './old-main-data.js?v=09f375356b13';
-import { BUSINESS_ID, BUSINESS_ARCHITECT, businessGeometry } from './business-data.js?v=09f375356b13';
-import { LAW_ID, LAW_ARCHITECT, lawGeometry } from './law-data.js?v=09f375356b13';
-import { QUADRANGLE_ID, QUADRANGLE_PHOTO, quadrangleGeometry } from './quadrangle-data.js?v=09f375356b13';
-import { ELECTRICAL_LANDSCAPE, ELECTRICAL_LANDSCAPE_REPORT } from './electrical-landscape.js?v=09f375356b13';
-import { ELECTRICAL_APRON } from './electrical-landscape-parts.js?v=09f375356b13';
-import { ELECTRICAL_ID, ELECTRICAL_LEVELS, electricalGeometry } from './electrical-data.js?v=09f375356b13';
-import { REX_ID, REX_LINK_ID, SDN_ID, REX_VISUAL_HEIGHT, SDN_VISUAL_HEIGHT, SDN_CURRENT_NAME, SDN_RENAME_SOURCE, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=09f375356b13';
-import { BARKER_APARTMENTS_ID, barkerApartmentsGeometry } from './barker-apartments-data.js?v=09f375356b13';
-import { VALLENTINE_ID, vallentineGeometry } from './vallentine-data.js?v=09f375356b13';
-import { BARKER_PARKING_ID, BOTANY_PARKING_ID, BARKER_EXISTING_REPORT, parkingGeometry } from './parking-data.js?v=09f375356b13';
-import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=09f375356b13';
-import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=09f375356b13';
-import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=09f375356b13';
-import { WILLIS_ID, K17_VISUAL_HEIGHT, K17_FRONT_PHOTO, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=09f375356b13';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=09f375356b13';
-import { RUPERT_LAWN } from './rupert-parts.js?v=09f375356b13';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=09f375356b13';
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=09f375356b13';
-import { applyReportedHeight } from './building-heights.js?v=09f375356b13';
-import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=09f375356b13';
-import { VILLAGE_SPORTS } from './sports-data.js?v=09f375356b13';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=09f375356b13';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=09f375356b13';
-import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=09f375356b13';
-import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=09f375356b13';
-import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=09f375356b13';
-import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=09f375356b13';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=09f375356b13';
-import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=09f375356b13';
+import {LIBRARY_WALK_ID,LIBRARY_WALK_STREET,libraryWalkGeometry} from './library-walk-data.js?v=35987af06682';
+import {MATHEWS_PAVILIONS_ID,MATHEWS_PAVILIONS_REFERENCE,mathewsPavilionsGeometry} from './mathews-pavilions-data.js?v=35987af06682';
+import {NEW_COLLEGE_ID,NEW_COLLEGE_GIS,NEW_COLLEGE_SOURCE,newCollegeGeometry} from './new-college-data.js?v=35987af06682';
+import {SHALOM_ID,SHALOM_GIS,SHALOM_COLLEGE,shalomGeometry} from './shalom-data.js?v=35987af06682';
+import {SHALOM_GARDEN,SHALOM_LIGHTWELLS} from './shalom-parts.js?v=35987af06682';
+import {WARRANE_ID,WARRANE_GIS,WARRANE_LIVING,warraneGeometry} from './warrane-data.js?v=35987af06682';
+import {BANK_ID,BANK_SOURCE,BANK_GIS,bankGeometry} from './bank-data.js?v=35987af06682';
+import {PAVILION_ID,PAVILION_GIS,pavilionGeometry} from './pavilion-data.js?v=35987af06682';
+import {L5_ID,L5_GIS,l5Geometry} from './l5-data.js?v=35987af06682';
+import { NCPV_ID,NCPV_RED_ID,NCPV_CORNER_ID,NCPV_HEIGHT,NCPV_COLLEGE,NCPV_GIS,ncpvGeometry } from './ncpv-data.js?v=35987af06682';
+import { GOLDSTEIN_ID,GOLDSTEIN_ART,goldsteinCourtGeometry } from './goldstein-courtyard-data.js?v=35987af06682';
+import { TERRACES_ID,TERRACES_ARCHITECT,TERRACES_HEIGHT_REPORT,terracesGeometry } from './terraces-data.js?v=35987af06682';
+import { VILLAGE_ID,VILLAGE_ARCHITECT,VILLAGE_FACADE,VILLAGE_SECURITY,VILLAGE_WEST_VIEW } from './village-data.js?v=35987af06682';
+import { VILLAGE_CAFE_ID,VILLAGE_CAFE_HEIGHT,VILLAGE_CAFE_PHOTO,villageCafeGeometry } from './village-cafe-data.js?v=35987af06682';
+import { REGIMENT_J2_IDS,REGIMENT_STREET_VIEW,regimentGeometry } from './regiment-data.js?v=35987af06682';
+import { roundhouseEntryGeometry } from './roundhouse-entry.js?v=35987af06682';
+import { ROUNDHOUSE_ID, ROUNDHOUSE_ARCHITECT, roundhouseGeometry } from './roundhouse-data.js?v=35987af06682';
+import { AINSWORTH_ID, AINSWORTH_HEIGHT_REPORT, AINSWORTH_DESIGN, ainsworthGeometry } from './ainsworth-data.js?v=35987af06682';
+import { MATHEWS_SIRF_PAVING } from './mathews-parts.js?v=35987af06682';
+import { MATHEWS_ID, MATHEWS_PHOTO, MATHEWS_SHARED_LANE, mathewsGeometry } from './mathews-data.js?v=35987af06682';
+import { LIBRARY_ID, LIBRARY_ANNEX_IDS, LIBRARY_PHOTO, libraryGeometry } from './library-data.js?v=35987af06682';
+import { TYREE_ID, TYREE_CANOPY_ID, TYREE_ARCHITECT, TYREE_HEIGHT_REPORT, tyreeGeometry } from './tyree-data.js?v=35987af06682';
+import { BLOCKHOUSE_ID, BLOCKHOUSE_PHOTO, blockhouseGeometry } from './blockhouse-data.js?v=35987af06682';
+import { MORVEN_ID, MORVEN_PHOTO, morvenGeometry } from './morven-brown-data.js?v=35987af06682';
+import { SQUAREHOUSE_ID, SQUAREHOUSE_PHOTO, squarehouseGeometry } from './squarehouse-data.js?v=35987af06682';
+import { RED_CENTRE_IDS, LAWRENCE_RENAME, RED_CENTRE_ARCHITECT, redCentreGeometry } from './red-centre-data.js?v=35987af06682';
+import { OLD_MAIN_ID, OLD_MAIN_PHYSICS, oldMainGeometry } from './old-main-data.js?v=35987af06682';
+import { BUSINESS_ID, BUSINESS_ARCHITECT, businessGeometry } from './business-data.js?v=35987af06682';
+import { LAW_ID, LAW_ARCHITECT, lawGeometry } from './law-data.js?v=35987af06682';
+import { QUADRANGLE_ID, QUADRANGLE_PHOTO, quadrangleGeometry } from './quadrangle-data.js?v=35987af06682';
+import { ELECTRICAL_LANDSCAPE, ELECTRICAL_LANDSCAPE_REPORT } from './electrical-landscape.js?v=35987af06682';
+import { ELECTRICAL_APRON } from './electrical-landscape-parts.js?v=35987af06682';
+import { ELECTRICAL_ID, ELECTRICAL_LEVELS, electricalGeometry } from './electrical-data.js?v=35987af06682';
+import { REX_ID, REX_LINK_ID, SDN_ID, REX_VISUAL_HEIGHT, SDN_VISUAL_HEIGHT, SDN_CURRENT_NAME, SDN_RENAME_SOURCE, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=35987af06682';
+import { BARKER_APARTMENTS_ID, barkerApartmentsGeometry } from './barker-apartments-data.js?v=35987af06682';
+import { VALLENTINE_ID, vallentineGeometry } from './vallentine-data.js?v=35987af06682';
+import { BARKER_PARKING_ID, BOTANY_PARKING_ID, BARKER_EXISTING_REPORT, parkingGeometry } from './parking-data.js?v=35987af06682';
+import { ESME_ID, ESME_HEIGHT_REPORT, SCIENCE_HEIGHT_REPORT, SCIENCE_FLUE_REPORT, esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=35987af06682';
+import { POOL_ID, GYM_ID, poolGeometry, gymGeometry } from './aquatic-data.js?v=35987af06682';
+import { NEWTON_ID, KEITH_ID, PHYSICS_ID, newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=35987af06682';
+import { WILLIS_ID, K17_VISUAL_HEIGHT, K17_FRONT_PHOTO, k17Geometry, willisGeometry } from './engineering-lane-data.js?v=35987af06682';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=35987af06682';
+import { RUPERT_LAWN } from './rupert-parts.js?v=35987af06682';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=35987af06682';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=35987af06682';
+import { applyReportedHeight } from './building-heights.js?v=35987af06682';
+import { COLLEGE_GARDEN, COLLEGE_PAVING, COLLEGE_COURTYARD_VIEW } from './campus-landscape.js?v=35987af06682';
+import { VILLAGE_SPORTS } from './sports-data.js?v=35987af06682';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=35987af06682';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry, HERITAGE_FIGS } from './heritage-data.js?v=35987af06682';
+import { scienceTheatreGeometry, websterTheatresGeometry } from './modernism-data.js?v=35987af06682';
+import { clancyGeometry, chancelleryGeometry, CLANCY_HOODS } from './upper-campus-data.js?v=35987af06682';
+import { bioscienceGeometry, mathewsTheatreGeometry, MATHEWS_COVERED_ROUTES } from './bioscience-data.js?v=35987af06682';
+import { civilGeometry, patriciaGeometry } from './lecture-precinct-data.js?v=35987af06682';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=35987af06682';
+import { medicalGeometry, WALLACE_HEIGHT_REPORT } from './medical-data.js?v=35987af06682';
 
 const fieldFrame=orientedFrame(VILLAGE_SPORTS.find(s=>s.sport==='soccer').points);
 const standFrame=orientedFrame(MAPPED_CAMPUS.buildings.find(b=>b.id==='osm-way-1178531040').points,fieldFrame.v);
@@ -71,6 +72,8 @@ const bioscienceForecourt=bioscienceGeometry(MAPPED_CAMPUS.buildings.find(b=>b.i
 const mathewsForecourt=mathewsTheatreGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='mathews-theatres'));
 
 function enhanceBuilding(b){
+  if(b.id===LIBRARY_WALK_ID)return {...b,name:'Library Lawn covered walks',named:true,aliases:[...b.aliases,'Library Lawn covered walkway','Upper campus covered walks'],previousEstimate:b.height,previousVisualEstimate:3.8,height:4.2,heightSource:'estimated',heightQuantity:'Highest walkway cover above local terrain; Library canopy separate',appearanceReference:LIBRARY_WALK_STREET,terrainCanopy:false,modelledCanopyWith:'library',heightNote:'The complete mapped roof-network outline and source footways remain unchanged. The original 9.6 m generic estimate and later 3.8 m flat terrain-following cover remain historical estimates. Corrugated curved roof strips, narrow glazing, two light crossing nodes, paired brown steel supports, lamps and Lawn-side benches are reconstructed from July 2015 Street View and public aerial / university photographs. Walkway roofs rise approximately 3.25–4.2 m above the local NSW DEM; this is a visual estimate, not a surveyed height. The taller concrete Library entrance canopy uses four mapped roof corners; its detailed roof levels are estimated separately. Detailed roof / structural bays, bench positions and unseen junctions remain approximate. Current access is not represented.'};
+
   if(b.id===MATHEWS_PAVILIONS_ID){const g=mathewsPavilionsGeometry(b);return {...b,name:'Mathews Pavilions',named:true,campusRef:'E24',aliases:[...b.aliases,'E24','The Pavilions','Mathews Pavilions'],previousEstimate:b.height,previousVisualEstimate:3.8,height:g.maximum,heightSource:'estimated',heightQuantity:'Reconstructed highest roof above DEM foundation',appearanceReference:MATHEWS_PAVILIONS_REFERENCE,heightNote:'The complete mapped roof outline, courtyard hole, missing level tag, roof classification and walkable-under source tag remain unchanged. The original 9.6 m generic estimate and earlier 3.8 m terrain-following cover remain separate historical estimates. A common eave reference and curved roofs replace the flat cover, following labelled public photos, a 29 July 2017 university archive photograph, January 2022 contributor Street View panoramas and Google aerial context. No surveyed numeric roof height was verified: roof reference, pitch / curvature, skylight widths, glazed room bounds, steel branching supports, tree / planter and bench positions are reconstructed. Contributor panorama coordinates and headings are approximate; visible Mathews Tower / Library landmarks and aerial layout guide alignment. Outdoor paving retains the regional DEM. Fine stepped terrace / lower western lightwell geometry remains incomplete; current room access and private interiors are not represented.'};}
 
   if(b.id===NEW_COLLEGE_ID){const g=newCollegeGeometry(b);return {...b,appearanceReference:NEW_COLLEGE_SOURCE.url,collegeRoomLevels:NEW_COLLEGE_SOURCE.roomLevels,universityGisHeightField:NEW_COLLEGE_GIS.heightField,universityGisFloorCount:NEW_COLLEGE_GIS.floorCount,reconstructedMapHoles:[g.court.points],heightNote:'The 15 m mapped height, five-level OSM tag and complete source envelope remain unchanged. The independent university GIS field gives 16.46 and six floors with unspecified reference / counting conventions. The college describes rooms on levels 1–4, a covered first-floor courtyard and a bridge on level 3. Three brick room rows, a pale green fourth row, two opposed green-glass bays, recessed ground colonnades, white courtyard galleries, translucent raised roof, orange timber bridge, glazed pavilion and striped paving follow June 2023 Street View, official exterior / courtyard photographs and the public college tour. Courtyard / gallery bounds, all detailed floor / roof levels, furniture, vegetation and entrance dimensions are fitted estimates rather than surveyed data. The first-floor court is selectable as a separate map destination; closed entrance doors do not create an invented route through private rooms. Current residence access is not represented.'};}
@@ -92,7 +95,7 @@ function enhanceBuilding(b){
   if(b.id===AINSWORTH_ID){const g=ainsworthGeometry(b);return {...b,previousEstimate:b.height,previousVisualEstimate:24,height:AINSWORTH_HEIGHT_REPORT.maximumRL-g.base,heightSource:'derived',heightQuantity:'Planning maximum above model base',heightReference:AINSWORTH_HEIGHT_REPORT,appearanceReference:AINSWORTH_DESIGN.url,heightNote:'The public March 2013 response gives proposed maximum RL 63.88 m and an existing lift overrun at RL 62.22 m. Displayed height subtracts the retained NSW DEM foundation, assuming compatible datums; planning evidence is not an as-built survey. The original 9.6 m generic estimate and former 24 m visual estimate remain separate. Main roof RL 57.88 m, soffit, plant outlines, five northern window rows, five southern ceramic-screen rows, recessed ground frontage and landscape positions are reconstructed from plans and completed photos. Source outline, missing level tag and garden boundary remain unchanged.'};}
   if(b.id===MATHEWS_ID)return {...applyReportedHeight(b),photoTowerRows:14,appearanceReference:MATHEWS_PHOTO.url,heightNote:'The reported 54 m maximum, original 60 m height tag, twenty-level OSM tag and L-shaped outer footprint remain. Public photos and Google aerial / Street View distinguish the low grey teaching wings from the set-back beige tower. The 18.3 m podium, 51.4 m tower body, central upper plant footprint, fourteen photo-led window rows, six bays, western entry recess, palm forms and planter positions are reconstructed estimates, not surveyed component dimensions. The directory labels levels 1–16 independently of the map tag and visible rows. Interiors and current access restrictions are not modelled.'};
   if(LIBRARY_ANNEX_IDS.includes(b.id))return {...b,modelledWith:LIBRARY_ID,heightNote:'Mapped stair-enclosure footprint, 9.6 m estimate and tags retained. Modelled with the Library as a brick entrance projection, following the public northern exterior photograph. Brickwork, coping and service-door details are reconstructed.'};
-  if(b.id===LIBRARY_ID)return {...applyReportedHeight(b),photoNorthRows:7,appearanceReference:LIBRARY_PHOTO.url,heightNote:'The NSW planning report maximum of 57.74 m, original 60 m OSM height, fourteen-level tag and five mapped component outlines remain separate evidence. Seven exposed northern window rows, broad concrete bays, mostly blank Scientia face with a narrow slot, dark UNSW fascia, brick podium, flared entrance canopy and white side portal are reconstructed from public exterior photographs. Bay pitch, component levels and canopy dimensions are estimates; unseen elevations remain approximate. Outdoor paths are retained. This is not a survey or current entrance-access guidance.'};
+  if(b.id===LIBRARY_ID)return {...applyReportedHeight(b),photoNorthRows:7,appearanceReference:LIBRARY_PHOTO.url,heightNote:'The NSW planning report maximum of 57.74 m, original 60 m OSM height, fourteen-level tag and five mapped component outlines remain separate evidence. Seven exposed northern window rows, broad concrete bays, mostly blank Scientia face with a narrow slot, dark UNSW fascia, brick podium, mapped entrance-canopy corners / curved flare and white side portal are reconstructed from public exterior photographs. The canopy follows four mapped roof corners; rear / front roof references of RL 59.8 / 63.8 m remain photo-fitted estimates. Bay pitch, component levels and canopy dimensions are estimates; unseen elevations remain approximate. Outdoor paths are retained. This is not a survey or current entrance-access guidance.'};
   if(b.id===TYREE_ID){const g=tyreeGeometry(b);return {...b,mappedHeight:b.height,height:TYREE_HEIGHT_REPORT.screenRL-g.base,heightSource:'derived',heightQuantity:'Planning plant screen above model base',heightReference:TYREE_HEIGHT_REPORT,appearanceReference:TYREE_ARCHITECT.url,heightNote:'FJMT PA14 East Elevation (10 December 2009) separates ground RL 28.20 m, level 1 RL 32.70 m, plant / PV roof RL 50.70 m, plant roof RL 55.20 m and upper screens RL 56.70 / 59.70 m. Displayed height subtracts NSW DEM foundation, assuming compatible datums; this is planning evidence, not an as-built height survey. The source 28 m height and seven-level tag remain. Curved roof profiles, plant footprints, north louvres, west ceramic folds, glazing, raised terrace, five stair treads, covered western route and landscape positions are reconstructed from completed photos.'};}
   if(b.id===TYREE_CANOPY_ID){const main=MAPPED_CAMPUS.buildings.find(b=>b.id===TYREE_ID),g=tyreeGeometry(main);return {...b,modelledWith:TYREE_ID,previousEstimate:b.height,height:g.canopyHeight,heightSource:'estimated',heightNote:'This separately mapped northern roof ribbon is modelled with the Tyree spoon roof and slender columns. Its former 9.6 m estimate is retained separately; the curved canopy profile and terrace below are reconstructed from completed photos and the planning elevation, not surveyed coordinates. The original outline and tags remain.'};}
 
@@ -270,6 +273,10 @@ export const CAMPUS={
   plazas:[...MAPPED_CAMPUS.plazas,...ELECTRICAL_APRON.map((p,i)=>({...p,id:`electrical-south-apron-${i}`,name:'Electrical Engineering paved forecourt',surface:'stone',color:'#b6ad97',source:ELECTRICAL_LANDSCAPE_REPORT.url})),...[POOL_ID,GYM_ID].flatMap(id=>{const b=MAPPED_CAMPUS.buildings.find(b=>b.id===id),g=id===POOL_ID?poolGeometry(b):gymGeometry(b);return g.paving.map((points,i)=>({id:`${id}-entrance-apron-${i}`,name:'Fitness and Aquatic Centre exterior apron',points,surface:'stone',color:'#a6afa0',reconstructed:true,source:id===POOL_ID?'https://www.unsw.edu.au/news/2020/10/unsw-seeks-new-management-partner-for-fitness---aquatic-centre':'https://studentvip.com.au/unsw/kensington/maps/135782'}));}),{id:'k17-foyer-footway',name:'K17 glazed foyer footway',points:k17Geometry(MAPPED_CAMPUS.buildings.find(b=>b.id==='k17')).paving,surface:'stone',color:'#a6b2a0',reconstructed:true,source:'https://commons.wikimedia.org/wiki/File:CSE-K17-UNSW-Front.jpg'},{id:'rupert-north-entry-paving',name:'Rupert Myers north entrance paving',points:frameRectangle(rupertGeometry(MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID)).frame,28,10.4,-22,-12.8),surface:'stone',color:'#a49b85',reconstructed:true,source:'https://dentoncorkermarshall.com/projects/rupert-myers-building-university-of-new-south-wales/'},{id:'rupert-courtyard-paving',name:'Rupert Myers courtyard paving',points:MAPPED_CAMPUS.buildings.find(b=>b.id===RUPERT_ID).holes[0],holes:RUPERT_LAWN,surface:'brick',color:'#9e9884',reconstructed:true,source:'https://www.google.com/maps/@?api=1&map_action=pano&pano=MY7rSxmegZUS33zB5RS9iA&heading=69&pitch=0&fov=90'},...MATHEWS_SIRF_PAVING.map((part,i)=>({...part,id:i?'sirf-north-paving-'+i:'sirf-north-paving',name:'SIRF northern footway',surface:'stone',color:'#a4b0a5',reconstructed:true,source:'https://www.google.com/maps/@?api=1&map_action=pano&pano=-TC9UCgCuGSTseqqjeCIXg&heading=180&pitch=5&fov=90'})),{id:'mathews-theatres-entry',name:'Mathews Theatres entrance paving',points:mathewsForecourt.paving,surface:'stone',color:'#baaa8b',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/133153'},{id:'bioscience-north-terrace',name:'Biosciences northern entrance terrace',points:bioscienceForecourt.forecourt,surface:'stone',reconstructed:true,source:'https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/'},COLLEGE_PAVING,...cafePlazas,{id:'science-theatre-forecourt',name:'Science Theatre covered forecourt',points:scienceForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13/k-f13-g09'},{id:'webster-theatres-passage',name:'Webster Theatres covered passage',points:theatrePassage.paving,surface:'stone',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135193'},{id:'clancy-north-forecourt',name:'Clancy northern forecourt',points:clancyForecourt.paving,surface:'stone',reconstructed:true,source:'https://www.lahznimmo.com/gate-9-unsw'},{id:'chancellery-entry-paving',name:'Chancellery eastern forecourt',points:chancelleryForecourt.paving,holes:chancelleryForecourt.beds,surface:'stone',color:'#ad9d89',reconstructed:true,source:'https://studentvip.com.au/unsw/kensington/maps/135096'}],
   buildings:MAPPED_CAMPUS.buildings.map(enhanceBuilding),
   landmarks:[...MAPPED_CAMPUS.landmarks.map(enhanceLandmark),
+    ...(()=>{const g=libraryWalkGeometry();return [{id:LIBRARY_WALK_ID,name:'Library Lawn · covered walkway',kind:'courtyard',...g.arrival,heading:g.heading,pitch:.13,showSign:false,description:'Photo-led corrugated roof, narrow glazed spine, paired brown steel supports and benches beside the Lawn. Source footprint / slope retained; cover height estimated'},
+    {id:'library-walk-crossing',name:'Library Lawn · glazed crossing',kind:'courtyard',...g.crossArrival,heading:g.crossHeading,pitch:.12,showSign:false,description:'Curved east–west covered route through a glazed crossing toward the Library entrance canopy'},
+    {id:'library-east-covered-walk',name:'Library · eastern covered walk',kind:'courtyard',...g.eastArrival,heading:g.eastHeading,pitch:.1,showSign:false,description:'Retained north–south route between the Library and Mathews precinct; reconstructed curved roof / glazing follow the regional slope'},
+    {id:'library-west-covered-link',name:'Upper campus · western covered link',kind:'courtyard',...g.westArrival,heading:g.westHeading,pitch:.1,showSign:false,description:'Western covered route toward Library Lawn, with an uninterrupted mapped walking width and photo-led roof / steel details'}];})(),
     ...(()=>{const g=mathewsPavilionsGeometry();return [{id:MATHEWS_PAVILIONS_ID,name:'Mathews Pavilions',code:'E24',kind:'courtyard',...g.arrival,heading:g.heading,pitch:.18,showSign:false,description:'Curved white pavilion roof, narrow ridge light, silver glazing, Pavilions nameplate and dark branching supports. Detailed roof heights / room boundaries are reconstructed'},
     {id:'mathews-pavilions-court',name:'Mathews Pavilions · tree courtyard',code:'E24',kind:'courtyard',...g.courtArrival,heading:g.courtHeading,pitch:.12,showSign:false,description:'Retained mapped courtyard opening, large photo-led tree, low pale planter, grey / lime benches, potted broad-leaf plants and paved route beside the glazing. Exact plant positions / levels are estimates'},
     {id:'mathews-pavilions-west-walk',name:'Mathews Pavilions · western covered walk',code:'E24',kind:'courtyard',...g.linkArrival,heading:g.linkHeading,pitch:.04,showSign:false,description:'Retained source footway beneath the narrow mapped cover. Source circulation width stays clear; adjacent lower lightwells and fine terrace steps remain simplified'}];})(),COLLEGE_COURTYARD_VIEW,VILLAGE_WEST_VIEW,

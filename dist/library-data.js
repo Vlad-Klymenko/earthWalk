@@ -1,7 +1,7 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=09f375356b13';
-import { BUILDING_PARTS } from './building-parts.js?v=09f375356b13';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=09f375356b13';
-import { buildingBase } from './terrain.js?v=09f375356b13';
+import { CAMPUS as SOURCE } from './campus-data.js?v=35987af06682';
+import { BUILDING_PARTS } from './building-parts.js?v=35987af06682';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=35987af06682';
+import { buildingBase } from './terrain.js?v=35987af06682';
 
 export const LIBRARY_ID='library';
 export const LIBRARY_ANNEX_IDS=['osm-way-926419120','osm-way-926419121'];
@@ -15,8 +15,13 @@ export function libraryGeometry(b){
   const parts=BUILDING_PARTS.filter(p=>p.parent===LIBRARY_ID);
   const annexes=SOURCE.buildings.filter(b=>LIBRARY_ANNEX_IDS.includes(b.id));
   const tower=parts.find(p=>p.id==='osm-part-926419114');
-  const canopy={points:[[-2.5,-48.6],[13.5,-48.4],[17.5,-57],[-6.5,-57]].map(([u,v])=>framePoint(frame,u,v)),heightAt:p=>10.2+Math.max(0,Math.min(1,(-local(p).v-48.5)/8.5))*4.3,thickness:.26,reconstructed:true};
-  const columns=[[-3.3,-51.4],[13.8,-51.4]].map(([u,v])=>({...framePoint(frame,u,v),u,v,points:frameRectangle(frame,1.05,1.65,u,v),top:10.0,reconstructed:true}));
+  // The separately mapped network supplies the actual four canopy corners.
+  // Earlier 24 m / 8.6 m trapezoid and 62.5–66.8 RL slope were visual guesses.
+  const covered=SOURCE.buildings.find(b=>b.id==='osm-way-1178531022'),walkFrame=orientedFrame(covered.points,{x:-.16,z:1});
+  const canopyPoints=[14,15,41,42].map(i=>({...covered.points[i]})),frontV=Math.min(...canopyPoints.map(p=>local(p).v)),backV=Math.max(...canopyPoints.map(p=>local(p).v));
+  const canopy={points:canopyPoints,eaveRL:59.8,lipRL:63.8,thickness:.26,reconstructed:true,sourceRoof:covered.id,heightAt:p=>59.8-base+4*Math.max(0,Math.min(1,(backV-local(p).v)/(backV-frontV)))**1.55};
+  canopy.low=canopy.eaveRL-base;canopy.high=canopy.lipRL-base;
+  const columns=[26.5,38.0].map(u=>{const point=framePoint(walkFrame,u,1.4),q=local(point);return {...point,u:q.u,v:q.v,points:frameRectangle(frame,1.05,1.65,q.u,q.v),top:59.35-base,reconstructed:true};});
   const portal={u:-19.1,v:-1.2,top:4.1,posts:[-4.4,2.05].map(v=>({u:-19.1,v,points:frameRectangle(frame,.5,.35,-19.1,v)})),reconstructed:true};
   const northRows=Array.from({length:7},(_,i)=>({low:17.0+i*5.12,high:20.35+i*5.12}));
   const slotRows=Array.from({length:12},(_,i)=>({low:3.4+i*4.16,high:5.45+i*4.16}));
