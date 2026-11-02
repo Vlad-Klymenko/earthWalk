@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import clip from 'polygon-clipping';
+import {CAMPUS} from '../dist/campus-data.js';
+import {frameRectangle} from '../dist/geometry.js';
+import {REPOSITORY_YARD} from '../dist/repository-data.js';
+const poly=p=>[p.map(p=>[p.x,p.z])],ring=r=>r.slice(0,-1).map(([x,z])=>({x,z}));
+const paths=CAMPUS.paths.flatMap(path=>path.points.slice(1).map((c,i)=>{const a=path.points[i],l=Math.hypot(c.x-a.x,c.z-a.z),u={x:(c.x-a.x)/l,z:(c.z-a.z)/l};return poly(frameRectangle({x:(a.x+c.x)/2,z:(a.z+c.z)/2,u,v:{x:-u.z,z:u.x}},l+.02,path.width+.15));}));
+const buildings=CAMPUS.buildings.filter(b=>!b.walkableUnder).map(b=>[b.points,...b.holes].map(r=>r.map(p=>[p.x,p.z])));
+const yard=clip.difference(poly(REPOSITORY_YARD),...buildings,...paths).map(p=>({points:ring(p[0]),holes:p.slice(1).map(ring),reconstructed:true}));
+fs.writeFileSync(new URL('../dist/repository-parts.js',import.meta.url),'// Photo-fitted service hardstand; original building / path geometry retained.\nexport const REPOSITORY_PAVING = '+JSON.stringify(yard)+';\n');console.log(yard.length+' service hardstand regions');
