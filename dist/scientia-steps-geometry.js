@@ -1,8 +1,8 @@
-import {SCIENTIA_STEP_TIERS,SCIENTIA_STEP_GROUND} from './scientia-steps-parts.js?v=26b79da8da82';
-import {scientiaPoint,scientiaLocal} from './scientia-data.js?v=26b79da8da82';
-import {scientiaStepHeight} from './scientia-steps-data.js?v=26b79da8da82';
-import {CAMPUS as RAW} from './campus-data.js?v=26b79da8da82';
-import {terrainHeight} from './terrain.js?v=26b79da8da82';
+import {SCIENTIA_STEP_TIERS,SCIENTIA_STEP_GROUND} from './scientia-steps-parts.js?v=5c6b85277d47';
+import {scientiaPoint,scientiaLocal} from './scientia-data.js?v=5c6b85277d47';
+import {scientiaStepHeight} from './scientia-steps-data.js?v=5c6b85277d47';
+import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
+import {terrainHeight} from './terrain.js?v=5c6b85277d47';
 const inside=(p,r)=>{let yes=false;for(let i=0,j=r.length-1;i<r.length;j=i++)if((r[i].z>p.z)!==(r[j].z>p.z)&&p.x<(r[j].x-r[i].x)*(p.z-r[i].z)/(r[j].z-r[i].z)+r[i].x)yes=!yes;return yes;};
 export const inScientiaSteps=(x,z)=>SCIENTIA_STEP_GROUND.some(p=>inside({x,z},p.points)&&!p.holes.some(h=>inside({x,z},h)));
 const segmentDistance=(p,a,b)=>{const dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1)));return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t);};

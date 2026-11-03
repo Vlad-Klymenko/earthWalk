@@ -1,7 +1,7 @@
-import {CAMPUS} from './campus-data.js?v=26b79da8da82';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=26b79da8da82';
-import {TREE_INVENTORY} from './tree-inventory-data.js?v=26b79da8da82';
-import {terrainHeight} from './terrain.js?v=26b79da8da82';
+import {CAMPUS} from './campus-data.js?v=5c6b85277d47';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=5c6b85277d47';
+import {TREE_INVENTORY} from './tree-inventory-data.js?v=5c6b85277d47';
+import {terrainHeight} from './terrain.js?v=5c6b85277d47';
 export const OLD_NORTH_FRAME=orientedFrame(CAMPUS.buildings.find(b=>b.id==='osm-way-45490050').points,{x:-.16,z:1});
 export const oldNorthPoint=(u,v)=>framePoint(OLD_NORTH_FRAME,u,v);
 export const oldNorthRectangle=(u0,u1,v0,v1)=>frameRectangle(OLD_NORTH_FRAME,u1-u0,v1-v0,(u0+u1)/2,(v0+v1)/2);

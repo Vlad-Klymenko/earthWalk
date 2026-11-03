@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=26b79da8da82';
-import {NEWTON_ID,newtonGeometry} from './physics-precinct-data.js?v=26b79da8da82';
-import {framePoint,frameRectangle} from './geometry.js?v=26b79da8da82';
-import {terrainHeight} from './terrain.js?v=26b79da8da82';
+import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
+import {NEWTON_ID,newtonGeometry} from './physics-precinct-data.js?v=5c6b85277d47';
+import {framePoint,frameRectangle} from './geometry.js?v=5c6b85277d47';
+import {terrainHeight} from './terrain.js?v=5c6b85277d47';
 export const HELIUM_SOURCE='https://www.unsw.edu.au/estate/campus-development/projects/supporting-research-with-new-helium-infrastructure';
 export const HELIUM_FRAME=newtonGeometry(RAW.buildings.find(b=>b.id===NEWTON_ID)).frame;
 export const heliumPoint=(u,v)=>framePoint(HELIUM_FRAME,u,v);

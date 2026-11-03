@@ -1,11 +1,16 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=26b79da8da82';
-import { buildingBase, terrainHeight } from './terrain.js?v=26b79da8da82';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=5c6b85277d47';
+import { buildingBase, terrainHeight } from './terrain.js?v=5c6b85277d47';
 export const NEWTON_ID='osm-way-45489051',KEITH_ID='osm-way-45489639',PHYSICS_ID='osm-way-45489666';
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});
 const heading=(a,c)=>Math.atan2(c.x-a.x,a.z-c.z);
 export function newtonGeometry(b){
   const frame=frameFor(b),base=buildingBase(b.points),entry=framePoint(frame,-8.2,-18.5);
-  const landing=frameRectangle(frame,3.15,4.2,-9.95,-18.5),stair={a:framePoint(frame,-15.5,-18.5),b:framePoint(frame,-11.5,-18.5),width:3.3,reconstructed:true};
+  const landing=frameRectangle(frame,3.15,4.2,-9.95,-18.5);
+  // Connect the fitted landing to the exact western source wall, leaving a
+  // 2 cm exterior clearance. The old rectangle stopped about half a metre short.
+  const a=b.points[0],c=b.points[1],dx=c.x-a.x,dz=c.z-a.z,len=Math.hypot(dx,dz);
+  for(const i of [1,2]){const p=landing[i],t=((p.x-a.x)*dx+(p.z-a.z)*dz)/(len*len);landing[i]={x:a.x+dx*t+dz/len*.02,z:a.z+dz*t-dx/len*.02};}
+  const stair={a:framePoint(frame,-15.5,-18.5),b:framePoint(frame,-11.5,-18.5),width:3.3,reconstructed:true};
   stair.lowRL=terrainHeight(stair.a.x,stair.a.z)+.03;stair.highRL=Math.max(stair.lowRL+.9,...landing.map(p=>terrainHeight(p.x,p.z)+.8));stair.count=Math.ceil((stair.highRL-stair.lowRL)/.17);
   const rampStart=framePoint(frame,-10.35,-30),ramp={a:rampStart,b:framePoint(frame,-10.35,-20.6),width:1.65,count:1,lowRL:terrainHeight(rampStart.x,rampStart.z)+.02,highRL:stair.highRL,reconstructed:true};
   const arrival=framePoint(frame,-25,-6),target=entry,stairArrival=framePoint(frame,-16.7,-18.5);

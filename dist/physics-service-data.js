@@ -1,8 +1,8 @@
-import {CAMPUS as RAW} from './campus-data.js?v=26b79da8da82';
-import {PHYSICS_ID,physicsGeometry} from './physics-precinct-data.js?v=26b79da8da82';
-import {PHYSICS_ROOF_PARTS} from './physics-roof-parts.js?v=26b79da8da82';
-import {framePoint,frameRectangle} from './geometry.js?v=26b79da8da82';
-import {terrainHeight} from './terrain.js?v=26b79da8da82';
+import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
+import {PHYSICS_ID,physicsGeometry} from './physics-precinct-data.js?v=5c6b85277d47';
+import {PHYSICS_ROOF_PARTS} from './physics-roof-parts.js?v=5c6b85277d47';
+import {framePoint,frameRectangle} from './geometry.js?v=5c6b85277d47';
+import {terrainHeight} from './terrain.js?v=5c6b85277d47';
 export const PHYSICS_SERVICE_PHOTO='https://studentvip.com.au/unsw/kensington/maps/135061';
 export const PHYSICS_CSE_GUIDE='https://cgi.cse.unsw.edu.au/~learn/where_k14_is/';
 export const PHYSICS_GIS_CANDIDATE={height:12.24,floors:4,objectId:53,url:'https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18',selected:false,note:'Retained K14 label attributes report 12.24 m and four floors. The measured extent / height reference within the connected Physics / Old Main complex is not established here, so these fields do not replace the separate mapped theatre shell’s 8 m / one-level tags.'};

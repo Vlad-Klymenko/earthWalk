@@ -1,0 +1,68 @@
+{
+  "inspected": "2026-11-04",
+  "photographs": [
+    {
+      "id": "newton-west-dated-2025",
+      "name": "Newton · dated west elevation and roof services",
+      "url": "https://commons.wikimedia.org/wiki/File:UNSW_Newton_Building_and_ARC_Centre_of_Excellence_for_Quantum_Computation_and_Communication_Technology_2025-01-05.jpg",
+      "notes": "Commons record credits FlyingKoala, 5 January 2025, CC BY 4.0. Complete 960 × 720 preview inspected natively after the original image returned HTTP 429; the full 5712 × 4284 original was not inspected. Shows mottled west brick, narrow vertical strips, central / side panes, pale head panels, turquoise entry treatment, parapet rail, rooftop framed units and pale pipes. Adjacent tall white fins belong to Hilmer and are not applied to Newton. Exact bay / equipment counts, dimensions and current condition remain unverified. No photograph pixels copied into scene assets."
+    },
+    {
+      "id": "newton-blank-south-end",
+      "name": "Newton · blank brick south end above new helium facility",
+      "url": "https://www.unsw.edu.au/estate/campus-development/projects/supporting-research-with-new-helium-infrastructure",
+      "photo": "https://www.unsw.edu.au/content/dam/images/estate-management/developments-and-projects/2026-07-newton-gas-project/2026-30-unsw-newtown-building-2.cropimg.width=700.crop=basic.jpg",
+      "notes": "Entire university completed-project photo inspected natively. Newton's south end above the new silver enclosure is largely blank brown brick with a pale top edge and roof services. Removes the former invented central pale stripe / repeated end windows. This view distinguishes the existing Newton west wing from taller Old Main to the right; exact capture date and rear elevations are unverified. The new helium addition remains separately reconstructed. No source pixels copied."
+    },
+    {
+      "url": "https://www.learningenvironments.unsw.edu.au/physical-spaces/k-j12",
+      "photo": "https://www.learningenvironments.unsw.edu.au/sites/default/files/styles/teaser_mobile/public/images/newton.jpg?itok=tKK_gLhs",
+      "observed": "Entire 736 × 480 university image inspected again natively: mottled brown brick, narrow projecting strips, wide centre / narrow side panes, pale panels above the glazing, white entrance fascia, turquoise ramp treatment and grey rails. Historical source image / exact capture date unverified. Text logos, decorative graphics and branding are not copied."
+    }
+  ],
+  "streetView": {
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=zkOAVkqV5WwVBPDAS1wYYA&heading=90&pitch=10&fov=95",
+    "pano": "zkOAVkqV5WwVBPDAS1wYYA",
+    "capture": "July 2015",
+    "coordinates": [
+      -33.9183679,
+      151.2289845
+    ],
+    "observed": "Native official panorama inspected at visible July 2015 date facing east. Tall ground windows with horizontal divisions, shorter upper windows, narrow side panes, pale head panels, deep brick strips, varied blinds, dark downpipes and planted street edge. Exact bay schedule, glazing dimensions and present-day condition not established; later university / 2025 photographs corroborate the broad facade character. No Street View pixels or 3D mesh copied."
+  },
+  "heightEvidence": {
+    "selected": "Original OSM 16 m maximum / five-level tag remain selected and unmodified.",
+    "retainedSnapshot": "sources/unsw-gis-label-height-fields.json",
+    "gisCandidate": {
+      "OBJECTID": 22,
+      "code": "J12",
+      "height": 13.29,
+      "floors": 6,
+      "selected": false
+    },
+    "limits": "Retained university label field definitions, component extent and measurement base unspecified. Four visible window rows are separate from floor-count claims. No fresh level / geometry survey is asserted, and the candidate is not used to replace the map maximum."
+  },
+  "reconstruction": {
+    "sourceBuilding": "osm-way-45489051",
+    "sourceVertices": 10,
+    "sourceGeometry": "Original perimeter / height / level tags / path centrelines and widths remain. Original OSM bollard 77889598 is retained; its relationship to the fitted stair extent is not a measured alignment. Existing west stair and ramp flights retain their plan and connection; the landing extends only to 2 cm outside the exact western wall, correcting a former roughly half-metre gap.",
+    "bayPitch": 4.2,
+    "firstBayV": -28.6,
+    "bayCount": 15,
+    "windows": "Fitted main panes 1.32 m wide with 0.36 m side panes, recessed 0.18 m. Actual masonry cuts, reveals, pale frames / transoms, varied blind depths and separate head panels. East spacing follows a simplified continuation; exact east / north arrangements are unverified.",
+    "roofDeckAboveBase": 14.65,
+    "copingAboveBase": 14.82,
+    "roofRailAboveBase": 15.5,
+    "roofServices": "Five original simplified framed units with estimated tops 15.92 m; rails, pipes and beam radii stay below retained 16 m maximum. Counts / details fitted to the overall character, not an exact technical model.",
+    "materials": "Locally generated metric-scale variegated brick / subtle grain, pale concrete, opaque glazing and metal. Brick module 0.23 × 0.076 m is illustrative, not a measured specification.",
+    "limits": "All opening schedules, body / equipment levels, service-unit count / function, material hues and access details are reconstructed. North end and detailed eastern facade remain incomplete. The model is not an as-built / accessibility survey."
+  },
+  "verification": {
+    "nativeBrowser": "Codex in-app browser, localhost port 4174",
+    "appearance": "West recessed window groups, separate pale head panels, projecting strips, varied blinds, corrected fascia label and connecting landing inspected. Physics Lawn view confirms the invented end-window stripe is gone. Blank-end texture uses a quieter brick mix; west face retains more variegation.",
+    "walking": "From Newton west entrance steps, 3.2 seconds forward input reached 8 m wandered / 29.5 m elevation at the closed doorway. Another 1.0 seconds forward input left those values unchanged. Retreated to 16 m total / 28.6 m elevation. Physics Lawn arrival and 6 m backward walk also checked.",
+    "logs": "No browser warnings or errors during walking / day and golden-hour checks.",
+    "tests": "Six new facade / source-evidence checks; sixteen targeted precinct checks; full 503-test campus suite passed.",
+    "limitations": "Fitted stair flight retains original OSM bollard 77889598; exact relationship is not a measured alignment. Detailed eastern / northern elevations and roof service counts remain reconstructed."
+  }
+}
