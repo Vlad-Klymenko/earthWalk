@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=0f1aa578e721';
-import { buildingBase, terrainHeight } from './terrain.js?v=0f1aa578e721';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=b468e6aa825e';
+import { buildingBase, terrainHeight } from './terrain.js?v=b468e6aa825e';
 
 // Photo-led details in metres. These are reconstruction dimensions, not a
 // surveyed replacement for the retained parent outlines or height tags.
@@ -19,7 +19,7 @@ export function goodsellGeometry(b){
   // North courtyard entrance lies on the retained north-east wing edge.
   const entry={x:407.45,z:-38.506},normal={x:frame.v.x*-1,z:frame.v.z*-1};
   const entryGround=terrainHeight(entry.x+normal.x*.5,entry.z+normal.z*.5);
-  const canopy={frame:{...frame,...{x:entry.x+normal.x*1.65,z:entry.z+normal.z*1.65}},width:7.4,depth:3.5,bottomRL:entryGround+3.25,roofRL:entryGround+3.45,reconstructed:true};
+  const canopy={frame:{...frame,...{x:entry.x+normal.x*1.65,z:entry.z+normal.z*1.65}},width:7.4,depth:3.5,bottomRL:entryGround+3.05,roofRL:entryGround+3.92,reconstructed:true};
   const points=frameRectangle(canopy.frame,canopy.width,canopy.depth);
   const supports=[-3.2,3.2].map(u=>({...framePoint(frame,u+(entry.x-frame.x)*frame.u.x+(entry.z-frame.z)*frame.u.z,((entry.x-frame.x)*frame.v.x+(entry.z-frame.z)*frame.v.z)-3),radius:.22,reconstructed:true}));
   const arrival={x:entry.x+normal.x*14-frame.u.x*4,z:entry.z+normal.z*14-frame.u.z*4};

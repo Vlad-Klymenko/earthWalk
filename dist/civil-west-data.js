@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=0f1aa578e721';
-import {civilGeometry,lectureFacadeRing} from './lecture-precinct-data.js?v=0f1aa578e721';
-import {scientiaPoint} from './scientia-data.js?v=0f1aa578e721';
+import {CAMPUS as RAW} from './campus-data.js?v=b468e6aa825e';
+import {civilGeometry,lectureFacadeRing} from './lecture-precinct-data.js?v=b468e6aa825e';
+import {scientiaPoint} from './scientia-data.js?v=b468e6aa825e';
 export const CIVIL_ID='osm-way-45230790';
 export const CIVIL_HEIGHT={linkLabel:'Height source · UNSW GIS',height:35.38,reportedFloors:11,objectId:52,url:'https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18',title:'Public UNSW H20 building labels · H20 height field',note:'University GIS Building Height35.38m and No. of Floors11 are reported fields, not a component/absolute-RL survey. Original OSM40m and10-level tags remain independently retained. Display follows the university height; façade rows and rooftop plant remain reconstructed.'};
 export const CIVIL_WEST_REFERENCE='https://fjcstudio.com/projects/john-niland-scientia-building/';

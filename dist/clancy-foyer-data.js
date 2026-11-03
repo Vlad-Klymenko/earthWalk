@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=0f1aa578e721';
-import {clancyGeometry} from './upper-campus-data.js?v=0f1aa578e721';
-import {framePoint} from './geometry.js?v=0f1aa578e721';
+import {CAMPUS as RAW} from './campus-data.js?v=b468e6aa825e';
+import {clancyGeometry} from './upper-campus-data.js?v=b468e6aa825e';
+import {framePoint} from './geometry.js?v=b468e6aa825e';
 export const CLANCY_ID='osm-way-45230512';
 export const CLANCY_FOYER=clancyGeometry(RAW.buildings.find(b=>b.id===CLANCY_ID));
 const g=CLANCY_FOYER,h=g.hood;

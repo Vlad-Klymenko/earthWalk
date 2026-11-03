@@ -1,0 +1,40 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "id": "goodsell-canopy-closeup",
+      "url": "https://commons.wikimedia.org/wiki/File:John_Goodsell_front_entry.jpg",
+      "captureDate": "2025-11-17",
+      "photographer": "Ista Triana",
+      "license": "CC0 1.0",
+      "observed": "Metadata, displayed Commons preview and the entire media-viewer photograph inspected natively. Deep dark main beams, separately visible upper / lower flanges, shaped projecting rafter ends, sloping separate glass panes, short steel brackets with diagonal braces over thick red columns, recessed window frames, pale green window header panels, variegated grey-brown brick and black single-line F20 / John Goodsell fascia. Original upload URL returned 429; this pass does not claim successful original-size file inspection. No source image pixels are redistributed as game textures."
+    },
+    {
+      "id": "goodsell-streetview",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=y1eAKCu5MprdQ5bE3_GhCg&heading=180&pitch=15&fov=95",
+      "position": {"lat": -33.9173114,"lon":151.2329711},
+      "visibleCaptureDate": "July 2015",
+      "observed": "Official Street View inspected facing the courtyard. Four visible tall window rows in deep brick piers, pale header panels, projecting stepped light roof fascia, red-column glazed entrance structure, paved court, tree planter and timber benches. Historical appearance evidence; not a current access survey."
+    },
+    {
+      "id": "goodsell-university",
+      "url": "https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f20",
+      "observed": "Official page confirms K-F20 John Goodsell identity and lower-ground teaching rooms. Existing university exterior-photo reference is retained; the fresh detailed visual comparison used Commons and Street View above."
+    }
+  ],
+  "preserved": "Raw sixteen-vertex building outline, original 15 m / six-level OSM tags, 15 m model roof above the retained courtyard foundation, lower masonry down the unchanged public DEM slope, original building collision, existing courtyard paving and inventory tree coordinates / size bands.",
+  "reconstruction": {
+    "frontFace": "Raw edge 9 to 8 facing Commerce / Catherine Harris Courtyard. Four visible rows use real cut-out window apertures and 0.32 m brick reveals. Entrance glazing has a 0.18 m recess. Brick pieces and apertures partition the complete face without overlap; no opaque backing wall remains behind the glass.",
+    "brick": "Generated stretcher-bond grey-brown / muted tan palette with subtle per-brick grain. Texture scale, mortar, exact colours and random brick pattern are estimates, not a photographed brick inventory.",
+    "canopy": "Seven tapered I-section rafters and six separate sloping glass panes, deep front / rear main beam webs with broad flanges, short bearing brackets and diagonal braces above sixteen-sided red columns. Front beam underside 3.05 m, top 3.38 m; red column top 2.72 m; rafter maximum 3.92 m, all relative to the courtyard base. Shape / dimension estimates fitted to the photograph, not fabrication drawings.",
+    "rearAttachment": "The canopy axis differs slightly from the exact source wall axis. The rear beam was moved outward by 0.22 m so its full flange stays in front of the brick plane at both ends, correcting an occlusion found during the native walk-through.",
+    "glassAndSign": "Local exterior reflection probe, divided door glazing, thin pale frames, yellow safety band and single-line black entrance fascia. Pane divisions, material properties and font are reconstructed; temporary paper notices are not represented as current information.",
+    "collision": "Conservative canopy prism bounds the full projecting steel frame from 3.05 to 3.92 m; red column colliders remain grounded to public DEM. It preserves walking clearance but does not claim an exact fabrication-level overhead collision surface. The source building remains occupied behind its doors.",
+    "destination": "Goodsell · red columns and shaped steel canopy, F20. Arrival clears inventory trunks and mapped buildings."
+  },
+  "validation": {
+    "automated": "Final full suite passed across 89 test files. Seven dedicated tests cover source / foundation preservation, wall / aperture area partition, rafter / glass shape, column bearings, terrain clearance / canopy envelope, destination / route clearance and complete rear-beam separation from the wall. Syntax, site preparation and whitespace checks passed.",
+    "native": "Final entrance view and underside inspected. Rear beam is continuous after correction. Walked to the door beneath the canopy and retreated, 17 m total, with displayed elevation from 52.6 m down to 52.3 m and back to 52.6 m. Browser warning / error log empty."
+  },
+  "limitations": "Component heights, rafter pitch, column / bearing dimensions, door / window schedule, exact pier depth, brick colours and current blind positions remain photo-fitted. Less-visible elevations retain simpler approximate windows. Courtyard furniture / planter layouts have not been newly surveyed or fully reconstructed in this pass. No occupied interior access is claimed."
+}

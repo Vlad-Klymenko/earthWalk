@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=0f1aa578e721';
-import {samuelsGeometry} from './eastern-faculty-data.js?v=0f1aa578e721';
-import {framePoint} from './geometry.js?v=0f1aa578e721';
+import {CAMPUS as RAW} from './campus-data.js?v=b468e6aa825e';
+import {samuelsGeometry} from './eastern-faculty-data.js?v=b468e6aa825e';
+import {framePoint} from './geometry.js?v=b468e6aa825e';
 export const SAMUELS_ID='osm-way-290473701';
 export const SAMUELS_BUILDING=RAW.buildings.find(b=>b.id===SAMUELS_ID);
 export const SAMUELS=samuelsGeometry(SAMUELS_BUILDING);

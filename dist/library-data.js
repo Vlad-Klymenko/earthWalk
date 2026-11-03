@@ -1,7 +1,7 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=0f1aa578e721';
-import { BUILDING_PARTS } from './building-parts.js?v=0f1aa578e721';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=0f1aa578e721';
-import { buildingBase } from './terrain.js?v=0f1aa578e721';
+import { CAMPUS as SOURCE } from './campus-data.js?v=b468e6aa825e';
+import { BUILDING_PARTS } from './building-parts.js?v=b468e6aa825e';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=b468e6aa825e';
+import { buildingBase } from './terrain.js?v=b468e6aa825e';
 
 export const LIBRARY_ID='library';
 export const LIBRARY_ANNEX_IDS=['osm-way-926419120','osm-way-926419121'];

@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=0f1aa578e721';
-import {medicalGeometry} from './medical-data.js?v=0f1aa578e721';
-import {lowyFacadeFaces,LOWY_ID} from './lowy-facade-data.js?v=0f1aa578e721';
-import {framePoint} from './geometry.js?v=0f1aa578e721';
+import {CAMPUS as RAW} from './campus-data.js?v=b468e6aa825e';
+import {medicalGeometry} from './medical-data.js?v=b468e6aa825e';
+import {lowyFacadeFaces,LOWY_ID} from './lowy-facade-data.js?v=b468e6aa825e';
+import {framePoint} from './geometry.js?v=b468e6aa825e';
 export const LOWY_STREET_BUILDING=RAW.buildings.find(b=>b.id===LOWY_ID);
 export const LOWY_STREET_GEOMETRY=medicalGeometry(LOWY_STREET_BUILDING);
 export const LOWY_STREET_FRAME=LOWY_STREET_GEOMETRY.frame;
