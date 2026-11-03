@@ -6,6 +6,7 @@ import {CAMPUS as RAW} from '../dist/campus-data.js';
 import {CAMPUS} from '../dist/campus-enhancements.js';
 import {ENGINEERING_EDGE as E,ENGINEERING_WALLS,ENGINEERING_STREET_VIEW,engineeringCoordinates,engineeringPavingHeight,engineeringPlantLeaves} from '../dist/engineering-street-data.js';
 import {ENGINEERING_GARDENS,ENGINEERING_PAVING,ENGINEERING_GROUND,ENGINEERING_REMNANTS,ENGINEERING_BOLLARDS,ENGINEERING_PLANTS} from '../dist/engineering-street-parts.js';
+import {OLD_MAIN_ENTRY_CUTOUT} from '../dist/old-main-entry-parts.js';
 import {ShapeUtils,Vector2} from '../dist/vendor/three.module.js';
 import {terrainHeight} from '../dist/terrain.js';
 import {walkingSurfaceHeight} from '../dist/walking-surfaces.js';
@@ -22,7 +23,7 @@ test('Engineering Road retains public garden plan evidence separately from estim
  for(const p of RAW.paths){const q=CAMPUS.paths.find(q=>q.id===p.id&&JSON.stringify(q.points)===JSON.stringify(p.points));assert.ok(q);assert.equal(q.width,p.width);assert.equal(q.surface,p.surface);}
 });
 test('garden and reconstructed paving partitions avoid occupied source rooms and full route widths',()=>{
- const ground=clip.union(...ENGINEERING_GROUND.map(poly)),pave=clip.union(...ENGINEERING_PAVING.map(poly)),gardens=clip.union(...ENGINEERING_GARDENS.map(poly));assert.ok(area(pave)>100);assert.ok(area(gardens)>200);assert.ok(area(clip.intersection(pave,gardens))<1e-5);assert.ok(Math.abs(area(ground)-area(pave)-area(gardens))<1e-4);
+ const ground=clip.union(...ENGINEERING_GROUND.map(poly)),pave=clip.union(...ENGINEERING_PAVING.map(poly)),gardens=clip.union(...ENGINEERING_GARDENS.map(poly));assert.ok(area(pave)>100);assert.ok(area(gardens)>200);assert.ok(area(clip.intersection(pave,gardens))<1e-5);assert.ok(Math.abs(area(ground)-area(pave)-area(gardens)-area(clip.union(...OLD_MAIN_ENTRY_CUTOUT.map(poly))))<1e-4);
  for(const b of RAW.buildings.filter(b=>!b.walkableUnder))assert.ok(area(clip.intersection(ground,poly(b)))<1e-5,b.id);
  for(const route of RAW.paths)for(const strip of ribbon(route,route.width))assert.ok(area(clip.intersection(ground,strip))<1e-5,route.id);
  for(const part of [...ENGINEERING_GROUND,...Object.values(ENGINEERING_REMNANTS.paths).flatMap(p=>[...p.surface,...p.edge])]){const all=[...part.points,...part.holes.flat()],tris=ShapeUtils.triangulateShape(part.points.map(p=>new Vector2(p.x,p.z)),part.holes.map(r=>r.map(p=>new Vector2(p.x,p.z))));assert.ok(Math.abs(tris.reduce((s,t)=>s+ringArea(t.map(i=>[all[i].x,all[i].z])),0)-area([poly(part)]))<1e-5);}
@@ -36,7 +37,7 @@ test('planting remains inside public garden partitions with estimated low height
  assert.ok(ENGINEERING_PLANTS.length>300);for(const p of ENGINEERING_PLANTS){assert.ok(p.height>=.28&&p.height<.46);assert.equal(p.reconstructed,true);assert.ok(ENGINEERING_GARDENS.some(g=>contains(p,g)));const c=engineeringCoordinates(p);assert.ok(c.s>=-1&&c.s<=35);for(const leaf of engineeringPlantLeaves(p,ENGINEERING_PLANTS.indexOf(p))){for(const q of [leaf.baseLeft,leaf.baseRight,leaf.midLeft,leaf.midRight,leaf.tip]){assert.ok(Math.hypot(q.x-p.x,q.z-p.z)<=p.radius);assert.ok(q.y>=0&&q.y<=p.height);}assert.ok(Math.hypot(leaf.midRight.x-leaf.midLeft.x,leaf.midRight.z-leaf.midLeft.z)<.037);}}
 });
 test('street arrival and terrain-following paving remain on the ground layer with a finite walking-height API',()=>{
- const view=CAMPUS.landmarks.find(p=>p.id===ENGINEERING_STREET_VIEW.id);assert.ok(view);assert.equal(view.showSign,false);assert.ok(RAW.buildings.filter(b=>!b.walkableUnder).every(b=>!contains(view,b)));assert.ok(ENGINEERING_WALLS.every(w=>!contains(view,w)));assert.match(view.description,/sunken entrance remains unfinished/);
+ const view=CAMPUS.landmarks.find(p=>p.id===ENGINEERING_STREET_VIEW.id);assert.ok(view);assert.equal(view.showSign,false);assert.ok(RAW.buildings.filter(b=>!b.walkableUnder).every(b=>!contains(view,b)));assert.ok(ENGINEERING_WALLS.every(w=>!contains(view,w)));assert.match(view.description,/sunken entrance uses separate published survey RL anchors/);
  for(const part of ENGINEERING_PAVING)for(const p of part.points){const h=engineeringPavingHeight(p.x,p.z);assert.ok(Number.isFinite(h));assert.ok(Math.abs(h-terrainHeight(p.x,p.z)-.055)<1e-10);}
  const part=ENGINEERING_PAVING[0],p=ENGINEERING_BOLLARDS[0],base=terrainHeight(p.x,p.z),patch={points:part.points,holes:part.holes,heightAt:engineeringPavingHeight};assert.ok(Number.isFinite(walkingSurfaceHeight(base,[patch],p.x,p.z,base,inside)));assert.equal(engineeringPavingHeight(1,2,(x,z)=>x+z),3.055);
 });

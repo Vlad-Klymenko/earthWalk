@@ -11,7 +11,7 @@ import {
 	Vector4,
 	WebGLRenderTarget,
 	HalfFloatType
-} from './three.module.js?v=41994a53b8ae';
+} from './three.module.js?v=3f92c7de99b8';
 
 /**
  * Can be used to create a flat, reflective surface like a mirror.

@@ -1,7 +1,7 @@
-import {CAMPUS} from './campus-data.js?v=41994a53b8ae';
-import {terrainHeight,buildingBase} from './terrain.js?v=41994a53b8ae';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=41994a53b8ae';
-import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=41994a53b8ae';
+import {CAMPUS} from './campus-data.js?v=3f92c7de99b8';
+import {terrainHeight,buildingBase} from './terrain.js?v=3f92c7de99b8';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=3f92c7de99b8';
+import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=3f92c7de99b8';
 export const SHALOM_ID='osm-way-45560897';
 export const SHALOM_GIS=UNSW_GIS_LABEL_EVIDENCE.find(p=>p.code==='N9');
 export const SHALOM_COLLEGE={title:'Shalom College · accommodation and balcony levels',url:'https://shalomcollege.unsw.edu.au/accomodation/',balconyFloors:[1,2]};

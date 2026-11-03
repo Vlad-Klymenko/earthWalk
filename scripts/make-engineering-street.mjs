@@ -7,6 +7,7 @@ import {ENGINEERING_SCOPE as S,ENGINEERING_BOLLARD_CANDIDATES,engineeringRectang
 import {MALL_REMNANTS} from '../dist/mall-landscape-parts.js';
 import {SOUTHERN_REMNANTS} from '../dist/southern-drive-parts.js';
 import {mallPathKey} from '../dist/mall-landscape-data.js';
+import {OLD_MAIN_ENTRY_ZONES} from '../dist/old-main-entry-data.js';
 import {pathGeometry} from '../dist/path-materials.js';
 const evidence=JSON.parse(fs.readFileSync(new URL('../sources/engineering-street-gis-evidence.json',import.meta.url))),r=6371008.8*Math.PI/180,sx=r*Math.cos(RAW.center.lat*Math.PI/180);
 const poly=p=>[p.points,...p.holes||[]].map(r=>r.map(p=>[p.x,p.z])),snap=n=>Math.round(n*1e6)/1e6,parts=m=>m.map(p=>({points:p[0].slice(0,-1).map(([x,z])=>({x:snap(x),z:snap(z)})),holes:p.slice(1).map(r=>r.slice(0,-1).map(([x,z])=>({x:snap(x),z:snap(z)})))}));
@@ -16,7 +17,7 @@ const occupied=RAW.buildings.filter(b=>!b.walkableUnder).map(poly);
 // Exact source segment ribbons are only masks; original points and widths are untouched.
 const ribbon=(path,width)=>path.points.slice(1).map((b,i)=>{const a=path.points[i],dx=b.x-a.x,dz=b.z-a.z,len=Math.hypot(dx,dz)||1,nx=-dz/len*width/2,nz=dx/len*width/2;return [[[a.x+nx,a.z+nz],[b.x+nx,b.z+nz],[b.x-nx,b.z-nz],[a.x-nx,a.z-nz]]];});
 const bounded=r=>{const ps=r[0].map(([x,z])=>engineeringCoordinates({x,z}));return Math.min(...ps.map(p=>p.s))<S.s1+.5&&Math.max(...ps.map(p=>p.s))>S.s0-.5&&Math.min(...ps.map(p=>p.o))<S.o1+.5&&Math.max(...ps.map(p=>p.o))>S.o0-.5;},routes=union(CAMPUS.paths.flatMap(p=>ribbon(p,pathGeometry(p).width+.02)).filter(bounded).map(p=>p.map(r=>r.map(([x,z])=>[snap(x),snap(z)])))),gardens=difference(clip.intersection(mapped,scope),...occupied,routes);
-const west=poly({points:engineeringRectangle(S.s0,S.s1,-8.5,-3.0)}),paving=difference(west,gardens,...occupied,routes),ground=union([gardens,paving]);
+const west=poly({points:engineeringRectangle(S.s0,S.s1,-8.5,-3.0)}),entryCut=difference(union(OLD_MAIN_ENTRY_ZONES.map(poly)),...occupied),paving=difference(west,gardens,entryCut,...occupied,routes),ground=union([gardens,paving,entryCut]);
 const remains={paths:{}};
 for(const p of CAMPUS.paths){if(p.kind==='steps')continue;const previous=MALL_REMNANTS.paths[mallPathKey(p)]||SOUTHERN_REMNANTS.paths[p.id],width=pathGeometry(p).width,edge=union(previous?previous.edge.map(poly):ribbon(p,width+.5));if(!clip.intersection(edge,ground).length)continue;remains.paths[mallPathKey(p)]={edge:parts(difference(edge,ground)),surface:parts(difference(union(previous?previous.surface.map(poly):ribbon(p,width)),ground))};}
 const distance=(p,a,b)=>{const dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1)));return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t);};

@@ -1,4 +1,4 @@
-import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=41994a53b8ae';
+import { CAMPUS as MAPPED_CAMPUS } from './campus-data.js?v=3f92c7de99b8';
 
 // The garden boundary is OSM geometry. Paving extent, edging height and planting
 // are visual reconstructions from public Street View and the architect's photos.

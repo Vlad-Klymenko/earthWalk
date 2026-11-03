@@ -1,0 +1,333 @@
+{
+  "survey": {
+    "url": "https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-84220206%2120260115T061908.681+GMT",
+    "sha256": "48511038b9870028fa2507c8b0440f3012e15cdd78bf82508cf37128e76eb752",
+    "title": "Project Surveyors 5781-VILLAGE&BARKER-A, June 2025",
+    "pages": [
+      1,
+      27,
+      28
+    ],
+    "observations": {
+      "lowerFloorRL": 30.65,
+      "upperLandingRL": 32.68,
+      "stairLowerSpotRL": 30.64,
+      "stairUpperSpotRL": 32.63,
+      "eastLowerWindowSillRL": 30.65,
+      "eastLowerWindowHeadRL": 32.95,
+      "eastUpperWindowSillRL": 34.7,
+      "eastUpperWindowHeadRL": 37.1,
+      "southLowerWindowSillRL": 30.75,
+      "southLowerWindowHeadRL": 32.45
+    },
+    "note": "Complete sheets 1, 27 and 28 rendered / inspected, followed by an enlarged eastern-frontage detail. FL 30.65 is a floor label; SIP / EOT service labels are not floor levels. The title sheet states A.H.D., GDA2020 and survey-control levels. No surveyed roof RL is extracted. Plan placement, tread count / details and connection to the coarse NSW terrain remain reconstructions.",
+    "datum": "Australian Height Datum (A.H.D.), explicitly stated on sheet 1",
+    "surveyDates": [
+      "2024-09-30",
+      "2025-05-28"
+    ],
+    "issueDate": "2025-06-30"
+  },
+  "buildingGIS": {
+    "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18",
+    "retrieved": "2026-11-03",
+    "query": {
+      "where": "egdb_ES_14='K15'",
+      "outFields": "OBJECTID,egdb_ES_14,egdb_ES_15,egdb_ES_18,egdb_ES_26",
+      "outSR": 4326
+    },
+    "response": {
+      "displayFieldName": "egdb_ESRIR",
+      "fieldAliases": {
+        "OBJECTID": "OBJECTID",
+        "egdb_ES_14": "Building Code",
+        "egdb_ES_15": "Building Name",
+        "egdb_ES_18": "No. of Floors",
+        "egdb_ES_26": "Building Height"
+      },
+      "geometryType": "esriGeometryPolygon",
+      "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+      },
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "type": "esriFieldTypeOID",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "egdb_ES_14",
+          "type": "esriFieldTypeString",
+          "alias": "Building Code",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_15",
+          "type": "esriFieldTypeString",
+          "alias": "Building Name",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_18",
+          "type": "esriFieldTypeInteger",
+          "alias": "No. of Floors"
+        },
+        {
+          "name": "egdb_ES_26",
+          "type": "esriFieldTypeDouble",
+          "alias": "Building Height"
+        }
+      ],
+      "features": [
+        {
+          "attributes": {
+            "OBJECTID": 21,
+            "egdb_ES_14": "K15",
+            "egdb_ES_15": "Old Main",
+            "egdb_ES_18": 5,
+            "egdb_ES_26": 15.32
+          },
+          "geometry": {
+            "rings": [
+              [
+                [
+                  151.229408690551,
+                  -33.918050199940176
+                ],
+                [
+                  151.2295304419164,
+                  -33.91806681463607
+                ],
+                [
+                  151.22952878811796,
+                  -33.918075285237386
+                ],
+                [
+                  151.2296151719123,
+                  -33.91808707385596
+                ],
+                [
+                  151.2296079009484,
+                  -33.91812428991925
+                ],
+                [
+                  151.22959212653203,
+                  -33.91812213704754
+                ],
+                [
+                  151.2295984677396,
+                  -33.91813432596849
+                ],
+                [
+                  151.2296013755862,
+                  -33.918173700099835
+                ],
+                [
+                  151.22959687502663,
+                  -33.918186438412754
+                ],
+                [
+                  151.22958035950012,
+                  -33.91820902789173
+                ],
+                [
+                  151.22954100879915,
+                  -33.91823090843865
+                ],
+                [
+                  151.22952851682678,
+                  -33.91823741028176
+                ],
+                [
+                  151.2295082463424,
+                  -33.918255107338986
+                ],
+                [
+                  151.22949604811913,
+                  -33.91827736656415
+                ],
+                [
+                  151.2294955504525,
+                  -33.918313869891726
+                ],
+                [
+                  151.22950021450544,
+                  -33.918325523550415
+                ],
+                [
+                  151.22951074186227,
+                  -33.918346218052875
+                ],
+                [
+                  151.22950979593625,
+                  -33.91837681886234
+                ],
+                [
+                  151.22949956412518,
+                  -33.91839547379623
+                ],
+                [
+                  151.22948597351325,
+                  -33.918411456281795
+                ],
+                [
+                  151.22948513897833,
+                  -33.91842983911828
+                ],
+                [
+                  151.22949856609688,
+                  -33.91844444623959
+                ],
+                [
+                  151.22952008074796,
+                  -33.9184485588948
+                ],
+                [
+                  151.22952300476416,
+                  -33.918439178134406
+                ],
+                [
+                  151.22972280804967,
+                  -33.91846644376189
+                ],
+                [
+                  151.22975014917364,
+                  -33.918326505311256
+                ],
+                [
+                  151.2297094986104,
+                  -33.918320957654124
+                ],
+                [
+                  151.22972086229873,
+                  -33.91826279146866
+                ],
+                [
+                  151.22976151465866,
+                  -33.91826833912962
+                ],
+                [
+                  151.22979386478866,
+                  -33.91810276194488
+                ],
+                [
+                  151.22991703818715,
+                  -33.918119571194076
+                ],
+                [
+                  151.22983612333624,
+                  -33.91853371026987
+                ],
+                [
+                  151.230205780974,
+                  -33.918584154152406
+                ],
+                [
+                  151.23021290820742,
+                  -33.91854767330417
+                ],
+                [
+                  151.23024624199266,
+                  -33.918552222788364
+                ],
+                [
+                  151.2303200287118,
+                  -33.91817456482619
+                ],
+                [
+                  151.23044316977095,
+                  -33.918191368843075
+                ],
+                [
+                  151.23036634315292,
+                  -33.918584584277156
+                ],
+                [
+                  151.2306562016473,
+                  -33.91862877753338
+                ],
+                [
+                  151.23069004208236,
+                  -33.918455579555406
+                ],
+                [
+                  151.23064937445116,
+                  -33.91845002892489
+                ],
+                [
+                  151.23066071568164,
+                  -33.91839197464531
+                ],
+                [
+                  151.23070138600778,
+                  -33.918397523788705
+                ],
+                [
+                  151.23073984647837,
+                  -33.91823185441884
+                ],
+                [
+                  151.23085703530046,
+                  -33.91824784513507
+                ],
+                [
+                  151.230769676834,
+                  -33.918694964502805
+                ],
+                [
+                  151.23078749491768,
+                  -33.9186973954126
+                ],
+                [
+                  151.230766972905,
+                  -33.91880243286458
+                ],
+                [
+                  151.23014030636614,
+                  -33.91871543826263
+                ],
+                [
+                  151.2301377039468,
+                  -33.91872876614467
+                ],
+                [
+                  151.23010030618318,
+                  -33.91872366280133
+                ],
+                [
+                  151.2301090000785,
+                  -33.918679165450975
+                ],
+                [
+                  151.22930718182224,
+                  -33.91856974534484
+                ],
+                [
+                  151.229408690551,
+                  -33.918050199940176
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "note": "Public Old Main identity, five-floor field and 15.32 m height field. Measurement method / base / roof datum and floor-count convention are unspecified. These do not overwrite the original OSM 24 m / six-level evidence. A reconstructed roof near RL 46 m is photo-fitted, with this field only as contextual corroboration."
+  },
+  "photographs": [
+    {
+      "pano": "kxmjWQj6VdFPCiEIGY81mQ",
+      "capture": "July 2015",
+      "lat": -33.9187111,
+      "lon": 151.230872
+    },
+    {
+      "pano": "l0qxrlNnlWZBJ-RX8nr_Iw",
+      "capture": "July 2015",
+      "lat": -33.9188958,
+      "lon": 151.2308385
+    }
+  ],
+  "note": "Published level labels remain separate from fitted XY extents, stair count / width / materials, connecting grades, unseen details and estimated upper window / roof levels. Existing raw map geometry and DEM samples remain intact."
+}

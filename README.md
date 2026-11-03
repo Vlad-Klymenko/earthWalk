@@ -2,9 +2,13 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: Engineering Road streetscape
+## Latest visual update: Old Main lower entrance and façade levels
 
-A bounded section beside Old Main now has public-GIS garden beds, planted edges, an interlocking-paved margin, a low brick wall / metal rail and six reconstructed blue bollards. A new map destination reaches the comparison view. The original paths and NSW terrain remain intact; conflicting bollard positions are omitted to preserve mapped route widths. Detailed fixture dimensions, planting and fine levels follow historical Street View and remain estimates. The sunken entrance is still unfinished. All 321 checks pass, with native walking / boundary checks; the reference library has 400 records. Campus fidelity remains ongoing.
+Old Main now has a walkable sunken court, twelve reconstructed stair treads, upper platform, closed lower door and bike rack. Public AHD survey labels anchor the lower floor at RL 30.65 m, upper landing near 32.68 m and lower eastern window bands. A bounded ground cut exposes the court without changing raw NSW samples or original map paths. The higher window bands, roof near RL 46 m, detailed stair plan and connecting grades remain estimates; original OSM 24 m / six-level evidence and separate GIS 15.32 m / five-floor fields remain available. Three new map destinations reach the lower court, upper landing and southern approach. All 329 checks pass, with browser ascent, descent and street-connection checks. The reference library has 402 records; campus fidelity remains ongoing.
+
+## Previous visual update: Engineering Road streetscape
+
+A bounded section beside Old Main now has public-GIS garden beds, planted edges, an interlocking-paved margin, a low brick wall / metal rail and six reconstructed blue bollards. A new map destination reaches the comparison view. The original paths and NSW terrain remain intact; conflicting bollard positions are omitted to preserve mapped route widths. Detailed fixture dimensions, planting and fine levels follow historical Street View and remain estimates. The sunken entrance was unfinished at this stage; the update above now addresses it. All 321 checks pass, with native walking / boundary checks; the reference library has 400 records. Campus fidelity remains ongoing.
 
 ## Previous visual update: campus path materials
 
