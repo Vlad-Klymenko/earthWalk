@@ -1,0 +1,56 @@
+{
+  "inspected": "2026-11-03",
+  "sources": [
+    {
+      "id": "lowy-courtyard-panel-fields",
+      "name": "Lowy · built courtyard panel fields and glazing",
+      "url": "https://www.lahznimmo.com/lowy-cancer-research-centre-unsw",
+      "photo": "https://images.squarespace-cdn.com/content/v1/5aa74f41fcf7fd0a86dde240/17ef6786-5bf1-4e6d-af1b-a6b4843c2a0b/lahznimmo_Lowy_P04.jpg",
+      "notes": "Full displayed built courtyard overview inspected natively. Broad green flat panels and narrow projecting blades form irregular vertical groups over reflective glazing, with fine grey transoms and a separate dark glazed base. Replaces the old equal green bars and five strong horizontal strips. Panel widths, pitch, pane divisions, colours and finishes are original photo-fitted approximations, not a fabrication tracing. Source pixels are linked only."
+    },
+    {
+      "id": "lowy-recessed-link-frame",
+      "name": "Lowy · recessed glass within projecting green frame",
+      "url": "https://www.lahznimmo.com/lowy-cancer-research-centre-unsw",
+      "photo": "https://images.squarespace-cdn.com/content/v1/5aa74f41fcf7fd0a86dde240/3d5a73ec-a281-4d33-b824-40c648aef22b/LahzNimmo_LowyUNSW_000000.jpg",
+      "notes": "Full displayed built exterior inspected natively. Deep green perimeter, recessed glazing, grey floor bands, panelled solid side, pale soffit and round concrete supports guide the projecting link refinement. Existing mapped outline, estimated 6.4 m underside, 28.8 m link roof and six support centres remain unchanged. Detailed frame dimensions and four visible pane rows are estimated; photo date and current condition unverified."
+    }
+  ],
+  "corroboration": [
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/5aa74f41fcf7fd0a86dde240/1764287945217-KYFWYW8SN5NYUWBTK42D/lahznimmo_Lowy_A05.jpg",
+      "observed": "Full displayed architect elevation inspected natively. Distinguishes courtyard green screening, pale service core, framed projecting component and adjacent Wallace Wurth. Drawing has no verified measured frame schedule; not used as a replacement surveyed height."
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/5aa74f41fcf7fd0a86dde240/1764287947045-G0K3UPUK3KV2NWLDOEU1/lahznimmo_Lowy_A06.jpg",
+      "observed": "Full displayed northern architect elevation inspected natively. Confirms predominantly pale laboratory wall and separate projecting north glazing. This pass preserves the previous northern treatment; its fine detailing remains incomplete."
+    },
+    {
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=glCU23xhqn8PvPx2UAGcsA&heading=180&pitch=15&fov=80",
+      "capture": "February 2022",
+      "observed": "Native official Street View at 34 High Street, -33.9164006, 151.2351776, visibly verifies the historical date, pale panel grid, lower louvres, tapered corner and mature street trees. Courtyard is not visible here. No courtyard dimensions or present condition inferred from this view."
+    }
+  ],
+  "reconstruction": {
+    "courtyard": "Original irregular panel sequence includes wide flat panels and narrower deeper blades. Estimated 0.16 m panel projection and 0.42 m blade projection, 1.15 m pane pitch, fine grey bars and dark low glazing. Existing component roof levels retained. Exact panel counts and finishes are approximated.",
+    "link": "One west-facing long external link face receives an estimated 0.58 m projecting perimeter, 0.56 m jambs, 1.0 m head and 0.72 m sill. Glass lies at 0.075 m offset, within deep dark reveals. Four photo-fitted rows and narrow grey spandrels replace generic green bar treatment. Other link faces have solid green panel seams.",
+    "joins": "Facade-only cleanup removes zero-area collinear backtracking at the Boolean cut and suppresses overlapping faces between the occupied bridge and main body. Raw map points, source partition arrays, volumes and collision heights are unchanged. Exposed parts of the main body above and below the bridge retain their faces.",
+    "reflection": "Lowy exterior uses a static 512 px local reflection probe of the reconstructed campus, refreshed with scene/lighting changes. No external photography used as texture.",
+    "views": "Two exterior map destinations show the green courtyard facade and projecting link. Arrival clearance is checked against all source building footprints."
+  },
+  "preserved": {
+    "height": 32,
+    "levels": 8,
+    "heightBasis": "Original OSM height and level tags retained; no replacement measured Lowy roof RL established.",
+    "linkUndersideAboveModelBase": 6.4,
+    "linkRoofAboveModelBase": 28.8,
+    "columns": 6,
+    "note": "Link dimensions remain previous reconstructed component estimates. Source footprints, terrain DEM, paths, tree inventory, support positions and surrounding buildings are unchanged."
+  },
+  "limitations": "Historical photos and schematic elevations do not establish current condition or precise manufacturing dimensions. Some unobserved faces retain the earlier approximate treatment. Detailed north-face bevels, service cores, interiors and courtyard furniture remain incomplete. Interior photographs were inspected but not used for this exterior-only change.",
+  "validation": {
+    "automated": "412 tests passed in the full suite; final arrival adjustment also passed all seven Lowy / medical checks.",
+    "browser": "Native browser inspected both new viewpoints. Walked into and back out from beneath the raised occupied link, 45 m total including repositioning, at approximately 56.9–57.2 m ground elevation. No warnings or errors captured.",
+    "sourcePreservation": "External facade lengths sum to the original perimeter. No facade skin crosses the internal occupied bridge join; exposed upper and lower main walls remain."
+  }
+}

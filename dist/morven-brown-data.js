@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=0a6497e5d72b';
-import { orientedFrame, framePoint } from './geometry.js?v=0a6497e5d72b';
-import { buildingBase } from './terrain.js?v=0a6497e5d72b';
+import { CAMPUS as SOURCE } from './campus-data.js?v=fbfc5011f3c1';
+import { orientedFrame, framePoint } from './geometry.js?v=fbfc5011f3c1';
+import { buildingBase } from './terrain.js?v=fbfc5011f3c1';
 export const MORVEN_ID='osm-relation-2328645-0';
 export const MORVEN_PHOTO={url:'https://www.unsw.edu.au/arts-design-architecture/our-schools/education/about-us/contact-us',title:'UNSW School of Education · Morven Brown courtyard'};
 export function morvenGeometry(b){

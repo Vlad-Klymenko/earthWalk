@@ -1,4 +1,4 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=0a6497e5d72b';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=fbfc5011f3c1';
 
 // These separately mapped roof outlines are rendered with the auditorium's
 // copper hoods, avoiding a second generic roof and invented support posts.

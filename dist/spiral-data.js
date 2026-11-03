@@ -1,6 +1,6 @@
-import {CAMPUS} from './campus-data.js?v=0a6497e5d72b';
-import {terrainHeight as demHeight,buildingBase} from './terrain.js?v=0a6497e5d72b';
-import {orientedFrame,framePoint,frameRectangle,clipFrameStrip} from './geometry.js?v=0a6497e5d72b';
+import {CAMPUS} from './campus-data.js?v=fbfc5011f3c1';
+import {terrainHeight as demHeight,buildingBase} from './terrain.js?v=fbfc5011f3c1';
+import {orientedFrame,framePoint,frameRectangle,clipFrameStrip} from './geometry.js?v=fbfc5011f3c1';
 
 export const SPIRAL_ID='osm-way-45604251';
 export const SPIRAL_STREET={url:'https://www.google.com/maps/@?api=1&map_action=pano&pano=1dC04C0YehTEFE6402oxMA&heading=0&pitch=25',date:'July 2015',lat:-33.9168641,lon:151.2323067};
