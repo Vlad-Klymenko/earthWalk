@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=1815a9b0ff0f';
-import { buildingBase } from './terrain.js?v=1815a9b0ff0f';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=0a6497e5d72b';
+import { buildingBase } from './terrain.js?v=0a6497e5d72b';
 
 export const BIOSCIENCE_REPORTS={
   north:{title:'Woods Bagot · 2016 biosciences S96 design statement',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-6674-MOD-1%2120190228T015509.308+GMT',printedPage:5,pdfPage:5,roofRL:96.2,approximate:true},
@@ -22,8 +22,8 @@ export function bioscienceGeometry(b){
   const arrival=north?framePoint(frame,-28,-78):framePoint(frame,80,8);
   const target=north?framePoint(frame,-20,-20):framePoint(frame,32,-2);
   const supports=north?[]:[-15,-6,2].map(v=>framePoint(frame,v>0?32.5:35,v));
-  const forecourt=frameRectangle(frame,64,7,-20,-30.15),streetGarden={points:frameRectangle(frame,5.5,38,44.5,0),trees:[-14,-2,12].map(v=>({...framePoint(frame,44.5,v),height:4.6,reconstructed:true})),reconstructed:true};
-  return {frame,local,north,base,report,levels,canopy,plants,supports,forecourt,streetGarden,arrival,target,heading:Math.atan2(target.x-arrival.x,arrival.z-target.z),
+  const forecourt=frameRectangle(frame,64,7,-20,-30.15);
+  return {frame,local,north,base,report,levels,canopy,plants,supports,forecourt,arrival,target,heading:Math.atan2(target.x-arrival.x,arrival.z-target.z),
     regionRoofRL:kind=>kind==='biolink'?81.5:kind==='atrium'||kind==='glass-box'?85.98:north?86.4:87.13};
 }
 

@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=1815a9b0ff0f';
-import {bioscienceGeometry} from './bioscience-data.js?v=1815a9b0ff0f';
-import {framePoint} from './geometry.js?v=1815a9b0ff0f';
+import {CAMPUS as RAW} from './campus-data.js?v=0a6497e5d72b';
+import {bioscienceGeometry} from './bioscience-data.js?v=0a6497e5d72b';
+import {framePoint} from './geometry.js?v=0a6497e5d72b';
 // Original procedural interpretations of built exterior photographs, not
 // sampled photo colours / pixels or surveyed manufacturing schedules.
 export const BIOSCIENCE_FACADE_SOURCE='https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/';

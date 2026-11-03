@@ -1,3 +1,4 @@
+import {BIO_STREET_GARDEN,BIO_STREET_TREES} from '../dist/bioscience-street-data.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import clipping from 'polygon-clipping';
@@ -39,8 +40,8 @@ test('biosciences covered entrances and floating glass box clear the real ground
     assert.ok(g.canopy.roofRL-.2-terrainHeight(p.x,p.z)>2.4,'northern cover clears the high end of the slope');
   }
   const south=CAMPUS.buildings.find(b=>b.id==='biological-south'),s=bioscienceGeometry(south);
-  assert.equal(s.streetGarden.reconstructed,true);
-  for(const p of s.streetGarden.trees)for(const b of CAMPUS.buildings.filter(b=>!b.walkableUnder))assert.ok(area(clipping.intersection(circle(p,.4),polygon(b)))<1e-6,'street planting must not enter a building');
+  assert.equal(BIO_STREET_GARDEN.reconstructed,true);
+  for(const p of BIO_STREET_TREES)for(const b of CAMPUS.buildings.filter(b=>!b.walkableUnder))assert.ok(area(clipping.intersection(circle(p,.4),polygon(b)))<1e-6,'street planting must not enter a building');
   for(const b of CAMPUS.buildings.filter(b=>!b.walkableUnder))assert.ok(area(clipping.intersection(polygon({points:g.forecourt}),polygon(b)))<.1,'entrance terrace must not fill another building');
   for(const p of s.supports){
     const glass=BIOSCIENCE_PARTS.find(p=>p.buildingId===south.id&&p.kind==='glass-box');

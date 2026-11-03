@@ -1,0 +1,32 @@
+{
+  "inspected": "2026-11-03",
+  "sources": [
+    {
+      "id": "bioscience-street-raised-garden",
+      "name": "Biosciences · Botany Street raised planted frontage",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=qoZ46Cc4gByr1ND5ajcxkg&heading=270&pitch=-8&fov=75",
+      "capture": "February 2022",
+      "notes": "Native official Street View inspected at 34 Botany Street, -33.9175089, 151.2363401, facing west and slightly down. Grey-brown small-course brick retaining wall, thin pale coping, raised soil, dense low cover and upright green/yellow strap foliage extend past the grey D26 end wall. Exact bed outline, wall dimensions, species and present condition are not established by this historical image."
+    },
+    {
+      "id": "bioscience-street-inventory-and-grade",
+      "name": "Biosciences · retained tree points and street grade",
+      "url": "https://services6.arcgis.com/jQzlZ3XrG3Oih4Ya/arcgis/rest/services/Trees/FeatureServer/0",
+      "notes": "Uses the previously retained public tree inventory, last edited July 2023, and the existing NSW DEM. Thirteen existing inventory trees within the derived bank replace the three former estimated frontage trees. Source positions and size bands are unchanged; only rendered roots follow the shared reconstructed soil mesh. Original OSM cycleway 1100783035 remains 2.5 m wide and clear. This is not a fresh tree census or a measured landscape-level survey."
+    }
+  ],
+  "corroboration": {
+    "url": "https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/",
+    "photo": "https://wpassets.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2019/07/24134701/120922_N8_screenhd.jpg",
+    "note": "Built east photograph inspected during the preceding facade refinement also shows the raised planted frontage and retaining edge. Source pixels are linked only, never copied into game textures."
+  },
+  "reconstruction": {
+    "extent": "A roughly 63 m derived bank follows the retained cycleway behind D26/E26; generated soil and wall polygons exclude mapped buildings and route ribbons. The old strip intersected the cycleway and ended before the D26 frontage.",
+    "wall": "Estimated 0.24 m width, 0.62 m height above a DEM-relative fitted base, thin 0.28 m coping and 0.20 m route setback. Wall follows more than 2 m of source grade change; dimensions are photo estimates.",
+    "soil": "Soil rises smoothly over the outer 4 m to meet the coping. The exact same 9,014 triangles supply rendering and indexed walking height. Original coarse DEM values and surrounding terrain remain unchanged.",
+    "plants": "Original procedural low cover, smaller edge cover and curved strap-leaf clumps. Counts, exact positions, colours and species are reconstructed. All plant centres have tested clearance from mapped routes and occupied buildings.",
+    "trees": "Thirteen retained inventory trees have roots anchored to the derived bank. No tree records, source coordinates, species or reported size bands are altered.",
+    "arrival": "New Biosciences · Botany Street garden map destination is on the clear cycleway."
+  },
+  "limitations": "Historical appearance only. Detailed landscape levels and wall construction were not surveyed. Soil and planting are simplified; this is a public-data reconstruction, not a current-condition or accessibility survey."
+}
