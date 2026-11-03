@@ -1,0 +1,42 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "url": "https://www.empirefacades.com.au/project/unsw-gate-9/",
+      "reported": "Facade contractor reports 10 m high glass supported by multi-laminated full-height glass fins, and a 23 m wide cantilevered awning. Component figures remain distinct from the earlier 14.5 m estimated overall model height."
+    },
+    {
+      "url": "https://www.empirefacades.com.au/wp-content/uploads/2021/03/IMG_6411.jpg",
+      "observed": "Entire displayed daytime front exterior inspected natively. Diamond gold soffit, six slender suspension rods, full-height glass fin edges, thin dark steel canopy beams, translucent panes and dark copper perimeter."
+    },
+    {
+      "url": "https://www.empirefacades.com.au/wp-content/uploads/2021/03/IMG_6657.jpg",
+      "observed": "Entire displayed oblique exterior inspected natively. Ribbed oxidised outer cheeks and upper hood, diamond gold returns and soffit, slender suspended canopy and reflective tall glazing."
+    },
+    {
+      "url": "https://www.empirefacades.com.au/wp-content/uploads/2021/03/IMG_6662-Final.jpg",
+      "observed": "Entire displayed dusk frontage inspected natively. Golden lining, glass frontage, suspension rods and thin canopy. Dusk appearance is not used as a daytime colour measurement."
+    },
+    {
+      "url": "https://www.lahznimmo.com/gate-9-unsw",
+      "observed": "Architect describes northern main foyer linking smaller east and west foyers, golden copper hood and 2019 completion. Gallery photo numbered 09 was inspected but is an interior; it was not used as exterior canopy evidence."
+    },
+    {
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=2eariXTnlgfVb6_HXbUA1Q&heading=210&pitch=8&fov=65",
+      "observed": "Official panorama at 32 High Street, -33.9163674,151.2349538, re-inspected natively. Visible capture February 2022. Corroborates the built hood and entrance-plaza context, partly obscured by mature trees. Does not establish current condition or manufacturing dimensions."
+    }
+  ],
+  "changes": {
+    "canopy": "Replaces the former opaque slab with translucent panes, slim perimeter and transverse beams, fine overhead lines and six suspension rods / fittings. 23 m width follows contractor text; depth 3.95 m, height 3.65 m and small sections are reconstructed. Collision follows its full rectangle above the ground route.",
+    "glass": "Twelve estimated glazed bays and full-height thin glass fins replace eight generic line divisions. Fin depth 0.48 m, thickness 0.026 m and pane counts are estimates. A static local probe reflects the original reconstructed campus, not source-photo pixels.",
+    "copper": "Procedural diamond texture now covers the complete repeating tile; local face UVs retain physical scale on sloping soffit and vertical reveals instead of collapsing to world XZ. Estimated 0.5 m diamonds and 0.48 m outer seam spacing. Original procedural pixels only.",
+    "views": "Two comparison destinations: copper hood / glass fins and suspended entrance canopy."
+  },
+  "preserved": "Raw source footprints and tags, separately mapped hood outlines, public DEM terrain, ground-level building collision, original main hood envelope and prior 14.5 m overall estimate. Auditorium interiors and artwork remain simplified.",
+  "validation": {
+    "automated": "84 test files passed in the full local suite; targeted new canopy / glazing / UV tests and retained upper-campus tests passed. Syntax and deterministic asset preparation passed.",
+    "native": "Final preview started successfully with no warnings or errors. Inspected the oblique copper / glazing view after the final reflection and transparency adjustment. Earlier on the same geometry, walked 7 m beneath the suspended canopy to the closed frontage, then 4 m back; shingle pattern, slender beams and transparent panes visible. Roof seam ends are inset from the main lip to retain the estimated 14.5 m maximum.",
+    "targeted": "Five new geometry / UV / route tests were also run directly and all passed."
+  },
+  "limitations": "Fine sections, depth, panel count, exact colours and present condition remain uncertain. This is a low-poly exterior reconstruction. Detailed doors, fixings, complete auditorium interior, artwork and current signage remain incomplete."
+}

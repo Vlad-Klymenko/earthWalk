@@ -1,5 +1,5 @@
-import {scienceTheatreGeometry,modernFacadeFrame} from './modernism-data.js?v=7e037edcfeb5';
-import {buildingBase} from './terrain.js?v=7e037edcfeb5';
+import {scienceTheatreGeometry,modernFacadeFrame} from './modernism-data.js?v=bc9eb748a7cf';
+import {buildingBase} from './terrain.js?v=bc9eb748a7cf';
 
 // Photo-fitted openings cut through the wall mesh. All intervals refer to the
 // original mapped elevation; the source footprint is never enlarged.
