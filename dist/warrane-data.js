@@ -1,7 +1,7 @@
-import {CAMPUS} from './campus-data.js?v=73a8847b0449';
-import {terrainHeight,buildingBase} from './terrain.js?v=73a8847b0449';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=73a8847b0449';
-import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=73a8847b0449';
+import {CAMPUS} from './campus-data.js?v=0f7b608af152';
+import {terrainHeight,buildingBase} from './terrain.js?v=0f7b608af152';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=0f7b608af152';
+import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=0f7b608af152';
 export const WARRANE_ID='osm-way-45560472';
 export const WARRANE_GIS=UNSW_GIS_LABEL_EVIDENCE.find(p=>p.code==='M7');
 export const WARRANE_LIVING={title:'Warrane College · facilities and courtyard',url:'https://warrane.unsw.edu.au/living/',residentialFloors:5};

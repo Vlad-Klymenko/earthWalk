@@ -1,5 +1,5 @@
-import {campusTerrainHeight as baselineTerrain} from './spiral-landscape.js?v=73a8847b0449';
-import {oldMainEntryHeight} from './old-main-entry-data.js?v=73a8847b0449';
+import {campusTerrainHeight as baselineTerrain} from './spiral-landscape.js?v=0f7b608af152';
+import {oldMainEntryHeight} from './old-main-entry-data.js?v=0f7b608af152';
 // Raw public elevation samples are unchanged. This bounded exterior depression
 // uses source RL anchors with fitted connections; its exact plan is estimated.
 export function campusTerrainHeight(x,z){return oldMainEntryHeight(x,z)??baselineTerrain(x,z);}

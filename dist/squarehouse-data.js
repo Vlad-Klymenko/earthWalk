@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=73a8847b0449';
-import { terrainHeight, buildingBase } from './terrain.js?v=73a8847b0449';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=0f7b608af152';
+import { terrainHeight, buildingBase } from './terrain.js?v=0f7b608af152';
 export const SQUAREHOUSE_ID='squarehouse';
 export const SQUAREHOUSE_PHOTO={url:'https://steppingonthecracks.com/2023/01/26/sydney-travel-blog-day-2/',title:'Stepping on the Cracks · 16 January 2023 Squarehouse exterior photographs'};
 export function squarehouseGeometry(b){

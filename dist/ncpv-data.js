@@ -1,7 +1,7 @@
-import { CAMPUS } from './campus-data.js?v=73a8847b0449';
-import { terrainHeight } from './terrain.js?v=73a8847b0449';
-import { orientedFrame,framePoint,frameRectangle } from './geometry.js?v=73a8847b0449';
-import { UNSW_GIS_LABEL_EVIDENCE,UNSW_GIS_SOURCE } from './unsw-gis-evidence.js?v=73a8847b0449';
+import { CAMPUS } from './campus-data.js?v=0f7b608af152';
+import { terrainHeight } from './terrain.js?v=0f7b608af152';
+import { orientedFrame,framePoint,frameRectangle } from './geometry.js?v=0f7b608af152';
+import { UNSW_GIS_LABEL_EVIDENCE,UNSW_GIS_SOURCE } from './unsw-gis-evidence.js?v=0f7b608af152';
 export const NCPV_ID='new-college-village';
 export const NCPV_RED_ID='osm-way-609912645';
 export const NCPV_CORNER_ID='osm-way-609912647';
