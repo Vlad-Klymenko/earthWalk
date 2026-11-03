@@ -1,0 +1,53 @@
+{
+  "inspected": "2026-11-03",
+  "sources": [
+    {
+      "id": "bourke-university-fountain",
+      "name": "Joseph Bourke memorial · university courtyard photograph and sculpture dimensions",
+      "url": "https://www.unsw.edu.au/estate/about-us/public-art",
+      "photo": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2025-04-em/public-artwork/2025-05-tom-bass-joseph-ormand-aloysius-bourke.cropimg.width%3D700.crop%3Dbasic.jpg",
+      "notes": "Full university photograph inspected: irregular shallow pool, pale sandstone-like coping, rough grey boulders, taller standing stone bearing a small bronze portrait and projecting shallow spill dish. University gives Tom Bass, 1967, commissioned 1966; bronze portrait alone measures 30 × 24 × 4 cm. The old generic pipe sculpture is replaced. Fountain location retains the previous photo-fitted courtyard position; stone dimensions, plan, orientation, water levels and present operation remain estimates."
+    },
+    {
+      "id": "bourke-portrait-detail",
+      "name": "Tom Bass · Joseph Bourke bronze portrait detail",
+      "url": "https://www.unsw.edu.au/estate/about-us/public-art",
+      "photo": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2025-04-em/public-artwork/2025-05-bass-tom-joseph-bourke-portrait-detail.cropimg.width%3D700.crop%3Dbasic.jpg",
+      "notes": "Full university detail photograph inspected: irregular vertical bronze relief with swept hair, three-quarter face, ear, collar and small initials at lower left. A small original procedural relief study follows its general structure within the reported 30 × 24 × 4 cm envelope; precise likeness, casting detail and patina are not reproduced. Source pixels are not copied."
+    },
+    {
+      "id": "bourke-pool-second-angle",
+      "name": "Morven Brown lawn · reverse fountain photograph",
+      "url": "https://studentvip.com.au/unsw/kensington/maps/133050",
+      "photo": "https://s3.studentvip.com.au/photos/fountain-174614-small.jpg",
+      "notes": "Full labelled 480 × 640 photo inspected. Reverse view clarifies the rough low edging stones, dark shallow basin, larger rear standing stone, spill dish and mature jacaranda beside the cafe canopy. Capture date unverified; pool profile, stone positions and levels remain photo-fitted, not surveyed."
+    },
+    {
+      "id": "bourke-pool-panorama",
+      "name": "Morven Brown · July 2015 fountain and cafe context",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=_epevoKdWdChS7PSgUMlBw&heading=80&pitch=8",
+      "notes": "Official Google Street View re-inspected natively at -33.9166694, 151.2329002, heading 80°, capture July 2015. Fountain lies between lawn and curved cafe canopy with standing stone behind the pool. It corroborates the existing photo-fitted court location and rough orientation, not exact dimensions or present water operation. No panorama pixels are redistributed."
+    }
+  ],
+  "reported": {
+    "artist": "Tom Bass",
+    "work": "Joseph Ormand Aloysius Bourke",
+    "date": 1967,
+    "commissioned": 1966,
+    "medium": "bronze",
+    "heightMetres": 0.3,
+    "widthMetres": 0.24,
+    "depthMetres": 0.04,
+    "scope": "portrait relief only"
+  },
+  "reconstruction": {
+    "location": "Retains morvenGeometry pool centre local u12/v5, previously photo-fitted; not surveyed",
+    "plan": "Irregular polygon within previous approximately 4 × 5.3 m envelope",
+    "stones": "Original deterministic ring meshes; standing stone 1.72 m, all stone sizes/positions/lean estimated from photos",
+    "level": "Pale coping at maximum raw DEM over ring + 0.13 m; water 0.055 m below. Fine levels and compatible elevation datum are fitted",
+    "portrait": "Small original relief study inside reported 0.24 × 0.30 × 0.04 m envelope. Facial likeness/patina remain simplified",
+    "dish": "Shallow copper-coloured spill dish and static water strands/ripples are photo-fitted visual representation; no current water operation asserted",
+    "preserved": "Original building/path/lawn/tree inventory source data and 18 m/five-level mapped building tags remain unchanged",
+    "media": "No source photograph pixels, texture downloads or scanned sculpture geometry used"
+  }
+}

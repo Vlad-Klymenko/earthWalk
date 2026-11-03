@@ -1,5 +1,5 @@
-import {WEBSTER_FLOORS,WEBSTER_GROUND} from './webster-entry-parts.js?v=edb7a7e79d1b';
-import {websterSurfaceRL,WEBSTER_ENTRY} from './webster-entry-data.js?v=edb7a7e79d1b';
+import {WEBSTER_FLOORS,WEBSTER_GROUND} from './webster-entry-parts.js?v=1247eefc625e';
+import {websterSurfaceRL,WEBSTER_ENTRY} from './webster-entry-data.js?v=1247eefc625e';
 const inside=(p,r)=>{let yes=false;for(let i=0,j=r.length-1;i<r.length;j=i++)if((r[i].z>p.z)!==(r[j].z>p.z)&&p.x<(r[j].x-r[i].x)*(p.z-r[i].z)/(r[j].z-r[i].z)+r[i].x)yes=!yes;return yes;};
 const contains=(p,q)=>inside(p,q.points)&&!(q.holes||[]).some(h=>inside(p,h));
 // The surrounding terrain renderer retains its original height function.

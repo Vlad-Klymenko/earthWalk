@@ -1,4 +1,4 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=edb7a7e79d1b';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=1247eefc625e';
 
 // Appearance dimensions reconstructed from linked public photographs. The
 // mapped outlines remain authoritative for location; these are not surveys.

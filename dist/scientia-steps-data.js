@@ -1,5 +1,5 @@
-import {terrainHeight} from './terrain.js?v=edb7a7e79d1b';
-import {scientiaPoint,scientiaLocal,SCIENTIA_FRAME} from './scientia-data.js?v=edb7a7e79d1b';
+import {terrainHeight} from './terrain.js?v=1247eefc625e';
+import {scientiaPoint,scientiaLocal,SCIENTIA_FRAME} from './scientia-data.js?v=1247eefc625e';
 export const SCIENTIA_STEP_IDS=['osm-way-45558687','osm-way-260845786'];
 export const SCIENTIA_STEP_SCOPE={u0:-56,u1:-8.317631880155464,v0:-1.8,v1:22.3};
 export const SCIENTIA_STEP_AXIS=4.7;
