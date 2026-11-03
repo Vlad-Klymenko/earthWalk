@@ -1,0 +1,50 @@
+{
+  "inspected": "2026-11-03",
+  "gis": {
+    "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18",
+    "layerName": "Building Labels Feb 2023",
+    "retainedSnapshot": "sources/unsw-gis-label-height-fields.json",
+    "snapshotSha256": "748c9b20eb59a1ff011af8a1b57d994015b7a69d10e095efd6af4a05da8f4327",
+    "record": {
+      "attributes": {
+        "OBJECTID": 9,
+        "egdb_ES_14": "F13",
+        "egdb_ES_15": "Science Theatre",
+        "egdb_ES_18": 5,
+        "egdb_ES_26": 11.73
+      }
+    },
+    "limitation": "Uses the previously retained public attribute snapshot. A fresh bounded F13 query was blocked on 3 November2026; no fresh geometry or update date is claimed. Height-field reference and floor-count definition are unspecified. Selected reported11.73m is separate from original OSM15m/five-level tags, which remain intact."
+  },
+  "photographs": [
+    {
+      "url": "https://www.learningenvironments.unsw.edu.au/physical-spaces/k-f13",
+      "image": "https://www.learningenvironments.unsw.edu.au/sites/default/files/styles/teaser_desktop/public/images/science-theatre.JPG?itok=YTem1mvx",
+      "observed": "University exterior photo inspected natively: lawn-facing post-and-beam pergola, distinct pale aggregate panel joints, upper entrance glazing and lower doorway. Capture date unverified."
+    },
+    {
+      "url": "https://studentvip.com.au/unsw/kensington/maps/135101",
+      "image": "https://s3.studentvip.com.au/photos/main-entrance-177405-small.jpg",
+      "observed": "Full640x480 entrance photograph inspected natively. Tall pale square posts project above cross beams; shorter diagonal supports, narrow overhead slats, lower entrance glazing and taller upper panes are visible. Blank aggregate panel area at the left, small horizontal slit window and high rear clerestory visible. The complete post count, pitch and hidden joints are not measured."
+    },
+    {
+      "url": "https://studentvip.com.au/unsw/kensington/maps/135101",
+      "image": "https://s3.studentvip.com.au/photos/side-entrance-177407-small.jpg",
+      "observed": "Full640x480 side-entrance photograph inspected natively. A separate tall glazed elevation without the pergola, broad pale primary piers, finer secondary mullions, intermediate horizontal bars and a lower double doorway are visible. Posters and small white temporary pieces are omitted from the permanent reconstruction. Exact full elevation bay count and capture date unverified."
+    }
+  ],
+  "campusPlan": {
+    "url": "https://www.unsw.edu.au/content/dam/pdfs/unsw-adobe-websites/acccessibility/Science_Theatre.pdf",
+    "page": 1,
+    "observed": "Complete university access map rendered and visually inspected. Science Theatre Lawn lies south of F13, between the theatre and University Mall. Robert Webster adjoins the southeast; Dalton is west. This geographic context and the lawn-facing entrance photos correct the earlier eastern pergola placement. The plan is not a detailed building elevation or level survey."
+  },
+  "panorama": {
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=CIHM0ogKEICAgICmucy1uAE&heading=270&pitch=0",
+    "capture": "January2022",
+    "contributor": "Winston Li",
+    "lat": -33.9171578,
+    "lon": 151.2303412,
+    "observed": "Native public user-contributed panorama inspected with tree-obscured view of the separate tall glazed elevation and surrounding campus context. This is not official Google vehicle imagery. Photo-sphere compass alignment and trees limit dimensional/orientation inference; the university plan and labelled exterior photographs guide the reconstruction instead. No precise geometry is measured from it."
+  },
+  "reconstruction": "Southern pergola orientation and second glazed elevation replace the former east-only entrance. Reported height11.73m selected; original source15m/five-level tags preserved. Roof rise1.85m, facade openings, 1.7m cladding joints, bay counts, white framing, recesses, post positions and diagonal supports are photo-fitted estimates. Entry floor is the highest sampled DEM footprint-perimeter level plus0.22m, not a surveyed RL. A bounded triangulated paving connection meets that floor, stays outside original rooms and does not move source paths; walking uses exactly the visible triangles. Closed building interiors remain exterior boundaries. No photograph pixels are copied or redistributed."
+}

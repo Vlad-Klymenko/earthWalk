@@ -15,18 +15,17 @@ const inside=(p,ring)=>{
   return result;
 };
 
-test('modernist reconstructions retain mapped footprints, heights and conflicting levels',()=>{
+test('modernist reconstructions retain mapped footprints and levels, keeping the theatre height conflict explicit',()=>{
   for(const id of ['science-theatre','dalton','robert-webster']){
     const b=CAMPUS.buildings.find(b=>b.id===id),raw=SOURCE.buildings.find(b=>b.id===id);
     assert.deepEqual(b.points,raw.points);
-    assert.equal(b.height,raw.height);
+    if(id==='science-theatre'){assert.equal(b.height,11.73);assert.equal(b.mappedHeight,raw.height);assert.equal(b.heightSource,'reported');}else{assert.equal(b.height,raw.height);assert.equal(b.heightSource,'mapped');}
     assert.equal(b.levels,raw.levels);
-    assert.equal(b.heightSource,'mapped');
   }
   assert.equal(CAMPUS.buildings.find(b=>b.id==='science-theatre').levels,5);
 });
 
-test('auditorium roof preserves maximum mapped height and canopy clears the real slope',()=>{
+test('auditorium roof preserves the selected reported maximum and canopy clears the real slope',()=>{
   const b=CAMPUS.buildings.find(b=>b.id==='science-theatre'),g=scienceTheatreGeometry(b);
   const heights=b.points.map(g.roofHeight);
   assert.ok(Math.abs(Math.max(...heights)-b.height)<1e-6);
