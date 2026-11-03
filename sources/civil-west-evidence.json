@@ -1,0 +1,119 @@
+{
+  "retrieved": "2026-11-03",
+  "gis": {
+    "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18",
+    "layerName": "Building Labels Feb 2023",
+    "query": {
+      "f": "json",
+      "where": "egdb_ES_14='H20'",
+      "outFields": "OBJECTID,egdb_ES_14,egdb_ES_15,egdb_ES_18,egdb_ES_26",
+      "returnGeometry": "true",
+      "outSR": "4326"
+    },
+    "response": {
+      "displayFieldName": "egdb_ESRIR",
+      "fieldAliases": {
+        "OBJECTID": "OBJECTID",
+        "egdb_ES_14": "Building Code",
+        "egdb_ES_15": "Building Name",
+        "egdb_ES_18": "No. of Floors",
+        "egdb_ES_26": "Building Height"
+      },
+      "geometryType": "esriGeometryPolygon",
+      "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+      },
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "type": "esriFieldTypeOID",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "egdb_ES_14",
+          "type": "esriFieldTypeString",
+          "alias": "Building Code",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_15",
+          "type": "esriFieldTypeString",
+          "alias": "Building Name",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_18",
+          "type": "esriFieldTypeInteger",
+          "alias": "No. of Floors"
+        },
+        {
+          "name": "egdb_ES_26",
+          "type": "esriFieldTypeDouble",
+          "alias": "Building Height"
+        }
+      ],
+      "features": [
+        {
+          "attributes": {
+            "OBJECTID": 52,
+            "egdb_ES_14": "H20",
+            "egdb_ES_15": "Civil Engineering",
+            "egdb_ES_18": 11,
+            "egdb_ES_26": 35.38
+          },
+          "geometry": {
+            "rings": [
+              [
+                [
+                  151.23252112034683,
+                  -33.91813096024313
+                ],
+                [
+                  151.23272383507216,
+                  -33.91815861733253
+                ],
+                [
+                  151.23271969114376,
+                  -33.91817979418413
+                ],
+                [
+                  151.23298689233008,
+                  -33.918216317680745
+                ],
+                [
+                  151.23296013421273,
+                  -33.91836196945753
+                ],
+                [
+                  151.2324883399238,
+                  -33.91829868874949
+                ],
+                [
+                  151.23252112034683,
+                  -33.91813096024313
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "heightInterpretation": "Owner GIS reports Building Height35.38m and No. of Floors11. These supersede the displayed40m OSM height tag, while original OSM40m/10level tags and source footprint remain intact. Values are retained as conflicting reported data; no surveyed roof RL or separate fa\u00e7ade/plant dimensions supplied. North8 observed window rows are independent of both floor counts.",
+  "photographs": [
+    {
+      "url": "https://fjcstudio.com/projects/john-niland-scientia-building/",
+      "image": "https://fjcstudio.com/wp-content/uploads/2016/12/SC11-scaled.jpg",
+      "observed": "Full source photograph inspected natively: brick western tower end behind the butterfly roof, small pale-framed square windows in upper rows, pale vertical service pipes near its southern edge and a pale projecting roof cap. Lower western rows are occluded by Scientia. Exact capture date unverified."
+    }
+  ],
+  "streetView": {
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=6TGxYogGLegpjnZICZNYMQ&heading=37&pitch=24",
+    "lat": -33.9185338,
+    "lon": 151.2320693,
+    "capture": "February 2021",
+    "observed": "Verified native Oval Lane panorama inspected. Trees heavily obscure the tower and Scientia hall in this view. It does not establish western window count, dimensions or current material condition; obstruction retained explicitly."
+  },
+  "reconstruction": "Western brick wall replaces the earlier generic pale banding and single window strip. Five-column/eight-row complete grid, square dimensions, reveal depth, frame widths, service-pipe positions and all occluded lower geometry are fitted, not surveyed; eight rows borrowed from the separately observed northern elevation rhythm. Only the western end changes; north bands remain independently referenced. Original procedural wall rectangles have genuine window apertures/reveals; no photo pixels or scanned geometry copied."
+}

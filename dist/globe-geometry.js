@@ -1,5 +1,5 @@
-import * as THREE from './vendor/three.module.js?v=0f7b608af152';
-import {GLOBE} from './globe-data.js?v=0f7b608af152';
+import * as THREE from './vendor/three.module.js?v=08020e70591f';
+import {GLOBE} from './globe-data.js?v=08020e70591f';
 // An original procedural interpretation of the photographed organic tracery.
 // Both families spiral between oblique poles; no opaque sphere fills the cells.
 export function globeLatticeGeometry(){
