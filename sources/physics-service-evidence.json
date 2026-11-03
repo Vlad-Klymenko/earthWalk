@@ -1,0 +1,76 @@
+{
+  "inspected": "2026-11-04",
+  "gis": {
+    "snapshot": "sources/unsw-gis-label-height-fields.json",
+    "snapshotSha256": "748c9b20eb59a1ff011af8a1b57d994015b7a69d10e095efd6af4a05da8f4327",
+    "record": {
+      "attributes": {
+        "OBJECTID": 53,
+        "egdb_ES_14": "K14",
+        "egdb_ES_15": "Physics Theatre",
+        "egdb_ES_18": 4,
+        "egdb_ES_26": 12.24
+      }
+    },
+    "freshQuery": {
+      "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18/query?where=egdb_ES_14%3D%27K14%27&outFields=OBJECTID%2Cegdb_ES_14%2Cegdb_ES_15%2Cegdb_ES_18%2Cegdb_ES_26&returnGeometry=true&f=pjson",
+      "status": 403
+    },
+    "selected": false,
+    "reason": "K14 label gives 12.24 m / four floors, while this modelled source shell is a lower theatre annex within connected Old Main / Physics fabric. Height reference and measured component extent are not established by accessible geometry. Retain source 8 m / one-level tags and expose the candidate separately; do not claim candidate equals as-built annex height."
+  },
+  "photographs": [
+    {
+      "url": "https://studentvip.com.au/unsw/kensington/maps/135061",
+      "photo": "https://s3.studentvip.com.au/photos/physics-lecture-theatre-177346-small.jpg",
+      "observed": "Full 640 x 480 displayed photograph inspected. Mottled red / brown brick, warm mauve-brown rendered plinth, three pale high awning panes in dark frames, plain service door with fine divider / mail slot, two green-grey downpipes, small louvred vents, pale roof enclosure and adjacent stairs / blue rails. Capture date / exact dimensions unverified."
+    },
+    {
+      "id": "physics-cse-courtyard",
+      "name": "Physics Theatre · university courtyard-side service photo",
+      "url": "https://cgi.cse.unsw.edu.au/~learn/where_k14_is/",
+      "photo": "https://cgi.cse.unsw.edu.au/~learn/where_k14_is/step_4.jpg",
+      "notes": "Entire displayed portrait photograph inspected: long pale panelled roof enclosure, high divided windows, mottled brick, grey service doors / louvres and a paved narrow courtyard. Capture date unverified. Adjacent taller Old Main, temporary works and route-arrow graphics are kept distinct. Fine face assignment, dimensions and roof section are reconstructed."
+    },
+    {
+      "url": "https://cgi.cse.unsw.edu.au/~learn/where_k14_is/",
+      "photo": "https://cgi.cse.unsw.edu.au/~learn/where_k14_is/step_5.jpg",
+      "observed": "Complete displayed portrait photograph inspected to separate the blue-railed Old Main gallery, stairs and lower computer labs from the theatre service shell. Those adjoining structures are not duplicated as a new theatre entrance. Temporary safety barriers and arrows omitted."
+    }
+  ],
+  "aerial": {
+    "id": "physics-roof-aerial",
+    "name": "Physics Theatre · public roof and service-strip layout",
+    "url": "https://www.google.com/maps/@-33.91838,151.2301,20z/data=!3m1!1e3",
+    "notes": "Native satellite and tilted 3D views inspected and rotated to distinguish K14 roof from Keith Burrows and Old Main. Broad pale green roof and peripheral service areas replace the former generic central plant box. Main shallow crown, edge-region bounds, fan units and component heights are fitted estimates inside the original source outline, not extracted 3D mesh or a calibrated survey. No Google pixels are copied."
+  },
+  "preserved": {
+    "osmWay": 45489666,
+    "outerVertices": 14,
+    "holes": [],
+    "mappedHeight": 8,
+    "mappedLevels": 1,
+    "terrain": "Unchanged NSW 5 m DEM",
+    "paths": "Original path centrelines / widths unchanged"
+  },
+  "reconstruction": {
+    "roof": "Broad central pale-green region with shallow transverse crown, with separate peripheral service regions; partition derived using source polygon clipping, not measured roof cadastral parts. Former unused generic central 12 x 7 m box removed from the geometry helper.",
+    "bodyEave": 6.65,
+    "serviceRoof": 7.55,
+    "mainEave": 7.15,
+    "mainCrown": 8,
+    "fanUnitMaximum": 7.985,
+    "maximum": 8,
+    "facades": "Two west elevations use photo-fitted high window groups, brown rendered base, actual cut openings, inset solid door / service louvres, returns, separate dark metal frames, outward-tilted pale awning panes, downpipes / clips and small vents. Upper white service-band seams and pale green panel seams are generated locally.",
+    "limits": "Exact crown profile, roof regions, opening intervals, two fan-unit count / dimensions, face assignment, materials, fine levels, rear openings and current access are estimates or unverified. The 8 m map height is retained conflicting evidence, not asserted as surveyed reality. Photo / Google pixels are not copied into the scene."
+  },
+  "verification": {
+    "nativeBrowser": "Codex in-app browser, localhost port 4174",
+    "appearance": "West high awning panes, rendered plinth, recessed service door, slot / handle, vents, downpipes / gutter connections and pale edge enclosure inspected. Initial mirrored feature layout corrected against the photographed adjacent Old Main wing.",
+    "walking": "Walked 6 m toward the service door; further forward input remained blocked at the closed building boundary. Retreated to 14 m total wandered. Displayed elevation stayed 30.3 m.",
+    "logs": "No browser warnings or errors",
+    "tests": "Six dedicated provenance / geometry checks, plus full 491-test campus suite passed.",
+    "reproducer": "scripts/make-physics-roof.mjs regenerated the static roof regions byte-for-byte identically.",
+    "assetRevision": "01be76894552"
+  }
+}

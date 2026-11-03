@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import clip from 'polygon-clipping';
+import {CAMPUS} from '../dist/campus-data.js';
+import {physicsGeometry,PHYSICS_ID} from '../dist/physics-precinct-data.js';
+import {frameRectangle} from '../dist/geometry.js';
+const b=CAMPUS.buildings.find(b=>b.id===PHYSICS_ID),f=physicsGeometry(b).frame,poly=ps=>[ps.map(p=>[p.x,p.z])];
+const source=poly(b.points),core=poly(frameRectangle(f,19,27,-.5,3.1));
+const pack=(geos,kind)=>geos.map(p=>({kind,points:p[0].map(([x,z])=>({x,z})),holes:p.slice(1).map(r=>r.map(([x,z])=>({x,z})))}));
+const parts=[...pack(clip.intersection(source,core),'main'),...pack(clip.difference(source,core),'service')];
+fs.writeFileSync(new URL('../dist/physics-roof-parts.js',import.meta.url),'// Photo / aerial-fitted internal roof regions; original OSM perimeter unchanged.\nexport const PHYSICS_ROOF_PARTS='+JSON.stringify(parts)+';\n');
+console.log(parts.length,'Physics roof parts');

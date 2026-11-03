@@ -1,6 +1,6 @@
-import {CAMPUS} from './campus-data.js?v=eb4acc4e0f1c';
-import {campusTerrainHeight as baselineTerrain} from './spiral-landscape.js?v=eb4acc4e0f1c';
-import {engineeringPoint,engineeringCoordinates,engineeringRectangle} from './engineering-street-data.js?v=eb4acc4e0f1c';
+import {CAMPUS} from './campus-data.js?v=01be76894552';
+import {campusTerrainHeight as baselineTerrain} from './spiral-landscape.js?v=01be76894552';
+import {engineeringPoint,engineeringCoordinates,engineeringRectangle} from './engineering-street-data.js?v=01be76894552';
 export const OLD_MAIN_SURVEY_URL='https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-84220206%2120260115T061908.681+GMT';
 export const OLD_MAIN_ENTRY={lowerRL:30.65,upperRL:32.68,southStart:-10,lowerStart:-4,flightStart:5.8,flightEnd:10.2,topEnd:14.7,exitEnd:15.8,west:-9.65,east:-5.95,treads:12,reconstructedPlan:true,note:'Floor / landing and lower window RL anchors follow public survey sheets 27–28. XY placement, tread count, width, connecting grades and all fine dimensions are reconstructed. Survey datum is A.H.D.; detailed XY fitting and connection to the coarse NSW terrain are reconstructed. No interior or present accessibility is asserted.'};
 export const OLD_MAIN_EAST_ROWS=[{sill:30.65,head:32.95,basis:'survey-sheet-27'},{sill:34.7,head:37.1,basis:'survey-sheet-27'},{sill:38.75,head:41.15,basis:'estimated-upper-band'},{sill:42.8,head:45.2,basis:'estimated-upper-band'}];

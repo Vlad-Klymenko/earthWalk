@@ -1,5 +1,5 @@
-import { CAMPUS } from './campus-data.js?v=eb4acc4e0f1c';
-import { frameRectangle } from './geometry.js?v=eb4acc4e0f1c';
+import { CAMPUS } from './campus-data.js?v=01be76894552';
+import { frameRectangle } from './geometry.js?v=01be76894552';
 export const VILLAGE_ID='osm-relation-2637829-0';
 export const VILLAGE_ARCHITECT={title:'Clare / Architectus · UNSW Village',url:'https://claredesign.com.au/portfolio/residential/unsw-village/'};
 export const VILLAGE_AXIS={x:.9867962476101311,z:.16196655735850177};

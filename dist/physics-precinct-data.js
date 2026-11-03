@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=eb4acc4e0f1c';
-import { buildingBase, terrainHeight } from './terrain.js?v=eb4acc4e0f1c';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=01be76894552';
+import { buildingBase, terrainHeight } from './terrain.js?v=01be76894552';
 export const NEWTON_ID='osm-way-45489051',KEITH_ID='osm-way-45489639',PHYSICS_ID='osm-way-45489666';
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});
 const heading=(a,c)=>Math.atan2(c.x-a.x,a.z-c.z);
@@ -19,7 +19,7 @@ export function keithGeometry(b){
   return {frame,base,lower,arcIndices,overhang,arrival,target,heading:heading(arrival,target),reconstructed:true};
 }
 export function physicsGeometry(b){
-  const frame=frameFor(b),base=buildingBase(b.points),bodyRoof=b.height-1.05,plant={points:frameRectangle(frame,12,7,0,2),bottom:bodyRoof,top:b.height,reconstructed:true};
+  const frame=frameFor(b),base=buildingBase(b.points);
   const arrival=framePoint(frame,-20,-2),target=framePoint(frame,-9,4);
-  return {frame,base,bodyRoof,plant,arrival,target,heading:heading(arrival,target),reconstructed:true};
+  return {frame,base,arrival,target,heading:heading(arrival,target),reconstructed:true};
 }

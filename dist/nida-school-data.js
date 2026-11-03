@@ -1,6 +1,6 @@
-import {CAMPUS} from './campus-data.js?v=eb4acc4e0f1c';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=eb4acc4e0f1c';
-import {buildingBase,terrainHeight} from './terrain.js?v=eb4acc4e0f1c';
+import {CAMPUS} from './campus-data.js?v=01be76894552';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=01be76894552';
+import {buildingBase,terrainHeight} from './terrain.js?v=01be76894552';
 
 export const NIDA_SCHOOL_ID='osm-way-164558661';
 export const NIDA_WEST_ID='osm-way-609912643';

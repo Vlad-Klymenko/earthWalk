@@ -1,3 +1,4 @@
+import {physicsServiceGeometry} from '../dist/physics-service-data.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import clipping from 'polygon-clipping';
@@ -17,7 +18,7 @@ test('physics precinct retains mapped outlines, heights and level evidence indep
   }
   assert.deepEqual(keith.points,SOURCE.buildings.find(b=>b.id===KEITH_ID).points);assert.equal(keith.mappedHeight,8);assert.equal(keith.height,11.18);assert.equal(keith.heightSource,'reported');assert.equal(keith.levels,1);assert.equal(keith.reportedLevels,3);
   assert.equal(newtonGeometry(newton).rows,4);
-  const p=physicsGeometry(physics);assert.ok(p.bodyRoof<p.plant.top);assert.equal(p.plant.top,physics.height);assert.ok(area(clipping.difference(polygon(p.plant),polygon(physics)))<1e-6,'roof enclosure stays within the source outline');
+  const p=physicsServiceGeometry(physics);assert.ok(p.body<p.maximum);assert.equal(p.maximum,physics.height);for(const part of p.parts)assert.ok(area(clipping.difference(polygon(part),polygon(physics)))<1e-6,'roof regions remain within the source outline');
 });
 
 test('Newton reconstructed entrance stair, ramp and landing clear neighbouring building volumes',()=>{

@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=eb4acc4e0f1c';
-import {agsmGeometry} from './eastern-landmarks-data.js?v=eb4acc4e0f1c';
-import {terrainHeight} from './terrain.js?v=eb4acc4e0f1c';
-import {framePoint,frameRectangle} from './geometry.js?v=eb4acc4e0f1c';
+import {CAMPUS as RAW} from './campus-data.js?v=01be76894552';
+import {agsmGeometry} from './eastern-landmarks-data.js?v=01be76894552';
+import {terrainHeight} from './terrain.js?v=01be76894552';
+import {framePoint,frameRectangle} from './geometry.js?v=01be76894552';
 export const AGSM_ID='osm-way-101505149';
 export const AGSM_BUILDING=RAW.buildings.find(b=>b.id===AGSM_ID);
 export const AGSM_COURT=agsmGeometry(AGSM_BUILDING);
