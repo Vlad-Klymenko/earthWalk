@@ -1,4 +1,4 @@
-import {columnarPoplar} from './foliage-data.js?v=5683e7ad2066';
+import {columnarPoplar} from './foliage-data.js?v=0f1aa578e721';
 // Source ranges remain strings. These representative sizes and tree shapes are reconstructions.
 export function treeBand(value){
  const range=String(value).match(/^(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/);

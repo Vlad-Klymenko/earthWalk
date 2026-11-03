@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5683e7ad2066';
-import {medicalGeometry} from './medical-data.js?v=5683e7ad2066';
-import {MEDICAL_PARTS} from './medical-parts.js?v=5683e7ad2066';
-import {framePoint} from './geometry.js?v=5683e7ad2066';
+import {CAMPUS as RAW} from './campus-data.js?v=0f1aa578e721';
+import {medicalGeometry} from './medical-data.js?v=0f1aa578e721';
+import {MEDICAL_PARTS} from './medical-parts.js?v=0f1aa578e721';
+import {framePoint} from './geometry.js?v=0f1aa578e721';
 export const LOWY_ID='osm-way-45230537';
 export const LOWY_SOURCE='https://www.lahznimmo.com/lowy-cancer-research-centre-unsw';
 // Photo-fitted detail, separate from the retained 32 m / eight-level map tags.

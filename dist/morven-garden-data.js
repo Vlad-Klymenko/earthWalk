@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5683e7ad2066';
-import {MORVEN_ID,morvenGeometry} from './morven-brown-data.js?v=5683e7ad2066';
-import {framePoint,frameRectangle} from './geometry.js?v=5683e7ad2066';
-import {terrainHeight} from './terrain.js?v=5683e7ad2066';
+import {CAMPUS as RAW} from './campus-data.js?v=0f1aa578e721';
+import {MORVEN_ID,morvenGeometry} from './morven-brown-data.js?v=0f1aa578e721';
+import {framePoint,frameRectangle} from './geometry.js?v=0f1aa578e721';
+import {terrainHeight} from './terrain.js?v=0f1aa578e721';
 const b=RAW.buildings.find(b=>b.id===MORVEN_ID);
 export const MORVEN_GARDEN_FRAME=morvenGeometry(b).frame;
 export const morvenGardenPoint=(u,v)=>framePoint(MORVEN_GARDEN_FRAME,u,v);

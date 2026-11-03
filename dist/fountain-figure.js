@@ -1,5 +1,5 @@
-import * as THREE from './vendor/three.module.js?v=5683e7ad2066';
-import {CHANCELLOR_ART} from './chancellors-garden-data.js?v=5683e7ad2066';
+import * as THREE from './vendor/three.module.js?v=0f1aa578e721';
+import {CHANCELLOR_ART} from './chancellors-garden-data.js?v=0f1aa578e721';
 // A small low-poly interpretation of the photographed reclining copper form,
 // constrained to catalogue dimensions. This is not a scan or exact replica.
 export function fountainFigureGeometry(){

@@ -1,5 +1,5 @@
-import { orientedFrame, clipFrameStrip } from './geometry.js?v=5683e7ad2066';
-import { buildingBase } from './terrain.js?v=5683e7ad2066';
+import { orientedFrame, clipFrameStrip } from './geometry.js?v=0f1aa578e721';
+import { buildingBase } from './terrain.js?v=0f1aa578e721';
 
 export const POOL_ID='osm-way-45604576',GYM_ID='osm-way-45604587';
 const heading=(a,b)=>Math.atan2(b.x-a.x,a.z-b.z);

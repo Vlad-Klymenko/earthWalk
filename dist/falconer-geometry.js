@@ -1,5 +1,5 @@
-import * as THREE from './vendor/three.module.js?v=5683e7ad2066';
-import {FALCONER} from './old-main-front-data.js?v=5683e7ad2066';
+import * as THREE from './vendor/three.module.js?v=0f1aa578e721';
+import {FALCONER} from './old-main-front-data.js?v=0f1aa578e721';
 // Procedural relief interpretation from the linked university photographs.
 // The 14m catalogue envelope includes the upper sky elements, not just rider.
 export function falconerGeometry(){

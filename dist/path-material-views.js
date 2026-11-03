@@ -1,4 +1,4 @@
-import {CAMPUS} from './campus-data.js?v=5683e7ad2066';
+import {CAMPUS} from './campus-data.js?v=0f1aa578e721';
 // Outdoor viewpoints on retained source routes; no traffic or current-access claims.
 const along=(id,index,reverse=false)=>{const p=CAMPUS.paths.find(p=>p.id===id),a=p.points[index],b=p.points[index+1],t=.45,x=a.x+(b.x-a.x)*t,z=a.z+(b.z-a.z)*t;return {x,z,heading:Math.atan2((b.x-a.x)*(reverse?-1:1),-(b.z-a.z)*(reverse?-1:1))};};
 export const PATH_MATERIAL_VIEWS=[

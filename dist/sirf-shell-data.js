@@ -1,5 +1,5 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5683e7ad2066';
-import {sirfGeometry} from './eastern-landmarks-data.js?v=5683e7ad2066';
+import {CAMPUS as RAW} from './campus-data.js?v=0f1aa578e721';
+import {sirfGeometry} from './eastern-landmarks-data.js?v=0f1aa578e721';
 export const SIRF_ID='osm-way-45604880';
 export const SIRF_BUILDING=RAW.buildings.find(b=>b.id===SIRF_ID);
 export const SIRF=sirfGeometry(SIRF_BUILDING);

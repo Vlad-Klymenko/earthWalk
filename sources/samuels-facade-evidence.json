@@ -1,0 +1,41 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "id": "samuels-library-screen-detail",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=WqdgjG-stUw4krMeGjTaZA&heading=345&pitch=25&fov=60",
+      "position": {"lat": -33.9180697, "lon": 151.235251},
+      "visibleCaptureDate": "July 2015",
+      "observed": "Official Google Street View re-inspected natively at wide view and zoomed in once. Red brick lower storeys, five narrow upper window rows, pale vertically jointed sheet cladding, fine mesh front panels / projecting vertical assemblies, pointed lower support webs, rods and framed horizontal shades. Perspective establishes depth but does not provide calibrated fabrication sections."
+    },
+    {
+      "id": "samuels-devsoc-exterior",
+      "url": "https://freerooms.devsoc.app/browse",
+      "observed": "Searched Samuels, selected Gordon Jacqueline Samuels and inspected the in-page displayed building photograph. Pale upper sheet cladding, narrow window strips, brick ground arcade and an elevated link. Capture date, photographer and orientation unverified. Standalone optimised image navigation was blocked by the client; no standalone full-resolution inspection is claimed. This context photo does not establish a new underpass footprint or exact screen arrangement on the opposite elevation."
+    },
+    {
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=nSEOhSseTwSMbGyA74R_KA&heading=180&pitch=15&fov=100",
+      "position": {"lat": -33.9180515,"lon":151.2351393},
+      "visibleCaptureDate": "July 2015",
+      "observed": "A requested north-side coordinate snapped to this Library Walk panorama. Its southward view shows Botany Street parking, not Samuels' opposite façade. Not treated as evidence for the northern elevation."
+    },
+    {
+      "url": "https://www.unsw.edu.au/science/our-schools/bees/about-us/facilities/glasshouse",
+      "observed": "Retained university account identifies rooftop growing facilities. Existing roof model and previously inspected contractor roof photographs remain; this pass does not re-derive glasshouse dimensions."
+    }
+  ],
+  "preserved": "Original eleven-vertex footprint, raw 28 m / seven-level OSM tags, 24.2 m reconstructed main roof, existing rooftop glasshouse / plant, source public DEM, nearby streets / paths, original building collision and inventory tree coordinates / size bands.",
+  "reconstruction": {
+    "scope": "Detailed changes apply to raw edge 8 facing Library Walk. Less-visible elevations retain their previous approximate treatment, rather than being claimed as newly verified.",
+    "upperWindows": "Five rows of cut-out apertures and real 0.18 m deep glass / reveals replace glass painted over a continuous opaque wall. The surrounding metal panels partition the exact full face area without overlaps. Sash divisions, window spacing and recess depth are fitted estimates.",
+    "screens": "Mesh front panels, projecting porous webs, small solid triangular lower ends, slender frame / standoff rods and horizontal front / top shade surfaces. Front projection 1.05 m, outer web projection 1.25 m, front width 1.04 m. These component sections and the canopy shelf interpretation are unmeasured reconstructions, not certified fabrication details.",
+    "material": "Procedural mesh uses physical local UV axes on vertical and horizontal surfaces, smooth alpha blending and no depth writes so minified grid coverage remains visible without grain or disappearing bands. A separate cut-out depth material prevents the porous mesh casting a solid rectangular shadow. Generated sheet streaks / joints and a local scene reflection probe improve cladding and glass. No source photo pixels are copied into the scene.",
+    "destination": "Samuels · mesh fins and recessed windows, F25. Angled exterior arrival retains source trees; the alternative straight-on view was more obscured.",
+    "height": "All reconstructed screen geometry stays below the retained 28 m maximum. The stored independent university GIS snapshot reports F25 32.36 m / seven floors without a component / base definition; this pass does not substitute that uncertain quantity for the source height. Exact internal levels and roof component dimensions remain unverified."
+  },
+  "validation": {
+    "automated": "Final full suite passed across 88 test files. Six new tests cover source / roof preservation, wall-and-window area partition, real screen depth / lower web shape, noncollapsed UVs / height bounds, clearance above public terrain and destination / tree clearance. Syntax, site preparation and whitespace checks passed.",
+    "native": "Final angled preview inspected at arrival and close approach: porous screens, pointed ends, framed horizontal shelves, recessed glazing / reflections, sheet joints and preserved trees. Walked 30 m total including approach and retreat, with displayed elevation from 56.0 m to 55.6 m and back to 55.7 m. Browser warning / error log empty."
+  },
+  "limitations": "Historical Street View does not establish current condition. Exact screen section, projection, spacing, shelf angle, window / mullion schedule, panel joints and colours are photo-fitted. Other elevations, brick arcade passage geometry and connecting bridge remain incompletely verified; no new interior access is claimed."
+}

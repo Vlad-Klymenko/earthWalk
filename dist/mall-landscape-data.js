@@ -1,4 +1,4 @@
-import {CAMPUS} from './campus-data.js?v=5683e7ad2066';
+import {CAMPUS} from './campus-data.js?v=0f1aa578e721';
 export const MALL_GIS='https://gis.unsw.edu.au/server/rest/services/Kensington_Campus_2026/MapServer/7';
 export const MALL_STREET='https://www.google.com/maps/@?api=1&map_action=pano&pano=cS5jh1B90bA6I0Sxn5VPsA&heading=90&pitch=-8';
 export const MALL_PATH_IDS=['osm-way-976039261','osm-way-45558517','osm-way-170061857','osm-way-183691277'];
