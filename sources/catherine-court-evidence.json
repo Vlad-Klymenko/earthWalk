@@ -1,0 +1,52 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "id": "catherine-court-university-photo",
+      "url": "https://www.unsw.edu.au/newsroom/news/2023/03/buildings-and-spaces-renamed-as-part-of-celebrating-unsw-women-o",
+      "photo": "https://newsroom.unsw.edu.au/sites/default/files/styles/full_width__2x/public/thumbnails/image/img_2724_5.jpg",
+      "articleDate": "2023-03-21",
+      "photographer": "Maja Baska",
+      "captureDate": "Unverified",
+      "observed": "Entire displayed primary university photograph inspected natively. Rows of brown timber-slat benches, dark metal frames / arms, existing shade trees, flush soil beds and brick paving, with the teaching-building stair behind. Provides form / material context, not a calibrated furniture plan. No photograph pixels are redistributed in scene assets."
+    },
+    {
+      "id": "catherine-court-streetview",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=y1eAKCu5MprdQ5bE3_GhCg&heading=330&pitch=-8&fov=100",
+      "position": {"lat": -33.9173114,"lon":151.2329711},
+      "visibleCaptureDate": "July 2015",
+      "observed": "Official Street View inspected facing north-west across the court. Weathered herringbone brick fields, broad pale grid bands, slatted timber benches among the leafless pear trees and an open centre. Historical appearance evidence, not a current fixture inventory or measured paving schedule."
+    },
+    {
+      "id": "catherine-court-name",
+      "url": "https://www.celebratingwomen.unsw.edu.au/celebrating-womens-project-faqs",
+      "observed": "Primary university renaming record maps Commerce Courtyard to Catherine Harris Courtyard. The public Estate event-planning page also identifies Catherine Harris Courtyard as E20. Current name is used for the map destination and source boundary area label; Commerce Courtyard remains searchable. Raw OSM source name is retained."
+    },
+    {
+      "url": "https://www.estate.unsw.edu.au/sites/default/files/documents/Campus-Planning-and-Design-Guide.pdf",
+      "observed": "The indexed text identifies Fig 19 on PDF page 24 as Commerce courtyard, in the May 2011 guide. No usable page pixels were returned through this session's screenshot path; a direct read returned 403 and the local PDF renderer was incompatible. This source was not used for visual geometry, fixture placement or dimensions."
+    }
+  ],
+  "publicData": {
+    "boundary": "Original thirteen-vertex OSM plaza osm-way-45559629, originally named Commerce Courtyard. XY preserved; source ground is clipped only against retained building / green / step geometry.",
+    "trees": "Public UNSW tree-inventory coordinates, botanical names and reported size bands are retained. Twenty-one reconstructed pits align to existing tree records; no tree is moved to fit the bench layout.",
+    "height": "Unchanged NSW Spatial Services 5 m DEM. All 756 floor triangles are clipped to the exact original DEM-cell triangles before evaluating their heights. This preserves the interpolated source grade with model surface offsets; it is not a new survey of paving levels.",
+    "gisAttempt": "Fresh public courtyard / garden / lawn queries returned HTTP 403. Exact URLs, requested fields and failure status are stored in catherine-court-gis-evidence.json. No successful GIS geometry is claimed for this pass; the model uses its retained OSM boundary."
+  },
+  "reconstruction": {
+    "groundAreaSquareMetres": 1477.392107230059,
+    "brickPavingAreaSquareMetres": 1436.292600959353,
+    "paving": "Procedural warm weathered herringbone, 0.2 by 0.1 m fitted pavers, 6 m fitted grid and 0.32 m fitted grey stone bands. Material colours, tile alignment, dimensions and joint pattern are estimates from perspective photographs.",
+    "surfaceOffsets": {"paving":0.22,"soil":0.16,"stoneEdging":0.225},
+    "treePits": "Twenty-one inventory-aligned 1.4 m outer / 1.15 m inner reconstructed square pits, clipped inside the retained ground. Their shapes, sizes, edging and shallow soil recess are estimates; inventory records do not contain these pit dimensions.",
+    "benches": "Twenty-three fitted 2.2 m slatted timber benches with dark metal frames / arms, placed around the existing western tree rows. Candidates that intersect retained walking-width envelopes, other benches or non-paved ground are rejected. Count, positions, orientation and sections are a reconstruction rather than an as-built furniture survey.",
+    "benchPhysics": "Separate seat, back and arm collision / standing surfaces. Seat support is 0.49 m over its model floor, back 0.925 m and arms 0.71 m. Elevated supports engage only once the player has risen above their thresholds, avoiding a step up merely from approaching a bench. Legs follow the unchanged local slope.",
+    "masking": "Ten retained path surfaces / edges and overlapping old plaza surfaces are clipped out of the replacement ground. Prior reconstruction masks are composed before clipping so outside geometry is retained and coplanar paving does not flicker.",
+    "map": "Catherine Harris Courtyard, E20. Commerce Courtyard is a searchable alias. The area label follows the courtyard ground boundary instead of switching to a nearby building while the player remains inside."
+  },
+  "validation": {
+    "automated": "Final full suite passed across 90 test files. Seven dedicated tests cover raw / current names and footprint, disjoint ground partition, exact DEM heights / UV scale, retained inventory coordinates, bench / source-route clearance, seat / back / arm supports, replacement masks and arrival coverage. Syntax, deterministic site preparation and whitespace checks passed.",
+    "native": "Both current and historical names found the correct destination. Final paving / benches / pit geometry inspected at standing height. Walked to a bench; jumping reached the arm at 53.6 m displayed elevation, then the seat at 53.4 m, and stepping off returned to paving at 52.9 m, totalling 13 m. Repeated a 9 m courtyard walk after the area-label correction; the current name remained. Browser warning / error log empty."
+  },
+  "limitations": "Fresh university GIS plan data was unavailable. Exact furniture count / coordinates, pit shapes, paver dimensions / alignment, colours and surface thicknesses are unmeasured reconstructions. Source images mix 2015 and 2023 appearances. The existing full-foliage inventory tree forms represent a different season from winter Street View. Areas outside the original OSM courtyard retain their prior ground treatments."
+}

@@ -1,6 +1,6 @@
-import {SCIENTIA as S,scientiaPoint,scientiaRoofPoint,scientiaRectangle} from './scientia-data.js?v=b468e6aa825e';
-import {SCIENTIA_NORTH} from './scientia-parts.js?v=b468e6aa825e';
-import {terrainHeight} from './terrain.js?v=b468e6aa825e';
+import {SCIENTIA as S,scientiaPoint,scientiaRoofPoint,scientiaRectangle} from './scientia-data.js?v=ef86122637ee';
+import {SCIENTIA_NORTH} from './scientia-parts.js?v=ef86122637ee';
+import {terrainHeight} from './terrain.js?v=ef86122637ee';
 const inside=(p,r)=>{let yes=false;for(let i=0,j=r.length-1;i<r.length;j=i++)if((r[i].z>p.z)!==(r[j].z>p.z)&&p.x<(r[j].x-r[i].x)*(p.z-r[i].z)/(r[j].z-r[i].z)+r[i].x)yes=!yes;return yes;};
 const contains=(p,part)=>inside(p,part.points)&&!part.holes.some(h=>inside(p,h));
 // Fitted overhead links, with no claim of interior/upper-gallery access.

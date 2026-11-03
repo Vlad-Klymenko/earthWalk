@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=b468e6aa825e';
-import {goodsellGeometry} from './eastern-faculty-data.js?v=b468e6aa825e';
-import {framePoint,frameRectangle} from './geometry.js?v=b468e6aa825e';
+import {CAMPUS as RAW} from './campus-data.js?v=ef86122637ee';
+import {goodsellGeometry} from './eastern-faculty-data.js?v=ef86122637ee';
+import {framePoint,frameRectangle} from './geometry.js?v=ef86122637ee';
 export const GOODSELL_ID='osm-way-45604203';
 export const GOODSELL_BUILDING=RAW.buildings.find(b=>b.id===GOODSELL_ID);
 export const GOODSELL=goodsellGeometry(GOODSELL_BUILDING);

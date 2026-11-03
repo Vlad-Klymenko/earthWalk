@@ -1,0 +1,15 @@
+import {CAMPUS as RAW} from './campus-data.js?v=ef86122637ee';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=ef86122637ee';
+export const CATHERINE_SOURCE_ID='osm-way-45559629';
+export const CATHERINE_SOURCE=RAW.plazas.find(p=>p.id===CATHERINE_SOURCE_ID);
+export const CATHERINE_FRAME=orientedFrame(CATHERINE_SOURCE.points,{x:-.16,z:1});
+export const CATHERINE_PATTERN={grid:6,band:.32,paverLength:.2,paverWidth:.1,pavingOffset:.22,soilOffset:.16,curbOffset:.225,pitOuter:1.4,pitInner:1.15,reconstructed:true};
+export const CATHERINE_RENAMING='https://www.celebratingwomen.unsw.edu.au/celebrating-womens-project-faqs';
+export const CATHERINE_PHOTO='https://newsroom.unsw.edu.au/sites/default/files/styles/full_width__2x/public/thumbnails/image/img_2724_5.jpg';
+export const CATHERINE_STREET='https://www.google.com/maps/@?api=1&map_action=pano&pano=y1eAKCu5MprdQ5bE3_GhCg&heading=330&pitch=-8&fov=100';
+export const catherineLocal=p=>({u:(p.x-CATHERINE_FRAME.x)*CATHERINE_FRAME.u.x+(p.z-CATHERINE_FRAME.z)*CATHERINE_FRAME.u.z,v:(p.x-CATHERINE_FRAME.x)*CATHERINE_FRAME.v.x+(p.z-CATHERINE_FRAME.z)*CATHERINE_FRAME.v.z});
+export const catherinePoint=(u,v)=>framePoint(CATHERINE_FRAME,u,v);
+export const catherineUV=p=>{const q=catherineLocal(p);return [q.u/CATHERINE_PATTERN.grid,q.v/CATHERINE_PATTERN.grid];};
+export const catherineRectangle=(p,w,d,t=CATHERINE_FRAME.u,n=CATHERINE_FRAME.v)=>frameRectangle({...p,u:t,v:n},w,d);
+const arrival={x:414.5,z:-58.5},target={x:397,z:-79};
+export const CATHERINE_VIEW={id:'catherine-harris-courtyard',name:'Catherine Harris Courtyard',aliases:['Commerce Courtyard'],code:'E20',kind:'plaza',...arrival,heading:Math.atan2(target.x-arrival.x,arrival.z-target.z),pitch:-.06,showSign:false,description:'Formerly Commerce Courtyard. Brick paving, pale grid bands and timber benches among the retained pear trees. The boundary follows OpenStreetMap and tree positions follow UNSW’s public inventory; fine paving, tree-pit and furniture dimensions are reconstructed from photographs'};

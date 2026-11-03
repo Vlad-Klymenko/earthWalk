@@ -1,9 +1,9 @@
-import { campusTerrainHeight as terrainHeight } from './old-main-entry-landscape.js?v=b468e6aa825e';
-import { CAMPUS } from './campus-enhancements.js?v=b468e6aa825e';
-import { createGame } from './game.js?v=b468e6aa825e';
-import { TERRAIN_SOURCE } from './terrain.js?v=b468e6aa825e';
-import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=b468e6aa825e';
-import { heightDescription } from './building-heights.js?v=b468e6aa825e';
+import { campusTerrainHeight as terrainHeight } from './old-main-entry-landscape.js?v=ef86122637ee';
+import { CAMPUS } from './campus-enhancements.js?v=ef86122637ee';
+import { createGame } from './game.js?v=ef86122637ee';
+import { TERRAIN_SOURCE } from './terrain.js?v=ef86122637ee';
+import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=ef86122637ee';
+import { heightDescription } from './building-heights.js?v=ef86122637ee';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;
@@ -86,7 +86,7 @@ function renderList() {
   const query = $('building-search').value.trim().toLowerCase();
   const matches = places.filter(place => {
     const building = buildings.find(b => b.id === place.id);
-    return `${place.name} ${place.code || ''} ${(building?.aliases || []).join(' ')}`.toLowerCase().includes(query);
+    return `${place.name} ${place.code || ''} ${[...(place.aliases || []),...(building?.aliases || [])].join(' ')}`.toLowerCase().includes(query);
   });
   $('result-count').textContent = `${matches.length} campus ${matches.length === 1 ? 'place' : 'places'}`;
   $('building-list').replaceChildren();

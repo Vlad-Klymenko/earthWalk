@@ -1,5 +1,5 @@
-import {CAMPUS} from './campus-data.js?v=b468e6aa825e';
-import {terrainHeight} from './terrain.js?v=b468e6aa825e';
+import {CAMPUS} from './campus-data.js?v=ef86122637ee';
+import {terrainHeight} from './terrain.js?v=ef86122637ee';
 export const ENGINEERING_STREET_PHOTO='https://www.google.com/maps/@?api=1&map_action=pano&pano=kxmjWQj6VdFPCiEIGY81mQ&heading=270&pitch=-12';
 const route=CAMPUS.paths.find(p=>p.id==='osm-way-9784408'),a=route.points[7],b=route.points[8],length=Math.hypot(b.x-a.x,b.z-a.z);
 export const ENGINEERING_FRAME={origin:a,north:{x:(b.x-a.x)/length,z:(b.z-a.z)/length},east:{x:-(b.z-a.z)/length,z:(b.x-a.x)/length}};

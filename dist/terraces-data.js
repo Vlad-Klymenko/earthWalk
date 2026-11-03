@@ -1,6 +1,6 @@
-import { CAMPUS } from './campus-data.js?v=b468e6aa825e';
-import { buildingBase } from './terrain.js?v=b468e6aa825e';
-import { orientedFrame,framePoint,frameRectangle } from './geometry.js?v=b468e6aa825e';
+import { CAMPUS } from './campus-data.js?v=ef86122637ee';
+import { buildingBase } from './terrain.js?v=ef86122637ee';
+import { orientedFrame,framePoint,frameRectangle } from './geometry.js?v=ef86122637ee';
 export const TERRACES_ID='osm-way-45490780';
 export const TERRACES_ARCHITECT={title:'fjcstudio · University Terraces Student Housing',url:'https://dev.fjcstudio.com/projects/university-terraces-student-housing/'};
 export const TERRACES_HEIGHT_REPORT={title:'Grimshaw SSD built-form context, July 2016 · p. 30',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-7518%2120190227T232843.857+GMT',printedPage:30,pdfPage:3,roofRL:56.71};

@@ -1,0 +1,47 @@
+{
+  "retrieved": "2026-11-04",
+  "note": "Public plan geometry and display names only; no personal or editing fields requested. Heights and fixtures are separate evidence.",
+  "layers": {
+    "courtyard": {
+      "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus_2026/MapServer/7",
+      "query": {
+        "f": "json",
+        "returnGeometry": "true",
+        "outSR": "4326",
+        "where": "Name LIKE '%Commerce%' OR Name LIKE '%Catherine%'",
+        "outFields": "OBJECTID,Name,Location"
+      },
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "gardens": {
+      "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/24",
+      "query": {
+        "f": "json",
+        "returnGeometry": "true",
+        "outSR": "4326",
+        "where": "1=1",
+        "geometry": "151.23245,-33.91755,151.23320,-33.91685",
+        "geometryType": "esriGeometryEnvelope",
+        "inSR": "4326",
+        "spatialRel": "esriSpatialRelIntersects",
+        "outFields": "OBJECTID"
+      },
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "lawns": {
+      "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/25",
+      "query": {
+        "f": "json",
+        "returnGeometry": "true",
+        "outSR": "4326",
+        "where": "1=1",
+        "geometry": "151.23245,-33.91755,151.23320,-33.91685",
+        "geometryType": "esriGeometryEnvelope",
+        "inSR": "4326",
+        "spatialRel": "esriSpatialRelIntersects",
+        "outFields": "OBJECTID"
+      },
+      "error": "HTTP Error 403: Forbidden"
+    }
+  }
+}
