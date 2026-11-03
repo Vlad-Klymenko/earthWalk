@@ -1,0 +1,73 @@
+{
+  "retrieved": "2026-11-03",
+  "artwork": {
+    "title": "Globe",
+    "artist": "Bronwyn Oliver",
+    "year": 2002,
+    "medium": "copper",
+    "selectedDiameterMetres": 3,
+    "diameterSources": [
+      {
+        "url": "https://www.celebratingwomen.unsw.edu.au/profile/brownyn-oliver-globe",
+        "diameterMetres": 3
+      },
+      {
+        "url": "https://www.unsw.edu.au/estate/about-us/public-art",
+        "diameterMetres": 3
+      },
+      {
+        "url": "https://www.roslynoxley9.com.au/exhibition/globe/pghxp",
+        "diameterMetres": 2.5
+      }
+    ],
+    "uncertainty": "Diameter conflict unresolved. University owner dimension selected, not averaged. Both competing values retained. Gallery describes brazed copper rods, a bronze cup and four short feet."
+  },
+  "position": {
+    "source": "https://www.openstreetmap.org/api/0.6/map?bbox=151.2310,-33.9182,151.2317,-33.9177",
+    "node": {
+      "type": "node",
+      "id": 5332274045,
+      "version": 1,
+      "timestamp": "2018-01-11T02:19:53Z",
+      "lat": -33.9179966,
+      "lon": 151.2313026,
+      "tags": {
+        "artist_name": "Bronwyn OLIVER",
+        "artwork_type": "sculpture",
+        "name": "Globe",
+        "tourism": "artwork"
+      }
+    },
+    "note": "Historical public mapped point, not a surveyed present position. Mapper account metadata omitted."
+  },
+  "lawn": {
+    "id": "osm-way-1116164549",
+    "mappedName": "Globe Lawn",
+    "displayName": "Eleonora Kopalinsky Lawn",
+    "nameSource": "https://www.student.unsw.edu.au/events/2026/04/welcome-country-ceremony-o-week-term-2-2026",
+    "note": "University 2026 event identifies Eleonora Kopalinsky Lawn H17. Original mapped name and geometry preserved."
+  },
+  "photographs": [
+    {
+      "source": "https://www.celebratingwomen.unsw.edu.au/profile/brownyn-oliver-globe",
+      "url": "https://www.celebratingwomen.unsw.edu.au/sites/default/files/styles/square/public/2023-03/Oliver_Browyn_Globe_square.jpg?itok=tWYD9gzJ",
+      "observed": "Open copper sphere and curved low cup on lawn, with Scientia steps behind. Full displayed university photograph inspected."
+    },
+    {
+      "source": "https://www.unsw.edu.au/estate/about-us/public-art",
+      "url": "https://www.unsw.edu.au/content/unsw-sites/au/en/estate/about-us/public-art/_jcr_content/root/responsivegrid-layout-fixed-width/responsivegrid-full-top/column_layout_1297906293/par_2_1_50/accordion/accordion-item-13/image_copy.coreimg.jpeg/1780379000916/2025-05-14-oliver-hero.jpeg",
+      "observed": "Full native night installation photograph inspected. Dense oblique spiralling tracery, low cup, soil ring and flush ground uplights visible."
+    },
+    {
+      "source": "https://www.roslynoxley9.com.au/exhibition/globe/pghxp",
+      "url": "https://images.roslynoxley9.com.au/EN/7E/0efbd68e-64a4-49e2-960a-19a109b805cf/hero-960.jpg",
+      "observed": "Full displayed daytime installation image inspected: sphere on lawn between Red Centre and Electrical Engineering."
+    },
+    {
+      "source": "https://www.roslynoxley9.com.au/exhibition/globe/pghxp",
+      "url": "https://images.roslynoxley9.com.au/am/bu/8d5d4c6a-a79b-4804-9b12-cdf7daa48ff4/hero-960.jpg",
+      "observed": "Full 628 by 600 source image inspected natively. Fine irregular rods sweep between oblique poles. Buildings and lawn remain visible through the dense lattice. Dark grey-brown patina and a short dark cup, with no high pedestal."
+    }
+  ],
+  "reconstruction": "Original procedural geometry only. Exact rod pattern/count/thickness, oblique orientation, cup profile, support lift, soil ring, four fitted flush-light positions and appearance are estimates. Uses unchanged measured terrain at the mapped artwork point; no survey Z for the artwork. No source pixels, copyrighted photo textures or scanned artwork geometry redistributed."
+}

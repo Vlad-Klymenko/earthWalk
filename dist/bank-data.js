@@ -1,7 +1,7 @@
-import {CAMPUS} from './campus-data.js?v=79caa9a39ff3';
-import {terrainHeight,buildingBase} from './terrain.js?v=79caa9a39ff3';
-import {orientedFrame,framePoint,frameRectangle,clipFrameStrip} from './geometry.js?v=79caa9a39ff3';
-import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=79caa9a39ff3';
+import {CAMPUS} from './campus-data.js?v=85dc72730a69';
+import {terrainHeight,buildingBase} from './terrain.js?v=85dc72730a69';
+import {orientedFrame,framePoint,frameRectangle,clipFrameStrip} from './geometry.js?v=85dc72730a69';
+import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=85dc72730a69';
 
 export const BANK_ID='osm-way-45230422';
 export const BANK_STEPS_ID='osm-way-606543940';
