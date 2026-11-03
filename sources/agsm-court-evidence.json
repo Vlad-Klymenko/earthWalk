@@ -1,0 +1,49 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "url": "https://www.unsw.edu.au/accommodation/help/short-stays",
+      "photo": "https://www.unsw.edu.au/content/dam/images/unsw-wide/accommodation/buildings-facilities/2024-05-short-stay-accommodation/2024-06-AGSM-short-stays-outdoor-courtyard.cropimg.width=700.crop=basic.jpg",
+      "observed": "Official outdoor courtyard photograph inspected in full in the browser. Warm rectangular stone, caf\u00e9 tables / pale wire chairs, beige parasols, broad stepped seating edge, dark vine screens and mixed brick / curved-glass surroundings. URL path suggests 2024 upload, not a verified capture date. Pixels are not used as textures."
+    },
+    {
+      "url": "https://www.learningenvironments.unsw.edu.au/physical-spaces/k-g27",
+      "photo": "https://www.learningenvironments.unsw.edu.au/sites/default/files/styles/teaser_mobile/public/images/agsm-building.jpg?itok=Kd8fcJMO",
+      "observed": "Official dusk courtyard photograph re-inspected natively. Corroborates curved fa\u00e7ade, open metal pergola, low stepped edge and slender supports. Its illumination is not used as a daylight colour measurement."
+    }
+  ],
+  "changes": {
+    "paving": "Original procedural sandstone / grout pattern replaces an overlapping generic plaza surface inside a clipped courtyard recess. Source buildings, path corridors and the retained tree base are excluded.",
+    "grade": "A gently graded plane fitted to interior public 5 m DEM samples replaces the coarse near-wall mound within this court. Three reconstructed 0.15 m risers form the curved terrace. Local grade and riser dimensions are photo-led estimates, not survey levels. Raw DEM samples remain unchanged.",
+    "gradeParameters": {
+      "u": 4,
+      "v": 16,
+      "y": 49.84419876451582,
+      "du": -0.003069518294787521,
+      "dv": -0.008008728696612621,
+      "reconstructed": true
+    },
+    "terrainCut": {
+      "removedTriangles": 49,
+      "redrawnOutsideFragments": 38,
+      "pavingRegions": 1,
+      "sharedWalkingTriangles": 11222
+    },
+    "furniture": {
+      "tables": 3,
+      "chairs": 12,
+      "parasols": 2,
+      "vineScreens": 2,
+      "note": "Positions, counts and dimensions reconstructed to preserve the selected walking route. Slender wire-like chairs, square tables, shallow beige fabric shades, open trellises, original vine forms and supported timber bench edges."
+    },
+    "pergola": "Original reconstructed 3.78\u20134.05 m relative levels retained after grading. Post roots now follow the visible / walkable court. Conservative overhead collision rectangles retain standing clearance.",
+    "views": "AGSM caf\u00e9 courtyard and curved courtyard steps"
+  },
+  "preserved": "Raw 43-vertex building perimeter, 20 m mapped height, five-level map tag, street fa\u00e7ades, source paths, surrounding DEM and inventory tree 101107. Local modified terrain is explicit and bounded.",
+  "heightEvidence": "Previously saved public UNSW GIS label snapshot separately records G27 heightField 18.14 and floorCount 7, with unspecified reference / semantics. A fresh public API query returned HTTP 403 this turn, so these fields are not applied to the building. Overall envelope and different wing heights require further evidence.",
+  "validation": {
+    "automated": "Full suite passed across 85 files; five new tests also passed directly. Coverage includes court / terrain-cut areas, absence of overlapping regions, tree clearance, shared drawing / walking heights, grade anchor, furniture clearance and route headroom.",
+    "native": "Final caf\u00e9 view inspected after correcting plaza overlap, grading and support contacts. Walked roughly 4 m up the three shallow terrace steps: displayed elevation rose from 50.1 to 50.6 m. Walked back, totalling 10 m at 50.1 m. No browser warnings or errors. Stone colour, parasols, wire chairs, vine screens, supported benches and post contacts inspected."
+  },
+  "limitations": "Caf\u00e9 layout, grade, step count, material colours, plant species / density and manufacturing sections are estimates. Detailed doors, upstairs access, interiors and the separate heights of the older and curved wings remain incomplete."
+}

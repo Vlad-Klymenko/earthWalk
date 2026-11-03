@@ -1,8 +1,8 @@
-import {CAMPUS as RAW} from './campus-data.js?v=bc9eb748a7cf';
-import {bioscienceGeometry} from './bioscience-data.js?v=bc9eb748a7cf';
-import {framePoint} from './geometry.js?v=bc9eb748a7cf';
-import {terrainHeight} from './terrain.js?v=bc9eb748a7cf';
-import {TREE_INVENTORY} from './tree-inventory-data.js?v=bc9eb748a7cf';
+import {CAMPUS as RAW} from './campus-data.js?v=a5f9f679a82f';
+import {bioscienceGeometry} from './bioscience-data.js?v=a5f9f679a82f';
+import {framePoint} from './geometry.js?v=a5f9f679a82f';
+import {terrainHeight} from './terrain.js?v=a5f9f679a82f';
+import {TREE_INVENTORY} from './tree-inventory-data.js?v=a5f9f679a82f';
 export const BIO_STREET_FRAME=bioscienceGeometry(RAW.buildings.find(b=>b.id==='biological-south')).frame;
 export const bioStreetPoint=(u,v)=>framePoint(BIO_STREET_FRAME,u,v);
 export const bioStreetLocal=p=>({u:(p.x-BIO_STREET_FRAME.x)*BIO_STREET_FRAME.u.x+(p.z-BIO_STREET_FRAME.z)*BIO_STREET_FRAME.u.z,v:(p.x-BIO_STREET_FRAME.x)*BIO_STREET_FRAME.v.x+(p.z-BIO_STREET_FRAME.z)*BIO_STREET_FRAME.v.z});

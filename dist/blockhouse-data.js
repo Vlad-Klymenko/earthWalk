@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=bc9eb748a7cf';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=bc9eb748a7cf';
-import { buildingBase } from './terrain.js?v=bc9eb748a7cf';
+import { CAMPUS as SOURCE } from './campus-data.js?v=a5f9f679a82f';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=a5f9f679a82f';
+import { buildingBase } from './terrain.js?v=a5f9f679a82f';
 export const BLOCKHOUSE_ID='blockhouse';
 export const BLOCKHOUSE_PHOTO={url:'https://www.learningenvironments.unsw.edu.au/physical-spaces/k-g6',title:'UNSW Learning Environments · Blockhouse exterior'};
 export const BLOCKHOUSE_FRAME=orientedFrame(SOURCE.buildings.find(b=>b.id===BLOCKHOUSE_ID).points,{x:-.16,z:1});

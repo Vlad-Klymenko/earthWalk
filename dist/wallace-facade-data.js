@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=bc9eb748a7cf';
-import {MEDICAL_PARTS} from './medical-parts.js?v=bc9eb748a7cf';
-import {medicalGeometry} from './medical-data.js?v=bc9eb748a7cf';
-import {framePoint,frameRectangle} from './geometry.js?v=bc9eb748a7cf';
+import {CAMPUS as RAW} from './campus-data.js?v=a5f9f679a82f';
+import {MEDICAL_PARTS} from './medical-parts.js?v=a5f9f679a82f';
+import {medicalGeometry} from './medical-data.js?v=a5f9f679a82f';
+import {framePoint,frameRectangle} from './geometry.js?v=a5f9f679a82f';
 export const WALLACE_ID='wallace-wurth';
 export const WALLACE_GEOMETRY=medicalGeometry(RAW.buildings.find(b=>b.id===WALLACE_ID));
 export const WALLACE_SCREEN={baseRL:65.53,topRL:81.97,pitch:2.65,sill:.55,windowHeight:2.65,finDepth:.95,finRun:.35,finWidth:.11,eave:.85,reconstructed:true};

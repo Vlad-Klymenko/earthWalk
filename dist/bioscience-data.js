@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=bc9eb748a7cf';
-import { buildingBase } from './terrain.js?v=bc9eb748a7cf';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=a5f9f679a82f';
+import { buildingBase } from './terrain.js?v=a5f9f679a82f';
 
 export const BIOSCIENCE_REPORTS={
   north:{title:'Woods Bagot · 2016 biosciences S96 design statement',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-6674-MOD-1%2120190228T015509.308+GMT',printedPage:5,pdfPage:5,roofRL:96.2,approximate:true},
