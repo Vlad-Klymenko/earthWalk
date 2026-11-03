@@ -5,7 +5,7 @@ import crypto from 'node:crypto';
 import clip from 'polygon-clipping';
 import {CAMPUS as RAW} from '../dist/campus-data.js';
 import {CAMPUS} from '../dist/campus-enhancements.js';
-import {WEBSTER_ID,WEBSTER_HEIGHT,WEBSTER_ENTRY as E,WEBSTER_FRAME,WEBSTER_SURFACES,WEBSTER_LOWER_FLIGHTS,WEBSTER_ISLANDS,WEBSTER_PIERS,WEBSTER_RECESS,WEBSTER_VIEWS,websterPoint,websterLocal,websterSurfaceRL,websterRect} from '../dist/webster-entry-data.js';
+import {WEBSTER_REPLACED_STEP_ID,WEBSTER_ID,WEBSTER_HEIGHT,WEBSTER_ENTRY as E,WEBSTER_FRAME,WEBSTER_SURFACES,WEBSTER_LOWER_FLIGHTS,WEBSTER_ISLANDS,WEBSTER_PIERS,WEBSTER_RECESS,WEBSTER_VIEWS,websterPoint,websterLocal,websterSurfaceRL,websterRect} from '../dist/webster-entry-data.js';
 import {WEBSTER_FLOORS,WEBSTER_SOLIDS,WEBSTER_RECESS_PARTS,WEBSTER_GROUND,WEBSTER_REMOVED_TRIANGLES,WEBSTER_GROUND_EDGES,WEBSTER_MALL_REMNANTS} from '../dist/webster-entry-parts.js';
 import {websterWalkingHeight} from '../dist/webster-entry-landscape.js';
 import {MALL_PAVING_MESH,MALL_GREEN_MESH,MALL_PAVING,MALL_GREEN} from '../dist/mall-landscape-parts.js';
@@ -35,7 +35,7 @@ test('the exact bounded DEM cut and old Mall masks leave no underlying terrain o
 test('the Mall through-route, mapped entrance spur and outdoor arrivals stay clear of occupied volumes and piers',()=>{
  const ribbon=(a,b,width)=>{const dx=b.x-a.x,dz=b.z-a.z,l=Math.hypot(dx,dz),nx=-dz/l*width/2,nz=dx/l*width/2;return [[{x:a.x+nx,z:a.z+nz},{x:b.x+nx,z:b.z+nz},{x:b.x-nx,z:b.z-nz},{x:a.x-nx,z:a.z-nz}].map(p=>[p.x,p.z])];};
  const mall=RAW.paths.find(p=>p.id==='osm-way-183691277');for(let i=1;i<mall.points.length;i++)assert.ok(area(clip.intersection(ground,ribbon(mall.points[i-1],mall.points[i],mall.width)))<1e-6);
- const spur=RAW.paths.find(p=>p.id==='osm-way-297836299');for(const pier of WEBSTER_PIERS){const footprint=poly({points:websterRect(pier.u-pier.depth/2,pier.u+pier.depth/2,pier.v-pier.width/2,pier.v+pier.width/2)});for(let i=1;i<spur.points.length;i++)assert.ok(area(clip.intersection(footprint,ribbon(spur.points[i-1],spur.points[i],spur.width)))<1e-6);}
+ const spur=RAW.paths.find(p=>p.id===WEBSTER_REPLACED_STEP_ID);assert.equal(spur.kind,'steps');assert.equal(spur.width,3);for(const pier of WEBSTER_PIERS){const footprint=poly({points:websterRect(pier.u-pier.depth/2,pier.u+pier.depth/2,pier.v-pier.width/2,pier.v+pier.width/2)});for(let i=1;i<spur.points.length;i++)assert.ok(area(clip.intersection(footprint,ribbon(spur.points[i-1],spur.points[i],spur.width)))<1e-6);}
  for(const island of WEBSTER_ISLANDS)for(let i=1;i<spur.points.length;i++)assert.ok(area(clip.intersection(poly(island),ribbon(spur.points[i-1],spur.points[i],spur.width)))<1e-6);
  for(const view of WEBSTER_VIEWS){assert.ok(CAMPUS.landmarks.some(p=>p.id===view.id));for(const room of RAW.buildings.filter(p=>p.id!==WEBSTER_ID&&!p.walkableUnder))assert.ok(area(clip.intersection(poly({points:Array.from({length:16},(_,i)=>({x:view.x+Math.cos(i*Math.PI/8)*.4,z:view.z+Math.sin(i*Math.PI/8)*.4}))}),poly(room)))<1e-7);}
  const portico=WEBSTER_VIEWS.find(p=>p.walkFloor);assert.ok(Math.abs(websterWalkingHeight(portico.x,portico.z)-portico.walkFloor)<1e-8);assert.ok(websterLocal(portico).u<E.back);

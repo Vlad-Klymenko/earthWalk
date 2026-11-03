@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=916c3fc1320a';
-import { buildingBase, terrainHeight } from './terrain.js?v=916c3fc1320a';
+import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=4ebc60430f42';
+import { buildingBase, terrainHeight } from './terrain.js?v=4ebc60430f42';
 
 export const ESME_ID='osm-way-961744566';
 export const SCIENCE_HEIGHT_REPORT={title:'Grimshaw SSD built-form report, July 2016 · pp. 30–32',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-7518%2120190227T232843.857+GMT',printedPage:30,pdfPage:3,parapetRL:68.9,plantRL:73.8};

@@ -1,5 +1,5 @@
-import { framePoint,frameRectangle } from './geometry.js?v=916c3fc1320a';
-import { buildingBase,terrainHeight } from './terrain.js?v=916c3fc1320a';
+import { framePoint,frameRectangle } from './geometry.js?v=4ebc60430f42';
+import { buildingBase,terrainHeight } from './terrain.js?v=4ebc60430f42';
 export const VILLAGE_CAFE_ID='osm-way-584816505';
 export const VILLAGE_CAFE_HEIGHT=3.3;
 export const VILLAGE_CAFE_PHOTO={url:'https://studentvip.com.au/unsw/kensington/maps/135472',photo:'https://s3.studentvip.com.au/photos/cafe-177858-small.jpg'};
