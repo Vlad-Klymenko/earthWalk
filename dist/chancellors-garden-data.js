@@ -1,5 +1,5 @@
-import {oldNorthPoint,oldNorthLocal,oldNorthRectangle} from './old-main-north-data.js?v=7fad9d71f5fd';
-import {terrainHeight} from './terrain.js?v=7fad9d71f5fd';
+import {oldNorthPoint,oldNorthLocal,oldNorthRectangle} from './old-main-north-data.js?v=1815a9b0ff0f';
+import {terrainHeight} from './terrain.js?v=1815a9b0ff0f';
 export {oldNorthPoint as chancellorPoint,oldNorthLocal as chancellorLocal};
 export const CHANCELLOR_SCOPE={u0:32.15,u1:59.5,v0:-34.2,v1:13.1};
 export const CHANCELLOR_SCOPE_RING=oldNorthRectangle(32.15,59.5,-34.2,13.1);

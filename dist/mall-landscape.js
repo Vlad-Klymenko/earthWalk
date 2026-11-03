@@ -1,4 +1,4 @@
-import {MALL_PAVING} from './mall-landscape-parts.js?v=7fad9d71f5fd';
+import {MALL_PAVING} from './mall-landscape-parts.js?v=1815a9b0ff0f';
 const edges=MALL_PAVING.flatMap(p=>[p.points,...p.holes].flatMap(r=>r.map((a,i)=>({a,b:r[(i+1)%r.length]}))));
 export function mallGreenOffset(x,z){
  let distance=Infinity;for(const {a,b} of edges){const dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz||1)));distance=Math.min(distance,Math.hypot(x-a.x-dx*t,z-a.z-dz*t));}

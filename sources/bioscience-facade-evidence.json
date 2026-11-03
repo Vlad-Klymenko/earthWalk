@@ -1,0 +1,47 @@
+{
+  "inspected": "2026-11-03",
+  "sources": [
+    {
+      "id": "bioscience-lower-terracotta-course",
+      "name": "Biosciences South · lower screen course and dark shaded glazing",
+      "url": "https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/",
+      "photo": "https://wpassets.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2019/07/24134718/120277_N45_screenhd.jpg",
+      "notes": "Entire 1920 × 1800 built photograph inspected natively. Terracotta and pale baguettes extend to near the raised glass-box underside, above a dark plinth; the old model incorrectly stopped the screen at the 61.53 m planning floor. East/south screen now begins near the retained 57.57 m floor/underside, a photo-fitted alignment rather than a surveyed sill. Original chamfered sections, grouped muted tones and darker backing glass replace the repeated patch bands. Pitch, profiles, exact grouping and finish remain estimates. No source pixels copied."
+    },
+    {
+      "id": "bioscience-east-grid-and-grey",
+      "name": "Biosciences · built east curtain-wall grid, tapered supports and grey panel fields",
+      "url": "https://www.woodsbagot.com/projects/university-of-new-south-wales-biological-sciences/",
+      "photo": "https://wpassets.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2019/07/24134701/120922_N8_screenhd.jpg",
+      "notes": "Entire 1920 × 1316 built east photograph inspected natively. Finer horizontal pane divisions, blue lower spandrels, pale tapered supports, narrow atrium and grey end-wall panels with large interlocking tonal fields guide the reconstruction. Original panel pattern is an approximation of the overall character, not an exact tracing or photo texture. Model uses estimated 0.55 × 0.85 m panels; pane count, support widths, colours and surface details remain reconstructed. Existing footprint splits and planning roof RLs remain unchanged."
+    },
+    {
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=qoZ46Cc4gByr1ND5ajcxkg&heading=270&pitch=12&fov=75",
+      "capture": "February 2022",
+      "observed": "Native official Street View re-inspected at -33.9175089,151.2363401. Grey small-panel wall, projecting glazed volume with fine transoms and blue lower bands, pale supports and planted edge corroborate the built gallery. Capture is historical; no present condition inferred."
+    },
+    {
+      "url": "https://www.liongatefacade.com.au/biosciences-building-unsw/",
+      "observed": "Facade contractor text identifies terracotta sun-shading baguettes in subdued earthy tones on eastern and southern sides. No measured fin pitch, profile or exact colour schedule supplied."
+    }
+  ],
+  "retainedHeights": {
+    "southPlantRoofRL": 89.5,
+    "southMainRoofRL": 87.13,
+    "southGlassRoofRL": 85.98,
+    "northPlantRoofRL": 96.2,
+    "northMainRoofRL": 86.4,
+    "basis": "Existing retained Woods Bagot planning reports and model foundation, not an as-built survey. No source map height/level tags fabricated or changed."
+  },
+  "reconstruction": {
+    "lowerCourse": "Only the refined east/south terracotta screen now uses the existing 57.57 m planning floor/raised-glass underside instead of the former 61.53 m cutoff. Sill alignment inferred from photographs.",
+    "screen": "Original 8-corner chamfered sections with estimated 0.085–0.115 m width,0.32 m depth,0.55 m pitch,0.30 m projection. Warm muted grouped colours and occasional small end offsets fitted; no opaque quarter-height patch infills on these faces.",
+    "backing": "Separate darker low-reflectance glass behind the terracotta screen, distinct from reflective raised curtain-wall volume.",
+    "greyWall": "Estimated0.55 × 0.85m panel grid with broad original interlocking tonal fields. Does not reproduce exact butterfly-inspired panel layout; no photograph pixels sampled.",
+    "glass": "One added mid-transom per model floor and estimated0.65m lower blue spandrels on the first raised courses. Detailed unit counts/tints fitted, not manufactured dimensions.",
+    "piers": "Retains all three previous support centres and57.57m underside. Square sections taper from estimated0.78m top to0.58m bottom; conservative0.57m collision radius encloses the widest section.",
+    "preserved": "Raw building and path geometry, existing occupied/glass-box region splits, original support centres, source tree inventory, coarse terrain and documented roof RLs remain unchanged.",
+    "media": "All geometric shapes, material grain and colour fields generated from original code. Source photographs linked only. Scene reflections come from reconstructed campus."
+  },
+  "limitations": "Photo capture dates unverified except February2022 Street View. Exact manufacturing dimensions, panel artwork layout, colours, unobserved faces and present-day condition remain uncertain. Refined terracotta treatment is limited to east/south-facing main-volume faces; other faces keep previous approximate treatment."
+}
