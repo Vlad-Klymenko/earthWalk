@@ -1,0 +1,77 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "id": "wallace-folded-precast-fields",
+      "name": "Wallace Wurth \u00b7 folded bands and staggered sunshades",
+      "url": "https://www.lahznimmo.com/wallace-wurth-redevelopment",
+      "photo": "https://images.squarespace-cdn.com/content/v1/5aa74f41fcf7fd0a86dde240/ca639a8d-cc0d-44c2-bc46-a96c56498988/WallaceWurth_June03_2014_4838.jpg",
+      "notes": "Entire displayed completed exterior inspected natively. Horizontal precast bands fold outward into deeper primary shades, with shorter staggered blades in the northern field, amber panels, dark louvred slots and a fine curtain-wall base. Original procedural arrangement follows the character without tracing the exact panel schedule. Detailed widths, depths, window divisions and amber placement are estimates; retained planning floor and roof RLs are unchanged."
+    },
+    {
+      "id": "wallace-brick-and-return",
+      "name": "Wallace Wurth \u00b7 southern brick end and pale return",
+      "url": "https://www.wilsonarchitects.com.au/healthandlifesciences/unsw-fom",
+      "photo": "https://images.squarespace-cdn.com/content/v1/6010bb35e788f40df183e86d/1a6d8541-9124-4cfa-b244-0c5a1998a531/WallaceWurth_June03_2014_3956.jpg",
+      "notes": "Entire displayed south-east exterior inspected natively. The retained southern end of the original wing is variegated red-brown brick, beside the glazed atrium and pale blank return of the new wing. Replaces the model\u2019s plain concrete end and oversized label. Brick bond, colour, small edge bands and panel divisions are reconstructed. Source pixels are not used as textures."
+    },
+    {
+      "id": "wallace-raised-entry-detail",
+      "name": "Wallace Wurth \u00b7 raised blank end, pier and recessed glazing",
+      "url": "https://www.wilsonarchitects.com.au/healthandlifesciences/unsw-fom",
+      "photo": "https://images.squarespace-cdn.com/content/v1/6010bb35e788f40df183e86d/b2b2e637-27c1-4e91-900c-2f92fbc1424f/WallaceWurth_May2014_07970.jpg",
+      "notes": "Entire displayed exterior entry detail inspected natively. A pale jointed upper return projects above a concrete pier, with recessed tall glazing and a thin roof edge. Retained supports now taper slightly; conservative collision rectangles enclose their full upper sections. Exact pier section and taper are photo estimates. Photographed seating and detailed entrance fixtures remain incomplete in the game."
+    },
+    {
+      "id": "wallace-high-street-return",
+      "name": "Wallace Wurth \u00b7 High Street folded return and pale older end",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=gBvNfrRmDTPwOItJhxb46Q&heading=225&pitch=15&fov=80",
+      "notes": "Official Street View at 9 High Street, -33.9165748, 151.2364479, inspected natively and rotated for a closer view. Visible capture date October 2020. Resolves orientation: the new wing\u2019s folded treatment wraps onto High Street, while the older wing\u2019s northern end is pale. The brick end in the completed south-east gallery photos is southern. The reconstructed north return uses five estimated bays; exact panel counts, colours and present condition remain uncertain."
+    }
+  ],
+  "corroboration": [
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/6010bb35e788f40df183e86d/6dacb7a0-df99-4e5c-8c51-cf57580d7cf1/WallaceWurth_June03_2014_0001.jpg",
+      "observed": "Entire displayed completed exterior re-inspected natively. Corroborates four lab-window rows, warm amber fields, deep pale shades, floating eave and glazed teaching base."
+    },
+    {
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=pgficpLXcpQQy23B4ZZ42g&heading=270&pitch=18&fov=80",
+      "capture": "February 2022",
+      "observed": "Native official Street View at 49 Botany Street, -33.9167793, 151.2365115, visibly verifies historical capture date and staggered folded facade, amber panels, reflective base and projecting upper mass. Does not establish present-day condition or measured manufacturing dimensions."
+    },
+    {
+      "url": "https://www.duratec.com.au/projects/unsw-cladding-replacement/",
+      "observed": "Contractor describes later replacement cladding at C27, C25 and F10 using solid aluminium to match existing colour and appearance. Supports retaining photographed appearance while not presenting original composite material as current."
+    }
+  ],
+  "reconstruction": {
+    "eastFacade": "Continuous photo-fitted 32-bay grid across the two retained east-face source segments, avoiding a reset at the intermediate map vertex. Four retained planning floors anchor glazing. Estimated 0.95 m primary shade depth, 0.35 m run, 0.11 m width, and shorter 0.78 m-deep staggered shades. Folded horizontal bands join the primary shades at window boundaries. Counts, grouping and detailed sections remain estimates. Five separately fitted bays carry the folded treatment around the High Street return; the source map edge remains unchanged.",
+    "windows": "Window sills fitted 0.55 m above each retained floor and estimated 2.65 m high. Fine frames, glazing transoms, paired amber tones and selected dark louvred slots replace the old uniform rectangles. Exact shutter positions are original procedural approximations.",
+    "ends": "Verified October 2020 High Street panorama distinguishes the folded north return of the new wing from the pale northern end of the original wing. The completed south-east photos establish the original southern brick end and pale new-wing south return. Atrium-facing upper room walls have simpler pale grids instead of exterior sunshades. Previously approximate garden-side treatment remains pending clearer evidence.",
+    "roof": "Estimated 0.85 m bounded overhang and 0.20 m fascia / dark soffit retain the main roof top at RL 87.01. Maximum vertex extension is limited to 1.6 times nominal offset at corners. Recessed upper office component and plant / flue levels remain unchanged.",
+    "piers": "All four existing pier centres retained. Reconstructed sections taper from 1.05 x 1.30 m at the top to 0.90 x 1.10 m below. Collision uses the full top rectangle, replacing a radius that did not enclose the box corners. Southern covered route remains clear.",
+    "base": "Finer tall curtain-wall grid, dark solid strips and thin transoms added to the existing recessed teaching-base regions. Ground room extents and collision heights remain unchanged.",
+    "reflections": "Static local reflection probe upgraded to 512 px; original reconstructed campus supplies the reflection. No source photograph textures used.",
+    "views": "Three new destinations: folded Botany Street facade, High Street return, and southern covered gateway."
+  },
+  "preserved": {
+    "mainRoofRL": 87.01,
+    "plantRoofRL": 90.55,
+    "flueTopRL": 95,
+    "upperBaseRL": 65.53,
+    "laboratoryFloorRLs": [
+      65.53,
+      69.49,
+      73.45,
+      77.41
+    ],
+    "basis": "Previously retained public Wallace Wurth planning assessment and architectural statement, not an as-built survey.",
+    "unchanged": "Raw footprint and tags, medical region partitions, ground-room extents, public DEM, mapped paths, original support centres and neighbouring buildings."
+  },
+  "limitations": "Detailed facade schedule, exact colours, manufacturing dimensions, roof edge offset and current condition remain uncertain. Historical imagery and later like-for-like recladding text guide appearance. Garden-side refinements, curved atrium balustrades, detailed interiors, entry seating and landscaping remain incomplete.",
+  "validation": {
+    "automated": "Full suite passed before the additional view experiment: 424 assertions. Final full rerun passed all 83 test files. Syntax checks and deterministic asset preparation passed.",
+    "native": "Botany Street folded fa\u00e7ade and corrected High Street return inspected. Walked roughly 15 m forward through the southern covered gateway to the closed glazing and returned, totalling 31 m, at 56.2\u201356.7 m displayed elevation. Enlarged pier caps did not catch the route. No browser errors observed.",
+    "viewDecision": "Southern brick-end shortcut omitted after native inspection showed the narrow approach and overhead obstruction do not provide a useful comparison view. The brick material remains on the verified southern end."
+  }
+}

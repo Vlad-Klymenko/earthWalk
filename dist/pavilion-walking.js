@@ -1,5 +1,5 @@
-import {pavilionGeometry} from './pavilion-data.js?v=9473ccb108ea';
-import {PAVILION_BALCONY,PAVILION_LANDING} from './pavilion-parts.js?v=9473ccb108ea';
+import {pavilionGeometry} from './pavilion-data.js?v=7e037edcfeb5';
+import {PAVILION_BALCONY,PAVILION_LANDING} from './pavilion-parts.js?v=7e037edcfeb5';
 export function pavilionDeckPatches(g=pavilionGeometry()){
  return [...PAVILION_BALCONY,...PAVILION_LANDING].map(p=>({...p,minimumY:g.floorRL-.42,heightAt:()=>g.floorRL+.02}));
 }
