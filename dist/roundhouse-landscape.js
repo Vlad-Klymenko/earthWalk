@@ -1,6 +1,6 @@
-import { CAMPUS } from './campus-data.js?v=4f63f148a8ac';
-import { roundhouseGeometry } from './roundhouse-data.js?v=4f63f148a8ac';
-import { terrainHeight } from './terrain.js?v=4f63f148a8ac';
+import { CAMPUS } from './campus-data.js?v=0ec802769c04';
+import { roundhouseGeometry } from './roundhouse-data.js?v=0ec802769c04';
+import { terrainHeight } from './terrain.js?v=0ec802769c04';
 export const ROUNDHOUSE_LANDSCAPE_SOURCE='https://www.arc.unsw.edu.au/roundhouse/about/roundhouse-blog/roundhouse-exterior-renovations';
 const g=roundhouseGeometry(CAMPUS.buildings.find(b=>b.id==='roundhouse'));
 export const roundDisc=(p,r,n=64)=>Array.from({length:n},(_,i)=>({x:p.x+Math.cos(i*Math.PI*2/n)*r,z:p.z+Math.sin(i*Math.PI*2/n)*r}));

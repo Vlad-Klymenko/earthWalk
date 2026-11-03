@@ -32,3 +32,9 @@ test('tree placement preserves full widths at route junctions and retains its or
  assert.ok(accepted>850&&accepted<TREE_INVENTORY.length);
  const t={x:0,z:0,radius:.3},junction=[{a:{x:1,z:-10},b:{x:1,z:10},width:1},{a:{x:-10,z:3},b:{x:10,z:3},width:8}];assert.equal(treeClearsRoutes(t,junction),false,'a nearer narrow route must not hide overlap with a wider one');
 });
+
+test('conifer branches attach to a continuous trunk and form ascending tapered tiers',()=>{
+ const distance=(p,a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy+(p.z-a.z)*dz)/(dx*dx+dy*dy+dz*dz||1)));return Math.hypot(p.x-a.x-dx*t,p.y-a.y-dy*t,p.z-a.z-dz*t);};
+ let checked=0;for(const source of TREE_INVENTORY){const tree=inventoryTree(source);if(tree.form!=='conifer')continue;checked++;const g=inventoryTreeGeometry(tree),trunk=g.segments[0];assert.ok(trunk.b.y>tree.height*.9);assert.equal(g.segments.length,85);for(let i=1;i<g.segments.length;i+=2){const branch=g.segments[i],tip=g.segments[i+1];assert.ok(distance(branch.a,trunk.a,trunk.b)<1e-8);assert.deepEqual(branch.b,tip.a);assert.ok(tip.b.y>branch.a.y);assert.ok(Math.hypot(tip.b.x,tip.b.z)<=tree.canopy*.4+1e-8);}}
+ assert.ok(checked>5);
+});
