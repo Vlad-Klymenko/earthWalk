@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=01be76894552';
-import {MORVEN_ID,morvenGeometry} from './morven-brown-data.js?v=01be76894552';
-import {framePoint} from './geometry.js?v=01be76894552';
-import {terrainHeight} from './terrain.js?v=01be76894552';
+import {CAMPUS as RAW} from './campus-data.js?v=26b79da8da82';
+import {MORVEN_ID,morvenGeometry} from './morven-brown-data.js?v=26b79da8da82';
+import {framePoint} from './geometry.js?v=26b79da8da82';
+import {terrainHeight} from './terrain.js?v=26b79da8da82';
 export const BOURKE_SOURCE='https://www.unsw.edu.au/estate/about-us/public-art';
 export const BOURKE_PORTRAIT={artist:'Tom Bass',date:1967,commissioned:1966,width:.24,height:.30,depth:.04,medium:'bronze',source:BOURKE_SOURCE,note:'University dimensions refer to the small bronze portrait only, not the standing stone or whole fountain. Relief likeness is a procedural interpretation.'};
 const building=RAW.buildings.find(b=>b.id===MORVEN_ID),g=morvenGeometry(building);

@@ -1,0 +1,77 @@
+{
+  "inspected": "2026-11-04",
+  "project": {
+    "url": "https://www.unsw.edu.au/estate/campus-development/projects/supporting-research-with-new-helium-infrastructure",
+    "listing": "https://www.unsw.edu.au/estate/campus-development",
+    "status": "University parent page lists this project under completed projects 2026.",
+    "scope": "Purpose-built helium recovery facility, enclosed loading dock, dangerous goods store, chiller, service upgrades and Physics Lawn loading zone. The model represents only visible exterior massing and fixtures; the source does not establish operational details or measured dimensions."
+  },
+  "photographs": [
+    {
+      "id": "newton-helium-oblique",
+      "name": "Newton helium facility · completed exterior from Physics Lawn",
+      "url": "https://www.unsw.edu.au/estate/campus-development/projects/supporting-research-with-new-helium-infrastructure",
+      "photo": "https://www.unsw.edu.au/content/dam/images/estate-management/developments-and-projects/2026-07-newton-gas-project/2026-30-unsw-newtown-building-2.cropimg.width=700.crop=basic.jpg",
+      "notes": "Entire university gallery photograph inspected natively: silver horizontal folded cladding, grey square-panel enclosure, closed roller door, recessed loading portal, green equipment box, pale exterior risers, low grey-brick adjoining annex and young planting beside the reddish Physics Lawn footpath. Existing Newton and Old Main brick wings distinguish the site. Project listed as completed 2026; exact photo capture date unverified. Fine dimensions, roof levels, grille / panel counts and plant layout are fitted estimates. Source pixels are linked only."
+    },
+    {
+      "id": "newton-helium-front",
+      "name": "Newton helium facility · frontal portal and low service annex",
+      "url": "https://www.unsw.edu.au/estate/campus-development/projects/supporting-research-with-new-helium-infrastructure",
+      "photo": "https://www.unsw.edu.au/content/dam/images/estate-management/developments-and-projects/2026-07-newton-gas-project/2026-30-unsw-newtown-building-3.cropimg.width=700.crop=basic.jpg",
+      "notes": "Complete displayed university photograph inspected. Confirms the silver roller-door volume left of the blue-grey portal, green chiller-like equipment in front, shifted to the portal’s right so part of the recess remains visible, low adjoining grey-brick service wing, pale apron and narrow mulch / shrub strip. Corrects the local Old Main projection formerly raised to the main roof; exact four original footprint vertices retained. Annex height 3.35 m above fitted slab, new enclosure heights 6.4 / 6.2 m, loading recess 3 m and equipment 2.05 m high are reconstruction choices, not surveyed dimensions. Closed building boundaries remain."
+    }
+  ],
+  "aerial": {
+    "id": "newton-helium-site-context",
+    "name": "Newton / Old Main · Physics Lawn location context",
+    "url": "https://www.google.com/maps/@-33.91852,151.22915,20z/data=!3m1!1e3",
+    "notes": "Native public satellite view inspected and panned to the Science Road / Physics Road corner. Used to locate the addition beside Newton's south end and Old Main's west projection, north of the Physics Lawn path. Imagery shows an earlier construction stage; completed appearance comes from university photos. Capture date unverified and copyright year is not a capture date. No Google mesh / pixels extracted."
+  },
+  "preserved": {
+    "sourceBuildings": [
+      "osm-way-45489051",
+      "osm-way-45490050"
+    ],
+    "note": "Original Newton / Old Main footprint rings, map height / level tags and source path centrelines / widths remain separate and unchanged. The corrected low annex is the exact Old Main source quadrilateral at vertices 6 / 7 / 8 / 9.",
+    "terrain": "Existing NSW 5 m DEM retained; fitted work apron uses a shared rendering / walking triangle mesh above it.",
+    "inventoryTrees": "No retained public tree inventory points fall inside the fitted work rectangle. Generated estimated trees are excluded there."
+  },
+  "reconstruction": {
+    "frame": "Existing Newton oriented local frame, u east / v south",
+    "enclosures": [
+      {
+        "u0": -8,
+        "u1": -1,
+        "v0": 32.35,
+        "v1": 40.1,
+        "height": 6.4,
+        "kind": "silver horizontal folds"
+      },
+      {
+        "u0": -1,
+        "u1": 5.4,
+        "v0": 32.35,
+        "v1": 40.1,
+        "height": 6.2,
+        "kind": "grey panel grid"
+      }
+    ],
+    "slab": "Highest DEM at enclosure corners plus 0.22 m; photo-fitted common level, not a survey RL. Apron blends south toward source terrain.",
+    "oldAnnexHeight": 3.35,
+    "chillerHeight": 2.05,
+    "riserTopAboveSlab": 8.65,
+    "youngShrubs": 14,
+    "ground": "Fitted work rectangle minus occupied source buildings, new enclosure bodies and equipment. Soil / paving partition is generated on a half-metre grid. Original southern footpath stays clear across its full 2.1 m width.",
+    "limits": "All new dimensions, terrain connections, component counts, materials, exact site assignment within the gap, rear details and current access are estimates. Exterior risers are simplified appearance only. The equipment representation does not establish its technical function. No interior or operational layout is asserted."
+  },
+  "verification": {
+    "nativeBrowser": "Codex in-app browser, localhost port 4174",
+    "appearance": "Silver folded cladding / roller door, grid-panel loading volume with actual recessed opening, shifted green equipment, adjacent low grey-brick annex and young planting inspected from Physics Lawn and farther east. New dimensions remain estimates.",
+    "walking": "Walked 10 m onto the apron toward the enclosure divider; another 1.2 seconds forward input stayed at 10 m / 28.7 m elevation. Retreated to 18 m total / 28.2 m elevation, then moved along the lawn-side path to 25 m total / 28.4 m elevation.",
+    "logs": "No browser warnings or errors",
+    "tests": "Six dedicated geometry / source-preservation checks and full 497-test campus suite passed.",
+    "reproducer": "scripts/make-helium-site.mjs reproduced the 1463 ground triangles and roof masks byte-for-byte.",
+    "meshSha256": "2f7313f3685469baf7b2bbba169c58b007d4b10991e15f3437a777805b25f4e7"
+  }
+}

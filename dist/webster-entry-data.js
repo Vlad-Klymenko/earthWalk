@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=01be76894552';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=01be76894552';
-import {terrainHeight,buildingBase} from './terrain.js?v=01be76894552';
+import {CAMPUS as RAW} from './campus-data.js?v=26b79da8da82';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=26b79da8da82';
+import {terrainHeight,buildingBase} from './terrain.js?v=26b79da8da82';
 export const WEBSTER_ID='robert-webster';
 export const WEBSTER_REPLACED_STEP_ID='osm-way-297836299';
 export const WEBSTER_HEIGHT={height:18.78,reportedFloors:5,objectId:65,url:'https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18',title:'Public UNSW G14 height field',linkLabel:'Height source · UNSW GIS',note:'Retained public Building Labels Feb2023 snapshot reports G14 height18.78m/five floors; G15 separately reports the same height/four floors. Roof component/base definition and update date unspecified. Display selects the G14 reported height; original OSM16m/four-level tags remain separate. Fine component levels are reconstructed, not surveyed.'};

@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=01be76894552';
-import {KEITH_ID,keithGeometry} from './physics-precinct-data.js?v=01be76894552';
-import {terrainHeight} from './terrain.js?v=01be76894552';
-import {frameRectangle} from './geometry.js?v=01be76894552';
+import {CAMPUS as RAW} from './campus-data.js?v=26b79da8da82';
+import {KEITH_ID,keithGeometry} from './physics-precinct-data.js?v=26b79da8da82';
+import {terrainHeight} from './terrain.js?v=26b79da8da82';
+import {frameRectangle} from './geometry.js?v=26b79da8da82';
 export const KEITH_PHOTO='https://www.learningenvironments.unsw.edu.au/physical-spaces/k-j14';
 export const KEITH_HEIGHT={height:11.18,reportedFloors:3,objectId:54,url:'https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18',title:'UNSW public building labels · Keith Burrows Theatre J14',linkLabel:'Height source · UNSW GIS',note:'Retained public Building Labels Feb 2023 snapshot reports height 11.18 m and three floors. Original OSM 8 m / one-level tags remain. Height-field reference and floor-count definition are unspecified; this is not a roof-RL or component survey.'};
 export const KEITH_GUIDE='https://cgi.cse.unsw.edu.au/~learn/where_k14_is/';

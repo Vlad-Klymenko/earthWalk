@@ -1,6 +1,6 @@
-import {CAMPUS} from './campus-data.js?v=01be76894552';
-import {buildingBase} from './terrain.js?v=01be76894552';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=01be76894552';
+import {CAMPUS} from './campus-data.js?v=26b79da8da82';
+import {buildingBase} from './terrain.js?v=26b79da8da82';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=26b79da8da82';
 export const REPOSITORY_ID='osm-way-1178531023',REPOSITORY_ANNEX_ID='osm-way-1178531024',REPOSITORY_EAST_ID='osm-way-1178531025';
 export const REPOSITORY_IDS=[REPOSITORY_ID,REPOSITORY_ANNEX_ID,REPOSITORY_EAST_ID];
 export const REPOSITORY_GIS={url:'https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18',code:'B21',name:'Repository',floorCount:2,heightField:0,note:'GIS compound identity / floor count; zero height is unavailable. Source parts and GIS perimeter differ; adjoining annex use is unverified.'};
