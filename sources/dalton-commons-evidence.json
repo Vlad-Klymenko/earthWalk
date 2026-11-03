@@ -1,0 +1,87 @@
+{
+  "inspected": "2026-11-03",
+  "catalogue": {
+    "url": "https://artcollection.unsw.edu.au/collection/items/2010212159_052144.html",
+    "artist": "Douglas Annand",
+    "title": "untitled / Dalton Building mosaics",
+    "heightCm": 367.5,
+    "widthCm": 568,
+    "quantity": 4,
+    "medium": "glass tiles",
+    "signed": 1958,
+    "installed": "January1960",
+    "commissioned": 1957,
+    "installationDateSource": "https://www.unsw.edu.au/estate/about-us/public-art"
+  },
+  "universityPhotographs": [
+    {
+      "url": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2025-04-em/public-artwork/2025-05-jgs-annand-mosaics-4-crop.cropimg.width=700.crop=basic.jpg",
+      "scope": "full",
+      "observed": "Blue field, separate yellow/pale angular cell and blue flame-like form with pale centre. Whole panel composition visible. Full source image inspected natively; capture dates unverified except the historical caption. Asset folder dates are not treated as capture dates."
+    },
+    {
+      "url": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2025-04-em/public-artwork/2025-05-jgs-annand-mosaics-1-crop.cropimg.width=700.crop=basic.jpg",
+      "scope": "full",
+      "observed": "Green field with a large left-offset white radial form, yellow perimeter and orange/red branching fissures. Full source image inspected natively; capture dates unverified except the historical caption. Asset folder dates are not treated as capture dates."
+    },
+    {
+      "url": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2025-04-em/public-artwork/2025-05-detail-jgs-annand-mosaics-2.cropimg.width=700.crop=basic.jpg",
+      "scope": "detail",
+      "observed": "Green field, vertical pale/yellow/orange spindle-like forms, narrow segmented lines and oval details. Only a detail; full composition is not verified. Full source image inspected natively; capture dates unverified except the historical caption. Asset folder dates are not treated as capture dates."
+    },
+    {
+      "url": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2025-04-em/public-artwork/2025-05-detail-jgs-annand-mosaics-3.cropimg.width=700.crop=basic.jpg",
+      "scope": "detail",
+      "observed": "Blue/grey field around an orange ovoid populated by pale and yellow cells, bands and dark-blue centres. Only a detail; unshown edges and full panel layout remain conjectural. Full source image inspected natively; capture dates unverified except the historical caption. Asset folder dates are not treated as capture dates."
+    },
+    {
+      "url": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2025-04-em/public-artwork/2025-05-20-annand-jgs-detail-historical-01.cropimg.width=700.crop=basic.jpg",
+      "scope": "historical",
+      "observed": "University caption: West walls of Dalton undercroft, July1964, UNSW Archives CN130/156. Two longitudinal duct panels and black-tiled round columns visible in the original open undercroft; not the current glazing or fitout. Full source image inspected natively; capture dates unverified except the historical caption. Asset folder dates are not treated as capture dates."
+    }
+  ],
+  "architect": {
+    "url": "https://nbrs.com.au/projects/unsw-teaching-commons",
+    "images": [
+      {
+        "url": "https://new.cms.nbrs.com.au/media/image-1_1920x820_2024-10-17-220540_tgyj.png",
+        "observed": "Current three-sided ground-level glass facade, displaced pale concrete front pier, black frames, F12/Dalton Building lettering, hedge and warm suspended timber screen; companion lounge photograph shows blue mosaic, green swivel chairs and pale-green organic coffee tables."
+      },
+      {
+        "url": "https://new.cms.nbrs.com.au/media/image-2_1920x820_2024-10-17-220549_vdfa.png",
+        "observed": "White meeting tables, pale framed timber-backed chairs, timber joinery, AV display and green/white/orange mosaic near a doorway."
+      },
+      {
+        "url": "https://new.cms.nbrs.com.au/media/image-3_1920x820.png",
+        "observed": "Lounge blue mosaic, hanging timber rods with varying lower ends, black-tiled circular column, green chairs and clustered green table forms. Separate meeting view shows timber AV wall and white table frames."
+      }
+    ],
+    "limitation": "Full paired photographs inspected natively. Publication/capture dates unverified; asset names dated2024. Room subdivision, exact furniture/screen pattern and duct XY are reconstructed, not a measured floor plan."
+  },
+  "timeEvidence": {
+    "url": "https://www.inside.unsw.edu.au/academic-excellence/introducing-unsws-teaching-commons",
+    "published": "2023-09-29",
+    "observed": "Official launch article records grand opening20 September2023 and ground-floor Dalton location in former JGs Cafe. Later architect photos guide the current enclosure; the old cafe is not recreated as current."
+  },
+  "streetView": {
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=5AWedBzlsx7s4Zuwx6QdHw&heading=351&pitch=8",
+    "capture": "July2015",
+    "observed": "Native verified official Google panorama inspected again. Exposed aggregate southern end, former cafe glass ground floor, round columns, hedge and walkway visible. Current Teaching Commons glazing, furniture and screen follow later NBRS photos instead; this historical panorama does not establish the current interior."
+  },
+  "heightEvidence": {
+    "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18",
+    "snapshot": "sources/unsw-gis-label-height-fields.json",
+    "sha256": "748c9b20eb59a1ff011af8a1b57d994015b7a69d10e095efd6af4a05da8f4327",
+    "record": {
+      "attributes": {
+        "OBJECTID": 8,
+        "egdb_ES_14": "F12",
+        "egdb_ES_15": "Dalton",
+        "egdb_ES_18": 4,
+        "egdb_ES_26": 14.87
+      }
+    },
+    "interpretation": "The original OSM15m/three-level tags remain displayed. Retained university attributes14.87m/four floors are separately noted; their reference point/definition and update date are unspecified. No fresh query or surveyed floor/roof RL claimed."
+  },
+  "reconstruction": "Original footprint, height tags, source paths, tree inventory and whole-building exterior collision boundary remain. A bounded18m southern room behind clear three-sided glazing replaces opaque lower wall overlays. Catalogue-sized5.68\u00d73.675m mosaic faces stand on two fitted longitudinal duct panels; matching faces to exact ducts/orientations remains uncertain. Full blue/radial compositions are simplified by hand; spindle/orb faces extrapolate only detail photographs and are not full verified reproductions. Texture pixels are generated entirely from original vector shapes and deterministic procedural tesserae; source photographs are neither sampled nor redistributed. Highest footprint-edge DEM sample plus0.22m gives a fitted floor; 4.05m room height, columns, suspended screen waveform, furniture, warm lighting, ceiling and cabinets are estimates. Closed doors remain non-walkable; stairwell mosaics and complete building interiors are not recreated in this pass."
+}
