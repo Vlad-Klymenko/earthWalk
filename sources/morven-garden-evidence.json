@@ -1,0 +1,42 @@
+{
+  "inspected": "2026-11-03",
+  "sources": [
+    {
+      "id": "morven-garden-official",
+      "name": "Morven Brown · university lawn-side garden photograph",
+      "url": "https://www.unsw.edu.au/arts-design-architecture/our-schools/education/about-us/contact-us",
+      "photo": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2019-01-morven-brown-courtyard/2019-01-moven-brown-courtyard-0004.cropimg.width%3D700.crop%3Dsquare.jpg",
+      "notes": "Full 700 × 700 university image inspected natively: lawn, mature trees, taller branching shrubs against the wall, lower hedges and dark slatted benches. Replaces generic green flower boxes with an original procedural shrub reconstruction. Counts, bed extents, species, heights and fine levels remain estimated. Asset path year is not taken as a verified capture date; raw mature-tree inventory remains unchanged."
+    },
+    {
+      "id": "morven-bench-photo",
+      "name": "Morven Brown · paired timber bench and flowering shrub detail",
+      "url": "https://studentvip.com.au/unsw/kensington/maps/133050",
+      "photo": "https://s3.studentvip.com.au/photos/lawn-benches-174598-small.jpg",
+      "notes": "Full 480 × 640 labelled photo inspected: paired dark timber slatted seats, pale metal pedestal/back frames, warm pale seat pads and wall-side branching shrubs with red flowers. July 2015 Street View confirms the paired rows are on the western side. New layout uses 14 fitted benches across west/east/north edges; this is not a surveyed count. Flowers are illustrative seasonal colour, not current-condition or species evidence."
+    },
+    {
+      "id": "morven-lawn-paving-photo",
+      "name": "Morven Brown · lawn, courtyard pavers and pale crossing bands",
+      "url": "https://studentvip.com.au/unsw/kensington/maps/133050",
+      "photo": "https://s3.studentvip.com.au/photos/lawn-174593-small.jpg",
+      "notes": "Entire 640 × 480 labelled photograph inspected: asymmetric lawn, dark small rectangular brick-pattern paving, broad pale crossing bands, perimeter benches and shrubs, and the curved cafe canopy. Procedural herringbone texture uses estimated 200 × 100 mm pavers, not a measured specification. Band spacing, colours and seating pads remain fitted estimates; original lawn and source path geometry are retained."
+    },
+    {
+      "id": "morven-west-garden-panorama",
+      "name": "Morven Brown · July 2015 western seating and planting panorama",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=_epevoKdWdChS7PSgUMlBw&heading=275&pitch=-5",
+      "notes": "Official Street View re-inspected natively at -33.9166694, 151.2329002, facing 275°, capture July 2015. Shows western paired seats, wall planting, brick-pattern court with pale bands, south shopfront and retained lawn. Helps assign photo orientation rather than copying paired benches onto the fountain side. Exact counts / dimensions and current condition unverified; no panorama pixels copied."
+    }
+  ],
+  "model": {
+    "layout": "Photo-fitted 14 benches: eight in four western pairs, four eastern lawn-facing benches, two north-side lawn-facing benches. Count, spacing and detailed placement reconstructed.",
+    "planting": "32 ornamental shrub forms, separate from all inventory trees; inferred foliage habit, not asserted species. Sparse red seasonal flowers on western shrubs follow the bench photo. No claim of present flowering.",
+    "surfaces": "Derived soil strips, ochre bench pads and pale paving bands clipped to the open courtyard and retained paving/lawn/fountain boundaries. Terrain-following offsets 0.245/0.235/0.228 m above raw DEM, adjacent to prior 0.22 m paving.",
+    "paving": "Original own canvas texture, estimated 0.8 m repeat of 100 mm grid cells, 200 × 100 mm rectangular pavers in herringbone arrangement; fit to photos, not surveyed.",
+    "seats": "Dark timber slats, grey metal supports and feet follow detailed photos. Seat height 0.46 m above the maximum raw DEM + 0.22 m over each bench; legs independently meet local ground.",
+    "preserved": "Original raw building footprint / tags / 18 m height, lawn and path geometry and widths, mature tree inventory, fountain data remain unchanged.",
+    "limitations": "Capture dates for static photos unverified. Fine levels, morphology, colours and all fixture counts/positions reconstructed; no current access or garden-condition claim.",
+    "media": "Source photography linked only. No source pixels or scanned geometry copied."
+  }
+}

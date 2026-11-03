@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import clip from 'polygon-clipping';
+import {CAMPUS as RAW} from '../dist/campus-data.js';
+import {MORVEN_ID} from '../dist/morven-brown-data.js';
+import {MORVEN_BEDS,MORVEN_BENCHES,MORVEN_BANDS} from '../dist/morven-garden-data.js';
+import {MORVEN_PAVING} from '../dist/morven-brown-parts.js';
+import {BOURKE_POOL} from '../dist/morven-fountain-data.js';
+const poly=(r,h=[])=>[r,...h].map(r=>r.map(p=>[p.x,p.z]));
+const parts=m=>m.map(r=>({points:r[0].slice(0,-1).map(([x,z])=>({x,z})),holes:r.slice(1).map(r=>r.slice(0,-1).map(([x,z])=>({x,z}))),reconstructed:true}));
+const b=RAW.buildings.find(b=>b.id===MORVEN_ID),court=[poly(b.holes[0])],paving=clip.union(...MORVEN_PAVING.map(p=>poly(p.points,p.holes))),lawn=[poly(RAW.greens.find(g=>g.id==='osm-way-45604250').points)],fountain=[poly(BOURKE_POOL.rim)];
+const beds=clip.difference(clip.intersection(court,clip.union(...MORVEN_BEDS.map(p=>poly(p.points)))),lawn,fountain);
+const pads=clip.difference(clip.intersection(paving,clip.union(...MORVEN_BENCHES.map(b=>poly(b.pad)))),beds,fountain);
+const bands=clip.difference(clip.intersection(paving,clip.union(...MORVEN_BANDS.map(p=>poly(p.points)))),beds,pads,fountain);
+fs.writeFileSync(new URL('../dist/morven-garden-parts.js',import.meta.url),'// Derived photo-fitted garden surfaces. Original lawn, paving and source routes remain separate.\n'+Object.entries({MORVEN_GARDEN_BEDS:parts(beds),MORVEN_BENCH_PADS:parts(pads),MORVEN_PAVING_BANDS:parts(bands)}).map(([k,v])=>'export const '+k+' = '+JSON.stringify(v)+';').join('\n')+'\n');
+console.log(parts(beds).length+' beds, '+parts(pads).length+' seat pads, '+parts(bands).length+' paving bands');
