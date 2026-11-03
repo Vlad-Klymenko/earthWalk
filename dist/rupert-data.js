@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=fbfc5011f3c1';
-import { buildingBase } from './terrain.js?v=fbfc5011f3c1';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=9473ccb108ea';
+import { buildingBase } from './terrain.js?v=9473ccb108ea';
 export const RUPERT_ID='osm-relation-1131247-0';
 // Original OSM outline / courtyard retained. These internal splits, floor
 // dimensions and steel positions are photograph-led estimates, not a survey.
