@@ -1,4 +1,4 @@
-import {oldNorthPoint as point,oldNorthRectangle as frameRect} from './old-main-north-data.js?v=a5f9f679a82f';
+import {oldNorthPoint as point,oldNorthRectangle as frameRect} from './old-main-north-data.js?v=159c90d42d57';
 const rect=(...args)=>frameRect(...args).map(p=>({x:Math.round(p.x*1e6)/1e6,z:Math.round(p.z*1e6)/1e6}));
 export const OLD_MAIN_FRONT_SOURCE='https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-84220206%2120260115T061908.681+GMT';
 export const OLD_MAIN_MAIN_ENTRY={floorRL:33.59,doorHeadRL:35.8,lowerLandingRL:30.61,bottomRL:30.1,bottomU:-8.4,bottomV:39.5,lowerTopV:38.45,turnU:-6.1,upperEndU:-.1,upperCentreV:30.9,wallV:29.15,lowerWidth:4.6,upperWidth:3.4,landingEast:11.7,landingSouth:33.55,lowerCount:3,upperCount:15,reconstructedPlan:true,note:'Main floor FL33.59 and door head DH35.80 are explicit AHD survey labels. Forecourt spot30.61 guides the lower pad. Bottom approach, XY / turn, dimensions and all 18 treads are fitted; original source routes remain unchanged.'};

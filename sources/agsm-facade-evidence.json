@@ -1,0 +1,61 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "id": "agsm-archive-courtyard",
+      "url": "https://digitalcollections.library.unsw.edu.au/nodes/view/161241",
+      "photo": "https://digitalcollections.library.unsw.edu.au/assets/display/423295-max?u=0a7040fa50df3c8adb2a4afab6ae53b5",
+      "archiveReference": "UNSW Library / University Archives S2027/360",
+      "recordDate": "c. mid\u2013late 1990s",
+      "observed": "Metadata and entire displayed photograph inspected natively. Pale square portals at ground, large angled movable screen panels above, warm-coloured structural piers, shaded gallery / horizontal rails, striped metal soffit and a higher white glazed volume set behind the curved front. Historical appearance only. Original pixels are not redistributed as scene assets."
+    },
+    {
+      "url": "https://www.learningenvironments.unsw.edu.au/physical-spaces/k-g27",
+      "photo": "https://www.learningenvironments.unsw.edu.au/sites/default/files/styles/teaser_mobile/public/images/agsm-building.jpg?itok=Kd8fcJMO",
+      "observed": "Previously inspected official dusk view corroborates screen layer, gallery band, projecting roof and set-back upper glazing. Not used to measure exact heights or as a current screen-position schedule."
+    },
+    {
+      "url": "https://www.unsw.edu.au/accommodation/help/short-stays",
+      "observed": "Official outdoor photograph inspected in the preceding court pass. Corroborates the surviving curved metal / glass structure, screens, mixed brick wings and caf\u00e9 setting. Capture date unverified."
+    },
+    {
+      "id": "agsm-oval-lane-context",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=j1kmkvSPJ3OTe1f7dfBw4Q&heading=332&pitch=10&fov=90",
+      "capture": "February 2021",
+      "position": {
+        "lat": -33.9189353,
+        "lon": 151.2355117
+      },
+      "observed": "Official Street View at Oval Lane inspected natively and rotated toward the southern wing. Partly tree-obscured pale brick lower wing, horizontal windows and pale upper volume / terrace rails. A focused interior-court viewpoint request snapped here; this panorama is not a courtyard view or a calibrated height / setback source."
+    }
+  ],
+  "reconstruction": {
+    "massing": {
+      "courtRoof": 12.2,
+      "upperRoof": 16,
+      "maximum": 20,
+      "firstSetback": 2.4,
+      "secondSetback": 7.8,
+      "reconstructed": true
+    },
+    "regions": 3,
+    "exposedWallSegments": 246,
+    "curveGrid": {
+      "length": 30.41977919152204,
+      "count": 13,
+      "pitch": 2.3399830147324647
+    },
+    "facade": "Three lower courtyard layers replace the repeated full-height five-row grid: dark glazed ground portals, pale adjustable screens shown at mixed original positions, and a recessed upper gallery with fine rails and warm structural piers. Panel arrangement, counts, colours, projection, door divisions and screen positions are estimates.",
+    "setbacks": "A 2.4 m fitted recess lowers the courtyard front to 12.2 m; the next component reaches 16 m. A second 7.8 m cumulative depth preserves the less-visible original 20 m rear envelope. The photographs establish a set-back upper volume; the exact depths, heights and second rear transition are unmeasured reconstructions, not an as-built roof plan.",
+    "joins": "Recessed backing walls / glazing, gallery slabs and projecting brows use common mitered source-corner positions to remove sight lines through adjacent translated facets.",
+    "glass": "A static local reflection probe renders the original reconstructed court and surrounding scene. No source photo pixels are used as textures.",
+    "collision": "Three exact clipped regions partition all raw occupied map area without overlap. Their collision tops match their rendered roofs. The courtyard, caf\u00e9 layout, shared graded walking mesh, existing steps and pergola remain.",
+    "views": "One additional map destination: curved glass and sun screens."
+  },
+  "preserved": "Original 43-vertex perimeter, raw tags, mapped 20 m maximum, five-level tag, outside street material evidence, public DEM samples, retained court grading and inventory trees.",
+  "validation": {
+    "automated": "Full suite passed across 86 test files. Six new fa\u00e7ade tests also passed directly: footprint / height evidence, exposed-wall intervals, continuous panel grid, screen bounds, route / destination clearance, and joined recessed corners. Syntax, deterministic asset preparation and diff whitespace checks passed.",
+    "native": "Final close fa\u00e7ade view inspected with no sight lines through the joined gallery / recessed backing. Walked up the retained terrace to 50.6 m displayed elevation and returned, totalling 10 m at 50.1 m, without snagging. Browser warning / error log empty."
+  },
+  "limitations": "Component elevations, roof setbacks, door / panel schedule, current screen positions, exact material colours and rear elevations remain uncertain. Interior gallery access and rooms are not reproduced. Historical reference appearance does not establish current condition."
+}
