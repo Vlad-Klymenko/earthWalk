@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: campus path materials
+## Latest visual update: Engineering Road streetscape
+
+A bounded section beside Old Main now has public-GIS garden beds, planted edges, an interlocking-paved margin, a low brick wall / metal rail and six reconstructed blue bollards. A new map destination reaches the comparison view. The original paths and NSW terrain remain intact; conflicting bollard positions are omitted to preserve mapped route widths. Detailed fixture dimensions, planting and fine levels follow historical Street View and remain estimates. The sunken entrance is still unfinished. All 321 checks pass, with native walking / boundary checks; the reference library has 400 records. Campus fidelity remains ongoing.
+
+## Previous visual update: campus path materials
 
 Paths and lanes now use their retained surface tags for asphalt, concrete, concrete panels, paving and timber. This corrects 46 asphalt footpath sections and 23 concrete road sections without changing source widths, route roles or terrain. Engineering Road uses photo-guided grey-mauve interlocking blocks. Science Road also uses historical photo-fitted blocks, with its conflicting pebblestone map tag retained and current resurfacing explicitly unverified. Four new searchable viewpoints make these materials easy to inspect. All 316 checks pass; the reference library has 399 records. Fine texture dimensions and walking offsets remain reconstructed, and campus fidelity remains ongoing.
 

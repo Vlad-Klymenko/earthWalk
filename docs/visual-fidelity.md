@@ -2,6 +2,18 @@
 
 The goal remains a detailed, recognizable recreation of the entire main Kensington campus. This pass does not establish photorealistic accuracy for the whole campus.
 
+## Engineering Road / Old Main streetscape
+
+The previous material pass left a grass strip between Engineering Road and Old Main. Native full July 2015 panorama `kxmjWQj6VdFPCiEIGY81mQ` at -33.9187111, 151.230872 was inspected westward, downward and northeastward. It shows blue cylindrical bollards with rounded caps / neck rings, interlocking paving, tree pits, a low brick wall with a metal rail, the lower entrance / cycle rack and planted edges toward Ainsworth. Google Images results were also inspected; the concrete security spheres shown for other UNSW streets were not attributed to this corridor. No source photograph pixels are redistributed. Present-day fixture condition is unverified.
+
+A fresh public KensingtonGardens layer 24 query returned 17 WGS84 features, requesting only OBJECTID and geometry. The unmodified response and query envelope are retained in `sources/engineering-street-gis-evidence.json`. A 36 m local scope along the retained Engineering Road segment clips these into seven garden regions, subtracting occupied original rooms and complete source route widths. The western pavement is a separate photo-fitted extent, cut around those gardens / source rooms / routes. Five original edge / surface remnants compose the already published University Mall / Southern Drive masks. Only derived render coordinates are quantized to one micrometre; source GIS rings, OSM points / widths / classifications and raw NSW elevation samples remain untouched. Paving uses the same existing road offset of 0.055 m; soil is reconstructed at 0.078 m above retained terrain. These are small render / walking offsets, not measured elevations.
+
+Six photo-fitted blue posts remain after route / garden / inventory-tree / arrival checks. The retained road and eastern footpath converge; several apparent photographic post locations conflict with their full source widths and are omitted rather than silently narrowing a route. Posts have an estimated 0.95 m height and 0.11 m radius, neck rings and a segmented rounded cap. The reconstructed western brick wall is 0.28 m wide / 0.4 m high, with a 1.04 m metal rail. Both wall and posts have collision. Its detailed length, fixture positions / count, coping, rail thickness, colours and all fine dimensions are estimates. The actual sunken entrance, lower stair / ramp and exact retaining-wall grades remain unfinished; no invented accessible through-route is provided.
+
+The beds use 437 reconstructed low tufts, each with seven narrow bent leaf ribbons. Species, spacing and dimensions are not GIS observations. An initial filled triangular-fan shape looked like solid geometric shrubs in the browser; it was replaced with open ribbons whose actual vertices stay inside the fitted plant radius / height envelope. No new trees are shifted or inferred from the historical image; the existing public-inventory treatment remains. A new unsigned outdoor map destination reaches the west-facing comparison view.
+
+Five new checks cover public field / coordinate provenance, original route preservation, complete garden / pavement partition, source room and route clearance, renderer triangulation including holes, solid fixture placement, plant geometry bounds, safe arrival and the finite two-coordinate walking-height API. All 321 tests pass. Native browser checks approach the wall until movement stops, return across the paved margin, and walk the central lane beyond the new ground boundary / back: about 60 m total, approximately RL 32.3–33.0 m. The linked library has 400 source records, with building profile coverage still 90 of 98; campus fidelity remains ongoing.
+
 ## Campus path material audit and historical paving references
 
 The renderer previously inferred road material from route classification: roads became dark asphalt and most footways used a pale paving texture. The original public OSM snapshot, retrieved 1 November 2026 at 12:46:54 UTC, retains more specific material evidence. The new audit records all 675 source path sections against the original way tags, including 46 asphalt footpath sections, 78 concrete paths, 23 concrete roads, six paving-stone roads, one wood footpath and one concrete-plates footpath. The enhanced dataset contains one additional sports-track section. Counts describe retained sections, not unique complete ways or measured resurfacing areas. `sources/path-material-evidence.json` preserves the original surface, classification, width and separate render decision for each section.
@@ -505,6 +517,7 @@ Explicit appearance profiles now cover 90 of 98 original campus footprints. The 
 
 ## Reproduction
 
+- node scripts/make-engineering-street.mjs
 - node scripts/audit-path-materials.mjs
 - node scripts/make-mall-landscape.mjs
 - node scripts/make-tree-inventory.mjs

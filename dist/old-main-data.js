@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=372bc6d4b821';
-import { terrainHeight, buildingBase } from './terrain.js?v=372bc6d4b821';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=41994a53b8ae';
+import { terrainHeight, buildingBase } from './terrain.js?v=41994a53b8ae';
 export const OLD_MAIN_ID='osm-way-45490050';
 export const OLD_MAIN_PHYSICS={url:'https://newt.phys.unsw.edu.au/jw/maps.html',title:'UNSW Physics · Old Main description and courtyard photographs',describedStoreys:4};
 // The source outline, 24 m maximum and six-level tag remain intact. Window
