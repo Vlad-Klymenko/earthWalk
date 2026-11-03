@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=ef86122637ee';
-import {agsmGeometry} from './eastern-landmarks-data.js?v=ef86122637ee';
-import {framePoint} from './geometry.js?v=ef86122637ee';
+import {CAMPUS as RAW} from './campus-data.js?v=dfa1c50ac01f';
+import {agsmGeometry} from './eastern-landmarks-data.js?v=dfa1c50ac01f';
+import {framePoint} from './geometry.js?v=dfa1c50ac01f';
 export const AGSM_FACADE_ID='osm-way-101505149';
 export const AGSM_FACADE_BUILDING=RAW.buildings.find(b=>b.id===AGSM_FACADE_ID);
 export const AGSM_FACADE=agsmGeometry(AGSM_FACADE_BUILDING);

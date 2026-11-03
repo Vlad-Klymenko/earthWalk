@@ -1,6 +1,6 @@
-import {terrainHeight} from './terrain.js?v=ef86122637ee';
-import {CATHERINE_PATTERN as P} from './catherine-court-data.js?v=ef86122637ee';
-import {CATHERINE_GROUND,CATHERINE_SOIL,CATHERINE_CURBS,CATHERINE_BENCHES} from './catherine-court-parts.js?v=ef86122637ee';
+import {terrainHeight} from './terrain.js?v=dfa1c50ac01f';
+import {CATHERINE_PATTERN as P} from './catherine-court-data.js?v=dfa1c50ac01f';
+import {CATHERINE_GROUND,CATHERINE_SOIL,CATHERINE_CURBS,CATHERINE_BENCHES} from './catherine-court-parts.js?v=dfa1c50ac01f';
 const inRing=(x,z,ring)=>{let inside=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++)if((ring[i].z>z)!==(ring[j].z>z)&&x<(ring[j].x-ring[i].x)*(z-ring[i].z)/(ring[j].z-ring[i].z)+ring[i].x)inside=!inside;return inside;};
 export const inCatherinePart=(x,z,p)=>inRing(x,z,p.points)&&!(p.holes||[]).some(r=>inRing(x,z,r));
 export const inCatherineCourt=(x,z)=>CATHERINE_GROUND.some(p=>inCatherinePart(x,z,p));

@@ -1,0 +1,75 @@
+{
+  "inspected": "2026-11-04",
+  "photographs": [
+    {
+      "id": "mathews-theatres-lower-entry-detail",
+      "name": "Mathews Theatres · lower doorway and soffit",
+      "url": "https://www.learningenvironments.unsw.edu.au/physical-spaces/k-d23",
+      "photo": "https://www.learningenvironments.unsw.edu.au/sites/default/files/styles/teaser_mobile/public/images/matthews-theatres.jpg?itok=oi3e7TBD",
+      "notes": "Full university photograph visually inspected: board-marked pale concrete, recessed white double doors, projecting concrete lintel / soffit with round lights, cream brick return and blue-grey base. Labelled secondary entrance image corroborates the doorway. Capture date unverified. Opening dimensions, floor fit to regional terrain and finer return geometry are estimates; closed interiors remain boundaries. No image pixels copied."
+    },
+    {
+      "id": "mathews-theatres-pavilion-detail",
+      "name": "Mathews Theatres · pavilion-side glazed entrance",
+      "url": "https://studentvip.com.au/unsw/kensington/maps/133153",
+      "photo": "https://s3.studentvip.com.au/photos/pavillion-entrance-to-level-2-175653-small.jpg",
+      "notes": "Complete displayed 640 x 480 photograph inspected: broad recessed glazed entrance, thick white portal / sign surround, glazing with two pale horizontal safety bands, handles, concrete soffit with repeated round lights and a longer adjacent window strip. Capture date / exact bay count unverified. Opposite-side appearance is kept distinct from the lower university entrance; dimensions and fine floor levels are reconstructed."
+    },
+    {
+      "id": "mathews-theatres-dated-context",
+      "name": "Mathews Theatres · Sardaka photograph, 5 December 2020",
+      "url": "https://commons.wikimedia.org/wiki/File:Mathews_Theatres_UNSW_001.jpg",
+      "notes": "Commons metadata and complete 7450 x 5287 original displayed at fit-to-window size inspected. Photographer Sardaka, CC BY-SA 4.0. Shows covered lower passage, stair / ramp edges and neighbouring steep roof. Aerial context and January 2022 Winston Li panorama distinguish D23 flat roof / entrance from the neighbouring Clancy sloped roof; the latter is not applied to D23. Source photography is linked only, not redistributed as scene assets."
+    }
+  ],
+  "secondaryEntrance": {
+    "url": "https://studentvip.com.au/unsw/kensington/maps/133153",
+    "photo": "https://s3.studentvip.com.au/photos/entrance-to-level-2-175652-small.jpg",
+    "observed": "Full 480 x 640 displayed image inspected. Open white framed double doors reveal an internal stair; board-marked pale concrete, white sign band and blue-grey base corroborate the official lower entrance. Interior stair is not added as a through-route."
+  },
+  "panorama": {
+    "url": "https://www.google.com/maps/@-33.9173922,151.2344323,3a,90y,100t/data=!3m4!1e1!3m2!1sCIHM0ogKEICAgICmuczLEg!2e10",
+    "contributor": "Winston Li",
+    "capture": "January 2022",
+    "observed": "Native views rotated from the open pavilion court toward neighbouring Clancy, then toward the D23 entrance and Mathews tower / Library. Contributor coordinate and compass alignment are approximate. Privacy blur obscures portions of the western view. It corroborates adjacency and general appearance, not a calibrated elevation or access survey."
+  },
+  "aerial": {
+    "url": "https://www.google.com/maps/@-33.9170,151.2345,19z/data=!3m1!1e3",
+    "observed": "Native public aerial inspected and panned. Long north-south flat D23 slab lies west of Clancy and Mathews Pavilions. The steep metal roof in the dated Commons photo belongs to neighbouring Clancy; no pitched roof substituted for D23. No pixel-derived measurements or imagery copied."
+  },
+  "preserved": {
+    "building": "mathews-theatres",
+    "source": "OpenStreetMap way 45490562",
+    "vertices": 8,
+    "height": 12,
+    "heightSource": "mapped",
+    "levels": 3,
+    "roofShape": "flat",
+    "terrain": "Existing NSW 5 m DEM unchanged",
+    "paths": "All source centrelines and widths unchanged"
+  },
+  "reconstruction": {
+    "recessDepthMetres": {
+      "pavilionDoors": 0.65,
+      "pavilionWindows": 0.45,
+      "lowerDoors": 0.55
+    },
+    "lintelProjectionMetres": 0.72,
+    "doorwayHeightMetres": {
+      "pavilion": 2.9,
+      "lower": 2.8
+    },
+    "floors": "Each side fitted to maximum of five local DEM samples plus 0.22 m. This is a visual fit, not surveyed level-one / level-two separation or a model of the fine steps. Original foundation stays unchanged.",
+    "geometry": "Wall faces partitioned around openings; glass lies physically behind the source boundary with side / top / sill returns and separate framing. Concrete texture and all scene pixels generated procedurally.",
+    "limits": "Bay counts, window intervals, section depths, light spacing, colour and unseen elevations remain estimated. Interior volumes stay closed at the original source perimeter. No claim of current room access.",
+    "aprons": "Two bounded three-metre-deep paving approaches reconcile the coarse DEM with fitted sills. Shared rendered grid triangles and walking interpolation, spaced no more than 0.5 m, replace grass immediately outside the photographed doors. Width, grade and fine level differences are reconstructed, not surveyed access grades. Raw terrain samples and original paths unchanged."
+  },
+  "verification": {
+    "nativeBrowser": "Codex in-app browser, localhost port 4174",
+    "east": "Map search and Walk here work. Walked 5 m toward glass: displayed ground 57.2 to 57.0 m, then retreated to 57.2 m. Oblique inspection confirms cut reveals / sign / lintel and new apron.",
+    "west": "Lower destination, walked to the closed boundary and retreated: displayed ground 55.6 to 55.9 to 55.6 m; cumulative distance reached 26 m.",
+    "logs": "No browser warnings or errors",
+    "tests": "Six dedicated geometry / provenance checks; complete final suite 473 tests passed.",
+    "revision": "dfa1c50ac01f"
+  }
+}

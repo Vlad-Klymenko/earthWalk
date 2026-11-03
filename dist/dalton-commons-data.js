@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=ef86122637ee';
-import {orientedFrame,framePoint,clipFrameStrip} from './geometry.js?v=ef86122637ee';
-import {terrainHeight,buildingBase} from './terrain.js?v=ef86122637ee';
+import {CAMPUS as RAW} from './campus-data.js?v=dfa1c50ac01f';
+import {orientedFrame,framePoint,clipFrameStrip} from './geometry.js?v=dfa1c50ac01f';
+import {terrainHeight,buildingBase} from './terrain.js?v=dfa1c50ac01f';
 export const DALTON_ID='dalton';
 export const DALTON_ART_SOURCE='https://www.unsw.edu.au/estate/about-us/public-art';
 export const DALTON_ART_CATALOGUE='https://artcollection.unsw.edu.au/collection/items/2010212159_052144.html';
