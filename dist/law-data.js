@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint } from './geometry.js?v=3f92c7de99b8';
-import { buildingBase } from './terrain.js?v=3f92c7de99b8';
+import { orientedFrame, framePoint } from './geometry.js?v=4f63f148a8ac';
+import { buildingBase } from './terrain.js?v=4f63f148a8ac';
 export const LAW_ID='law';
 export const LAW_ARCHITECT={title:'Lyons · Faculty of Law, completed 2006',url:'https://www.lyonsarch.com.au/project/faculty-of-law-university-of-nsw/',visibleLevels:4};
 export const LAW_MATERIAL_SOURCE='https://www.hunterdouglasarchitectural.com/referenceprojects/article.jsp?pId=8a4383491149a36401114cc0a5ba0033';

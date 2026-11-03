@@ -2,6 +2,22 @@
 
 The goal remains a detailed, recognizable recreation of the entire main Kensington campus. This pass does not establish photorealistic accuracy for the whole campus.
 
+## Old Main western northern court, enclosed link and curved green frontage
+
+The full labelled StudentVIP northern-context photograph was inspected again, alongside both service-gallery views, the official Physics jacaranda image, native Google aerial context and a targeted Google Images search. They depict different spaces. The identifiable western paved court has an enclosed dark corrugated link at its northern mouth, curved green glazed frontage, blue posts and a timber tree planter. The landscaped lawn / jacaranda context belongs to a separate court. The red-column / blue-panel service gallery and the lower mauve doorway / yellow equipment remain unlocated; they are not speculatively inserted into the western court. No northern internal walking coverage appeared in the native Street View layer. Photo capture dates / present condition are unverified.
+
+A bounded public Kensington Campus 2026 courtyard query returns object 12. Its Name / Location fields contain only whitespace and are retained verbatim, rather than assigned an invented official name. The separately retained Old Main building object 21 has the same curved projections visible in the courtyard context. A local GIS intersection derives two low annex regions outside all original occupied source rooms. The first geometry check caught an overlap with original footway `297836325`; reconstructed annex geometry is now trimmed around the complete source path plus standing clearance. Original OSM rings, route points / widths / roles and raw NSW grid values remain untouched. The original public WGS84 rings, selected fields, query and reasoning are retained in `sources/old-main-north-evidence.json`.
+
+The court uses GIS plan geometry clipped around original rooms / the derived annex, retained source ribbons and the tree opening. Twenty-three bounded paving meshes reproduce the resulting regions without excessive skinny-triangle subdivision. Original route surface remnants and earlier Southern Drive / Mall / lower-entry masks compose with the new courtyard masks; source footways keep their existing walking height. New paving uses the same reconstructed 0.22 m offset. No measured courtyard Z is supplied by these plan layers. Regenerate lower-entry parts, Engineering Road parts, then northern-court parts after changing those retained base masks.
+
+The green annex floor near RL 29.7, roof 33.2 and fascia bottom 32.5 m are photo-fitted estimates. Its curved walls have green frames, separate glazing, pale closed-door bays, a low roof cap and a courtyard reflection probe. Exact module divisions, doors and unphotographed elevations remain reconstructed. The enclosed link has a fitted floor near RL 33.4, underside 33.2 and roof about 36.05 m; its dimensions, corrugation, underside beams / lights and levels are estimates. Tests sample every intersecting retained route and show standing clearance beneath the bridge. There is no invented accessible bridge interior or new ground support across the footpath.
+
+Four fitted blue posts remain after rejecting source-route / annex conflicts. A 3.2 m timber planter / bench surrounds the retained inventory point `unsw-tree-100911`, Pyrus calleryana. Its source species / coordinate are not moved or replaced by the jacaranda in the separate official photograph. Timber board geometry / grain, box height / dimensions, exact current tree condition and post positions remain estimates. The open centre preserves the trunk while solid border collision leaves the surrounding court walkable. A small procedural Old Main K15 wall plaque follows the labelled context; no photograph pixels or logo assets are copied.
+
+The official 1959 university guide was found and its complete PDF page 3 / printed pages 4–5 inspected. Its historical façade-height figure, 61 ft or about 18.6 m at the main entrance, has no absolute roof RL or unambiguous current ground reference. It is retained as separate historical evidence, not combined with unrelated datum values to replace the public 2025 floor / window anchors or claim a measured roof. Existing roof and upper-band estimates remain explicitly labelled.
+
+Six new checks cover the public fields / source separation, true curved GIS footprint, full source-route clearance, floor partition / renderer triangulation, suspended-link headroom, retained inventory tree, planter / post placement, finite walking height and safe outdoor arrivals. All 335 checks pass. Native walking covers about 91 m beneath the link, around the planter and back, near RL 29.5–29.7 m; final glass / timber materials and daylight / golden-hour appearance are checked separately. Two new map destinations reach the link and frontage, while the earlier north-court destination remains. The linked library reaches 406 records; original building-profile coverage remains 90 of 98. Exact service-gallery placement, finer fabric and whole-campus fidelity remain ongoing.
+
 ## Old Main lower entrance, AHD levels and revised visual roof
 
 The earlier Engineering Road pass left the sunken entrance unfinished. Full native July 2015 panoramas `kxmjWQj6VdFPCiEIGY81mQ` at -33.9187111, 151.230872 and `l0qxrlNnlWZBJ-RX8nr_Iw` at -33.9188958, 151.2308385 were inspected facing west / downward and northwest from the southern approach. They show the lower glazing / doorway, stair rising northward, upper cycle-rack platform, low outer brick wall / metal rail and connection toward Physics Road. The lower windows stop at the stair; they do not continue as buried frames along the northern frontage. Current access and interiors are unverified.
@@ -533,6 +549,7 @@ Explicit appearance profiles now cover 90 of 98 original campus footprints. The 
 
 - node scripts/make-old-main-entry.mjs
 - node scripts/make-engineering-street.mjs
+- node scripts/make-old-main-north.mjs
 - node scripts/audit-path-materials.mjs
 - node scripts/make-mall-landscape.mjs
 - node scripts/make-tree-inventory.mjs

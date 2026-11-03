@@ -1,0 +1,535 @@
+{
+  "retrieved": "2026-11-03",
+  "courtyard": {
+    "source": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus_2026/MapServer/7",
+    "query": {
+      "geometry": "151.2294,-33.91855,151.23005,-33.91795",
+      "inSR": 4326,
+      "outSR": 4326,
+      "outFields": "OBJECTID,Name,Location",
+      "geometryType": "esriGeometryEnvelope",
+      "spatialRel": "esriSpatialRelIntersects",
+      "where": "1=1",
+      "returnGeometry": true
+    },
+    "response": {
+      "displayFieldName": "Name",
+      "fieldAliases": {
+        "OBJECTID": "OBJECTID",
+        "Name": "Name",
+        "Location": "Location"
+      },
+      "geometryType": "esriGeometryPolygon",
+      "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+      },
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "type": "esriFieldTypeOID",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "Name",
+          "type": "esriFieldTypeString",
+          "alias": "Name",
+          "length": 254
+        },
+        {
+          "name": "Location",
+          "type": "esriFieldTypeString",
+          "alias": "Location",
+          "length": 254
+        }
+      ],
+      "features": [
+        {
+          "attributes": {
+            "OBJECTID": 12,
+            "Name": " ",
+            "Location": " "
+          },
+          "geometry": {
+            "rings": [
+              [
+                [
+                  151.22961547374626,
+                  -33.918073768982644
+                ],
+                [
+                  151.22979307696613,
+                  -33.91809575467339
+                ],
+                [
+                  151.22976288279284,
+                  -33.91825418670446
+                ],
+                [
+                  151.22972213970309,
+                  -33.918248935732976
+                ],
+                [
+                  151.22971102305146,
+                  -33.918307265182
+                ],
+                [
+                  151.22975176614116,
+                  -33.91831251689534
+                ],
+                [
+                  151.2297250214985,
+                  -33.91845284822183
+                ],
+                [
+                  151.229524770852,
+                  -33.91842703771142
+                ],
+                [
+                  151.22952188276838,
+                  -33.918436453509365
+                ],
+                [
+                  151.2295106762852,
+                  -33.918436046492864
+                ],
+                [
+                  151.22949202995486,
+                  -33.91842622144196
+                ],
+                [
+                  151.22948554142357,
+                  -33.91841339892884
+                ],
+                [
+                  151.2294875518532,
+                  -33.91839955514486
+                ],
+                [
+                  151.22949344390315,
+                  -33.918391577319476
+                ],
+                [
+                  151.2295010912611,
+                  -33.91838344891206
+                ],
+                [
+                  151.2295112530036,
+                  -33.918364692594075
+                ],
+                [
+                  151.22951377816793,
+                  -33.91834424409532
+                ],
+                [
+                  151.22951206238574,
+                  -33.91833404332585
+                ],
+                [
+                  151.22950840444588,
+                  -33.918324210808656
+                ],
+                [
+                  151.2295014227395,
+                  -33.91831339951115
+                ],
+                [
+                  151.2294966967028,
+                  -33.91830176523258
+                ],
+                [
+                  151.22949446888086,
+                  -33.91827733003696
+                ],
+                [
+                  151.22949702907943,
+                  -33.91826520822721
+                ],
+                [
+                  151.22950196622023,
+                  -33.918253600032926
+                ],
+                [
+                  151.22950914375937,
+                  -33.91824282823547
+                ],
+                [
+                  151.2295183622708,
+                  -33.91823319101649
+                ],
+                [
+                  151.2295293657347,
+                  -33.918224955994155
+                ],
+                [
+                  151.22954184962222,
+                  -33.91821835127754
+                ],
+                [
+                  151.22955643017758,
+                  -33.918212891576886
+                ],
+                [
+                  151.2295696677516,
+                  -33.918205414678766
+                ],
+                [
+                  151.22958116349233,
+                  -33.91819614720054
+                ],
+                [
+                  151.22959760356034,
+                  -33.91817340490014
+                ],
+                [
+                  151.2296020520176,
+                  -33.91816061514895
+                ],
+                [
+                  151.22960378217283,
+                  -33.91814738706888
+                ],
+                [
+                  151.22960274012715,
+                  -33.91813411873225
+                ],
+                [
+                  151.22959895821978,
+                  -33.91812120970247
+                ],
+                [
+                  151.22959255143513,
+                  -33.918109051343265
+                ],
+                [
+                  151.2296083617842,
+                  -33.91811108866991
+                ],
+                [
+                  151.22961547374626,
+                  -33.918073768982644
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "note": "Public courtyard object 12 has whitespace-only name / location fields, retained verbatim. No name is inferred from those fields. Plan surface polygon is clipped locally; materials and fine floor levels are reconstructed."
+  },
+  "building": {
+    "source": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18",
+    "response": {
+      "displayFieldName": "egdb_ESRIR",
+      "fieldAliases": {
+        "OBJECTID": "OBJECTID",
+        "egdb_ES_14": "Building Code",
+        "egdb_ES_15": "Building Name",
+        "egdb_ES_18": "No. of Floors",
+        "egdb_ES_26": "Building Height"
+      },
+      "geometryType": "esriGeometryPolygon",
+      "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+      },
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "type": "esriFieldTypeOID",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "egdb_ES_14",
+          "type": "esriFieldTypeString",
+          "alias": "Building Code",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_15",
+          "type": "esriFieldTypeString",
+          "alias": "Building Name",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_18",
+          "type": "esriFieldTypeInteger",
+          "alias": "No. of Floors"
+        },
+        {
+          "name": "egdb_ES_26",
+          "type": "esriFieldTypeDouble",
+          "alias": "Building Height"
+        }
+      ],
+      "features": [
+        {
+          "attributes": {
+            "OBJECTID": 21,
+            "egdb_ES_14": "K15",
+            "egdb_ES_15": "Old Main",
+            "egdb_ES_18": 5,
+            "egdb_ES_26": 15.32
+          },
+          "geometry": {
+            "rings": [
+              [
+                [
+                  151.229408690551,
+                  -33.918050199940176
+                ],
+                [
+                  151.2295304419164,
+                  -33.91806681463607
+                ],
+                [
+                  151.22952878811796,
+                  -33.918075285237386
+                ],
+                [
+                  151.2296151719123,
+                  -33.91808707385596
+                ],
+                [
+                  151.2296079009484,
+                  -33.91812428991925
+                ],
+                [
+                  151.22959212653203,
+                  -33.91812213704754
+                ],
+                [
+                  151.2295984677396,
+                  -33.91813432596849
+                ],
+                [
+                  151.2296013755862,
+                  -33.918173700099835
+                ],
+                [
+                  151.22959687502663,
+                  -33.918186438412754
+                ],
+                [
+                  151.22958035950012,
+                  -33.91820902789173
+                ],
+                [
+                  151.22954100879915,
+                  -33.91823090843865
+                ],
+                [
+                  151.22952851682678,
+                  -33.91823741028176
+                ],
+                [
+                  151.2295082463424,
+                  -33.918255107338986
+                ],
+                [
+                  151.22949604811913,
+                  -33.91827736656415
+                ],
+                [
+                  151.2294955504525,
+                  -33.918313869891726
+                ],
+                [
+                  151.22950021450544,
+                  -33.918325523550415
+                ],
+                [
+                  151.22951074186227,
+                  -33.918346218052875
+                ],
+                [
+                  151.22950979593625,
+                  -33.91837681886234
+                ],
+                [
+                  151.22949956412518,
+                  -33.91839547379623
+                ],
+                [
+                  151.22948597351325,
+                  -33.918411456281795
+                ],
+                [
+                  151.22948513897833,
+                  -33.91842983911828
+                ],
+                [
+                  151.22949856609688,
+                  -33.91844444623959
+                ],
+                [
+                  151.22952008074796,
+                  -33.9184485588948
+                ],
+                [
+                  151.22952300476416,
+                  -33.918439178134406
+                ],
+                [
+                  151.22972280804967,
+                  -33.91846644376189
+                ],
+                [
+                  151.22975014917364,
+                  -33.918326505311256
+                ],
+                [
+                  151.2297094986104,
+                  -33.918320957654124
+                ],
+                [
+                  151.22972086229873,
+                  -33.91826279146866
+                ],
+                [
+                  151.22976151465866,
+                  -33.91826833912962
+                ],
+                [
+                  151.22979386478866,
+                  -33.91810276194488
+                ],
+                [
+                  151.22991703818715,
+                  -33.918119571194076
+                ],
+                [
+                  151.22983612333624,
+                  -33.91853371026987
+                ],
+                [
+                  151.230205780974,
+                  -33.918584154152406
+                ],
+                [
+                  151.23021290820742,
+                  -33.91854767330417
+                ],
+                [
+                  151.23024624199266,
+                  -33.918552222788364
+                ],
+                [
+                  151.2303200287118,
+                  -33.91817456482619
+                ],
+                [
+                  151.23044316977095,
+                  -33.918191368843075
+                ],
+                [
+                  151.23036634315292,
+                  -33.918584584277156
+                ],
+                [
+                  151.2306562016473,
+                  -33.91862877753338
+                ],
+                [
+                  151.23069004208236,
+                  -33.918455579555406
+                ],
+                [
+                  151.23064937445116,
+                  -33.91845002892489
+                ],
+                [
+                  151.23066071568164,
+                  -33.91839197464531
+                ],
+                [
+                  151.23070138600778,
+                  -33.918397523788705
+                ],
+                [
+                  151.23073984647837,
+                  -33.91823185441884
+                ],
+                [
+                  151.23085703530046,
+                  -33.91824784513507
+                ],
+                [
+                  151.230769676834,
+                  -33.918694964502805
+                ],
+                [
+                  151.23078749491768,
+                  -33.9186973954126
+                ],
+                [
+                  151.230766972905,
+                  -33.91880243286458
+                ],
+                [
+                  151.23014030636614,
+                  -33.91871543826263
+                ],
+                [
+                  151.2301377039468,
+                  -33.91872876614467
+                ],
+                [
+                  151.23010030618318,
+                  -33.91872366280133
+                ],
+                [
+                  151.2301090000785,
+                  -33.918679165450975
+                ],
+                [
+                  151.22930718182224,
+                  -33.91856974534484
+                ],
+                [
+                  151.229408690551,
+                  -33.918050199940176
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "note": "Same public Old Main object 21 retained in the entry-height audit. Its curved western court projections guide the low green glazed annex. The secondary footprint does not replace original OSM geometry. Height / floor fields remain separate; no measured annex or bridge Z is supplied."
+  },
+  "photographs": [
+    {
+      "url": "https://studentvip.com.au/unsw/kensington/maps/134716",
+      "photo": "https://s3.studentvip.com.au/photos/northern-side-of-omb-177332-small.jpg",
+      "observation": "Paved western court, enclosed dark corrugated northern bridge, green curved glazed frontage, blue posts, central timber tree planter. Capture date unknown; no exact current access claimed."
+    },
+    {
+      "photo": "https://s3.studentvip.com.au/photos/entrance-from-north-side-177475-small.jpg",
+      "observation": "Raised red-column / blue-panel service gallery. Exact courtyard placement remains unresolved and is not asserted by this reconstruction."
+    },
+    {
+      "photo": "https://s3.studentvip.com.au/photos/entrance-from-north-side-2-177477-small.jpg",
+      "observation": "Lower mauve service doorway, exposed pipes and yellow equipment below blue gallery. Not placed speculatively in the public western court."
+    },
+    {
+      "url": "https://newt.phys.unsw.edu.au/jw/maps.html",
+      "photo": "https://newt.phys.unsw.edu.au/jw/graphics/OMBjacaranda.GIF",
+      "observation": "Separate landscaped lawn / jacaranda courtyard, identified with eastern aerial context; not substituted for the paved western court."
+    }
+  ],
+  "aerial": "https://www.google.com/maps/@-33.91835,151.23005,170m/data=!3m1!1e3",
+  "historicalHeight": {
+    "source": "https://www.unsw.edu.au/content/dam/pdfs/planning-assurance/records-and-archives/2024-05-guide-to-the-university-of-new-south-wales-at-kensington-1959.pdf",
+    "sha256": "5485e8746970c7817a43af9bd79f598ff225b08ed355463d23a2b8b22c7f1117",
+    "pdfPage": 3,
+    "printedPages": [
+      4,
+      5
+    ],
+    "facadeHeightFeet": 61,
+    "facadeHeightMetres": 18.5928,
+    "note": "Official 1959 guide gives a historic facade height at the main entrance, with no absolute roof RL or unambiguous current ground datum. Retained as historical context, not used to replace survey window anchors or assert a measured roof. Entire relevant spread inspected."
+  },
+  "note": "Bridge / annex / fixture dimensions, floor levels, materials and exact fixture positions remain reconstructions. Curved plan edges come from separate public GIS data. Original OSM geometry, route widths and raw NSW terrain remain intact."
+}

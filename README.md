@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: Old Main lower entrance and façade levels
+## Latest visual update: Old Main northern courtyard
+
+The western entrance court now has an enclosed corrugated link overhead, curved green glazed frontage, four blue posts and a timber planter around the retained public-inventory pear tree. Public GIS supplies the courtyard and curved annex plan edges; the labelled northern photo guides appearance. Original rooms, routes and terrain remain intact, with reconstructed annex geometry trimmed around the full walking corridor where sources clash. Added heights and fixture dimensions remain estimates. Two map destinations reach the covered link and green frontage. All 335 checks pass; native walking covers the entrance and planter loop. The library has 406 source records. The separate red / blue service gallery remains unlocated, and campus fidelity remains ongoing.
+
+## Previous visual update: Old Main lower entrance and façade levels
 
 Old Main now has a walkable sunken court, twelve reconstructed stair treads, upper platform, closed lower door and bike rack. Public AHD survey labels anchor the lower floor at RL 30.65 m, upper landing near 32.68 m and lower eastern window bands. A bounded ground cut exposes the court without changing raw NSW samples or original map paths. The higher window bands, roof near RL 46 m, detailed stair plan and connecting grades remain estimates; original OSM 24 m / six-level evidence and separate GIS 15.32 m / five-floor fields remain available. Three new map destinations reach the lower court, upper landing and southern approach. All 329 checks pass, with browser ascent, descent and street-connection checks. The reference library has 402 records; campus fidelity remains ongoing.
 
