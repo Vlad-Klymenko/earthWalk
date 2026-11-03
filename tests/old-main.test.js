@@ -16,19 +16,19 @@ test('Old Main photo-led bands remain independent of source height and level tag
   for(const row of g.rows){assert.ok(row.high>row.low);assert.ok(row.high<b.height-.4);}
 });
 
-test('both Old Main flights and landings clear mapped buildings and retained path envelopes',()=>{
+test('corrected Old Main entrance clears mapped rooms and unrelated paths while serving the original approach footways',()=>{
   for(const part of g.stairs.parts){
     for(const other of SOURCE.buildings)assert.ok(area(clip.intersection(poly(part.points),poly(other.points)))<1e-6,`entrance clears ${other.id}`);
-    for(const path of SOURCE.paths)for(let i=0;i<path.points.length-1;i++)assert.ok(area(clip.intersection(poly(part.points),ribbon(path.points[i],path.points[i+1],(path.width||3)+.68)))<1e-6,`stairs preserve ${path.id}`);
+    for(const path of SOURCE.paths.filter(p=>!['osm-way-45489147','osm-way-45558644'].includes(p.id)))for(let i=0;i<path.points.length-1;i++)assert.ok(area(clip.intersection(poly(part.points),ribbon(path.points[i],path.points[i+1],(path.width||3)+.68)))<1e-6,`stairs preserve ${path.id}`);
   }
 });
 
 test('Old Main entrance shares small risers across its two bounded flights and intermediate landing',()=>{
-  const s=g.stairs;assert.equal(s.lower.length+s.upper.length,12);assert.equal(s.count,12);assert.ok(Math.abs(s.rise-2.04)<1e-8);
-  for(let i=1;i<s.parts.length;i++){const d=s.parts[i].rl-s.parts[i-1].rl;assert.ok(d>=0&&d<=.17000001);assert.ok(area(clip.intersection(poly(s.parts[i].points),poly(s.parts[i-1].points)))<1e-6);}
-  for(const p of s.lower[0].points){const d=s.lower[0].rl+.01-(terrainHeight(p.x,p.z)+.22);assert.ok(d>=-.04&&d<.27,'lower flight meets surrounding paving');}
+  const s=g.stairs;assert.equal(s.lower.length+s.upper.length,18);assert.equal(s.count,18);assert.equal(s.landing.rl,33.59);assert.equal(s.middle.rl,30.61);assert.ok(Math.abs(s.rise-3.49)<1e-8);
+  for(let i=1;i<s.parts.length;i++){const d=s.parts[i].rl-s.parts[i-1].rl;assert.ok(d>=0&&d<=.21);assert.ok(area(clip.intersection(poly(s.parts[i].points),poly(s.parts[i-1].points)))<1e-6);}
+  for(const p of s.lower[0].points){const d=s.lower[0].rl+.01-(terrainHeight(p.x,p.z)+.055);assert.ok(d>=-.04&&d<.27,'lower flight meets surrounding paving');}
   const all=clip.union(...s.parts.map(p=>poly(p.points)));assert.equal(all.length,1,'all flight and landing polygons are contiguous');
-  assert.ok((s.bottomV-s.lowerTop)/s.lower.length>.3);assert.ok((s.middleTop-s.upperTop)/s.upper.length>.3);
+  assert.ok((s.bottomV-s.lowerTopV)/s.lower.length>.3);assert.ok((s.upperEndU-s.turnU)/s.upper.length>.3);
 });
 
 test('Old Main exterior map arrivals clear every occupied footprint',()=>{

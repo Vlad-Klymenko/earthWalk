@@ -1,6 +1,6 @@
-import { CAMPUS } from './campus-data.js?v=0ec802769c04';
-import { framePoint,frameRectangle } from './geometry.js?v=0ec802769c04';
-import { buildingBase } from './terrain.js?v=0ec802769c04';
+import { CAMPUS } from './campus-data.js?v=79caa9a39ff3';
+import { framePoint,frameRectangle } from './geometry.js?v=79caa9a39ff3';
+import { buildingBase } from './terrain.js?v=79caa9a39ff3';
 export const REGIMENT_J2_IDS=['osm-way-164553276','osm-way-164553343'];
 export const REGIMENT_STREET_VIEW={url:'https://www.google.com/maps/@?api=1&map_action=pano&pano=BE7BYpVPxXH47P6c1E-rRA&heading=25&pitch=8',date:'October 2020',lat:-33.9177032,lon:151.2248377};
 export function regimentGeometry(b){

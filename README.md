@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: Chancellor’s Garden
+## Latest visual update: Old Main main entrance and Falconer
+
+The main entrance has moved from the plain eastern corner to the central GIS return. A turned stair reaches the published RL33.59 floor beneath the DH35.80 door heads. The complete procedural Falconer now follows the catalogue’s14 ×5.5 ×0.2m envelope, including the sun, dove, cloud/rain, constellation and connecting rays. The western roof / upper window bands, fin, exact stair plan and artwork mounting remain estimates; the eastern survey bands and separate roof profile are retained. All 349 checks pass, with about 54 m of browser walking; the reference library has 413 records.
+
+## Previous visual update: Chancellor’s Garden
 
 Old Main’s eastern garden now has public-GIS lawn islands and planting beds, pale paths, a shallow fountain pool and a simplified reclining *Fountain figure* constrained to the university’s published dimensions. Three retained jacarandas have illustrative spring blossoms; swamp cypresses use a conifer form. Added landscape heights, pool interpretation / placement, materials and the sculpture pose remain reconstructions. Two new map destinations reach the garden and fountain. The original map geometry, raw elevation grid and tree inventory remain intact. All 343 checks pass; native walking covers about 124 m and the linked library has 410 source records.
 

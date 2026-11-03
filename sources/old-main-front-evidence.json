@@ -1,0 +1,65 @@
+{
+  "retrieved": "2026-11-03",
+  "survey": {
+    "source": "https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-84220206%2120260115T061908.681+GMT",
+    "sha256": "48511038b9870028fa2507c8b0440f3012e15cdd78bf82508cf37128e76eb752",
+    "pagesInspected": [
+      1,
+      27,
+      28
+    ],
+    "datum": "A.H.D.",
+    "mainEntranceFloorRL": 33.59,
+    "mainEntranceDoorHeadRL": 35.8,
+    "lowerForecourtSpotRL": 30.61,
+    "note": "Complete sheets 27 / 28 inspected again and the main raised entrance enlarged from sheet 27. Two FL 33.59 labels and two DH 35.80 labels are explicit; the lower forecourt has spot values 30.61 / 30.62 / 30.64. The plan shows an upper flight approaching the raised landing from the west. Exact XY fit, count / widths and the bottom approach remain reconstructed. No roof RL is supplied."
+  },
+  "plan": {
+    "source": "sources/old-main-north-evidence.json",
+    "note": "Public K15 object 21 retains a projected return near local u 10.7\u201314.2, v 28.5\u201333.6. The retained source path endpoint is near u10.5 v30.4. The former main entrance / relief at u60\u201372 was roughly 60m too far east: the known southeast Street View corner is plain brick. The reconstructed fin is fitted inside the public return and offset to keep the old source footpath corridor clear. Original OSM perimeter / path points are unchanged."
+  },
+  "historicalFacade": {
+    "source": "https://www.unsw.edu.au/content/dam/pdfs/planning-assurance/records-and-archives/2024-05-guide-to-the-university-of-new-south-wales-at-kensington-1959.pdf",
+    "facadeFeet": 61,
+    "facadeMetres": 18.5928,
+    "note": "Historical height at main entrance, not an absolute present-day roof RL. Together with the 14m artwork and main floor context, it supports a taller western main block. The new western roof RL49.1 and upper window levels remain contextual estimates; surveyed eastern lower rows and its separately estimated roof RL46 are retained."
+  },
+  "artwork": {
+    "source": "https://artcollection.unsw.edu.au/collection/items/20102121531_082042.html",
+    "catalogueId": "UNSW S 1955/0267 (082042)",
+    "title": "Falconer",
+    "artist": "Tom Bass",
+    "year": 1955,
+    "height": 14,
+    "width": 5.5,
+    "depth": 0.2,
+    "medium": "electrolytic copper",
+    "note": "Dimensions are the whole artwork envelope, not the mounted horse alone or a surveyed roof level. Material sheet thickness is separate from catalogue depth. Relief shape, exact mounting RL / XY, stand-off, wires, weathering and unseen backs remain reconstructions."
+  },
+  "photographs": [
+    {
+      "source": "https://www.unsw.edu.au/estate/about-us/public-art",
+      "image": "https://www.unsw.edu.au/content/unsw-sites/au/en/estate/about-us/public-art/_jcr_content/root/responsivegrid-layout-fixed-width/responsivegrid-full-top/column_layout_1297906293/par_2_2_50/accordion/accordion-item-2/image_copy.coreimg.jpeg/1746766048917/2025-05-bass-tom-falconer.jpeg",
+      "observation": "Full displayed image inspected: horse / rider, falcon, tree, eight-point sun, rain cloud / fine rain lines, constellation discs, right arrow, high dove and connecting rays on sandstone return. Brick frontage adjoins at a corner. No image pixels are copied."
+    },
+    {
+      "source": "https://studentvip.com.au/unsw/kensington/maps/134716",
+      "image": "https://s3.studentvip.com.au/photos/main-entrance-177331-small.jpg",
+      "observation": "Full displayed image inspected: three broad lower steps, landing and a narrower turned upper flight, metal rails, stone retaining platform, main glass doors and relief fin alongside. Detailed tread counts / positions are fitted."
+    },
+    {
+      "source": "https://studentvip.com.au/unsw/kensington/maps/134716",
+      "image": "https://s3.studentvip.com.au/photos/view-from-physics-lawn-177330-small.jpg",
+      "observation": "Full displayed context inspected: tall western spine, four window bands including partly exposed low band, long roof and entrance break toward eastern end of the western spine."
+    }
+  ],
+  "streetView": {
+    "source": "https://www.google.com/maps/@?api=1&map_action=pano&pano=l0qxrlNnlWZBJ-RX8nr_Iw&heading=320&pitch=18",
+    "capture": "July 2015",
+    "observation": "Native southern / eastern corner views inspected. The actual southeast corner is plain brick rather than the model\u2019s former sandstone / relief. No Street View image was available for the central Physics Road viewpoint requested at -33.91882935,151.23024765. The entrance is placed from GIS, survey and labelled photos, not an unseen panorama."
+  },
+  "imageSearch": {
+    "query": "UNSW Old Main Falconer entrance",
+    "note": "Focused native Google Images results inspected; selected university and labelled StudentVIP photographs were inspected directly. Wikimedia full image request was rate limited, so no new claim is derived from unseen full-resolution imagery."
+  }
+}
