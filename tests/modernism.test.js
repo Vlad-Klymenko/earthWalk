@@ -19,7 +19,7 @@ test('modernist reconstructions retain mapped footprints and levels, keeping the
   for(const id of ['science-theatre','dalton','robert-webster']){
     const b=CAMPUS.buildings.find(b=>b.id===id),raw=SOURCE.buildings.find(b=>b.id===id);
     assert.deepEqual(b.points,raw.points);
-    if(id==='science-theatre'){assert.equal(b.height,11.73);assert.equal(b.mappedHeight,raw.height);assert.equal(b.heightSource,'reported');}else{assert.equal(b.height,raw.height);assert.equal(b.heightSource,'mapped');}
+    if(['science-theatre','robert-webster'].includes(id)){assert.equal(b.height,id==='science-theatre'?11.73:18.78);assert.equal(b.mappedHeight,raw.height);assert.equal(b.heightSource,'reported');}else{assert.equal(b.height,raw.height);assert.equal(b.heightSource,'mapped');}
     assert.equal(b.levels,raw.levels);
   }
   assert.equal(CAMPUS.buildings.find(b=>b.id==='science-theatre').levels,5);

@@ -1,0 +1,54 @@
+{
+  "inspected": "2026-11-03",
+  "heightEvidence": {
+    "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18",
+    "retainedSnapshot": "sources/unsw-gis-label-height-fields.json",
+    "sha256": "748c9b20eb59a1ff011af8a1b57d994015b7a69d10e095efd6af4a05da8f4327",
+    "records": [
+      {
+        "attributes": {
+          "OBJECTID": 41,
+          "egdb_ES_14": "G15",
+          "egdb_ES_15": "Robert Webster Theatres",
+          "egdb_ES_18": 4,
+          "egdb_ES_26": 18.78
+        }
+      },
+      {
+        "attributes": {
+          "OBJECTID": 65,
+          "egdb_ES_14": "G14",
+          "egdb_ES_15": "Robert Webster",
+          "egdb_ES_18": 5,
+          "egdb_ES_26": 18.78
+        }
+      }
+    ],
+    "limitation": "Previously retained public Building Labels Feb2023 attributes. G14 and G15 both report18.78m but different floor counts. G14 value is selected as reported overall height while original OSM16m/four-level tags remain. Roof/base/component definition and current update date unknown; no new query or measured roof RL claimed."
+  },
+  "photographs": [
+    {
+      "url": "https://www.unsw.edu.au/arts-design-architecture/our-schools/arts-media/about-us/meet-our-people",
+      "image": "https://www.unsw.edu.au/content/dam/images/unsw-wide/general/buildings-facilities/2020-08-front-door-photography-assets/Robert-Webster-0091.cropimg.width%3D700.crop%3Dbasic.jpg",
+      "observed": "Full university700x466 west-end photograph inspected natively. Three upper finned/glazed rows, pale roof fascia, dark brown ground wall with a small central glazed doorway and building lettering on the southern part. Trees obscure parts. The former repeated shopfront windows are removed from this end. Capture date unverified; asset folder dated2020-08."
+    },
+    {
+      "url": "https://studentvip.com.au/unsw/kensington/maps/133935",
+      "image": "https://s3.studentvip.com.au/photos/entrance-near-science-theatre-175901-small.jpg",
+      "observed": "Full640x480 Science Theatre-side entrance photograph inspected. Narrow ground doorway and opaque brown name wall beneath continuous fins; covered walkway, paved ground and adjacent lawn. Date and full hidden detail unverified."
+    },
+    {
+      "url": "https://studentvip.com.au/unsw/kensington/maps/133935",
+      "image": "https://s3.studentvip.com.au/photos/robert-webster-building-main-ent-176890-small.jpg",
+      "observed": "Full640x480 University Mall entrance photograph inspected. Two short flights with an intermediate broad landing, stone retaining blocks, silver handrails, vertical-picket guards, four large portico piers, white sign lintel and deeply recessed entrance under the glazed upper volume. Counts/dimensions not measured; capture date unverified."
+    }
+  ],
+  "streetView": {
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=h4UZ9JQplfNwS7Ha2DPGUg&heading=9&pitch=0",
+    "capture": "July2015",
+    "lat": -33.917803,
+    "lon": 151.2306479,
+    "observed": "Native official Google Street View inspected directly at the University Mall entrance. Three lower stair bays separated by stone islands, broad intermediate platform, upper stair run under four portico piers, white signed frame, side picket rails and central tubular handrails are clearly visible. Historical view; exact counts and fine XY/RLs remain fitted. An inset panel at the left is visible but its identity and detailed artwork are unverified; model retains only a plain recessed material panel. No panorama pixels copied."
+  },
+  "reconstruction": "Bounded exterior portico subtraction from the retained original footprint; occupied upper floor remains above it. G14 reported18.78m adopted, map16m/four-level tags and all source points remain. Existing DEM reference near the forecourt plus1.35m gives estimated main floor; middle platform0.75m lower. Five upper treads and variable lower bays fit the coarse grade, not a stair survey. Exact DEM triangle cuts and masking of old Mall surfaces keep ground/paving from showing through the new steps. Walking follows the same planar per-tread surfaces. Source coordinates and nominal route widths remain. Fine positions, cross grades, component levels, posts, doors, rails, lettering and recess dimensions are reconstructions. Closed interior doors remain boundaries; present access is not asserted."
+}
