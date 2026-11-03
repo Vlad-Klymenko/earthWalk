@@ -1,0 +1,50 @@
+{
+  "inspected": "2026-11-04",
+  "primaryReference": {
+    "id": "campus-daylight-university",
+    "name": "Campus daylight · university Mall / Scientia photograph",
+    "url": "https://www.inside.unsw.edu.au/campus-culture/celebrating-progress-all-unsws-open-day-0",
+    "photo": "https://www.inside.unsw.edu.au/sites/default/files/article/2025-09-06-Open-Day-SH01-0480%201200px.jpg",
+    "notes": "Complete displayed university photograph visually inspected. Clear blue sky, warm sunlit masonry / pale paving, cooler shaded surfaces, dark tree shade and cyan glass guide a more neutral daylight balance. Article published 28 August 2026; photo capture date not verified from the filename. Lighting profiles are artistic fits, not a measured colour target, irradiance calibration or an exact solar time. Temporary Open Day banners, crowds and event objects are not added. Source pixels are linked only, not used as textures."
+  },
+  "technicalReferences": [
+    "https://threejs.org/docs/pages/Scene.html",
+    "https://threejs.org/docs/pages/PMREMGenerator.html",
+    "https://threejs.org/docs/pages/HemisphereLight.html"
+  ],
+  "priorState": {
+    "commit": "d2350626d793e9a03bcb24b1f6b9a6f3ab82beac",
+    "groundFill": "#8b916f",
+    "lowerSky": "#66715e",
+    "sun": "#fff0cf",
+    "daySunIntensity": 2.25,
+    "dayFillIntensity": 1.5,
+    "goldenReflection": "Only background sky texture changed; initial daytime PMREM stayed assigned.",
+    "sunAnchor": "Absolute world Y fixed at 155 / 65 while target followed terrain, causing the relative solar angle to change between elevations."
+  },
+  "change": {
+    "profiles": "Separate illustrative daylight and golden-hour sun, sky fill, neutral ground bounce, fog and environment settings. Afternoon direction is northwest; profile angle is constant relative to each terrain anchor.",
+    "cache": "Two sky / prefiltered environment pairs, created lazily per mode and reused on every subsequent toggle. Background and reflection resources always come from the same mode. Both textures / render targets, PMREM generator and shadow resources disposed on game destroy.",
+    "visualResult": "Less green ambient tint under pale concrete. Stronger distinction between sunlit paving and tree shade, cooler daylight sky and warmer lower-angle golden hour. All geometry, mapped heights, raw terrain, paths and walk surfaces are untouched.",
+    "limitations": "Photographs provide qualitative appearance evidence only. Profiles do not reproduce a surveyed solar position, date, exposure, weather condition or calibrated material albedo. No HDR photograph pixels or source media are redistributed."
+  },
+  "browserVerification": {
+    "nativeBrowser": "Codex in-app browser",
+    "comparison": "Same Mathews pavilion entrance used for live-before / local-after daylight and golden-hour images. Courtyard arrival inspected in both profiles.",
+    "walking": "Walked 4 m in Catherine Harris Courtyard after repeated mode toggles; ground remained 52.9 m.",
+    "modes": "Repeated daylight / golden-hour changes work; no browser warnings or errors.",
+    "savedOwnScreenshots": [
+      "lighting-mathews-before-day.png",
+      "lighting-mathews-before-golden.png",
+      "lighting-mathews-after-day.png",
+      "lighting-mathews-after-golden.png"
+    ]
+  },
+  "unitCoverage": "Real Three.js scene/light classes with controlled PMREM allocation test doubles: constant sun direction across terrain elevations, matching sky/environment/lighting mode, at most two cached environment pairs, idempotent complete disposal, neutral lower-sky / bounce channels and shadow-anchor translation.",
+  "verification": {
+    "fullSuite": "485 tests passed",
+    "dedicated": "Five lighting tests passed",
+    "assetRevision": "eb4acc4e0f1c",
+    "native": "Mathews entrance day / golden comparison; Catherine courtyard day / golden, repeated toggles and 4 m walk at 52.9 m elevation; no warnings or errors."
+  }
+}

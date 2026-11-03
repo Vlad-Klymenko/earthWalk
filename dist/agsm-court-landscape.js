@@ -1,4 +1,4 @@
-import {AGSM_COURT_TRIANGLES} from './agsm-court-parts.js?v=5c7d3bba5015';
+import {AGSM_COURT_TRIANGLES} from './agsm-court-parts.js?v=eb4acc4e0f1c';
 const cells=new Map(),size=3;
 for(const tri of AGSM_COURT_TRIANGLES){const xs=tri.map(p=>p.x),zs=tri.map(p=>p.z);for(let x=Math.floor(Math.min(...xs)/size);x<=Math.floor(Math.max(...xs)/size);x++)for(let z=Math.floor(Math.min(...zs)/size);z<=Math.floor(Math.max(...zs)/size);z++){const key=x+','+z;if(!cells.has(key))cells.set(key,[]);cells.get(key).push(tri);}}
 // The visible court and broad stepped edge use the exact same walking mesh.

@@ -1,7 +1,7 @@
-import {CAMPUS} from './campus-data.js?v=5c7d3bba5015';
-import {terrainHeight} from './terrain.js?v=5c7d3bba5015';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=5c7d3bba5015';
-import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=5c7d3bba5015';
+import {CAMPUS} from './campus-data.js?v=eb4acc4e0f1c';
+import {terrainHeight} from './terrain.js?v=eb4acc4e0f1c';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=eb4acc4e0f1c';
+import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=eb4acc4e0f1c';
 export const L5_ID='osm-way-97699521';
 export const L5_BUILDER={title:'Lipman · UNSW L5 Building',url:'https://lipman.com.au/projects/unsw-l5-building/',eastFloors:6,westFloors:3};
 export const L5_COLLEGE={title:'UNSW College · current L5 facilities',url:'https://www.unswcollege.edu.au/experience/facilities'};
