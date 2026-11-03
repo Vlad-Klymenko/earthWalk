@@ -1,8 +1,8 @@
-import {CAMPUS} from './campus-data.js?v=e438308695cd';
-import {buildingBase} from './terrain.js?v=e438308695cd';
-import {campusTerrainHeight as terrainHeight} from './spiral-landscape.js?v=e438308695cd';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=e438308695cd';
-import {libraryGeometry} from './library-data.js?v=e438308695cd';
+import {CAMPUS} from './campus-data.js?v=c3b5fc78771f';
+import {buildingBase} from './terrain.js?v=c3b5fc78771f';
+import {campusTerrainHeight as terrainHeight} from './spiral-landscape.js?v=c3b5fc78771f';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=c3b5fc78771f';
+import {libraryGeometry} from './library-data.js?v=c3b5fc78771f';
 export const LIBRARY_WALK_ID='osm-way-1178531022';
 export const LIBRARY_WALK_STREET='https://www.google.com/maps/@?api=1&map_action=pano&pano=udqW0IAOm1AM4MOkgMDr5w&heading=180&pitch=12';
 export const LIBRARY_LAWN_REFRESH='https://www.unsw.edu.au/estate/campus-development/projects/library-lawn-refresh';

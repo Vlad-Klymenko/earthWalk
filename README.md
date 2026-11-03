@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: trees from UNSW’s public inventory
+## Latest visual update: University Mall paving, verges and light columns
+
+University Mall now uses the named public GIS courtyard boundary with mapped lawn / garden areas kept green. Warm rectangular stone, staggered joints and dark cross-bands replace the generic paving pattern; 41 reconstructed silver light columns have tapered triangular casings, vertical diffusers and pointed caps. Fine grades blend the verges toward the retained NSW terrain. Original path coordinates / widths and raw elevation samples remain intact; paver sizes, band rhythm, fixture positions / dimensions and fine grades remain estimates. The initial view now uses the same correct bearing as the Mall map destination, so walking straight follows the Mall. All 311 checks pass; native preview walking covered 356 m through the central step transition to the eastern end, plus the verge approaches. The library has 394 source records. Campus fidelity remains ongoing.
+
+## Previous visual update: trees from UNSW’s public inventory
 
 Automatic tree rows and random foliage are replaced by trees from the official public Kensington tree map. The retained snapshot has 1,146 records with coordinates, species, height / canopy bands and trunk diameters; 913 are rendered after clearing source paths, arrival points, existing structures and playing surfaces. Broad figs, tall gums / poplars, conifers, leafy shade trees and palms now have different reconstructed forms. Spatial batches limit off-screen drawing. OSM trees and photo-fitted landscape trees remain where the inventory does not already provide a nearby tree. The inventory’s last data edit was July 2023; later storm losses and replanting mean it is not a current census. Exact crown shapes and representative sizes within reported bands remain estimates. All 305 checks pass, with native Mall / Library Lawn walking and lighting checks. The reference library now has 391 linked records. Campus fidelity remains ongoing.
 

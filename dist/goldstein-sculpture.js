@@ -1,5 +1,5 @@
-import * as THREE from './vendor/three.module.js?v=e438308695cd';
-import { GOLDSTEIN_ART } from './goldstein-courtyard-data.js?v=e438308695cd';
+import * as THREE from './vendor/three.module.js?v=c3b5fc78771f';
+import { GOLDSTEIN_ART } from './goldstein-courtyard-data.js?v=c3b5fc78771f';
 // Simplified, pierced figurative silhouettes reconstructed from the linked
 // public catalogue and restoration photographs; not a scan of the artwork.
 const figures=[

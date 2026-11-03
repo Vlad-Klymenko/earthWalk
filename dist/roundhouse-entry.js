@@ -1,4 +1,4 @@
-import { ROUNDHOUSE_CENTER,roundhouseGeometry } from './roundhouse-data.js?v=e438308695cd';
+import { ROUNDHOUSE_CENTER,roundhouseGeometry } from './roundhouse-data.js?v=c3b5fc78771f';
 export const ROUNDHOUSE_ENTRY_PHOTO={url:'https://www.arc.unsw.edu.au/roundhouse/about/roundhouse-blog/roundhouse-exterior-renovations',photo:'https://www.arc.unsw.edu.au/generated/hero-large/renovations-main-doors-with-canopy-jpg.jpg'};
 export function inRoundhouseEntrance(x,z){const a=Math.atan2(z-ROUNDHOUSE_CENTER.z,x-ROUNDHOUSE_CENTER.x)*180/Math.PI,r=Math.hypot(x-ROUNDHOUSE_CENTER.x,z-ROUNDHOUSE_CENTER.z);return a>128&&a<177&&r>28&&r<45;}
 // TZG's unscaled roof plan places this swept canopy on the southwestern arc.
