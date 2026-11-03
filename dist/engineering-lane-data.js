@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=382061cd44e1';
-import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=382061cd44e1';
-import { buildingBase, terrainHeight } from './terrain.js?v=382061cd44e1';
+import { CAMPUS as SOURCE } from './campus-data.js?v=0dd17659ccd5';
+import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=0dd17659ccd5';
+import { buildingBase, terrainHeight } from './terrain.js?v=0dd17659ccd5';
 export const WILLIS_ID='osm-way-45229601';
 export const K17_VISUAL_HEIGHT=26;
 export const K17_FRONT_PHOTO={title:'Aaron.Quigley · K17 glass foyer, 31 May 2020',url:'https://commons.wikimedia.org/wiki/File:CSE-K17-UNSW-Front.jpg'};

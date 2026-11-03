@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: Barker’s detached eastern wings
+## Latest visual update: Southern Drive / Gate 14 streetscape
+
+The junction beside Barker Apartments now uses public UNSW GIS road, garden and lawn boundaries. A separate brick pedestrian refuge, zebra crossing, pale kerbs, curved twin-arm lamps, two green bins, a blue noticeboard and a yellow-bordered planted median follow July 2015 Street View. Herringbone paving is procedural; no source photo pixels are copied. Original OSM paths and NSW terrain samples remain intact. GIS supplies plan geometry, while fixture dimensions, fine levels, seasonal planting and inferred brick surfaces remain estimates. Two new map destinations reach the crossing and median. All 300 checks pass, including surface partition / triangulation and full path clearances; native browser checks cross the junction and climb / descend the adjacent Barker stair. The library now has 386 linked reference records; explicit building profiles remain 90 of 98. Campus fidelity is still ongoing.
+
+## Previous visual update: Barker’s detached eastern wings
 
 The two unnamed blocks beside Southern Drive now read as Barker apartment wings: red-brick bases, two yellow-brick upper window rows, pale corners, grey courses, red tiled hips, small roof caps and Barker Apartments lettering. The larger wing has a reconstructed external steel stair / access galleries; the lower footpath stays separate from the raised walking layers. Clipped hedge beds, brick aprons and a mature gum follow public photographs / aerial context. Original source footprints, paths, null storey tags and 9.6 m estimated maxima remain. Detailed roof, stair and landscape dimensions are estimates; the independent N13 compound GIS fields are not assigned to these smaller wings. 382 linked references, explicit appearance profiles for 90 of 98 original footprints and 295 checks document progress rather than completed campus fidelity.
 
