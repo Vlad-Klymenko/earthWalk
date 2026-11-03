@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=08020e70591f';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=08020e70591f';
-import { buildingBase, terrainHeight } from './terrain.js?v=08020e70591f';
+import { CAMPUS as SOURCE } from './campus-data.js?v=4ade268cca69';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=4ade268cca69';
+import { buildingBase, terrainHeight } from './terrain.js?v=4ade268cca69';
 
 export const AINSWORTH_ID='osm-way-616805099';
 export const AINSWORTH_HEIGHT_REPORT={title:'J17 / J18 · JBA response to submissions, March 2013',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-5572%2120190227T040752.811+GMT',pdfPage:1,linkLabel:'Height source · planning response p. 1',maximumRL:63.88,existingLiftRL:62.22};

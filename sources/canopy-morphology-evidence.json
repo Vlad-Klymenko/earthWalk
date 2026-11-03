@@ -1,0 +1,24 @@
+{
+  "inspected": "2026-11-03",
+  "scope": "Procedural foliage and branching for retained UNSW tree inventory records; no coordinate or source dimension changes",
+  "campusPhotograph": {
+    "source": "https://www.arc.unsw.edu.au/blitz/read/where-to-nap-on-campus",
+    "caption": "Scientia Lawn",
+    "inspection": "Native browser inspection of the full article and its four lawn photographs. The Scientia Lawn image shows an established rounded crown with substantially continuous foliage, visible branching and a separate trunk. Library Lawn and Alumni Park photographs show dense crowns and tree shade. Source capture dates are unverified; the COVID-era article does not establish current tree condition or identify individual inventory points."
+  },
+  "botanicalReferences": [
+    {
+      "source": "https://www.rhs.org.uk/plants/131261/populus-nigra-italica-m/details",
+      "applied": "Narrow columnar habit and ovate leaves only for the named Italica cultivar. Other Populus records retain broad architecture. Species-profile maximum size does not override campus inventory bands."
+    },
+    {
+      "source": "https://plantdatabase.kpu.ca/PlantPrint/poni",
+      "applied": "Upright branching and broad triangular/ovate leaf character of the Lombardy poplar. Fine dimensions and angles remain reconstructed."
+    },
+    {
+      "source": "https://vicflora.rbg.vic.gov.au/pages/eucalypts",
+      "applied": "Lanceolate adult eucalypt leaf character guides a narrow procedural sprite silhouette. Generic family profiles simplify species variation; no individual leaf measurement is inferred from a campus photograph."
+    }
+  ],
+  "limitations": "The retained public inventory's last data edit is July 2023, not a current census. Point coordinates, botanical names, trunk measurements and height/canopy strings remain unchanged. Height and canopy use existing band representatives; crown density, fine forks, card count, colours and texture shape are artistic reconstructions. Generic foliage groups do not reproduce every species exactly. Existing source-point conflicts remain omitted rather than relocated. No photograph pixels are copied or redistributed."
+}

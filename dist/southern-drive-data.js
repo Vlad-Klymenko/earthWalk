@@ -1,5 +1,5 @@
 // GIS supplies plan boundaries only. All fixtures / materials / fine levels are reconstructed.
-import {framePoint} from './geometry.js?v=08020e70591f';
+import {framePoint} from './geometry.js?v=4ade268cca69';
 export const SOUTHERN_SCOPE={minX:109,maxX:146,minZ:167,maxZ:228};
 export const SOUTHERN_GIS='https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer';
 export const SOUTHERN_STREET='https://www.google.com/maps/@?api=1&map_action=pano&pano=b6Ha54RA0wf4y1dP-q2aCA&heading=180&pitch=-5';

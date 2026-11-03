@@ -1,6 +1,6 @@
-import {CAMPUS} from './campus-data.js?v=08020e70591f';
-import {terrainHeight} from './terrain.js?v=08020e70591f';
-import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=08020e70591f';
+import {CAMPUS} from './campus-data.js?v=4ade268cca69';
+import {terrainHeight} from './terrain.js?v=4ade268cca69';
+import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=4ade268cca69';
 export const PAVILION_ID='pavilion';
 export const PAVILION_ARCHITECT={title:'Sam Crawford Architects · Sam Cracknell Pavilion upgrade',url:'https://samcrawfordarchitects.com.au/project/unsw-village-green-sam-cracknell-pavilion-upgrade',completion:2023};
 export const PAVILION_GIS=UNSW_GIS_LABEL_EVIDENCE.find(p=>p.code==='H8');
