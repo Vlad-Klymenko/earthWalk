@@ -1,0 +1,50 @@
+// Source ranges remain strings. These representative sizes and tree shapes are reconstructions.
+export function treeBand(value){
+ const range=String(value).match(/^(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/);
+ if(range)return {min:+range[1],max:+range[2],value:(+range[1]+ +range[2])/2,open:false};
+ if(value==='<5')return {min:0,max:5,value:3.25,open:true};
+ if(value==='>30')return {min:30,max:null,value:34,open:true};
+ throw new Error('Unknown tree size band: '+value);
+}
+export function treeForm(name){
+ if(/^Ficus\b/i.test(name))return 'fig';
+ if(/^(Livistona|Phoenix|Archontophoenix|Howea|Syagrus|Washingtonia|Chamaerops|Rhapis)\b/i.test(name))return 'palm';
+ if(/^(Eucalyptus|Corymbia|Angophora|Melaleuca)\b/i.test(name))return 'gum';
+ if(/^Populus\b/i.test(name))return 'poplar';
+ if(/^(Araucaria|Cupressus|Callitris|Pinus|Casuarina|Allocasuarina|Podocarpus)\b/i.test(name))return 'conifer';
+ return 'broadleaf';
+}
+export function inventoryTree(record){
+ const heightRange=treeBand(record.heightBand),canopyRange=treeBand(record.canopyBand),height=heightRange.value,canopy=canopyRange.value;
+ const radius=record.dbhMm>0?record.dbhMm/2000:Math.max(.055,height*.015);
+ return {...record,heightRange,canopyRange,height,canopy,radius,form:treeForm(record.botanicalName),dimensionsReconstructed:true,dbhEstimated:!(record.dbhMm>0)};
+}
+export function treeClearsRoutes(tree,segments,clearance=.34){
+ return segments.every(s=>{const dx=s.b.x-s.a.x,dz=s.b.z-s.a.z,t=Math.max(0,Math.min(1,((tree.x-s.a.x)*dx+(tree.z-s.a.z)*dz)/(dx*dx+dz*dz||1)));return Math.hypot(tree.x-s.a.x-dx*t,tree.z-s.a.z-dz*t)>=s.width/2+tree.radius+clearance;});
+}
+const rng=seed=>()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};
+// Local metres. All geometry fits the chosen height and horizontal canopy envelope.
+export function inventoryTreeGeometry(tree){
+ const random=rng(tree.fid),H=tree.height,R=tree.canopy/2,form=tree.form,palm=form==='palm',fig=form==='fig',gum=form==='gum',conifer=form==='conifer',poplar=form==='poplar';
+ const segments=[],leaves=[],fronds=[],fork=H*(palm?.82:fig?.23:gum?.49:conifer?.15:.32),bark=gum?'#c3bca5':fig?'#8d8870':palm?'#8a8066':'#a19c83';
+ const point=(x,y,z)=>({x,y,z}),stemTop=point(palm?0:Math.min(R*.07,.3),palm?H*.89:fork,0);
+ segments.push({a:point(0,0,0),b:stemTop,radius:tree.radius,color:bark});
+ if(palm){
+  for(let i=0;i<14;i++){const angle=i/14*Math.PI*2,reach=R*(.78+random()*.2),base=point(0,H*.87,0),mid=point(Math.cos(angle)*reach*.5,H*.96,Math.sin(angle)*reach*.5),tip=point(Math.cos(angle)*reach,H*.77,Math.sin(angle)*reach),width=Math.min(.5,R*.18);fronds.push({base,mid,tip,width});}
+  return {segments,leaves,fronds};
+ }
+ const branches=fig?7:conifer?7:5,phase=random()*Math.PI*2;
+ for(let j=0;j<branches;j++){
+  const a=phase+j/branches*Math.PI*2,reach=R*(fig?.72:gum?.67:conifer?.8:.63),mid=point(Math.cos(a)*reach*.5,H*(fig?.49:gum?.7:conifer?.4:.57),Math.sin(a)*reach*.5),tip=point(Math.cos(a)*reach,H*(.73+(j%3)*.055),Math.sin(a)*reach),start=conifer?point(0,H*(.2+j*.07),0):stemTop;
+  segments.push({a:start,b:mid,radius:Math.min(tree.radius*.5,R*.028),color:bark},{a:mid,b:tip,radius:Math.min(tree.radius*.22,R*.013),color:bark});
+ }
+ const count=fig?192:gum?128:conifer?112:poplar?112:144,colors=fig?['#587344','#6a824f','#7e935d','#506c40']:gum?['#829576','#a2b18e','#738b71','#94a789']:['#71894f','#869d62','#5e7c49','#9aaa70'];
+ for(let i=0;i<count;i++){
+  const angle=random()*Math.PI*2,vertical=random(),top=H*.99,bottom=H*(fig?.44:gum?.62:conifer?.21:poplar?.36:.46),y=bottom+(top-bottom)*vertical;
+  const profile=conifer?1-vertical*.88:Math.sqrt(Math.max(0,1-((vertical-.5)*1.95)**2)),reach=R*profile*.85*Math.sqrt(random()),size=Math.min(H*.13,R*.34)*(fig?1.12:.95)*(.8+random()*.35);
+  // Card corners stay inside the source-band representative envelope, including at the top.
+  const margin=size*Math.SQRT2/2,x=Math.cos(angle)*Math.min(reach,Math.max(0,R-margin)),z=Math.sin(angle)*Math.min(reach,Math.max(0,R-margin));
+  leaves.push({x,y:Math.max(margin,Math.min(H-margin,y)),z,size,rx:random()*Math.PI,ry:random()*Math.PI*2,rz:random()*Math.PI,color:colors[i%colors.length]});
+ }
+ return {segments,leaves,fronds};
+}

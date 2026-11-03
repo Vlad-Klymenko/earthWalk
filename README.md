@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: Southern Drive / Gate 14 streetscape
+## Latest visual update: trees from UNSW’s public inventory
+
+Automatic tree rows and random foliage are replaced by trees from the official public Kensington tree map. The retained snapshot has 1,146 records with coordinates, species, height / canopy bands and trunk diameters; 913 are rendered after clearing source paths, arrival points, existing structures and playing surfaces. Broad figs, tall gums / poplars, conifers, leafy shade trees and palms now have different reconstructed forms. Spatial batches limit off-screen drawing. OSM trees and photo-fitted landscape trees remain where the inventory does not already provide a nearby tree. The inventory’s last data edit was July 2023; later storm losses and replanting mean it is not a current census. Exact crown shapes and representative sizes within reported bands remain estimates. All 305 checks pass, with native Mall / Library Lawn walking and lighting checks. The reference library now has 391 linked records. Campus fidelity remains ongoing.
+
+## Previous visual update: Southern Drive / Gate 14 streetscape
 
 The junction beside Barker Apartments now uses public UNSW GIS road, garden and lawn boundaries. A separate brick pedestrian refuge, zebra crossing, pale kerbs, curved twin-arm lamps, two green bins, a blue noticeboard and a yellow-bordered planted median follow July 2015 Street View. Herringbone paving is procedural; no source photo pixels are copied. Original OSM paths and NSW terrain samples remain intact. GIS supplies plan geometry, while fixture dimensions, fine levels, seasonal planting and inferred brick surfaces remain estimates. Two new map destinations reach the crossing and median. All 300 checks pass, including surface partition / triangulation and full path clearances; native browser checks cross the junction and climb / descend the adjacent Barker stair. The library now has 386 linked reference records; explicit building profiles remain 90 of 98. Campus fidelity is still ongoing.
 

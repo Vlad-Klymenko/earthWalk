@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint } from './geometry.js?v=0dd17659ccd5';
-import { buildingBase, terrainHeight } from './terrain.js?v=0dd17659ccd5';
+import { orientedFrame, framePoint } from './geometry.js?v=e438308695cd';
+import { buildingBase, terrainHeight } from './terrain.js?v=e438308695cd';
 export const BARKER_APARTMENTS_ID='osm-way-45561234';
 // Five retained OSM footway sections locate the existing Gate 15 thoroughfare.
 export const BARKER_PASSAGE_PATH=[{x:28.356,z:207.023},{x:30.866,z:189.977},{x:31.835,z:182.66},{x:32.988,z:174.02},{x:33.966,z:166.637},{x:34.188,z:164.202},{x:34.52,z:160.555}];

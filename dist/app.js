@@ -1,9 +1,9 @@
-import { campusTerrainHeight as terrainHeight } from './spiral-landscape.js?v=0dd17659ccd5';
-import { CAMPUS } from './campus-enhancements.js?v=0dd17659ccd5';
-import { createGame } from './game.js?v=0dd17659ccd5';
-import { TERRAIN_SOURCE } from './terrain.js?v=0dd17659ccd5';
-import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=0dd17659ccd5';
-import { heightDescription } from './building-heights.js?v=0dd17659ccd5';
+import { campusTerrainHeight as terrainHeight } from './spiral-landscape.js?v=e438308695cd';
+import { CAMPUS } from './campus-enhancements.js?v=e438308695cd';
+import { createGame } from './game.js?v=e438308695cd';
+import { TERRAIN_SOURCE } from './terrain.js?v=e438308695cd';
+import { VISUAL_REFERENCES, buildingAppearance } from './visual-data.js?v=e438308695cd';
+import { heightDescription } from './building-heights.js?v=e438308695cd';
 
 const $ = id => document.getElementById(id);
 let game, state, started = false, toastTimer, restoreAfterModal = false, mapProjection, selected;
@@ -244,7 +244,7 @@ try {
   game = createGame({ canvas: $('world'), minimap: $('minimap'), onUpdate: update, onError: message => notify(String(message), 7000) });
   game.loadCampus(CAMPUS); game.setPaused(true);
   $('loading').hidden = true;
-  $('campus-stats').textContent = `${buildings.filter(b=>b.campus).length} campus building footprints · ${CAMPUS.paths.length} mapped path sections · ${places.length} searchable destinations · NSW 5 m measured terrain · ${VISUAL_REFERENCES.length} visual/data references.`;
+  $('campus-stats').textContent = `${buildings.filter(b=>b.campus).length} campus building footprints · ${CAMPUS.paths.length} mapped path sections · ${places.length} searchable destinations · ${game.getState().inventoryTreeCount} trees from the public 2023 inventory · NSW 5 m measured terrain · ${VISUAL_REFERENCES.length} visual/data references.`;
   selected = places.find(p=>p.id==='university-mall') || places[0]; choose(selected);
   window.campusApp = { getState: () => game.getState(), getInfo: () => ({ buildings: buildings.length, destinations: places.length, bounds: CAMPUS.bounds }), teleport: id => game.teleport(id), setInput: (action,value) => game.setInput(action,value), start: () => start({lock:false}) };
 } catch (error) {

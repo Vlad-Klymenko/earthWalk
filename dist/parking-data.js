@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=0dd17659ccd5';
-import { buildingBase, terrainHeight } from './terrain.js?v=0dd17659ccd5';
+import { orientedFrame, framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=e438308695cd';
+import { buildingBase, terrainHeight } from './terrain.js?v=e438308695cd';
 
 export const BARKER_PARKING_ID='osm-way-9784728',BOTANY_PARKING_ID='osm-way-9784749';
 export const BARKER_EXISTING_REPORT={title:'Architectus N18 drawings · existing levels in section SSDA25, December 2025',url:'https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=SSD-79257208%2120260303T065439.425+GMT',pdfPage:22,linkLabel:'Height source · existing architectural levels',screenRL:47.64,deckTops:[42.9,44.49,45.84],groundRLs:[32.4,33.73,35.04]};

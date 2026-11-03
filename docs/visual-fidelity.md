@@ -2,6 +2,18 @@
 
 The goal remains a detailed, recognizable recreation of the entire main Kensington campus. This pass does not establish photorealistic accuracy for the whole campus.
 
+## Campus tree inventory, species and size ranges
+
+The official UNSW Sustainability Take action page links a public Kensington tree map (app `5872af47535d48dfa6fa7029e95dcbef`). Its public webmap `84b1ffdf6d534809bf026de01373c053` identifies the hosted Trees feature layer. A minimal geometry / identifier / species / dimensions query returned all 1,146 records without a transfer-limit flag; the source limit is 2,000. The complete returned WGS84 points, tree numbers, botanical / common names, height bands, canopy bands and DBH millimetres are retained in `sources/unsw-tree-inventory-evidence.json`. No personal, editor, health, maintenance or risk fields were requested. The separate public campus base map `Trees_2025` layer contains only 100 records, all with canopy band 15–20; it was checked as a partial layer rather than mistaken for the complete inventory.
+
+Source last-data-edit metadata is July 2023, not a verified survey date. UNSW’s 30 May 2025 article documents more than fifteen mature tree removals after the December 2024 storm and four Port Jackson fig replants along the Mall. Exact replacement positions were not verified and are not invented from that report. Its gallery did not display reliably during native review; unseen image details are not claimed as evidence. The full official 1200 × 675 Mall photograph accompanying the June 2024 SCON article was inspected for tall trunks, broad crowns, open paths and lawn verges. Native July 2015 panorama `cS5jh1B90bA6I0Sxn5VPsA` at -33.9173355, 151.2272129 was inspected facing east: pale inner deciduous rows and broader evergreen crowns. Winter leaflessness in that historical view is separate from the game’s leafy-season reconstruction. The inventory is therefore a substantial improvement in geographic / size evidence, not a current botanical census.
+
+Reported bands remain strings. Closed ranges use their midpoint for a representative model; `<5` uses 3.25 m and the open canopy band `>30` uses 34 m, both explicitly reconstructed choices. DBH becomes the trunk radius after converting millimetres to metres / diameter to radius; 104 zero / unavailable DBH entries use labelled geometric estimates. Species groups distinguish broad figs, branching gums, poplars, conifers, palms with fronds and other broadleaf crowns. Every branch endpoint and rotated leaf-card bound fits its chosen height / canopy envelope. Branch topology, crown profiles, colours and leaf density are procedural estimates; source photo pixels are not used.
+
+The final scene renders 913 inventory trees. Conflicting old points are omitted, never moved: complete source route widths plus player clearance are checked at every nearby segment, including junctions where a nearer narrow route must not hide a wider crossing. Full trunk-height intervals are checked against raised roofs / galleries as well as ground obstacles. Existing structures / planted fixtures, map arrival points and playing fields remain clear. All source records remain available separately. Automatic Mall rows, green-edge trees and random campus trees are removed. Retained OSM / photo-led trees are deduplicated near accepted inventory trees; specially modelled courts keep their existing detail. Spatial groups of 80 m use instanced trunk / foliage geometry with local bounding spheres so off-screen groups can be culled. Help shows the actual rendered count and links the public tree map.
+
+Five added checks cover complete minimal source evidence, exact coordinate projection / species / bands, open-band handling, missing DBH provenance, every tree’s geometry / rotated-card envelopes, deterministic shapes, different species forms and full-width junction clearance without relocating points. All 305 checks pass. Native preview walking covered the Mall and a 41 m upper-campus out-and-back under the Library Lawn roof, with elevations about RL 54.9–55.4 m. Golden-hour lighting and captured warning / error logs were checked without errors. The library now has 391 linked records. Exact branch forms, current tree inventory, finer paving / lighting and wider campus landscape still need comparison.
+
 ## Southern Drive / Gate 14 road, refuge and planted median
 
 A bounded junction patch (campus x 109–146 m, z 167–228 m) now uses the public UNSW Kensington Campus GIS. The WGS84 query returned Internal Road layer 21 objects 4 / 24, thirteen KensingtonGardens layer 24 features and five Lawn Areas layer 25 features. Raw rings, object IDs and query context are retained in `sources/southern-drive-gis-evidence.json`; only OBJECTID and geometry were requested. The returned road 4 geometry extends beyond the local patch and is clipped, not substituted across the whole campus. Courtyard layer 22 returned no features for this query: the remaining brick footway is inferred from photographs, not presented as surveyed courtyard paving. Any source Z / M values remain unverified and are not used for elevation. Plan boundaries are an additional public GIS layer, while original OSM footprints, complete path coordinates / widths and NSW elevation samples remain unchanged.
@@ -463,15 +475,12 @@ Ten references were added: university exterior, existing-condition exterior / ro
 
 All-campus, exact visual fidelity is **not proven**. Many façades still use a generic academic/residential pattern. Exact window placements, entrances, roof services, retaining walls and landscaping require more building-by-building photo comparison. The college models still need precise stepped massing / terrace levels and a survey or approved dimensioned plans; retained OSM overall heights and reconstructed six-row façade patterns do not establish those details. Estimated building heights need better primary or LiDAR evidence. Precise stairs, platforms and retaining edges require data finer than the current elevation grid.
 
-Named buildings still without a source-linked profile:
-
-- University Regiment - H1 (H1)
-- J2 (J2)
-- J2 (J2)
-- Campus Village Cafe (osm-way-584816505)
+Explicit appearance profiles now cover 90 of 98 original campus footprints. The remaining source IDs without a separate profile are `926419119`, `926419120`, `926419121`, `926419125`, `926419128`, `1178531028`, `1178531029` and `1178531030`. Four of these are small roofs already drawn with Tyree / Clancy; the others still need identity / photo checks. Profile counts do not establish accurate façades or complete landscape detail. The former H1, J2 and Village Cafe omissions have been addressed in subsequent passes documented above.
 
 ## Reproduction
 
+- node scripts/make-tree-inventory.mjs
+- node scripts/make-southern-drive-parts.mjs
 - node scripts/make-building-parts.mjs
 - node scripts/make-campus-details.mjs
 - node scripts/make-sports-data.mjs
