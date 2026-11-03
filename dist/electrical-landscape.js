@@ -1,8 +1,8 @@
-import { CAMPUS } from './campus-data.js?v=c3b5fc78771f';
-import { terrainHeight as demHeight, buildingBase } from './terrain.js?v=c3b5fc78771f';
-import { ELECTRICAL_ID, electricalGeometry } from './electrical-data.js?v=c3b5fc78771f';
-import { REX_ID, REX_LINK_ID } from './small-buildings-data.js?v=c3b5fc78771f';
-import { framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=c3b5fc78771f';
+import { CAMPUS } from './campus-data.js?v=372bc6d4b821';
+import { terrainHeight as demHeight, buildingBase } from './terrain.js?v=372bc6d4b821';
+import { ELECTRICAL_ID, electricalGeometry } from './electrical-data.js?v=372bc6d4b821';
+import { REX_ID, REX_LINK_ID } from './small-buildings-data.js?v=372bc6d4b821';
+import { framePoint, frameRectangle, clipFrameStrip } from './geometry.js?v=372bc6d4b821';
 
 export const ELECTRICAL_LANDSCAPE_REPORT={
   title:'Hassell landscape strategy and plan · February 2016, printed pp. 18–19',

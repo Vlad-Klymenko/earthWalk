@@ -2,7 +2,11 @@
 
 An unofficial browser walking sandbox of UNSW's Kensington campus. Explore the campus outdoors in first person, find a building on the interactive map, and teleport to a landmark. The terrain now follows the public NSW 5 m elevation grid, with source-guided façades and mapped furniture.
 
-## Latest visual update: University Mall paving, verges and light columns
+## Latest visual update: campus path materials
+
+Paths and lanes now use their retained surface tags for asphalt, concrete, concrete panels, paving and timber. This corrects 46 asphalt footpath sections and 23 concrete road sections without changing source widths, route roles or terrain. Engineering Road uses photo-guided grey-mauve interlocking blocks. Science Road also uses historical photo-fitted blocks, with its conflicting pebblestone map tag retained and current resurfacing explicitly unverified. Four new searchable viewpoints make these materials easy to inspect. All 316 checks pass; the reference library has 399 records. Fine texture dimensions and walking offsets remain reconstructed, and campus fidelity remains ongoing.
+
+## Previous visual update: University Mall paving, verges and light columns
 
 University Mall now uses the named public GIS courtyard boundary with mapped lawn / garden areas kept green. Warm rectangular stone, staggered joints and dark cross-bands replace the generic paving pattern; 41 reconstructed silver light columns have tapered triangular casings, vertical diffusers and pointed caps. Fine grades blend the verges toward the retained NSW terrain. Original path coordinates / widths and raw elevation samples remain intact; paver sizes, band rhythm, fixture positions / dimensions and fine grades remain estimates. The initial view now uses the same correct bearing as the Mall map destination, so walking straight follows the Mall. All 311 checks pass; native preview walking covered 356 m through the central step transition to the eastern end, plus the verge approaches. The library has 394 source records. Campus fidelity remains ongoing.
 

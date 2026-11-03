@@ -1,112 +1,113 @@
-import {MALL_PATH_IDS,MALL_PATTERN,MALL_LIGHT,mallPathKey,mallCoordinates,mallLightCandidates} from './mall-landscape-data.js?v=c3b5fc78771f';
-import {MALL_GROUND,MALL_GREEN,MALL_PAVING,MALL_PAVING_MESH,MALL_GREEN_MESH,MALL_REMNANTS} from './mall-landscape-parts.js?v=c3b5fc78771f';
-import {mallGreenOffset} from './mall-landscape.js?v=c3b5fc78771f';
-import {TREE_INVENTORY} from './tree-inventory-data.js?v=c3b5fc78771f';
-import {inventoryTree,inventoryTreeGeometry,treeClearsRoutes} from './tree-geometry.js?v=c3b5fc78771f';
-import {SOUTHERN_SCOPE,SOUTHERN_FRAME,SOUTHERN_FIXTURES,inSouthernGround} from './southern-drive-data.js?v=c3b5fc78771f';
-import {SOUTHERN_ROAD,SOUTHERN_PAVING,SOUTHERN_GRASS,SOUTHERN_PLANTING,SOUTHERN_HEDGES,SOUTHERN_MEDIAN,SOUTHERN_REFUGE,SOUTHERN_STRIPES,SOUTHERN_REMNANTS,SOUTHERN_BARKER_PAVING} from './southern-drive-parts.js?v=c3b5fc78771f';
-import {BARKER_EAST_TREE,barkerEastGeometry,inBarkerEastGround} from './barker-east-data.js?v=c3b5fc78771f';
-import {BARKER_EAST_HEDGES} from './barker-east-parts.js?v=c3b5fc78771f';
-import {repositoryGeometry,repositoryTrees,inRepositoryYard} from './repository-data.js?v=c3b5fc78771f';
-import {REPOSITORY_PAVING} from './repository-parts.js?v=c3b5fc78771f';
-import {SPIRAL_STAIRS,SPIRAL_TREADS,spiralPoint,spiralGeometry,inSpiralGround,inSpiralSource} from './spiral-data.js?v=c3b5fc78771f';
-import {SPIRAL_DECKS,SPIRAL_LANDINGS,SPIRAL_PAVING,SPIRAL_GROUND_CUTOUT,SPIRAL_REMOVED_TRIANGLES,SPIRAL_GROUND_EDGES} from './spiral-parts.js?v=c3b5fc78771f';
-import {campusTerrainHeight as terrainHeight} from './spiral-landscape.js?v=c3b5fc78771f';
-import {NIDA_SCHOOL_ID,nidaSchoolGeometry,nidaSchoolRoofHeight,nidaSchoolColumns,nidaSchoolBoundarySegments,inNidaSchoolGround} from './nida-school-data.js?v=c3b5fc78771f';
-import {NIDA_SCHOOL_PARTS,NIDA_SCHOOL_COURTS,NIDA_SCHOOL_PAVING,NIDA_SCHOOL_GARDENS} from './nida-school-parts.js?v=c3b5fc78771f';
-import {regimentHallGeometry,inRegimentHallCourt} from './regiment-hall-data.js?v=c3b5fc78771f';
-import {libraryWalkGeometry,inLibraryCoveredWalk} from './library-walk-data.js?v=c3b5fc78771f';
-import {LIBRARY_WALK_ROOFS,LIBRARY_WALK_CELLS,LIBRARY_WALK_PAVING} from './library-walk-parts.js?v=c3b5fc78771f';
-import {mathewsPavilionsGeometry,inMathewsPavilions} from './mathews-pavilions-data.js?v=c3b5fc78771f';
-import {MATHEWS_PAVILION_ROOFS,MATHEWS_PAVILION_STRIPS,MATHEWS_PAVILION_ROOMS,MATHEWS_PAVILION_PAVING} from './mathews-pavilions-parts.js?v=c3b5fc78771f';
-import {newCollegeGeometry,inNewCollegeGround} from './new-college-data.js?v=c3b5fc78771f';
-import {NEW_COLLEGE_PARTS,NEW_COLLEGE_FACES,NEW_COLLEGE_ROOFS,NEW_COLLEGE_COURT} from './new-college-parts.js?v=c3b5fc78771f';
-import {shalomGeometry,inShalomGround} from './shalom-data.js?v=c3b5fc78771f';
-import {SHALOM_PARTS,SHALOM_FACES,SHALOM_ROOFS,SHALOM_GARDEN,SHALOM_LIGHTWELLS} from './shalom-parts.js?v=c3b5fc78771f';
-import {warraneGeometry,inWarraneGround} from './warrane-data.js?v=c3b5fc78771f';
-import {WARRANE_PARTS,WARRANE_FACES,WARRANE_ROOFS,WARRANE_COURT} from './warrane-parts.js?v=c3b5fc78771f';
-import {BANK_ID,BANK_STEPS_ID,bankGeometry,inBankForecourt} from './bank-data.js?v=c3b5fc78771f';
-import {walkingSurfaceHeight,walkingDestination,priorityWalkingSurface} from './walking-surfaces.js?v=c3b5fc78771f';
-import {pavilionDeckPatches} from './pavilion-walking.js?v=c3b5fc78771f';
-import {pavilionGeometry,pavilionRibbon,inPavilionGround} from './pavilion-data.js?v=c3b5fc78771f';
-import {PAVILION_PITCHED_ROOF,PAVILION_PARTS,PAVILION_FACES,PAVILION_BALCONY,PAVILION_LANDING,PAVILION_PAVING,PAVILION_APRON,PAVILION_SEATS,PAVILION_COLUMNS} from './pavilion-parts.js?v=c3b5fc78771f';
-import {l5Geometry,inL5Court} from './l5-data.js?v=c3b5fc78771f';
-import {L5_PARTS,L5_FACES,L5_DECK} from './l5-parts.js?v=c3b5fc78771f';
-import { ncpvGeometry,inNcpvStreet } from './ncpv-data.js?v=c3b5fc78771f';
-import { NCPV_PARTS,NCPV_FACES,NCPV_PAVING } from './ncpv-parts.js?v=c3b5fc78771f';
-import { Reflector } from './vendor/Reflector.js?v=c3b5fc78771f';
-import { goldsteinCourtGeometry,GOLDSTEIN_ART_POINT,inGoldsteinCourt } from './goldstein-courtyard-data.js?v=c3b5fc78771f';
-import { goldsteinSculptureGeometry } from './goldstein-sculpture.js?v=c3b5fc78771f';
-import { GOLDSTEIN_PAVING,GOLDSTEIN_STAIR_CHEEKS } from './goldstein-courtyard-parts.js?v=c3b5fc78771f';
-import { terracesGeometry } from './terraces-data.js?v=c3b5fc78771f';
-import { TERRACES_PARTS,TERRACES_FACES,TERRACES_PAVING } from './terraces-parts.js?v=c3b5fc78771f';
-import { VILLAGE_FACADE,VILLAGE_AXIS,VILLAGE_CROSS } from './village-data.js?v=c3b5fc78771f';
-import { VILLAGE_FACADES,VILLAGE_ENTRY_PAVING } from './village-facades.js?v=c3b5fc78771f';
-import { VILLAGE_CAFE_ID,villageCafeGeometry } from './village-cafe-data.js?v=c3b5fc78771f';
-import { VILLAGE_CAFE_DECK } from './village-cafe-parts.js?v=c3b5fc78771f';
-import { regimentGeometry,REGIMENT_STREET,inRegimentStreet } from './regiment-data.js?v=c3b5fc78771f';
-import { roundhouseEntryGeometry,inRoundhouseEntrance } from './roundhouse-entry.js?v=c3b5fc78771f';
-import { ROUNDHOUSE_PLANE,ROUNDHOUSE_GARDEN_SEATS,roundDisc,inRoundhouseForecourt } from './roundhouse-landscape.js?v=c3b5fc78771f';
-import { ROUNDHOUSE_ID, roundhouseGeometry } from './roundhouse-data.js?v=c3b5fc78771f';
-import { ROUNDHOUSE_MAIN, ROUNDHOUSE_UPPER, ROUNDHOUSE_GROUND, ROUNDHOUSE_ROOFS, ROUNDHOUSE_DECK, ROUNDHOUSE_PARAPET, ROUNDHOUSE_STEPS, ROUNDHOUSE_PAVING, ROUNDHOUSE_CANOPY } from './roundhouse-parts.js?v=c3b5fc78771f';
-import { WILLIS_LANE_COVER, WILLIS_LANE_PAVING, WILLIS_COVER_FRAME, WILLIS_ENTRY_CANOPY, WILLIS_ENTRY_PAVING } from './willis-parts.js?v=c3b5fc78771f';
-import { ainsworthGeometry, inAinsworthGarden } from './ainsworth-data.js?v=c3b5fc78771f';
-import { AINSWORTH_UPPER, AINSWORTH_GROUND, AINSWORTH_ROOFS, AINSWORTH_CANOPY, AINSWORTH_PAVING } from './ainsworth-parts.js?v=c3b5fc78771f';
-import { mathewsGeometry, inMathewsForecourt } from './mathews-data.js?v=c3b5fc78771f';
-import { MATHEWS_ROOFS, MATHEWS_LOWER, MATHEWS_TOWER, MATHEWS_ENTRY_FLOOR, MATHEWS_PODIUM_FACES } from './mathews-parts.js?v=c3b5fc78771f';
-import { libraryGeometry, libraryFacadeRing } from './library-data.js?v=c3b5fc78771f';
-import { tyreeGeometry, inTyreeForecourt, TYREE_REPLACED_STEPS } from './tyree-data.js?v=c3b5fc78771f';
-import { TYREE_PARTS, TYREE_ROOFS, TYREE_PLATFORM, TYREE_STEPS, TYREE_APRON } from './tyree-parts.js?v=c3b5fc78771f';
-import { blockhouseGeometry, inBlockhouseForecourt } from './blockhouse-data.js?v=c3b5fc78771f';
-import { BLOCKHOUSE_PARTS, BLOCKHOUSE_ROOFS, BLOCKHOUSE_AWNING, BLOCKHOUSE_PAVING } from './blockhouse-parts.js?v=c3b5fc78771f';
-import { morvenGeometry, inMorvenCourt } from './morven-brown-data.js?v=c3b5fc78771f';
-import { MORVEN_PARTS, MORVEN_PAVING } from './morven-brown-parts.js?v=c3b5fc78771f';
-import { squarehouseGeometry } from './squarehouse-data.js?v=c3b5fc78771f';
-import { SQUAREHOUSE_PARTS } from './squarehouse-parts.js?v=c3b5fc78771f';
-import { redCentreGeometry, inLawrenceForecourt } from './red-centre-data.js?v=c3b5fc78771f';
-import { RED_CENTRE_PARTS, RED_CENTRE_ROOFS, RED_CENTRE_PAVING } from './red-centre-parts.js?v=c3b5fc78771f';
-import { oldMainGeometry } from './old-main-data.js?v=c3b5fc78771f';
-import { businessGeometry, businessCanopyFaces } from './business-data.js?v=c3b5fc78771f';
-import { lawGeometry } from './law-data.js?v=c3b5fc78771f';
-import { BASSER_STEP_IDS } from './basser-ground-parts.js?v=c3b5fc78771f';
-import { quadrangleGeometry } from './quadrangle-data.js?v=c3b5fc78771f';
-import { QUADRANGLE_PARTS } from './quadrangle-parts.js?v=c3b5fc78771f';
-import { ELECTRICAL_LANDSCAPE as electricalGround, inElectricalCourt, courtGround, ELECTRICAL_REPLACED_STEPS } from './electrical-landscape.js?v=c3b5fc78771f';
-import { ELECTRICAL_REMOVED_TRIANGLES, ELECTRICAL_GROUND_EDGES } from './electrical-landscape-parts.js?v=c3b5fc78771f';
-import { electricalGeometry, ELECTRICAL_LEVELS } from './electrical-data.js?v=c3b5fc78771f';
-import { REX_LINK_ID, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=c3b5fc78771f';
-import { BARKER_APARTMENTS_PARTS } from './barker-apartments-parts.js?v=c3b5fc78771f';
-import { barkerApartmentsGeometry } from './barker-apartments-data.js?v=c3b5fc78771f';
-import { vallentineGeometry } from './vallentine-data.js?v=c3b5fc78771f';
-import { parkingGeometry, parkingEntry, parkingCars } from './parking-data.js?v=c3b5fc78771f';
-import { esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=c3b5fc78771f';
-import { poolGeometry, gymGeometry } from './aquatic-data.js?v=c3b5fc78771f';
-import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=c3b5fc78771f';
-import { k17Geometry, willisGeometry, inWillisForecourt } from './engineering-lane-data.js?v=c3b5fc78771f';
-import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=c3b5fc78771f';
-import { RUPERT_PARTS } from './rupert-parts.js?v=c3b5fc78771f';
-import * as THREE from './vendor/three.module.js?v=c3b5fc78771f';
-import { terrainHeight as demHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=c3b5fc78771f';
-import { buildingAppearance } from './visual-data.js?v=c3b5fc78771f';
-import { CAMPUS_DETAILS } from './campus-details.js?v=c3b5fc78771f';
-import { VILLAGE_SPORTS } from './sports-data.js?v=c3b5fc78771f';
-import { theatreGeometry } from './architecture-data.js?v=c3b5fc78771f';
-import { NIDA_PARTS } from './nida-parts.js?v=c3b5fc78771f';
-import { CHEMICAL_PARTS } from './chemical-parts.js?v=c3b5fc78771f';
-import { tubeFaces } from './structure-data.js?v=c3b5fc78771f';
-import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=c3b5fc78771f';
-import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=c3b5fc78771f';
-import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=c3b5fc78771f';
-import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=c3b5fc78771f';
-import { medicalGeometry } from './medical-data.js?v=c3b5fc78771f';
-import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=c3b5fc78771f';
-import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=c3b5fc78771f';
-import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=c3b5fc78771f';
-import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=c3b5fc78771f';
-import { RESIDENTIAL_PARTS } from './residential-parts.js?v=c3b5fc78771f';
-import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=c3b5fc78771f';
-import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=c3b5fc78771f';
-import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=c3b5fc78771f';
+import {PATH_MATERIALS,pathGeometry,pathMaterial} from './path-materials.js?v=372bc6d4b821';
+import {MALL_PATH_IDS,MALL_PATTERN,MALL_LIGHT,mallPathKey,mallCoordinates,mallLightCandidates} from './mall-landscape-data.js?v=372bc6d4b821';
+import {MALL_GROUND,MALL_GREEN,MALL_PAVING,MALL_PAVING_MESH,MALL_GREEN_MESH,MALL_REMNANTS} from './mall-landscape-parts.js?v=372bc6d4b821';
+import {mallGreenOffset} from './mall-landscape.js?v=372bc6d4b821';
+import {TREE_INVENTORY} from './tree-inventory-data.js?v=372bc6d4b821';
+import {inventoryTree,inventoryTreeGeometry,treeClearsRoutes} from './tree-geometry.js?v=372bc6d4b821';
+import {SOUTHERN_SCOPE,SOUTHERN_FRAME,SOUTHERN_FIXTURES,inSouthernGround} from './southern-drive-data.js?v=372bc6d4b821';
+import {SOUTHERN_ROAD,SOUTHERN_PAVING,SOUTHERN_GRASS,SOUTHERN_PLANTING,SOUTHERN_HEDGES,SOUTHERN_MEDIAN,SOUTHERN_REFUGE,SOUTHERN_STRIPES,SOUTHERN_REMNANTS,SOUTHERN_BARKER_PAVING} from './southern-drive-parts.js?v=372bc6d4b821';
+import {BARKER_EAST_TREE,barkerEastGeometry,inBarkerEastGround} from './barker-east-data.js?v=372bc6d4b821';
+import {BARKER_EAST_HEDGES} from './barker-east-parts.js?v=372bc6d4b821';
+import {repositoryGeometry,repositoryTrees,inRepositoryYard} from './repository-data.js?v=372bc6d4b821';
+import {REPOSITORY_PAVING} from './repository-parts.js?v=372bc6d4b821';
+import {SPIRAL_STAIRS,SPIRAL_TREADS,spiralPoint,spiralGeometry,inSpiralGround,inSpiralSource} from './spiral-data.js?v=372bc6d4b821';
+import {SPIRAL_DECKS,SPIRAL_LANDINGS,SPIRAL_PAVING,SPIRAL_GROUND_CUTOUT,SPIRAL_REMOVED_TRIANGLES,SPIRAL_GROUND_EDGES} from './spiral-parts.js?v=372bc6d4b821';
+import {campusTerrainHeight as terrainHeight} from './spiral-landscape.js?v=372bc6d4b821';
+import {NIDA_SCHOOL_ID,nidaSchoolGeometry,nidaSchoolRoofHeight,nidaSchoolColumns,nidaSchoolBoundarySegments,inNidaSchoolGround} from './nida-school-data.js?v=372bc6d4b821';
+import {NIDA_SCHOOL_PARTS,NIDA_SCHOOL_COURTS,NIDA_SCHOOL_PAVING,NIDA_SCHOOL_GARDENS} from './nida-school-parts.js?v=372bc6d4b821';
+import {regimentHallGeometry,inRegimentHallCourt} from './regiment-hall-data.js?v=372bc6d4b821';
+import {libraryWalkGeometry,inLibraryCoveredWalk} from './library-walk-data.js?v=372bc6d4b821';
+import {LIBRARY_WALK_ROOFS,LIBRARY_WALK_CELLS,LIBRARY_WALK_PAVING} from './library-walk-parts.js?v=372bc6d4b821';
+import {mathewsPavilionsGeometry,inMathewsPavilions} from './mathews-pavilions-data.js?v=372bc6d4b821';
+import {MATHEWS_PAVILION_ROOFS,MATHEWS_PAVILION_STRIPS,MATHEWS_PAVILION_ROOMS,MATHEWS_PAVILION_PAVING} from './mathews-pavilions-parts.js?v=372bc6d4b821';
+import {newCollegeGeometry,inNewCollegeGround} from './new-college-data.js?v=372bc6d4b821';
+import {NEW_COLLEGE_PARTS,NEW_COLLEGE_FACES,NEW_COLLEGE_ROOFS,NEW_COLLEGE_COURT} from './new-college-parts.js?v=372bc6d4b821';
+import {shalomGeometry,inShalomGround} from './shalom-data.js?v=372bc6d4b821';
+import {SHALOM_PARTS,SHALOM_FACES,SHALOM_ROOFS,SHALOM_GARDEN,SHALOM_LIGHTWELLS} from './shalom-parts.js?v=372bc6d4b821';
+import {warraneGeometry,inWarraneGround} from './warrane-data.js?v=372bc6d4b821';
+import {WARRANE_PARTS,WARRANE_FACES,WARRANE_ROOFS,WARRANE_COURT} from './warrane-parts.js?v=372bc6d4b821';
+import {BANK_ID,BANK_STEPS_ID,bankGeometry,inBankForecourt} from './bank-data.js?v=372bc6d4b821';
+import {walkingSurfaceHeight,walkingDestination,priorityWalkingSurface} from './walking-surfaces.js?v=372bc6d4b821';
+import {pavilionDeckPatches} from './pavilion-walking.js?v=372bc6d4b821';
+import {pavilionGeometry,pavilionRibbon,inPavilionGround} from './pavilion-data.js?v=372bc6d4b821';
+import {PAVILION_PITCHED_ROOF,PAVILION_PARTS,PAVILION_FACES,PAVILION_BALCONY,PAVILION_LANDING,PAVILION_PAVING,PAVILION_APRON,PAVILION_SEATS,PAVILION_COLUMNS} from './pavilion-parts.js?v=372bc6d4b821';
+import {l5Geometry,inL5Court} from './l5-data.js?v=372bc6d4b821';
+import {L5_PARTS,L5_FACES,L5_DECK} from './l5-parts.js?v=372bc6d4b821';
+import { ncpvGeometry,inNcpvStreet } from './ncpv-data.js?v=372bc6d4b821';
+import { NCPV_PARTS,NCPV_FACES,NCPV_PAVING } from './ncpv-parts.js?v=372bc6d4b821';
+import { Reflector } from './vendor/Reflector.js?v=372bc6d4b821';
+import { goldsteinCourtGeometry,GOLDSTEIN_ART_POINT,inGoldsteinCourt } from './goldstein-courtyard-data.js?v=372bc6d4b821';
+import { goldsteinSculptureGeometry } from './goldstein-sculpture.js?v=372bc6d4b821';
+import { GOLDSTEIN_PAVING,GOLDSTEIN_STAIR_CHEEKS } from './goldstein-courtyard-parts.js?v=372bc6d4b821';
+import { terracesGeometry } from './terraces-data.js?v=372bc6d4b821';
+import { TERRACES_PARTS,TERRACES_FACES,TERRACES_PAVING } from './terraces-parts.js?v=372bc6d4b821';
+import { VILLAGE_FACADE,VILLAGE_AXIS,VILLAGE_CROSS } from './village-data.js?v=372bc6d4b821';
+import { VILLAGE_FACADES,VILLAGE_ENTRY_PAVING } from './village-facades.js?v=372bc6d4b821';
+import { VILLAGE_CAFE_ID,villageCafeGeometry } from './village-cafe-data.js?v=372bc6d4b821';
+import { VILLAGE_CAFE_DECK } from './village-cafe-parts.js?v=372bc6d4b821';
+import { regimentGeometry,REGIMENT_STREET,inRegimentStreet } from './regiment-data.js?v=372bc6d4b821';
+import { roundhouseEntryGeometry,inRoundhouseEntrance } from './roundhouse-entry.js?v=372bc6d4b821';
+import { ROUNDHOUSE_PLANE,ROUNDHOUSE_GARDEN_SEATS,roundDisc,inRoundhouseForecourt } from './roundhouse-landscape.js?v=372bc6d4b821';
+import { ROUNDHOUSE_ID, roundhouseGeometry } from './roundhouse-data.js?v=372bc6d4b821';
+import { ROUNDHOUSE_MAIN, ROUNDHOUSE_UPPER, ROUNDHOUSE_GROUND, ROUNDHOUSE_ROOFS, ROUNDHOUSE_DECK, ROUNDHOUSE_PARAPET, ROUNDHOUSE_STEPS, ROUNDHOUSE_PAVING, ROUNDHOUSE_CANOPY } from './roundhouse-parts.js?v=372bc6d4b821';
+import { WILLIS_LANE_COVER, WILLIS_LANE_PAVING, WILLIS_COVER_FRAME, WILLIS_ENTRY_CANOPY, WILLIS_ENTRY_PAVING } from './willis-parts.js?v=372bc6d4b821';
+import { ainsworthGeometry, inAinsworthGarden } from './ainsworth-data.js?v=372bc6d4b821';
+import { AINSWORTH_UPPER, AINSWORTH_GROUND, AINSWORTH_ROOFS, AINSWORTH_CANOPY, AINSWORTH_PAVING } from './ainsworth-parts.js?v=372bc6d4b821';
+import { mathewsGeometry, inMathewsForecourt } from './mathews-data.js?v=372bc6d4b821';
+import { MATHEWS_ROOFS, MATHEWS_LOWER, MATHEWS_TOWER, MATHEWS_ENTRY_FLOOR, MATHEWS_PODIUM_FACES } from './mathews-parts.js?v=372bc6d4b821';
+import { libraryGeometry, libraryFacadeRing } from './library-data.js?v=372bc6d4b821';
+import { tyreeGeometry, inTyreeForecourt, TYREE_REPLACED_STEPS } from './tyree-data.js?v=372bc6d4b821';
+import { TYREE_PARTS, TYREE_ROOFS, TYREE_PLATFORM, TYREE_STEPS, TYREE_APRON } from './tyree-parts.js?v=372bc6d4b821';
+import { blockhouseGeometry, inBlockhouseForecourt } from './blockhouse-data.js?v=372bc6d4b821';
+import { BLOCKHOUSE_PARTS, BLOCKHOUSE_ROOFS, BLOCKHOUSE_AWNING, BLOCKHOUSE_PAVING } from './blockhouse-parts.js?v=372bc6d4b821';
+import { morvenGeometry, inMorvenCourt } from './morven-brown-data.js?v=372bc6d4b821';
+import { MORVEN_PARTS, MORVEN_PAVING } from './morven-brown-parts.js?v=372bc6d4b821';
+import { squarehouseGeometry } from './squarehouse-data.js?v=372bc6d4b821';
+import { SQUAREHOUSE_PARTS } from './squarehouse-parts.js?v=372bc6d4b821';
+import { redCentreGeometry, inLawrenceForecourt } from './red-centre-data.js?v=372bc6d4b821';
+import { RED_CENTRE_PARTS, RED_CENTRE_ROOFS, RED_CENTRE_PAVING } from './red-centre-parts.js?v=372bc6d4b821';
+import { oldMainGeometry } from './old-main-data.js?v=372bc6d4b821';
+import { businessGeometry, businessCanopyFaces } from './business-data.js?v=372bc6d4b821';
+import { lawGeometry } from './law-data.js?v=372bc6d4b821';
+import { BASSER_STEP_IDS } from './basser-ground-parts.js?v=372bc6d4b821';
+import { quadrangleGeometry } from './quadrangle-data.js?v=372bc6d4b821';
+import { QUADRANGLE_PARTS } from './quadrangle-parts.js?v=372bc6d4b821';
+import { ELECTRICAL_LANDSCAPE as electricalGround, inElectricalCourt, courtGround, ELECTRICAL_REPLACED_STEPS } from './electrical-landscape.js?v=372bc6d4b821';
+import { ELECTRICAL_REMOVED_TRIANGLES, ELECTRICAL_GROUND_EDGES } from './electrical-landscape-parts.js?v=372bc6d4b821';
+import { electricalGeometry, ELECTRICAL_LEVELS } from './electrical-data.js?v=372bc6d4b821';
+import { REX_LINK_ID, rexGeometry, sdnGeometry } from './small-buildings-data.js?v=372bc6d4b821';
+import { BARKER_APARTMENTS_PARTS } from './barker-apartments-parts.js?v=372bc6d4b821';
+import { barkerApartmentsGeometry } from './barker-apartments-data.js?v=372bc6d4b821';
+import { vallentineGeometry } from './vallentine-data.js?v=372bc6d4b821';
+import { parkingGeometry, parkingEntry, parkingCars } from './parking-data.js?v=372bc6d4b821';
+import { esmeGeometry, scienceLabGeometry, scienceLinks } from './science-precinct-data.js?v=372bc6d4b821';
+import { poolGeometry, gymGeometry } from './aquatic-data.js?v=372bc6d4b821';
+import { newtonGeometry, keithGeometry, physicsGeometry } from './physics-precinct-data.js?v=372bc6d4b821';
+import { k17Geometry, willisGeometry, inWillisForecourt } from './engineering-lane-data.js?v=372bc6d4b821';
+import { RUPERT_ID, rupertGeometry } from './rupert-data.js?v=372bc6d4b821';
+import { RUPERT_PARTS } from './rupert-parts.js?v=372bc6d4b821';
+import * as THREE from './vendor/three.module.js?v=372bc6d4b821';
+import { terrainHeight as demHeight, buildingBase, TERRAIN_GRID } from './terrain.js?v=372bc6d4b821';
+import { buildingAppearance } from './visual-data.js?v=372bc6d4b821';
+import { CAMPUS_DETAILS } from './campus-details.js?v=372bc6d4b821';
+import { VILLAGE_SPORTS } from './sports-data.js?v=372bc6d4b821';
+import { theatreGeometry } from './architecture-data.js?v=372bc6d4b821';
+import { NIDA_PARTS } from './nida-parts.js?v=372bc6d4b821';
+import { CHEMICAL_PARTS } from './chemical-parts.js?v=372bc6d4b821';
+import { tubeFaces } from './structure-data.js?v=372bc6d4b821';
+import { clancyGeometry, chancelleryGeometry } from './upper-campus-data.js?v=372bc6d4b821';
+import { CHANCELLERY_ROOFS } from './chancellery-roofs.js?v=372bc6d4b821';
+import { bioscienceGeometry, mathewsTheatreGeometry } from './bioscience-data.js?v=372bc6d4b821';
+import { BIOSCIENCE_PARTS } from './bioscience-parts.js?v=372bc6d4b821';
+import { medicalGeometry } from './medical-data.js?v=372bc6d4b821';
+import { sirfGeometry, agsmGeometry } from './eastern-landmarks-data.js?v=372bc6d4b821';
+import { civilGeometry, patriciaGeometry, lectureFacadeRing } from './lecture-precinct-data.js?v=372bc6d4b821';
+import { samuelsGeometry, goodsellGeometry } from './eastern-faculty-data.js?v=372bc6d4b821';
+import { MEDICAL_PARTS, MEDICAL_GROUND_FLOORS } from './medical-parts.js?v=372bc6d4b821';
+import { RESIDENTIAL_PARTS } from './residential-parts.js?v=372bc6d4b821';
+import { heritageGeometry, whiteHouseStair, goldsteinGeometry } from './heritage-data.js?v=372bc6d4b821';
+import { scienceTheatreGeometry, modernFacadeFrame, scienceTheatreFoundation, websterTheatresGeometry } from './modernism-data.js?v=372bc6d4b821';
+import { orientedFrame, framePoint, frameRectangle, roundedFrameRectangle, clipFrameStrip } from './geometry.js?v=372bc6d4b821';
 
 // Everything is measured in metres. East is +x; south is +z.
 const UP = new THREE.Vector3(0, 1, 0);
@@ -312,6 +313,27 @@ function surfaceTexture(kind) {
   if(surfaceCache.has(kind))return surfaceCache.get(kind);
   const texture=canvasTexture(512,512,ctx=>{
     const random=rng(kind==='brick'?200:kind==='paving'?300:400);
+    if(kind.startsWith('path-')){
+      ctx.fillStyle=kind==='path-asphalt'?'#d1d3ce':kind==='path-timber'?'#b5a78b':'#d6d3c7';ctx.fillRect(0,0,512,512);
+      if(kind==='path-concrete'||kind==='path-plates'){
+        ctx.strokeStyle=kind==='path-plates'?'#7d8176':'#b9bbae';ctx.lineWidth=kind==='path-plates'?3:1;
+        for(const x of kind==='path-plates'?[0,256,512]:[0,512]){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,512);ctx.stroke();}ctx.strokeRect(0,0,512,512);
+      }
+      if(kind==='path-pavers')for(let row=0;row<10;row++)for(let col=-1;col<6;col++){ctx.fillStyle=`hsl(${27+random()*8} ${3+random()*5}% ${77+random()*13}%)`;ctx.fillRect(col*102.4+(row%2)*51.2+1,row*51.2+1,100.4,49.2);}
+      if(kind==='path-interlocking'){
+        ctx.fillStyle='#91938b';ctx.fillRect(0,0,512,512);const bw=51.2,bh=25.6;
+        for(let row=0;row<20;row++)for(let col=-1;col<11;col++){
+          const boundary=n=>{const x=n*bw+(row%2)*bw/2,y=row*bh,neck=((n+row)%2?1:-1)*bw*.13;return [[x,y],[x,y+bh*.25],[x+neck,y+bh*.25],[x+neck,y+bh*.75],[x,y+bh*.75],[x,y+bh]];},ring=[...boundary(col),...boundary(col+1).reverse()];
+          ctx.beginPath();ring.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.fillStyle=`hsl(${16+random()*14} ${3+random()*6}% ${76+random()*13}%)`;ctx.fill();ctx.strokeStyle='#81847a';ctx.lineWidth=1.2;ctx.stroke();
+        }
+      }
+      if(kind==='path-pebble')for(let i=0;i<4500;i++){ctx.beginPath();ctx.ellipse(random()*512,random()*512,2+random()*5,2+random()*5,random()*Math.PI,0,TAU);const light=56+random()*35;ctx.fillStyle=`hsl(${28+random()*20} ${5+random()*11}% ${light}%)`;ctx.fill();ctx.strokeStyle='#696a5f35';ctx.lineWidth=.7;ctx.stroke();}
+      if(kind==='path-timber')for(let col=0;col<14;col++){
+        const x=col*512/14,w=512/14;ctx.fillStyle=`hsl(${31+random()*6} ${13+random()*14}% ${65+random()*15}%)`;ctx.fillRect(x+1,0,w-2,512);
+        for(let i=0;i<10;i++){ctx.strokeStyle=i%2?'#ffffff28':'#5249343b';ctx.lineWidth=.5+random();const gx=x+2+random()*(w-4);ctx.beginPath();ctx.moveTo(gx,0);ctx.bezierCurveTo(gx+random()*5,150,gx-random()*5,320,gx,512);ctx.stroke();}
+      }
+      for(let i=0;i<32000;i++){ctx.fillStyle=i%2?'#ffffff20':'#32362c22';ctx.fillRect(random()*512,random()*512,.6+random()*.8,.6+random()*.8);}return;
+    }
     ctx.fillStyle=kind==='brick'?'#b6b3a7':kind==='grass'?'#a7b195':'#d7d6cc';ctx.fillRect(0,0,512,512);
     if(kind==='paving'||kind==='brick'){
       const rows=kind==='brick'?24:5,cols=kind==='brick'?9:3,bw=512/cols,bh=512/rows;
@@ -495,7 +517,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       for(const [a,b,c] of THREE.ShapeUtils.triangulateShape(contour,holes))groundEdges.triangle(...[a,c,b].map(i=>[all[i].x,demHeight(all[i].x,all[i].z)-.08,all[i].z]),'#82916b');
     }
     world.add(groundEdges.mesh(style('#ffffff',{vertexColors:true,map:surfaceTexture('grass')}),false));
-    const landscape = new Batch(), paving = new Batch(), asphalt = new Batch(), edges = new Batch(),stairs=new Batch(),rails=new Batch();
+    const landscape = new Batch(), paving = new Batch(), edges = new Batch(),stairs=new Batch(),rails=new Batch(),pathMaterials=new Map(Object.keys(PATH_MATERIALS).map(key=>[key,new Batch()]));
     stairs.base=rails.base=0;
     for (const green of greens) {
       const pts=validPoints(green); if (pts.length<3) continue;
@@ -506,12 +528,11 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     for(const plaza of campus.plazas||[])for(const part of MALL_REMNANTS.plazas[plaza.id]||SOUTHERN_REMNANTS.plazas[plaza.id]||[plaza])polygon(plaza.surface==='stone'?paving:edges,part.points,plaza.surface==='stone'?.22:.022,plaza.color||'#d6d1c6',part.holes||[]);
     for (const path of paths) {
       const pts=validPoints(path); if(pts.length<2) continue;
-      const road=path.renderSurface==='asphalt'||path.renderSurface!=='paving'&&/road|service|residential|street/i.test(path.kind || path.type || '');
-      const width=path.renderWidth || path.width || (/mall/i.test(path.name||'')?12:road?7:3.4);
+      const appearance=pathMaterial(path),{road,width,height}=appearance,profile=PATH_MATERIALS[appearance.material],batch=pathMaterials.get(appearance.material);
       if(path.kind!=='steps'){
         const remnant=MALL_REMNANTS.paths[mallPathKey(path)]||SOUTHERN_REMNANTS.paths[path.id];
-        if(remnant){for(const part of remnant.edge)polygon(edges,part.points,.035,road?'#d9d6c7':'#b0aea0',part.holes);for(const part of remnant.surface)polygon(road?asphalt:paving,part.points,road?.055:.22,road?'#666b69':'#b9b6b0',part.holes);}
-        else{ribbon(edges,pts,width+.5,.035,road?'#d9d6c7':'#b0aea0');ribbon(road?asphalt:paving,pts,width,road?.055:.22,road?'#666b69':'#b9b6b0');}
+        if(remnant){for(const part of remnant.edge)polygon(edges,part.points,.035,road?'#d9d6c7':'#b0aea0',part.holes);for(const part of remnant.surface)polygon(batch,part.points,height,profile.color,part.holes);}
+        else{ribbon(edges,pts,width+.5,.035,road?'#d9d6c7':'#b0aea0');ribbon(batch,pts,width,height,profile.color);}
       }
 
     }
@@ -539,7 +560,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
     world.add(landscape.mesh(style('#ffffff',{vertexColors:true,map:lawnTexture,bumpMap:lawnTexture,bumpScale:.018}),false));
     world.add(edges.mesh(style('#ffffff',{vertexColors:true}),false));
     world.add(paving.mesh(style('#ffffff',{map:texture,bumpMap:texture,bumpScale:.035,vertexColors:true}),false));
-    world.add(asphalt.mesh(style('#ffffff',{vertexColors:true}),false));
+    for(const [key,batch] of pathMaterials){if(!batch.positions.length)continue;const profile=PATH_MATERIALS[key],map=surfaceTexture(profile.texture);world.add(batch.mesh(style('#ffffff',{vertexColors:true,map,bumpMap:map,bumpScale:profile.bump,roughness:.96}),false));}
     world.add(stairs.mesh(style('#ffffff',{vertexColors:true})),rails.mesh(style('#ffffff',{vertexColors:true,metalness:.3})));
   }
 
@@ -6754,7 +6775,7 @@ export function createGame({ canvas, minimap, onUpdate = () => {}, onError = () 
       paths=data.paths||data.roads||[];greens=data.greens||data.parks||[];landmarks=(data.landmarks||[]).map(l=>({...l,...(l.position||{})}));
       stairSegments=[];surfaceCells=new Map();groundPatches=[];forestTrees=[];mallLightCount=0;
       for(const path of paths)for(let i=0;i<path.points.length-1;i++){
-        const a=path.points[i],b=path.points[i+1],width=path.renderWidth||path.width||3,road=path.renderSurface==='asphalt'||path.renderSurface!=='paving'&&/road|service|residential|street/i.test(path.kind||path.type||'');
+        const a=path.points[i],b=path.points[i+1],{width,road}=pathGeometry(path);
         const item={a,b,width,road};
         for(let x=Math.floor((Math.min(a.x,b.x)-width)/20);x<=Math.floor((Math.max(a.x,b.x)+width)/20);x++)for(let z=Math.floor((Math.min(a.z,b.z)-width)/20);z<=Math.floor((Math.max(a.z,b.z)+width)/20);z++){
           const key=`${x},${z}`;if(!surfaceCells.has(key))surfaceCells.set(key,[]);surfaceCells.get(key).push(item);

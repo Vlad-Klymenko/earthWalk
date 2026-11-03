@@ -2,6 +2,18 @@
 
 The goal remains a detailed, recognizable recreation of the entire main Kensington campus. This pass does not establish photorealistic accuracy for the whole campus.
 
+## Campus path material audit and historical paving references
+
+The renderer previously inferred road material from route classification: roads became dark asphalt and most footways used a pale paving texture. The original public OSM snapshot, retrieved 1 November 2026 at 12:46:54 UTC, retains more specific material evidence. The new audit records all 675 source path sections against the original way tags, including 46 asphalt footpath sections, 78 concrete paths, 23 concrete roads, six paving-stone roads, one wood footpath and one concrete-plates footpath. The enhanced dataset contains one additional sports-track section. Counts describe retained sections, not unique complete ways or measured resurfacing areas. `sources/path-material-evidence.json` preserves the original surface, classification, width and separate render decision for each section.
+
+Material selection now uses explicit surface tags independently from route role and walking geometry. Asphalt footpaths remain paths at their existing reconstructed 0.22 m ribbon offset; concrete and paved roads retain their existing 0.055 m offset and widths. Generic `paved`, missing and unknown tags retain labelled estimated defaults. Existing Electrical and Mathews photographic overrides take precedence, while their raw surface fields remain available. Source stairs keep special step meshes. Regional Southern Drive / University Mall ground patches retain their previous masking and appearance. No path coordinates, terrain samples, access rules, movement speed or friction are changed. These offsets are rendering / walking reconstructions, not new elevation observations.
+
+Full native July 2015 panorama `kxmjWQj6VdFPCiEIGY81mQ` at -33.9187111, 151.230872 was inspected westward and downward. Grey-mauve interlocking blocks corroborate Engineering Road's `paving_stones` tag on `osm-way-9784408`. Full September 2024 panorama `_9dbCL_MMmt5tlJtBPEAdg` at -33.9151726, 151.2280858 shows dark north-side High Street footway under trees, concrete kerbs and crossing ramps; the retained shared-path section `osm-way-556947482` is tagged asphalt. No complete current traffic markings or access rules are inferred.
+
+Science Road requires an explicit conflict. Full east-facing / downward July 2015 panorama `a3kxg9d7a2YvrXr9my_HnA` at -33.9188576, 151.2289414 shows interlocking blocks beside Physics Lawn, while retained `osm-way-9784674` says `pebblestone`. The model uses photo-fitted interlocking paving and retains the conflicting tag, with a distinct evidence basis and map description. Present-day resurfacing has not been verified; this is not a map correction or proof of loose gravel. K14 Lane uses its concrete tag without claiming additional photographic verification. Block necks, unit scale, aggregate grain, timber strips, joints, colours and bump scales are procedural estimates; no source pixels are copied.
+
+Four unsigned outdoor destinations lie exactly on original route segments and outside occupied buildings: Engineering Road, Science Road / Physics Lawn, K14 Lane and High Street shared path. Five new tests verify source-tag preservation, material decisions, unchanged route role / width / walking offsets, explicit overrides / defaults, map-photo conflict and safe arrivals. All 316 checks pass. Native browser walking and surface appearance checks cover all four new viewpoints: about 94 m total, approximately RL 27.7–32.9 m, including Engineering Road / K14 / High Street out-and-back checks and the Science Road approach. No warning or error entries were captured. Five linked evidence records bring the library to 399; explicit building profile coverage remains 90 of 98. Campus visual fidelity remains ongoing.
+
 ## University Mall ground layout, stone paving and silver light columns
 
 A fresh public Kensington Campus 2026 GIS query identifies KensCourtayrds layer 7 object 8 as University Mall. Its broad WGS84 polygon runs much of the lower / central Mall and includes lawn verges, so it is not interpreted as uniformly paved. Separate public KensingtonGardens / Lawn Areas queries returned 101 / 36 features in the envelope. Their overlapping portions supply seventeen green regions inside the bounded Mall reconstruction. The raw returned rings, the court’s object ID / name / null location and query context are retained in `sources/mall-gis-evidence.json`; no personal or editing fields were requested. This public plan geometry supplements original OSM centrelines rather than silently altering them. Small ground connections outside the court use the original Mall path ribbons and are inferred paving extent, not additional GIS measurements.
@@ -493,6 +505,7 @@ Explicit appearance profiles now cover 90 of 98 original campus footprints. The 
 
 ## Reproduction
 
+- node scripts/audit-path-materials.mjs
 - node scripts/make-mall-landscape.mjs
 - node scripts/make-tree-inventory.mjs
 - node scripts/make-southern-drive-parts.mjs
