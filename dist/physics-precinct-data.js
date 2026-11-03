@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=dfa1c50ac01f';
-import { buildingBase, terrainHeight } from './terrain.js?v=dfa1c50ac01f';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=5c7d3bba5015';
+import { buildingBase, terrainHeight } from './terrain.js?v=5c7d3bba5015';
 export const NEWTON_ID='osm-way-45489051',KEITH_ID='osm-way-45489639',PHYSICS_ID='osm-way-45489666';
 const frameFor=b=>orientedFrame(b.points,{x:-.16,z:1});
 const heading=(a,c)=>Math.atan2(c.x-a.x,a.z-c.z);
@@ -14,7 +14,7 @@ export function newtonGeometry(b){
 export function keithGeometry(b){
   const frame=frameFor(b),base=buildingBase(b.points),centre=framePoint(frame,0,4),arcIndices=[0,3,4,5,6,7,8,9,10];
   const lower=b.points.map((p,i)=>{if(!arcIndices.includes(i))return {...p};const dx=centre.x-p.x,dz=centre.z-p.z,len=Math.hypot(dx,dz);return {x:p.x+dx/len*1.3,z:p.z+dz/len*1.3};});
-  const overhang=Math.max(3.8,...arcIndices.map(i=>terrainHeight(b.points[i].x,b.points[i].z)+2.5-base));
+  const overhang=Math.max(4.8,...arcIndices.map(i=>terrainHeight(b.points[i].x,b.points[i].z)+2.5-base));
   const arrival=framePoint(frame,-16,-15),target=framePoint(frame,0,-5);
   return {frame,base,lower,arcIndices,overhang,arrival,target,heading:heading(arrival,target),reconstructed:true};
 }

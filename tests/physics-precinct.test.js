@@ -12,9 +12,10 @@ const circle=(p,r)=>[Array.from({length:48},(_,i)=>[p.x+Math.cos(i*Math.PI/24)*r
 const newton=CAMPUS.buildings.find(b=>b.id===NEWTON_ID),keith=CAMPUS.buildings.find(b=>b.id===KEITH_ID),physics=CAMPUS.buildings.find(b=>b.id===PHYSICS_ID);
 
 test('physics precinct retains mapped outlines, heights and level evidence independently from photographed rows',()=>{
-  for(const [b,height,levels] of [[newton,16,5],[keith,8,1],[physics,8,1]]){
+  for(const [b,height,levels] of [[newton,16,5],[physics,8,1]]){
     const raw=SOURCE.buildings.find(s=>s.id===b.id);assert.deepEqual(b.points,raw.points);assert.deepEqual(b.tags,raw.tags);assert.equal(b.height,height);assert.equal(b.levels,levels);assert.equal(b.heightSource,'mapped');
   }
+  assert.deepEqual(keith.points,SOURCE.buildings.find(b=>b.id===KEITH_ID).points);assert.equal(keith.mappedHeight,8);assert.equal(keith.height,11.18);assert.equal(keith.heightSource,'reported');assert.equal(keith.levels,1);assert.equal(keith.reportedLevels,3);
   assert.equal(newtonGeometry(newton).rows,4);
   const p=physicsGeometry(physics);assert.ok(p.bodyRoof<p.plant.top);assert.equal(p.plant.top,physics.height);assert.ok(area(clipping.difference(polygon(p.plant),polygon(physics)))<1e-6,'roof enclosure stays within the source outline');
 });
