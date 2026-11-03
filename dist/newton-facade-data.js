@@ -1,6 +1,6 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
-import {NEWTON_ID,newtonGeometry} from './physics-precinct-data.js?v=5c6b85277d47';
-import {framePoint,frameRectangle} from './geometry.js?v=5c6b85277d47';
+import {CAMPUS as RAW} from './campus-data.js?v=e9883400adb4';
+import {NEWTON_ID,newtonGeometry} from './physics-precinct-data.js?v=e9883400adb4';
+import {framePoint,frameRectangle} from './geometry.js?v=e9883400adb4';
 export const NEWTON_FACADE_PHOTO='https://www.learningenvironments.unsw.edu.au/physical-spaces/k-j12';
 export const NEWTON_FACADE={roof:14.65,coping:14.82,maximum:16,bayPitch:4.2,firstBay:-28.6,bays:15,recess:.18,brickTileWidth:4.6,brickTileHeight:1.52,reconstructed:true};
 export const NEWTON_WINDOW_ROWS=[{bottom:.65,top:3.6,panelTop:4.75},{bottom:5.0,top:7.0,panelTop:8.1},{bottom:8.7,top:10.7,panelTop:11.8},{bottom:12.4,top:14.25,panelTop:14.4}];

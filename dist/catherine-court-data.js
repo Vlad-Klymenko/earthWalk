@@ -1,5 +1,5 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=5c6b85277d47';
+import {CAMPUS as RAW} from './campus-data.js?v=e9883400adb4';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=e9883400adb4';
 export const CATHERINE_SOURCE_ID='osm-way-45559629';
 export const CATHERINE_SOURCE=RAW.plazas.find(p=>p.id===CATHERINE_SOURCE_ID);
 export const CATHERINE_FRAME=orientedFrame(CATHERINE_SOURCE.points,{x:-.16,z:1});

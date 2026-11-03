@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=5c6b85277d47';
-import { buildingBase, terrainHeight } from './terrain.js?v=5c6b85277d47';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=e9883400adb4';
+import { buildingBase, terrainHeight } from './terrain.js?v=e9883400adb4';
 
 // Photo-led details in metres. These are reconstruction dimensions, not a
 // surveyed replacement for the retained parent outlines or height tags.

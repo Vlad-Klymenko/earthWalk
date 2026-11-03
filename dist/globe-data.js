@@ -1,5 +1,5 @@
-import {CAMPUS} from './campus-data.js?v=5c6b85277d47';
-import {campusTerrainHeight} from './old-main-entry-landscape.js?v=5c6b85277d47';
+import {CAMPUS} from './campus-data.js?v=e9883400adb4';
+import {campusTerrainHeight} from './old-main-entry-landscape.js?v=e9883400adb4';
 export const GLOBE_SOURCE='https://www.celebratingwomen.unsw.edu.au/profile/brownyn-oliver-globe';
 export const GLOBE_GALLERY='https://www.roslynoxley9.com.au/exhibition/globe/pghxp';
 export const GLOBE_LAWN_SOURCE='https://www.student.unsw.edu.au/events/2026/04/welcome-country-ceremony-o-week-term-2-2026';

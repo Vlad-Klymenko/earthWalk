@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=5c6b85277d47';
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=5c6b85277d47';
-import { buildingBase } from './terrain.js?v=5c6b85277d47';
+import { CAMPUS as SOURCE } from './campus-data.js?v=e9883400adb4';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=e9883400adb4';
+import { buildingBase } from './terrain.js?v=e9883400adb4';
 export const RED_CENTRE_IDS=['red-centre-west','red-centre-east'];
 export const LAWRENCE_RENAME={url:'https://www.unsw.edu.au/arts-design-architecture/our-schools/built-environment/about-us/facilities-services',title:'UNSW Built Environment · April 2023 rename to Anita B. Lawrence Centre'};
 export const RED_CENTRE_ARCHITECT={url:'https://fjcstudio.com/projects/red-centre/',title:'FJC Studio · Red Centre exterior photographs and massing sketch'};

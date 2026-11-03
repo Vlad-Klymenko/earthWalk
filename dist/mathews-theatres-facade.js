@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
-import {mathewsTheatreGeometry} from './bioscience-data.js?v=5c6b85277d47';
-import {buildingBase,terrainHeight} from './terrain.js?v=5c6b85277d47';
-import {framePoint} from './geometry.js?v=5c6b85277d47';
+import {CAMPUS as RAW} from './campus-data.js?v=e9883400adb4';
+import {mathewsTheatreGeometry} from './bioscience-data.js?v=e9883400adb4';
+import {buildingBase,terrainHeight} from './terrain.js?v=e9883400adb4';
+import {framePoint} from './geometry.js?v=e9883400adb4';
 
 export const MATHEWS_THEATRES_ID='mathews-theatres';
 export const MATHEWS_THEATRES_PHOTO='https://www.learningenvironments.unsw.edu.au/physical-spaces/k-d23';

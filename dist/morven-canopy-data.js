@@ -1,7 +1,7 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
-import {MORVEN_ID,morvenGeometry} from './morven-brown-data.js?v=5c6b85277d47';
-import {framePoint,frameRectangle} from './geometry.js?v=5c6b85277d47';
-import {terrainHeight} from './terrain.js?v=5c6b85277d47';
+import {CAMPUS as RAW} from './campus-data.js?v=e9883400adb4';
+import {MORVEN_ID,morvenGeometry} from './morven-brown-data.js?v=e9883400adb4';
+import {framePoint,frameRectangle} from './geometry.js?v=e9883400adb4';
+import {terrainHeight} from './terrain.js?v=e9883400adb4';
 const b=RAW.buildings.find(b=>b.id===MORVEN_ID),g=morvenGeometry(b);
 export const MORVEN_CANOPY_FRAME=g.frame;
 export const morvenCanopyLocal=p=>g.local(p);

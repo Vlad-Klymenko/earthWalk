@@ -1,7 +1,7 @@
-import { CAMPUS } from './campus-data.js?v=5c6b85277d47';
-import { terrainHeight } from './terrain.js?v=5c6b85277d47';
-import { goldsteinGeometry } from './heritage-data.js?v=5c6b85277d47';
-import { framePoint,frameRectangle } from './geometry.js?v=5c6b85277d47';
+import { CAMPUS } from './campus-data.js?v=e9883400adb4';
+import { terrainHeight } from './terrain.js?v=e9883400adb4';
+import { goldsteinGeometry } from './heritage-data.js?v=e9883400adb4';
+import { framePoint,frameRectangle } from './geometry.js?v=e9883400adb4';
 export const GOLDSTEIN_ID='osm-way-71500653';
 export const GOLDSTEIN_COURT_ARCHITECT={title:'TKD Architects · Goldstein Hall restoration',url:'https://www.tkda.com.au/projects/university-of-nsw-goldstein-hall/'};
 export const GOLDSTEIN_ART={title:'Untitled (six figure group)',artist:'Bert Flugelman',year:1964,material:'cast bronze',height:2.4,width:4.32,depth:.59,heightSource:'reported',source:'https://artcollection.unsw.edu.au/collection/items/201021215140_052164.html',osmId:5332274053,lat:-33.9163551,lon:151.2313472,mappedStartDate:'1965'};

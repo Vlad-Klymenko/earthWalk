@@ -1,0 +1,74 @@
+{
+  "inspected": "2026-11-04",
+  "identityCorrection": {
+    "previousAttribution": "The adjacent tall white-finned volume in the dated Newton photograph was incorrectly called Hilmer in the prior reference note.",
+    "correctedAttribution": "Anita B. Lawrence Centre / former Red Centre west end, H13, directly adjoining Newton's north boundary.",
+    "evidence": "The FJC corner photograph shows the same screened western volume against Newton's brick wing and connected to the long terracotta Mall facade. In retained map data the south-facing screen edge shares both endpoints 76.135,11.587 and 64.324,9.685 with Newton's north end. Hilmer E10 is spatially separate farther north, with no intersecting source footprint. Source references and Newton evidence notes are corrected; Hilmer geometry is unchanged.",
+    "method": "Architect photographs plus retained source polygons, not visual similarity alone."
+  },
+  "photographs": [
+    {
+      "url": "https://fjcstudio.com/projects/red-centre/",
+      "photo": "https://fjcstudio.com/wp-content/uploads/2016/08/Red-Centre-b.jpg",
+      "observed": "Entire displayed architect corner image inspected natively. Pale deep vertical blades, dark horizontal carrier divisions, fine glazed return and pale structural edges sit beside the Newton brick wing and the long terracotta facade. Capture date unverified; URL path year is not a capture date. Profile, pitch, offsets and band levels are fitted estimates. No photo pixels copied."
+    },
+    {
+      "url": "https://fjcstudio.com/projects/red-centre/",
+      "photo": "https://fjcstudio.com/wp-content/uploads/2016/08/Red-Centre.jpg",
+      "observed": "Entire elevated architect photograph inspected natively. Three broad screen fields, deep projecting vertical blades, dark carrier bands, fine horizontal glazing behind the corner, a raised glazed lower volume and nearby roof services. This clearer view corrected an initial four-field interpretation of the oblique corner photograph. Exact fabrication schedule and current condition unverified."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:UNSW_Newton_Building_and_ARC_Centre_of_Excellence_for_Quantum_Computation_and_Communication_Technology_2025-01-05.jpg",
+      "observed": "Complete 960 × 720 Commons preview inspected again natively. Metadata credits FlyingKoala, 5 January 2025, CC BY 4.0. Three pale screened fields and dark carrier frames appear directly beside Newton. A dark service return is also visible; its exact relation to the older architect's glazed-return view is not fully reconciled. The full original previously returned 429 and is not claimed as inspected. Image pixels are not redistributed."
+    }
+  ],
+  "streetView": {
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=zkOAVkqV5WwVBPDAS1wYYA&heading=350&pitch=20&fov=85",
+    "capture": "July 2015",
+    "observed": "Native official panorama inspected and panned toward the Newton / Lawrence end. Branches and glare largely obscure the screen. Retained as historical location context only; it does not establish blade geometry or counts. No dimensions inferred and no pixels copied."
+  },
+  "preserved": {
+    "building": "red-centre-west",
+    "name": "Anita B. Lawrence Centre · West Wing",
+    "mappedMaximum": 40,
+    "mappedLevelTag": 9,
+    "occupiedRoofAboveModelBase": 34.5,
+    "terracottaScreenAboveModelBase": 30,
+    "sourcePerimeter": "Original ring and map tags unchanged. New screen follows the two existing south / west end faces; no replacement footprint is asserted.",
+    "groundRoutes": "Original covered-link geometry, source path centrelines and full widths, public tree positions and terrain data remain unchanged. New screen components project outside the source wall only above the walking ground."
+  },
+  "reconstruction": {
+    "screenFields": [
+      [
+        6.35,
+        15.45
+      ],
+      [
+        15.7,
+        24.75
+      ],
+      [
+        25.0,
+        34.35
+      ]
+    ],
+    "unit": "metres above the existing DEM-derived building foundation; not survey RLs",
+    "nominalBladePitch": 0.58,
+    "rootOffset": 0.2,
+    "normalSectionDepth": 0.68,
+    "maximumProjection": 0.88,
+    "profile": "Original shallow folded five-vertex section, not a copied fabrication profile. Pale silver appearance / material response are illustrative; exact composition is not established.",
+    "frames": "Separate dark horizontal carriers, narrow edge posts and simplified clips. Upper glazing behind the screen and the western part of the north return use finer divisions.",
+    "limits": "Band levels, support / clip counts, blade profile / pitch, material hues, exact lower cladding and present-day return / service core remain fitted or unresolved. Older glazed-return appearance is retained as historical reference, not asserted as a current as-built model. The dark 2025 service return needs further evidence. No change to selected height evidence is made.",
+    "sectionTangentShear": -0.15,
+    "viewpoint": "Fitted local-frame arrival u=-97.5, v=-22.5 near the public 2025 photograph’s reported position; not a calibrated camera reconstruction."
+  },
+  "verification": {
+    "nativeBrowser": "Codex in-app browser, localhost port 4174",
+    "appearance": "Three pale blade fields, dark carriers, folded section / edge depth and finer glazed return inspected. Initial edge-on blade angle adjusted against the broad pale screen in the references. New viewpoint moved nearer the public photo position so the full height fits in view.",
+    "walking": "From the new screen viewpoint, walked to 13 m total / 29.0 m elevation, then 28 m total / 29.1 m at the retained closed building boundary. Another second forward input left those values unchanged. Retreated to 39 m total / 29.0 m.",
+    "logs": "No browser warnings or errors.",
+    "tests": "Six dedicated screen / source-identity checks and existing Lawrence / Newton checks passed. Full campus suite: 509 tests.",
+    "identity": "Earlier Hilmer attribution corrected in both the public reference library and Newton evidence record; main Hilmer geometry is unchanged."
+  }
+}

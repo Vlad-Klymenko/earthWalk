@@ -1,5 +1,5 @@
-import {CAMPUS as RAW} from './campus-data.js?v=5c6b85277d47';
-import {buildingBase,terrainHeight} from './terrain.js?v=5c6b85277d47';
+import {CAMPUS as RAW} from './campus-data.js?v=e9883400adb4';
+import {buildingBase,terrainHeight} from './terrain.js?v=e9883400adb4';
 export const SCIENTIA_ID='osm-way-1178531037';
 export const SCIENTIA_NORTH_ID='osm-way-1116164557';
 export const SCIENTIA_SOURCE='https://fjcstudio.com/projects/john-niland-scientia-building/';
