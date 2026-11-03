@@ -1,5 +1,5 @@
-import {campusTerrainHeight as existingTerrain} from './electrical-landscape.js?v=159c90d42d57';
-import {spiralGroundHeight} from './spiral-data.js?v=159c90d42d57';
+import {campusTerrainHeight as existingTerrain} from './electrical-landscape.js?v=5683e7ad2066';
+import {spiralGroundHeight} from './spiral-data.js?v=5683e7ad2066';
 
 // The source NSW grid is unchanged. Only the explicitly bounded Grad Shop
 // lower passage / approach is reconstructed beneath the coarse terrain.

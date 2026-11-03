@@ -1,7 +1,7 @@
-import {CAMPUS} from './campus-data.js?v=159c90d42d57';
-import {terrainHeight,buildingBase} from './terrain.js?v=159c90d42d57';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=159c90d42d57';
-import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=159c90d42d57';
+import {CAMPUS} from './campus-data.js?v=5683e7ad2066';
+import {terrainHeight,buildingBase} from './terrain.js?v=5683e7ad2066';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=5683e7ad2066';
+import {UNSW_GIS_LABEL_EVIDENCE} from './unsw-gis-evidence.js?v=5683e7ad2066';
 export const NEW_COLLEGE_ID='osm-way-45560776';
 export const NEW_COLLEGE_GIS=UNSW_GIS_LABEL_EVIDENCE.find(p=>p.code==='L6');
 export const NEW_COLLEGE_SOURCE={url:'https://newcollege.unsw.edu.au/live-at-unsw/new-college',tour:'https://newcollege.unsw.edu.au/images/virtualtour/index.html',courtyardPhoto:'https://newcollege.unsw.edu.au/images/newcollege/2_Live_at_UNSW/Galleries/New_College/NC_Facilities/New%20College%20Courtyard.jpg',roomLevels:[1,2,3,4],bridgeLevel:3};

@@ -1,0 +1,47 @@
+{
+  "inspected": "2026-11-04",
+  "sources": [
+    {
+      "id": "sirf-university-daylight-corner",
+      "url": "https://www.unsw.edu.au/news/2024/09/stuart-wenham-1957-2017-a-driving-force-behind-solar-power",
+      "photo": "https://www.unsw.edu.au/content/dam/images/engineering/general/websites/2024-06-eng-75-years/2024-08-solar-industry-research-facility.jpg",
+      "articleDate": "2024-09-02",
+      "captureDate": "Unknown",
+      "observed": "Full university exterior photograph inspected natively. Larger triangular opening wraps a recessed glazed corner, with a smaller separate opening farther along the long frontage. Solid faceted metal separates the openings. Vertical cladding seams, dark folded reveals, narrow glazing frames, pale plinth, paved street apron and yellow structure behind the glass. Photograph positions / perspective are not calibrated measurements."
+    },
+    {
+      "id": "sirf-dgfi-dusk-corner",
+      "url": "https://www.dgfi.unsw.edu.au/about/facilities",
+      "photo": "https://www.dgfi.unsw.edu.au/sites/default/files/styles/carousel_tablet/public/images/SIRF2.jpg?h=e844b460&itok=IyW10qQA",
+      "captureDate": "Unknown",
+      "observed": "Entire primary university dusk image inspected. Recessed wraparound corner glazing, broad continuous soffit with fine joints and a narrower perforated metal strip. Yellow columns behind the glazing. The old TTW project-image route returned 404; this working university photograph supplied the visual comparison."
+    },
+    {
+      "id": "sirf-streetview",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=-TC9UCgCuGSTseqqjeCIXg&heading=180&pitch=5&fov=90",
+      "position": {"lat": -33.917921, "lon": 151.2341693},
+      "visibleCaptureDate": "July 2015",
+      "observed": "Official panorama inspected natively facing the northern frontage. Triangular dark perforated reveal, diagonal metal crease pattern, vertical panel joints, glazing and planted street beds. Panorama geotag and warped perspective are not used as a dimensional survey."
+    },
+    {
+      "id": "sirf-university",
+      "url": "https://www.unsw.edu.au/newsroom/news/2017/12/solar-research-boosted-with--29-2-million",
+      "observed": "Primary university account identifies 2010–2011 construction and Woods Bagot's multi-crystalline silicon-inspired exterior. Retained as architectural context."
+    }
+  ],
+  "preserved": "Raw four-corner roof outline, flat roof, mapped 8 m maximum, two-level tag, original source tags, public DEM, surrounding streets / paths and inventory trees. No source photographs are redistributed as textures.",
+  "reconstruction": {
+    "openings": "Two unequal northern openings replace a repeated full-width triangle schedule. The larger opening and eastern opening meet at one recessed glass corner. All aperture fractions, panel counts and detailed dimensions are estimates fitted to perspective photos.",
+    "recessDepths": [1,3],
+    "shell": "27 actual triangulated metal facets with interior crease vertices offset by up to 0.16 m. Every aperture / roof / source-corner boundary stays fixed. Fine 0.7 m vertical seams are interpolated onto the folded surfaces.",
+    "reveals": "A narrow perforated outer band uses a generated cut-out pattern. A solid darker soffit extends behind it. No false vertical partition divides the shared corner opening.",
+    "glass": "Joined asymmetric glazing triangles, clipped vertical / horizontal mullions, a local scene reflection probe and sparse yellow structure. Backing / columns are exterior visual cues; no detailed laboratory interior is claimed.",
+    "walking": "The occupied lower body is clipped out of the recessed apron. Broad hood surfaces have conservative 0.2 m collision slices. A thin roof collider covers the source upper roof. Apron rendering and walking both follow the unchanged public DEM plus 0.22 m.",
+    "destination": "SIRF · folded corner and triangular glazing, G23"
+  },
+  "validation": {
+    "automated": "Final full suite passed across 87 test files. Seven dedicated shell tests cover source / area preservation, shared corner joins, asymmetric glazing grids, folded shell / seam geometry, ceiling slices, destination clearance and the clear-to-blocked approach. Syntax, deterministic site preparation and whitespace checks passed.",
+    "native": "Local first-person arrival, close-up perforations / glass / soffit and approach beneath the roof inspected. Walked 33 m total including approach and retreat, with displayed ground elevation rising from 55.3 m to 56.3 m then returning to 55.8 m. Browser warning / error log empty."
+  },
+  "limitations": "Photo capture dates other than Street View are unverified. Aperture fractions, recesses, crease geometry, panel schedule, soffit subdivision, colours, columns and mullions are unmeasured reconstructions. Less-visible service elevations remain approximate. Public height / level tags do not establish exact internal floor heights. No interior access is provided."
+}

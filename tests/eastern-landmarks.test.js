@@ -20,14 +20,18 @@ test('eastern landmarks keep source outlines, heights and levels independently f
   assert.equal(area(clipping.intersection(circle(g.arrival,.5),polygon(agsm))),0,'curved courtyard remains an open recess');
 });
 
-test('SIRF portal geometry stays within the mapped vertical envelope and joins continuous bays',()=>{
-  const g=sirfGeometry(sirf);
+test('SIRF asymmetric openings keep a solid middle panel and join at the recessed corner',()=>{
+  const g=sirfGeometry(sirf),north=g.facades.find(f=>f.index===3),east=g.facades.find(f=>f.index===0);
+  assert.equal(north.portals.length,2);assert.equal(east.portals.length,1);
+  assert.ok(north.portals[0].end<north.portals[1].start,'solid panel separates the smaller and corner openings');
+  assert.equal(north.portals[1].peak,1);assert.equal(east.portals[0].peak,0);
+  assert.equal(north.portals[1].recess,east.portals[0].recess);
   for(const face of g.facades){
     assert.ok(face.len>20);assert.ok(Math.abs(Math.hypot(face.normal.x,face.normal.z)-1)<1e-9);
-    assert.equal(face.portals[0].start,0);assert.equal(face.portals.at(-1).end,1);
-    for(const [i,p] of face.portals.entries()){
-      assert.ok(p.start<p.peak&&p.peak<p.end);assert.ok(p.bottom>=0&&p.glassPeak>p.bottom&&p.outerPeak>p.glassPeak&&p.outerPeak<=sirf.height);assert.ok(p.projection>0&&p.projection<1.5);assert.equal(p.reconstructed,true);
-      if(i)assert.equal(face.portals[i-1].end,p.start);
+    for(const p of face.portals){
+      assert.ok(p.start>=0&&p.start<p.end&&p.end<=1);assert.ok(p.peak>=p.start&&p.peak<=p.end);
+      assert.ok(p.bottom>=0&&p.glassPeak>p.bottom&&p.outerPeak>p.glassPeak&&p.outerPeak<=sirf.height);
+      assert.ok(p.recess>0&&p.recess<=3);assert.equal(p.reconstructed,true);
     }
   }
   for(const b of CAMPUS.buildings)assert.ok(area(clipping.intersection(polygon({points:g.paving}),polygon(b)))<.5,`northern paving clears ${b.id}`);
