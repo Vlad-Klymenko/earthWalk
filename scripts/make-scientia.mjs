@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import clip from 'polygon-clipping';
+import {CAMPUS as RAW} from '../dist/campus-data.js';
+import {SCIENTIA_NORTH_ID,scientiaRectangle} from '../dist/scientia-data.js';
+const source=JSON.parse(fs.readFileSync(new URL('../sources/scientia-evidence.json',import.meta.url))),m=6371008.8*Math.PI/180,sx=m*Math.cos(RAW.center.lat*Math.PI/180);
+const points=source.buildingLayer.response.features[0].geometry.rings[0].slice(0,-1).map(([lon,lat])=>({x:(lon-RAW.center.lon)*sx,z:(RAW.center.lat-lat)*m})),poly=p=>[p.points,...p.holes||[]].map(r=>r.map(p=>[p.x,p.z]));
+const ring=poly({points}),north=poly(RAW.buildings.find(b=>b.id===SCIENTIA_NORTH_ID));
+const ribbons=RAW.paths.flatMap(p=>p.points.slice(1).map((b,i)=>{const a=p.points[i],l=Math.hypot(b.x-a.x,b.z-a.z),w=(p.width||2.4)/2+.3,n={x:(b.z-a.z)/l*w,z:-(b.x-a.x)/l*w};return poly({points:[{x:a.x+n.x,z:a.z+n.z},{x:b.x+n.x,z:b.z+n.z},{x:b.x-n.x,z:b.z-n.z},{x:a.x-n.x,z:a.z-n.z}]});}));
+const northFit=clip.difference(clip.intersection(ring,poly({points:scientiaRectangle(-20,60,-60,-.35)})),...ribbons,...RAW.buildings.filter(b=>!b.walkableUnder&&b.id!==SCIENTIA_NORTH_ID).map(poly));
+const south=clip.difference(clip.intersection(ring,poly({points:scientiaRectangle(-20,60,10,60)})),...ribbons,...RAW.buildings.filter(b=>!b.walkableUnder).map(poly));
+const snap=n=>Math.round(n*1e6)/1e6,parts=ps=>ps.map(p=>({points:p[0].slice(0,-1).map(([x,z])=>({x:snap(x),z:snap(z)})),holes:p.slice(1).map(r=>r.slice(0,-1).map(([x,z])=>({x:snap(x),z:snap(z)})))}));
+fs.writeFileSync(new URL('../dist/scientia-parts.js',import.meta.url),'// Derived public GIS south hall, clipped around original rooms / mapped route widths.\nexport const SCIENTIA_GIS_OUTLINE = '+JSON.stringify(points)+';\nexport const SCIENTIA_NORTH = '+JSON.stringify(parts(northFit))+';\nexport const SCIENTIA_SOUTH = '+JSON.stringify(parts(south))+';\n');console.log({southParts:south.length});

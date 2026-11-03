@@ -1,0 +1,194 @@
+{
+  "retrieved": "2026-11-03",
+  "buildingLayer": {
+    "url": "https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18",
+    "layerName": "Building Labels Feb 2023",
+    "query": {
+      "f": "json",
+      "where": "egdb_ES_14='G19'",
+      "outFields": "OBJECTID,egdb_ES_14,egdb_ES_15,egdb_ES_18,egdb_ES_26",
+      "returnGeometry": "true",
+      "outSR": "4326"
+    },
+    "response": {
+      "displayFieldName": "egdb_ESRIR",
+      "fieldAliases": {
+        "OBJECTID": "OBJECTID",
+        "egdb_ES_14": "Building Code",
+        "egdb_ES_15": "Building Name",
+        "egdb_ES_18": "No. of Floors",
+        "egdb_ES_26": "Building Height"
+      },
+      "geometryType": "esriGeometryPolygon",
+      "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+      },
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "type": "esriFieldTypeOID",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "egdb_ES_14",
+          "type": "esriFieldTypeString",
+          "alias": "Building Code",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_15",
+          "type": "esriFieldTypeString",
+          "alias": "Building Name",
+          "length": 254
+        },
+        {
+          "name": "egdb_ES_18",
+          "type": "esriFieldTypeInteger",
+          "alias": "No. of Floors"
+        },
+        {
+          "name": "egdb_ES_26",
+          "type": "esriFieldTypeDouble",
+          "alias": "Building Height"
+        }
+      ],
+      "features": [
+        {
+          "attributes": {
+            "OBJECTID": 33,
+            "egdb_ES_14": "G19",
+            "egdb_ES_15": "John Niland Scientia",
+            "egdb_ES_18": 5,
+            "egdb_ES_26": 19.32
+          },
+          "geometry": {
+            "rings": [
+              [
+                [
+                  151.23215165045704,
+                  -33.9183239499003
+                ],
+                [
+                  151.2322539892291,
+                  -33.91779925487075
+                ],
+                [
+                  151.23229214337414,
+                  -33.9178042412327
+                ],
+                [
+                  151.23231961924543,
+                  -33.91766320288908
+                ],
+                [
+                  151.23250597564945,
+                  -33.917688436646365
+                ],
+                [
+                  151.2325030695995,
+                  -33.91770342556919
+                ],
+                [
+                  151.23254885672955,
+                  -33.91770962554213
+                ],
+                [
+                  151.232546943318,
+                  -33.91771931723869
+                ],
+                [
+                  151.23256232517062,
+                  -33.91772143582958
+                ],
+                [
+                  151.23253055355562,
+                  -33.91788126181453
+                ],
+                [
+                  151.23254524101048,
+                  -33.91788307550973
+                ],
+                [
+                  151.23253606921148,
+                  -33.91792994158922
+                ],
+                [
+                  151.23255926011888,
+                  -33.91793311126763
+                ],
+                [
+                  151.23254889895034,
+                  -33.917987423673885
+                ],
+                [
+                  151.23250515997918,
+                  -33.918008409731456
+                ],
+                [
+                  151.23249497128725,
+                  -33.918048205103
+                ],
+                [
+                  151.23245997831364,
+                  -33.91804353482818
+                ],
+                [
+                  151.23244603825708,
+                  -33.91811421883249
+                ],
+                [
+                  151.2325213062981,
+                  -33.91812493622804
+                ],
+                [
+                  151.23247659894304,
+                  -33.918363020545
+                ],
+                [
+                  151.23215165045704,
+                  -33.9183239499003
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "interpretation": "Public GIS object33 supplies the G19 footprint, 5-floor field and building-height field19.32m. No absolute roof RL, datum, point cloud or component-height breakdown is provided. The 19.32m field constrains the reconstructed canopy maximum above its retained OSM/DEM foundation; this derived roof elevation is not a surveyed RL. The source footprint includes a central covered passage; occupied hall partition and south hall are fitted with original routes kept clear. Original OSM north-wing / canopy outlines and raw tags are retained independently.",
+  "architect": {
+    "url": "https://fjcstudio.com/projects/john-niland-scientia-building/",
+    "observed": "Architect describes sandstone podium, aluminium-clad raised boxes with continuous east/west louvres, central open passage, laminated jarrah tree supports, steel and glass."
+  },
+  "photographs": [
+    {
+      "url": "https://fjcstudio.com/wp-content/uploads/2016/12/SC11-scaled.jpg",
+      "observed": "Displayed main front photograph inspected: butterfly canopy, branching timber, two screened halls and sandstone podium."
+    },
+    {
+      "url": "https://fjcstudio.com/wp-content/uploads/2016/12/SC3-scaled.jpg",
+      "observed": "Full 1280px source photo inspected: three branching tree supports in depth, steep glass wings, metal purlins, podium bands, open central slot, bridges and stairs."
+    },
+    {
+      "url": "https://fjcstudio.com/wp-content/uploads/2016/12/S3-scaled.jpg",
+      "observed": "Full source photo inspected: southern long screened box on stone podium, slim lower columns and dark glazed opening, three shallow steps."
+    },
+    {
+      "url": "https://fjcstudio.com/wp-content/uploads/2016/12/Scientia_Sketch.jpg",
+      "observed": "Full architect sketch inspected: two halls either side of open central canopy, stepped approach and terraces."
+    }
+  ],
+  "streetView": {
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=VlAtJDIAzfWvAyoFTlyx9w&heading=80&pitch=18",
+    "lat": -33.9179748,
+    "lon": 151.2319712,
+    "capture": "July 2015",
+    "observed": "Verified native panorama inspected facing Scientia: two banded sandstone walls with horizontal louvres, open central stair slot, branching jarrah canopy, stair landing, central metal handrail and sloped planted edges. Historical condition, no measured component dimensions."
+  },
+  "aerial": {
+    "url": "https://www.google.com/maps/@-33.91798,151.23228,170m/data=!3m1!1e3",
+    "observed": "Native aerial inspected: long northern roof with solar panels, narrow central roof slot, detached southern hall roof beside Civil Engineering and surrounding lawn / paths. University GIS supplies the footprint; aerial is context, not a measured height or material survey."
+  },
+  "estimates": "Canopy valley and support levels, component cladding divisions, southern hall partition, small projection depths and colours remain photo-led estimates. No source pixels redistributed; occupied interiors are closed. Central passage paving follows terrain below unchanged source stair treads. Two overhead links and the northern roof solar-panel layout are fitted from gallery/aerial context; exact counts, arrangement, bridge levels and present operation are unverified."
+}
