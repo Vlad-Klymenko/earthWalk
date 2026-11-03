@@ -1,0 +1,32 @@
+import {CAMPUS as RAW} from './campus-data.js?v=7fad9d71f5fd';
+import {MORVEN_ID,morvenGeometry} from './morven-brown-data.js?v=7fad9d71f5fd';
+import {framePoint,frameRectangle} from './geometry.js?v=7fad9d71f5fd';
+import {terrainHeight} from './terrain.js?v=7fad9d71f5fd';
+const b=RAW.buildings.find(b=>b.id===MORVEN_ID),g=morvenGeometry(b);
+export const MORVEN_CANOPY_FRAME=g.frame;
+export const morvenCanopyLocal=p=>g.local(p);
+export const morvenCanopyWorld=(u,v)=>framePoint(g.frame,u,v);
+const wall=b.holes[0].map(g.local).filter(p=>p.v>16).sort((a,b)=>a.u-b.u),a=wall[0],c=wall.at(-1);
+export const morvenCanopyWallV=u=>a.v+(c.v-a.v)*(u-a.u)/(c.u-a.u);
+export const MORVEN_CANOPY_SOURCE='https://www.google.com/maps/@?api=1&map_action=pano&pano=_epevoKdWdChS7PSgUMlBw&heading=145&pitch=18';
+export const MORVEN_CANOPY={u:7,rx:8.1,rz:7.1,segments:96,thickness:.12,fasciaDepth:.22,reconstructed:true,source:MORVEN_CANOPY_SOURCE,note:'Curved roof, dark radial steelwork, outer posts and a smaller inner support follow July 2015 Street View. Plan radius, section, support count and RLs are photo-fitted estimates. Historic tenant branding and menu artwork are not represented as current.'};
+export function morvenCanopyPoint(angle,t=1){const u=MORVEN_CANOPY.u+Math.cos(angle)*MORVEN_CANOPY.rx*t;return morvenCanopyWorld(u,morvenCanopyWallV(u)+Math.sin(angle)*MORVEN_CANOPY.rz*t);}
+const centre=morvenCanopyPoint(Math.PI,0),edge=Array.from({length:97},(_,i)=>morvenCanopyPoint(Math.PI+i/96*Math.PI));
+export const MORVEN_CANOPY_WALL_RL=Math.max(terrainHeight(centre.x,centre.z)+.22+3.55,...edge.map(p=>terrainHeight(p.x,p.z)+.22+3.05));
+export const morvenCanopyUnderRL=t=>MORVEN_CANOPY_WALL_RL-.22*t;
+export const MORVEN_CANOPY_RING=[centre,...edge];
+export const MORVEN_CANOPY_POSTS=[{angle:Math.PI+.52,t:1,radius:.075},{angle:Math.PI*2-.52,t:1,radius:.075},{angle:Math.PI*1.5,t:.025,radius:.035}].map((p,i)=>({...p,...morvenCanopyPoint(p.angle,p.t),id:'morven-canopy-post-'+i,topRL:morvenCanopyUnderRL(p.t)-.06,reconstructed:true}));
+export const MORVEN_CANOPY_RIBS=Array.from({length:9},(_,i)=>({a:centre,b:morvenCanopyPoint(Math.PI+i/8*Math.PI),fromRL:morvenCanopyUnderRL(0)-.05,toRL:morvenCanopyUnderRL(1)-.05}));
+export const MORVEN_COUNTER_ANGLES=Array.from({length:17},(_,i)=>Math.PI+.12+i/16*.41);
+export const MORVEN_COUNTER_POINTS=MORVEN_COUNTER_ANGLES.map(a=>morvenCanopyPoint(a,.96));
+export const MORVEN_COUNTER_RL=Math.max(...MORVEN_COUNTER_POINTS.map(p=>terrainHeight(p.x,p.z)))+.22+1.02;
+export const MORVEN_COUNTER_FOOTPRINT=[...MORVEN_COUNTER_ANGLES.map(a=>morvenCanopyPoint(a,.93)),...MORVEN_COUNTER_ANGLES.map(a=>morvenCanopyPoint(a,.99)).reverse()];
+export const MORVEN_CANOPY_STOOLS=[.20,.32,.44].map((a,i)=>{const p=morvenCanopyPoint(Math.PI+a,.86);return {...p,id:'morven-counter-stool-'+i,baseRL:terrainHeight(p.x,p.z)+.22,radius:.18,points:frameRectangle(g.frame,.43,.43,g.local(p).u,g.local(p).v),reconstructed:true};});
+export const MORVEN_FRONTAGE={u0:-1.1,u1:17.25,topRL:MORVEN_CANOPY_WALL_RL-.12,glassTopRL:MORVEN_CANOPY_WALL_RL-.57,reconstructed:true,note:'Plain black-framed glazing and pale fascia are fitted from historical frontage evidence. Interior and tenant use are unverified; original occupied footprint remains closed.'};
+export const MORVEN_FRONTAGE_BAYS=Array.from({length:6},(_,i)=>({u0:MORVEN_FRONTAGE.u0+i*(MORVEN_FRONTAGE.u1-MORVEN_FRONTAGE.u0)/6,u1:MORVEN_FRONTAGE.u0+(i+1)*(MORVEN_FRONTAGE.u1-MORVEN_FRONTAGE.u0)/6}));
+export const morvenFrontagePoint=(u,offset=.075)=>morvenCanopyWorld(u,morvenCanopyWallV(u)-offset);
+const arrival=morvenCanopyWorld(5,11.5),target=morvenFrontagePoint(7);
+export const MORVEN_CANOPY_VIEW={id:'morven-curved-canopy',name:'Morven Brown · curved courtyard canopy',code:'C20',kind:'courtyard',...arrival,heading:Math.atan2(target.x-arrival.x,arrival.z-target.z),pitch:.08,showSign:false,description:'Pale curved roof, built-up steel edge, radial beams, dark posts and plain glazed frontage. Canopy attaches to the mapped courtyard wall. Curved timber counter and stools are historical photo-led details. Component sizes, counts and levels are reconstructed from July 2015 Street View; current tenant use / furnishings are unverified. Closed interiors remain boundaries.'};
+
+const forecourt=morvenCanopyWorld(5,4.5),foreTarget=morvenCanopyWorld(7,14);
+export const MORVEN_CANOPY_FORECOURT_VIEW={...MORVEN_CANOPY_VIEW,id:'morven-canopy-forecourt',name:'Morven Brown · canopy forecourt',...forecourt,heading:Math.atan2(foreTarget.x-forecourt.x,forecourt.z-foreTarget.z),pitch:.12};

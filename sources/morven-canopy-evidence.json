@@ -1,0 +1,43 @@
+{
+  "inspected": "2026-11-03",
+  "sources": [
+    {
+      "id": "morven-canopy-framing-panorama",
+      "name": "Morven Brown · July 2015 curved roof and frontage detail",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=_epevoKdWdChS7PSgUMlBw&heading=145&pitch=18",
+      "notes": "Official Google panorama inspected natively at -33.9166694, 151.2329002, heading 145° / pitch18°, capture July 2015. Pale curved soffit, dark built-up edge, sheet overhang, radial beams, two visible large outer posts, smaller support by the wall, dark glazed bays with broad pale separators, timber counter and stools guide the reconstruction. Exact geometry, support counts and dimensions fitted; no tenant branding, menus or decorative panel artwork copied. Current fitout / furnishings unverified. Canopy now attaches to the exact mapped southern courtyard wall instead of stopping short of it."
+    },
+    {
+      "id": "morven-studyspace-chronology",
+      "name": "Morven Brown · 2023 study-space refurbishment chronology",
+      "url": "https://www.education.unsw.edu.au/news-events/news/we-are-transforming-student-spaces-collaborative-learning",
+      "notes": "University account published19 May2023 describes new C20 ground-floor student-led spaces opened for Term1. NBRS separately describes the study hub adjacent to Library Lawn. These newer accounts do not establish the current appearance of the inner courtyard canopy / counter. July2015 café signage is therefore not represented as current branding; the canopy model labels its structural and furniture details as historical photo-led reconstruction."
+    }
+  ],
+  "geometry": {
+    "attachment": "Southern courtyard wall interpolated directly from original OSM inner ring; no original outline or path coordinates changed",
+    "plan": "Retains previous photo-fitted 8.1 × 7.1 m elliptical radii at local u7; now attached to the wall rather than offset at constant v16",
+    "roof": "96 curved edge segments, 0.12 m sheet/soffit separation, 0.22 m fascia; all section dimensions estimated",
+    "supports": "Two fitted outer 0.075 m radius posts and one 0.035 m inner post. Nine radial/edge ribs, including back edges, are fitted; not a complete surveyed count",
+    "vertical": "Wall underside uses the greater of centre raw DEM +0.22+3.55m or boundary DEM +0.22+3.05m; outer roof falls0.22m. Estimated to preserve clearance over the coarse sloping DEM, not a surveyed roof RL",
+    "frontage": "Six fitted dark glazed bays grouped by two broad pale dividers; plain fascia, door rails and handles. Opaque reflection surface in front of retained closed occupied building, not a walkable interior",
+    "counter": "Short curved timber counter on the left arc with plain wire rails and three round stools. Historical photo-led detail; exact extent / counts / present condition unverified",
+    "preserved": "Original18m/five-level mapped building tags, courtyard footprint, lawn, routes, garden and fountain data, mature-tree inventory and raw DEM retained",
+    "media": "Own procedural shapes and textures; no source pixels, branding or decorative source artwork copied"
+  },
+  "heightConflict": {
+    "snapshot": "sources/unsw-gis-label-height-fields.json",
+    "sha256": "748c9b20eb59a1ff011af8a1b57d994015b7a69d10e095efd6af4a05da8f4327",
+    "record": {
+      "attributes": {
+        "OBJECTID": 43,
+        "egdb_ES_14": "C20",
+        "egdb_ES_15": "Morven Brown",
+        "egdb_ES_18": 7,
+        "egdb_ES_26": 6.24
+      }
+    },
+    "interpretation": "Independent retained GIS reports6.24m/seven floors for C20, conflicting with mapped18m/five levels and photographed building scale. Not adopted as an overall height or canopy level; no new GIS query claimed."
+  },
+  "limitations": "Historical dated panorama is the strongest detailed canopy evidence found. Static courtyard photo dates and current frontage/counter condition unverified. Newer interior-study-space sources do not date the courtyard canopy. All fixture details and fine RLs are reconstructions, not as-built survey."
+}

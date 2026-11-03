@@ -1,5 +1,5 @@
-import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=2345090190a8';
-import {terrainHeight} from './terrain.js?v=2345090190a8';
+import { orientedFrame, framePoint, frameRectangle } from './geometry.js?v=7fad9d71f5fd';
+import {terrainHeight} from './terrain.js?v=7fad9d71f5fd';
 
 export const SCIENCE_THEATRE_HEIGHT={height:11.73,reportedFloors:5,objectId:9,url:'https://gis.unsw.edu.au/server/rest/services/Kensington_Campus/MapServer/18',title:'UNSW public building labels · Science Theatre F13',linkLabel:'Height source · UNSW GIS',note:'Retained public Building Labels Feb2023 snapshot reports height11.73m and five floors. Original OSM15m/five-level tags remain. Height-field definition and roof reference are unspecified; this is not a roof-RL or component survey.'};
 

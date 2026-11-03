@@ -1,6 +1,6 @@
-import {CAMPUS} from './campus-data.js?v=2345090190a8';
-import {buildingBase,terrainHeight} from './terrain.js?v=2345090190a8';
-import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=2345090190a8';
+import {CAMPUS} from './campus-data.js?v=7fad9d71f5fd';
+import {buildingBase,terrainHeight} from './terrain.js?v=7fad9d71f5fd';
+import {orientedFrame,framePoint,frameRectangle} from './geometry.js?v=7fad9d71f5fd';
 export const BARKER_EAST_ID='osm-way-45561366',BARKER_SOUTH_ID='osm-way-45561370',BARKER_EAST_IDS=[BARKER_EAST_ID,BARKER_SOUTH_ID];
 export const BARKER_EAST_STREET='https://www.google.com/maps/@?api=1&map_action=pano&pano=b6Ha54RA0wf4y1dP-q2aCA&heading=260&pitch=10';
 export const BARKER_EAST_AERIAL='https://www.google.com/maps/@-33.91953,151.22978,120m/data=!3m1!1e3';

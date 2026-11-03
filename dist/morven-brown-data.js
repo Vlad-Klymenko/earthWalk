@@ -1,6 +1,6 @@
-import { CAMPUS as SOURCE } from './campus-data.js?v=2345090190a8';
-import { orientedFrame, framePoint } from './geometry.js?v=2345090190a8';
-import { buildingBase } from './terrain.js?v=2345090190a8';
+import { CAMPUS as SOURCE } from './campus-data.js?v=7fad9d71f5fd';
+import { orientedFrame, framePoint } from './geometry.js?v=7fad9d71f5fd';
+import { buildingBase } from './terrain.js?v=7fad9d71f5fd';
 export const MORVEN_ID='osm-relation-2328645-0';
 export const MORVEN_PHOTO={url:'https://www.unsw.edu.au/arts-design-architecture/our-schools/education/about-us/contact-us',title:'UNSW School of Education · Morven Brown courtyard'};
 export function morvenGeometry(b){
@@ -11,7 +11,6 @@ export function morvenGeometry(b){
   // The source lawn retains its asymmetric diagonal edge. Furniture and the
   // curved canopy are photo-led estimates, not surveyed positions.
   const pool={u:12,v:5,width:4.0,length:5.3,reconstructed:true};
-  const canopy={u:7,v:16.0,rx:8.1,rz:7.1,clearance:3.5,reconstructed:true};
-  return {frame,base,local,routes,arrival,target,heading:heading(arrival,target),passageViews,pool,canopy,rows:[.55,3.9,7.3,10.7,14.1].map(low=>({low,high:low+2.65})),roof:17.65,reconstructed:true};
+  return {frame,base,local,routes,arrival,target,heading:heading(arrival,target),passageViews,pool,rows:[.55,3.9,7.3,10.7,14.1].map(low=>({low,high:low+2.65})),roof:17.65,reconstructed:true};
 }
 export function inMorvenCourt(x,z){const b=SOURCE.buildings.find(b=>b.id===MORVEN_ID),f=orientedFrame(b.points,{x:-.16,z:1}),u=(x-f.x)*f.u.x+(z-f.z)*f.u.z,v=(x-f.x)*f.v.x+(z-f.z)*f.v.z;return u>-19&&u<18.4&&v>-16.8&&v<16.8;}
